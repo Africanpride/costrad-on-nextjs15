@@ -11,8 +11,7 @@ const Start = (props: Props) => {
         <section className="min-h-screen h-dvh grid grid-cols-1 md:grid-cols-3 ">
             <div className="bg-gray-700 col-span-1 md:col-span-2 min-h-dvh h-full flex flex-col justify-between items-start p-4 md:p-6 relative">
 
-                <div className={`${bebas.className} flex items-center justify-between w-full font-bebas`}>
-                    <MainMenu />
+                <div className={`${bebas.className} flex items-center justify-end w-full font-bebas`}>
                     <div className={`text-[1.7em] ${playfair_display.className}`}>The Strategic Voter</div>
                 </div>
 
