@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 import { Metadata, Viewport } from 'next';
 import clsx from 'clsx';
-import { bebas } from '@/config/fonts';
+import { bebas, plusJakartaSans } from '@/config/fonts';
 
 import { Providers } from './providers';
 
@@ -39,7 +39,7 @@ export default function RootLayout({
       <body
         className={clsx(
           'min-h-screen bg-background  antialiased',
-          bebas.className
+          plusJakartaSans.className
         )}>
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
           <main className='relative'>

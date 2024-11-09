@@ -11,18 +11,12 @@ import {
 import { X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import MainMenu from './ui/Menu';
+import Link from 'next/link';
+import { menuItems } from '@/config/site';
+import { bebas } from '@/config/fonts';
 
 export default function Component() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const menuItems = [
-    { number: '01', text: 'Welcome', href:'/' },
-    { number: '02', text: 'The Book', href:'/the-book' },
-    { number: '03', text: 'The Author', href:'/the-author' },
-    { number: '04', text: 'Strategic Voting 101', href:'/strategic-voting-101' },
-    { number: '05', text: 'Events & Webinars', href:'/events-and-webinar' },
-    { number: '06', text: 'contact', href:'/contact' },
-  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -49,7 +43,7 @@ export default function Component() {
 
   return (
     <>
-      <div onClick={onOpen}>
+      <div className={`${bebas.className}`} onClick={onOpen}>
         <MainMenu />
       </div>
       <Modal
@@ -60,7 +54,7 @@ export default function Component() {
           base: 'bg-zinc-900',
           closeButton: 'hidden',
         }}>
-        <ModalContent>
+        <ModalContent className={`${bebas.className}`}>
           <ModalBody className='relative flex h-screen w-full flex-col items-center justify-center p-0'>
             {/* Close button */}
             <Button
@@ -85,24 +79,24 @@ export default function Component() {
 
             {/* Menu items */}
             <motion.nav
-              className='flex flex-col items-center justify-center gap-4'
+              className='flex flex-col items-start justify-center gap-4'
               variants={containerVariants}
               initial='hidden'
               animate='visible'>
               {menuItems.map((item) => (
                 <motion.div
                   key={item.number}
-                  className='group relative flex items-center justify-center'
+                  className='group relative flex items-start justify-center'
                   variants={itemVariants}>
                   <span className='absolute -left-8 text-sm text-zinc-600'>
                     {item.number}
                   </span>
-                  <a
-                    href='#'
-                    className='group relative text-4xl font-light text-white sm:text-6xl transition-all duration-300'>
-                    {item.text}
+                  <Link
+                    href={item.href}
+                    className='group relative text-3xl font-light text-white sm:text-4xl transition-all duration-300'>
+                    {item.label}
                     <span className='absolute -bottom-2 left-0 h-0.5 w-0 bg-red-600 transition-all duration-300 group-hover:w-full' />
-                  </a>
+                  </Link>
                 </motion.div>
               ))}
             </motion.nav>
