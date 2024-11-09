@@ -83,3 +83,9 @@ export const menuItems = [
   { number: '05', label: 'Events & Webinars', href: '/events-and-webinar' },
   { number: '06', label: 'contact', href: '/contact' },
 ];
+
+
+export const shareSocial = {
+  url: 'https://www.thestrategicvoter.com',
+  title: 'The Strategic Voter - By: Dr. Abu Bako'
+}

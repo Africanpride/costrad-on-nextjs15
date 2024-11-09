@@ -11,12 +11,18 @@ import {
 import { X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import MainMenu from './ui/Menu';
-import Link from 'next/link';
 import { menuItems } from '@/config/site';
 import { bebas } from '@/config/fonts';
+import { useRouter } from 'next/navigation';
 
 export default function Component() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const router = useRouter();
+
+  const handleLinkClick = (href: string) => {
+    onClose();
+    router.push(href);
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -56,7 +62,6 @@ export default function Component() {
         }}>
         <ModalContent className={`${bebas.className}`}>
           <ModalBody className='relative flex h-screen w-full flex-col items-center justify-center p-0'>
-            {/* Close button */}
             <Button
               isIconOnly
               variant='light'
@@ -66,7 +71,6 @@ export default function Component() {
               <span className='sr-only'>Close</span>
             </Button>
 
-            {/* Side text */}
             <div className='absolute left-4 top-1/2 -translate-y-1/2 rotate-180 text-3xl text-yellow-500 [writing-mode:vertical-lr]'>
               The Strategic Voter
             </div>
@@ -77,7 +81,6 @@ export default function Component() {
               </div>
             </div>
 
-            {/* Menu items */}
             <motion.nav
               className='flex flex-col items-start justify-center gap-4'
               variants={containerVariants}
@@ -91,12 +94,12 @@ export default function Component() {
                   <span className='absolute -left-8 text-sm text-zinc-600'>
                     {item.number}
                   </span>
-                  <Link
-                    href={item.href}
+                  <button
+                    onClick={() => handleLinkClick(item.href)}
                     className='group relative text-3xl font-light text-white sm:text-4xl transition-all duration-300'>
                     {item.label}
                     <span className='absolute -bottom-2 left-0 h-0.5 w-0 bg-red-600 transition-all duration-300 group-hover:w-full' />
-                  </Link>
+                  </button>
                 </motion.div>
               ))}
             </motion.nav>

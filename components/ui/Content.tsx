@@ -86,9 +86,9 @@ const Section2 = () => {
 
 const Nav = () => {
   return (
-    <div className='flex items-start shrink-0 gap-20 z-50'>
+    <div className='flex items-start shrink-0 gap-20 z-50 pt-[10dvh]'>
       <div className='flex flex-col'>
-        <h3 className='mb-2 uppercase text-[#ffffff80]'>About</h3>
+        <h3 className='mb-2 uppercase md:text-2xl text-[#ffffff80]'>About</h3>
         {menuItems.map((item) => (
           <div key={item.number}>
             {/* <span className='absolute -left-8 text-sm text-zinc-600'>
@@ -104,7 +104,7 @@ const Nav = () => {
         ))}
       </div>
       <div className='flex flex-col'>
-        <h3 className='mb-2 uppercase text-[#ffffff80]'>Affiliations</h3>
+        <h3 className='mb-2 uppercase md:text-2xl text-[#ffffff80]'>Affiliations</h3>
         <Link href={'http://www.costrad.org'} target='_blank'>
           COSTrAD
         </Link>

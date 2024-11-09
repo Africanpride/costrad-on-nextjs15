@@ -21,7 +21,7 @@ blockquote {
 blockquote:before,
 blockquote:after {
   position: absolute;
-  color: #f1efe6;
+  color: #d4d2cb;
   font-size: 8rem;
   width: 2rem;
   height: 2rem;

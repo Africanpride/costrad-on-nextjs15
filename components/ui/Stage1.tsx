@@ -6,7 +6,7 @@ type Props = {};
 
 const Stage1 = (props: Props) => {
   return (
-    <section className={`${specialElite.className} h-dvh flex flex-col justify-center items-center`}>
+    <section className={`${specialElite.className} h-dvh flex flex-col justify-center items-center  dark:bg-neutral-950  `}>
       <div>
         <blockquote className='max-w-4xl container mx-auto text-xl md:text-4xl pb-6 ' >
           Ask that He will show you how to carry the responsibility of strategic
