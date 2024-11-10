@@ -91,7 +91,7 @@ const Nav = () => {
               href={item.href}
               className='group relative  font-light transition-all duration-300'>
               {item.label}
-              <span className='absolute -bottom-1 left-0 h-0.5 w-0 bg-red-600 transition-all duration-300 group-hover:w-full' />
+              <span className='absolute -bottom-1 left-0 h-0.5 w-0 bg-yellow-600 transition-all duration-300 group-hover:w-full' />
             </Link>
           </div>
         ))}

@@ -15,12 +15,12 @@ export default function Jumbotron({
   return (
     <header className="relative w-full">
       {/* Main container */}
-      <div className="min-w-[1440px] mx-auto">
+      <div className="md:min-w-[1440px] mx-auto">
         {/* Navigation bar */}
 
 
         {/* Hero Image Section */}
-        <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden">
+        <div className="relative w-full h-[300px] sm:h-[300px] md:h-[400px] overflow-hidden">
           <Image
             src={`/images/${heroImage}`}
             alt="Today at Apple Hero"
