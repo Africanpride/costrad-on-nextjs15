@@ -8,11 +8,13 @@ type Props = {}
 
 const Start = (props: Props) => {
     return (
-        <section className={`${bebas.className} min-h-screen h-dvh grid grid-cols-1 md:grid-cols-3 `}>
-            <div className="bg-blue-950 col-span-1 md:col-span-2 min-h-dvh h-full flex flex-col justify-between items-start p-4 md:p-6 relative">
+        <section className={`${bebas.className} md:min-h-screen h-auto grid grid-cols-1 md:grid-cols-3 `}>
+            <div className="bg-blue-950 col-span-1 md:col-span-2 min-h-dvh h-full flex flex-col
+             justify-center md:justify-between items-start p-4 md:p-6 relative">
 
-                <div className={`${bebas.className} flex items-center justify-end w-full font-bebas`}>
-                    <div className={`text-[1.7em] ${playfair_display.className}`}>The Strategic Voter</div>
+                <div className={`${bebas.className} absolute top-4 right-4 md:relative flex items-center justify-end w-full font-bebas`}>
+                    <div className={`md:text-[1.7em] pt-4 text-white ${playfair_display.className}`}>
+                        The Strategic Voter</div>
                 </div>
 
                 <div className="flex items-center justify-center max-w-4xl container mx-auto relative">

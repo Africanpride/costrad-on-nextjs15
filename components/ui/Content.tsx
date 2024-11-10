@@ -86,7 +86,7 @@ const Section2 = () => {
 
 const Nav = () => {
   return (
-    <div className='flex items-start shrink-0 gap-20 z-50 pt-[10dvh]'>
+    <div className='flex items-start shrink-0 gap-20 z-50 md:pt-[10dvh]'>
       <div className='flex flex-col'>
         <h3 className='mb-2 uppercase md:text-2xl text-[#ffffff80]'>About</h3>
         {menuItems.map((item) => (
