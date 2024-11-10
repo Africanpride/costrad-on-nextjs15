@@ -44,7 +44,8 @@ const CTA = (props: Props) => {
 
   return (
     <section className={` bg-neutral-200 dark:bg-gray-800 `}>
-      <div className='lg:flex lg:items-center lg:justify-between min-h-dvh  w-full mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20'>
+      <div className=' flex flex-col md:flex-row  justify-center md:flex md:items-center md:justify-between 
+      min-h-[500px]  w-full mx-auto py-12 px-4 sm:px-6 md:py-16 md:px-8 z-20'>
         <h2 className={` text-black dark:text-white sm:text-4xl max-w-3xl`}>
           <div
             className={`${bebas.className} font-display text-4xl tracking-tighter text-neutral-900 sm:text-5xl`}>
@@ -56,7 +57,7 @@ const CTA = (props: Props) => {
             action, and empower voters everywhere today.
           </div>
         </h2>
-        <div className='lg:mt-0 lg:flex-shrink-0'>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-4 pt-5 md:pt-0 '>
           <div className=' inline-flex rounded-md shadow'>
             <button
               type='button'
@@ -64,7 +65,7 @@ const CTA = (props: Props) => {
               Grab Your Copy
             </button>
           </div>
-          <div className='inline-flex ml-3 rounded-md shadow'>
+          <div className='inline-flex rounded-md shadow'>
             <button
               onClick={onOpen}
               type='button'

@@ -6,16 +6,25 @@ type Props = {};
 
 const Stage1 = (props: Props) => {
   return (
-    <section className={`${specialElite.className} h-auto md:h-dvh p-16 flex flex-col justify-center items-center 
+    <section
+      className={`${specialElite.className} h-auto md:min-h-dvh p-12 md:py-20 pt-24 flex flex-col justify-center items-center 
      dark:bg-neutral-950  `}>
-      <div>
-        <blockquote className='max-w-4xl container mx-auto text-xl md:text-4xl  ' >
+      <blockquote className='relative max-w-3xl container mx-auto text-xl md:text-4xl '>
+        <span className='absolute -left-10 -top-2 w-16 h-16 text-[6.5rem] '>
+          “
+        </span>
+        {/* Your blockquote content here */}
+        <div>
           Ask that He will show you how to carry the responsibility of strategic
           voting with the weightiness and gravity it requires for your own good
           and the good of your territory.
-        </blockquote>
+        </div>
+        <br />
+        <br />
+
         <cite className='text-xl pt-6'>&mdash; Dr. Abu Bako</cite>
-      </div>
+      </blockquote>
+      {/* <span className=' p-5 text-[6.5rem] '>”</span> */}
     </section>
   );
 };

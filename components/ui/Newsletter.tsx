@@ -5,11 +5,11 @@ type Props = {};
 
 const Newsletter = (props: Props) => {
   return (
-    <section id='newsletter' aria-label='Newsletter' className='bg-white p-16 h-dvh  flex flex-col justify-center items-center'>
-      <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+    <section id='newsletter' aria-label='Newsletter' className='bg-white md:p-16 h-auto md:h-dvh  flex flex-col justify-center items-center'>
+      <div className='mx-auto md:max-w-7xl px-4 sm:px-6 lg:px-8'>
         <div className='relative -mx-4 overflow-hidden bg-indigo-50 px-4 py-20 sm:-mx-6 sm:px-6 md:mx-0 md:rounded-5xl md:px-16 xl:px-24 xl:py-36'>
 
-          <div className='relative mx-auto grid max-w-2xl grid-cols-1 gap-x-32 gap-y-14 xl:max-w-none xl:grid-cols-2'>
+          <div className='relative mx-auto grid md:max-w-2xl grid-cols-1 gap-x-32 gap-y-14 xl:max-w-none xl:grid-cols-2'>
             <div>
               <p className={`${bebas.className} font-display text-4xl font-medium tracking-tighter text-neutral-900 sm:text-5xl`}>
                 Stay up to date

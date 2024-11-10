@@ -15,7 +15,7 @@ export default function Jumbotron({
   return (
     <header className="relative w-full">
       {/* Main container */}
-      <div className="max-w-[1440px] mx-auto">
+      <div className="min-w-[1440px] mx-auto">
         {/* Navigation bar */}
 
 

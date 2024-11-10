@@ -34,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning lang='en' className='overflow-x-hidden'>
+    <html suppressHydrationWarning lang='en'>
       <head />
       <body
         className={clsx(
@@ -42,7 +42,7 @@ export default function RootLayout({
           plusJakartaSans.className
         )}>
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
-          <main className='relative'>
+          <main className='relative overflow-x-hidden'>
             <div></div>
             <div className='fixed left-5 top-5 z-50 '>
               <SlideInMenu />

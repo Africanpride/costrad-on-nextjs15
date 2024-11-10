@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 
 export default function Content() {
   return (
-    <div className='bg-[#4E4E5A] py-8 px-12  h-full w-full flex flex-col justify-between'>
+    <div className=' py-8 px-8   h-dvh w-full flex flex-col justify-between'>
       <Nav />
       <Section2 />
     </div>
@@ -51,16 +51,9 @@ const Section2 = () => {
   }, [animate]);
 
   return (
-    <div className='flex justify-between items-end relative '>
-      {/* <div className='landing'>
-                <div className="slidercontainer ">
-                    <div ref={slider} className="slider">
-                        <p ref={firstText}>The Strategic Voter -</p>
-                        <p ref={secondText}>The Strategic Voter -</p>
-                    </div>
-                </div>
-            </div> */}
-      <div className='text-[15vw] leading-[0.8] mt-10 absolute -left-14 bottom-5 '>
+    <div className='flex justify-between md:items-end relative '>
+
+      <div className='text-[6.5rem] md:text-[12.5rem] leading-[0.8] md:mt-10 absolute -left-14 bottom-16 md:bottom-5 '>
         <div className='w-full opacity-20'>
           <Marquee className=' ' speed={70}>
             <p ref={firstText}> The Strategic Voter &#x2014; </p>
@@ -86,8 +79,8 @@ const Section2 = () => {
 
 const Nav = () => {
   return (
-    <div className='flex items-start shrink-0 gap-20 z-50 md:pt-[10dvh]'>
-      <div className='flex flex-col'>
+    <div className='flex flex-col h-auto md:flex-row items-start shrink-0 gap-8 md:gap-20 z-50 pt-5 md:pt-[10dvh]'>
+      <div className='flex flex-col '>
         <h3 className='mb-2 uppercase md:text-2xl text-[#ffffff80]'>About</h3>
         {menuItems.map((item) => (
           <div key={item.number}>
@@ -103,7 +96,7 @@ const Nav = () => {
           </div>
         ))}
       </div>
-      <div className='flex flex-col'>
+      <div className='flex flex-col '>
         <h3 className='mb-2 uppercase md:text-2xl text-[#ffffff80]'>Affiliations</h3>
         <Link href={'http://www.costrad.org'} target='_blank'>
           COSTrAD

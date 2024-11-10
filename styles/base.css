@@ -8,16 +8,16 @@
 	align-items: center;
 	justify-content: center;
 } */
-
+/* 
 blockquote {
   font-weight: 100;
   font-size: 2.2rem;
   line-height: 1.2;
   position: relative;
   margin: 0;
-  /* padding: .5rem; */
-}
 
+} */
+/* 
 blockquote:before,
 blockquote:after {
   position: absolute;
@@ -37,7 +37,7 @@ blockquote:after {
   content: '”';
   right: -4rem;
   bottom: -3rem;
-}
+} */
 
 cite {
   font-size: 2em;
