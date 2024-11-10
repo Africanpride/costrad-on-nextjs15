@@ -61,7 +61,7 @@ const CTA = (props: Props) => {
             <button
               type='button'
               className='py-4 px-6  bg-neutral-600 hover:bg-neutral-700 focus:ring-neutral-500 focus:ring-offset-neutral-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg '>
-              Grab A Copy
+              Grab Your Copy
             </button>
           </div>
           <div className='inline-flex ml-3 rounded-md shadow'>

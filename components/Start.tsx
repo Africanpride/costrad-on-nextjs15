@@ -15,7 +15,7 @@ const Start = (props: Props) => {
                     <div className={`text-[1.7em] ${playfair_display.className}`}>The Strategic Voter</div>
                 </div>
 
-                <div className="flex items-center justify-center max-w-4xl container relative">
+                <div className="flex items-center justify-center max-w-4xl container mx-auto relative">
                     <Image src={'/images/globe.png'} alt="alt" width={400} height={400} className=" animation-duration-100 animate-pulse absolute  " />
                     <div className="text-xl md:text-5xl leading-[0.9em] text-white text-center" 
                     data-scroll data-scroll-speed={0.2}>

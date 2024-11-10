@@ -5,20 +5,10 @@ type Props = {};
 
 const Newsletter = (props: Props) => {
   return (
-    <section id='newsletter' aria-label='Newsletter' className='bg-white p-16 h-dvh'>
+    <section id='newsletter' aria-label='Newsletter' className='bg-white p-16 h-dvh  flex flex-col justify-center items-center'>
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
         <div className='relative -mx-4 overflow-hidden bg-indigo-50 px-4 py-20 sm:-mx-6 sm:px-6 md:mx-0 md:rounded-5xl md:px-16 xl:px-24 xl:py-36'>
-          {/* <Image
-            alt='the strategic voter newsletter'
-            loading='lazy'
-            width='919'
-            height='1351'
-            decoding='async'
-            data-nimg='1'
-            className='absolute left-1/2 top-0 translate-x-[-10%] translate-y-[-45%] lg:translate-x-[-32%]'
-            style={{ color: 'transparent' }}
-            src='/_next/static/media/background-newsletter.488a0204.jpg'
-          /> */}
+
           <div className='relative mx-auto grid max-w-2xl grid-cols-1 gap-x-32 gap-y-14 xl:max-w-none xl:grid-cols-2'>
             <div>
               <p className={`${bebas.className} font-display text-4xl font-medium tracking-tighter text-neutral-900 sm:text-5xl`}>
