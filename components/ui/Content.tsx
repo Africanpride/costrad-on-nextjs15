@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 
 export default function Content() {
   return (
-    <div className=' py-8 px-8   h-dvh w-full flex flex-col justify-between'>
+    <div className=' py-8 px-8  h-dvh w-full flex flex-col justify-between'>
       <Nav />
       <Section2 />
     </div>
@@ -81,7 +81,7 @@ const Nav = () => {
   return (
     <div className='flex flex-col h-auto md:flex-row items-start shrink-0 gap-8 md:gap-20 z-50 pt-5 md:pt-[10dvh]'>
       <div className='flex flex-col '>
-        <h3 className='mb-2 uppercase md:text-2xl text-[#ffffff80]'>About</h3>
+        <h3 className='mb-2 uppercase md:text-2xl text-gray-500'>About</h3>
         {menuItems.map((item) => (
           <div key={item.number}>
             {/* <span className='absolute -left-8 text-sm text-zinc-600'>
@@ -89,15 +89,15 @@ const Nav = () => {
                   </span> */}
             <Link
               href={item.href}
-              className='group relative  font-light text-white transition-all duration-300'>
+              className='group relative  font-light transition-all duration-300'>
               {item.label}
-              <span className='absolute -bottom-2 left-0 h-0.5 w-0 bg-red-600 transition-all duration-300 group-hover:w-full' />
+              <span className='absolute -bottom-1 left-0 h-0.5 w-0 bg-red-600 transition-all duration-300 group-hover:w-full' />
             </Link>
           </div>
         ))}
       </div>
       <div className='flex flex-col '>
-        <h3 className='mb-2 uppercase md:text-2xl text-[#ffffff80]'>Affiliations</h3>
+        <h3 className='mb-2 uppercase md:text-2xl text-gray-500'>Affiliations</h3>
         <Link href={'http://www.costrad.org'} target='_blank'>
           COSTrAD
         </Link>
