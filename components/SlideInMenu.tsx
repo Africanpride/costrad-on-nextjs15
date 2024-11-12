@@ -14,6 +14,7 @@ import MainMenu from './ui/Menu';
 import { menuItems } from '@/config/site';
 import { bebas } from '@/config/fonts';
 import { useRouter } from 'next/navigation';
+import { ThemeSwitch } from './ui/theme-switch';
 
 export default function Component() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -60,15 +61,22 @@ export default function Component() {
           base: 'bg-zinc-900',
           closeButton: 'hidden',
         }}>
-        <ModalContent className={`${bebas.className}`}>
+        <ModalContent className={`${bebas.className} dark:bg-black text-current `}>
           <ModalBody className='relative flex h-screen w-full flex-col items-center justify-center p-0'>
             <Button
               isIconOnly
               variant='light'
               onPress={onClose}
-              className='absolute right-4 top-4 text-zinc-400 hover:text-white'>
+              className='absolute left-4 top-4 text-zinc-400 hover:text-white'>
               <X className='h-6 w-6' />
               <span className='sr-only'>Close</span>
+            </Button>
+            <Button
+              isIconOnly
+              variant='light'
+              onPress={onClose}
+              className='absolute right-3 top-4 text-zinc-400 hover:text-white'>
+              <ThemeSwitch />
             </Button>
 
             <div className='absolute left-4 top-1/2 -translate-y-1/2 rotate-180 text-3xl text-yellow-500 [writing-mode:vertical-lr]'>
@@ -98,7 +106,7 @@ export default function Component() {
                     onClick={() => handleLinkClick(item.href)}
                     className='group relative text-3xl font-light text-white sm:text-4xl transition-all duration-300'>
                     {item.label}
-                    <span className='absolute -bottom-2 left-0 h-0.5 w-0 bg-red-600 transition-all duration-300 group-hover:w-full' />
+                    <span className='absolute -bottom-2 left-0 h-0.5 w-0 bg-yellow-600 transition-all duration-300 group-hover:w-full' />
                   </button>
                 </motion.div>
               ))}

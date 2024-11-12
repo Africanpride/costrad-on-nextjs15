@@ -7,7 +7,8 @@ type Props = {};
 const Stage1 = (props: Props) => {
   return (
     <section
-      className={`${specialElite.className} h-auto md:min-h-dvh p-12 md:py-20 pt-24 flex flex-col justify-center items-center 
+      className={`${specialElite.className} h-auto md:min-h-dvh p-12 md:py-20 pt-24
+         flex flex-col justify-center items-center 
      dark:bg-neutral-950  `}>
       <blockquote className='relative max-w-3xl container mx-auto text-xl md:text-4xl '>
         <span className='absolute -left-10 -top-2 w-16 h-16 text-[6.5rem] '>

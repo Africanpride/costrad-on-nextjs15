@@ -5,22 +5,22 @@ type Props = {};
 
 const Newsletter = (props: Props) => {
   return (
-    <section id='newsletter' aria-label='Newsletter' className='bg-white md:p-16 h-auto md:h-dvh  flex flex-col justify-center items-center'>
+    <section id='newsletter' aria-label='Newsletter' className=' md:p-16 h-auto md:h-dvh  flex flex-col justify-center items-center'>
       <div className='mx-auto md:max-w-7xl px-4 sm:px-6 lg:px-8'>
-        <div className='relative -mx-4 overflow-hidden bg-indigo-50 px-4 py-20 sm:-mx-6 sm:px-6 md:mx-0 md:rounded-5xl md:px-16 xl:px-24 xl:py-36'>
+        <div className='relative -mx-4 overflow-hidden  px-4 py-20 sm:-mx-6 sm:px-6 md:mx-0 md:rounded-5xl md:px-16 xl:px-24 xl:py-36'>
 
           <div className='relative mx-auto grid md:max-w-2xl grid-cols-1 gap-x-32 gap-y-14 xl:max-w-none xl:grid-cols-2'>
             <div>
-              <p className={`${bebas.className} font-display text-4xl font-medium tracking-tighter text-neutral-900 sm:text-5xl`}>
+              <p className={`${bebas.className} font-display text-4xl font-medium tracking-tighter  sm:text-5xl`}>
                 Stay up to date
               </p>
-              <p className='mt-4 text-lg tracking-tight text-neutral-900'>
+              <p className='mt-4 text-lg tracking-tight '>
                 Get updates on all of our events and be the first to get
                 notified.
               </p>
             </div>
             <form>
-              <h3 className='text-lg font-semibold tracking-tight text-neutral-900'>
+              <h3 className='text-lg font-semibold tracking-tight '>
                 Sign up to our newsletter <span aria-hidden='true'>↓</span>
               </h3>
               <div className='mt-5 flex rounded-3xl bg-white py-2.5 pr-2.5 shadow-xl shadow-neutral-900/5 focus-within:ring-2 focus-within:ring-neutral-900'>

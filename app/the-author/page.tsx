@@ -2,7 +2,7 @@ import { title } from "@/components/primitives";
 import Introduction from "@/components/ui/Introduction";
 import { bebas } from "@/config/fonts";
 
-export default function AboutPage() {
+export default function AuthortPage() {
 	return (
 		<div className=' container mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-3 min-h-screen h-auto space-y-3 p-5 md:p-12 '>
 			<div

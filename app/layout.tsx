@@ -9,6 +9,7 @@ import { siteConfig } from '@/config/site';
 import Footer from '@/components/ui/Footer';
 import MainMenu from '@/components/ui/Menu';
 import SlideInMenu from '@/components/SlideInMenu';
+import MainLogo from '@/components/ui/MainLogo';
 
 export const metadata: Metadata = {
   title: {
@@ -38,14 +39,17 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          'min-h-screen bg-background  antialiased',
+          'min-h-screen light   text-foreground bg-background  antialiased',
           plusJakartaSans.className
         )}>
-        <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
+        <Providers themeProps={{ attribute: 'class', defaultTheme: 'light' }}>
           <main className='relative overflow-x-hidden'>
             <div></div>
-            <div className='fixed left-5 top-5 z-50 '>
-              <SlideInMenu />
+            <div className='fixed left-5 right-5 top-5 z-50 w-auto '>
+              <div className='flex items-center justify-between'>              
+                <SlideInMenu />
+                <MainLogo />
+                </div>
             </div>
             {children}
             <Footer />

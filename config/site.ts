@@ -77,8 +77,8 @@ export const menuItems = [
   { number: '03', label: 'The Author', href: '/the-author' },
   {
     number: '04',
-    label: 'Strategic Voting 101',
-    href: '/strategic-voting-101',
+    label: 'Strategic Voter 101',
+    href: '/strategic-voter-101',
   },
   { number: '05', label: 'Events & Webinars', href: '/events-and-webinar' },
   { number: '06', label: 'contact', href: '/contact' },
