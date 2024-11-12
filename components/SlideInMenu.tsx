@@ -63,22 +63,22 @@ export default function Component() {
         }}>
         <ModalContent className={`${bebas.className} dark:bg-black text-current `}>
           <ModalBody className='relative flex h-screen w-full flex-col items-center justify-center p-0'>
+
             <Button
               isIconOnly
               variant='light'
               onPress={onClose}
-              className='absolute left-4 top-4 text-zinc-400 hover:text-white'>
+              className='absolute left-3 top-4 text-zinc-400 hover:text-white'>
+              <ThemeSwitch />
+            </Button>
+            <Button
+              isIconOnly
+              variant='light'
+              onPress={onClose}
+              className='absolute right-4 top-4 text-zinc-400 hover:text-white'>
               <X className='h-6 w-6' />
               <span className='sr-only'>Close</span>
             </Button>
-            <Button
-              isIconOnly
-              variant='light'
-              onPress={onClose}
-              className='absolute right-3 top-4 text-zinc-400 hover:text-white'>
-              <ThemeSwitch />
-            </Button>
-
             <div className='absolute left-4 top-1/2 -translate-y-1/2 rotate-180 text-3xl text-yellow-500 [writing-mode:vertical-lr]'>
               The Strategic Voter
             </div>

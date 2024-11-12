@@ -15,7 +15,7 @@ const Start = (props: Props) => {
 		>
 			<div
 				className='bg-blue-950 col-span-1 md:col-span-2 min-h-dvh h-full flex flex-col
-             justify-center md:justify-between items-start p-4 md:p-6 relative'
+             justify-center md:justify-between items-start p-4 md:p-6 relative  order-2 '
 			>
 				<div></div>
 
@@ -44,7 +44,7 @@ const Start = (props: Props) => {
 					<LucideMoveDown className='animate-bounce w-6 h-6' />
 				</div>
 			</div>
-			<div className='bg-yellow-700 min-h-dvh relative p-4 md:p-6'>
+			<div className='bg-yellow-700 min-h-dvh relative p-4 md:p-6 order-1 '>
 				<div
 					className='absolute inset-0 z-0'
 					style={{
@@ -75,7 +75,7 @@ const Start = (props: Props) => {
 								Strategic <br /> Voter{" "}
 							</p>
 						</div>
-						<Divider className='my-4 w-4/5 bg-yellow-500 ' />
+						<Divider className='my-4 w-2/5 md:w-4/5 bg-yellow-500 ' />
 						<div className="text-yellow-500 ">
 							<p className="text-lg">THE KINGDOM PATTERNS SERIES &#x2014; VOLUME ONE</p>
 							<p className={` text-sm  text-yellow-500 `}>

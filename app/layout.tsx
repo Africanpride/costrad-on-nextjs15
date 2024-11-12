@@ -45,10 +45,10 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'light' }}>
           <main className='relative overflow-x-hidden'>
             <div></div>
-            <div className='fixed left-5 right-5 top-5 z-50 w-auto '>
-              <div className='flex items-center justify-between'>              
-                <SlideInMenu />
+            <div className='fixed px-2 w-full  top-5 z-50  '>
+              <div className='flex items-center justify-between  p-4 rounded-full'>              
                 <MainLogo />
+                <SlideInMenu />
                 </div>
             </div>
             {children}
