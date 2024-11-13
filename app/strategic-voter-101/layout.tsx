@@ -8,7 +8,7 @@ export default function AboutLayout({
   return (
     <section className="block">
       <div className="block">
-        <Jumbotron />
+        <Jumbotron heroImage={'faqs2.jpg'} />
         {children}
       </div>
     </section>

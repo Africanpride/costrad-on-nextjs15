@@ -75,7 +75,7 @@ const Start = (props: Props) => {
 								Strategic <br /> Voter{" "}
 							</p>
 						</div>
-						<Divider className='my-4 w-2/5 md:w-4/5 bg-yellow-500 ' />
+						<Divider className='my-4 w-2/5 bg-yellow-500 ' />
 						<div className="text-yellow-500 ">
 							<p className="text-lg">THE KINGDOM PATTERNS SERIES &#x2014; VOLUME ONE</p>
 							<p className={` text-sm  text-yellow-500 `}>
