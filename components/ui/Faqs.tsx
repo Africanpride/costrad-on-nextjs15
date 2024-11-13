@@ -2,8 +2,10 @@
 import { bebas } from "@/config/fonts";
 import { Accordion, AccordionItem } from "@nextui-org/react";
 import { LucideArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 export default function Faqs() {
+
     const faqData = [
         {
             key: "1",
@@ -50,8 +52,14 @@ export default function Faqs() {
         {
             key: "8",
             question: "How can readers access the full text of the book?",
-            answer:
-                `Readers can purchase or download the book from various online platforms such as Amazon, Google Books, or directly from the publisher's <Link href="https://www.thestrategicvoter.com/the-book" className="text-warning">website</Link>.`,
+            answer: (
+                <>
+                    Readers can purchase or download the book from various online platforms such as Amazon, Google Books, or directly from the publisher's{" "}
+                    <Link href="https://www.thestrategicvoter.com/the-book" className="text-warning">
+                        <span className="font-bold text-yellow-500">website</span>
+                    </Link>.
+                </>
+            ),
         },
         {
             key: "9",
@@ -75,25 +83,26 @@ export default function Faqs() {
             key: "12",
             question: "How can readers provide feedback on the book?",
             answer:
-                `Readers can provide feedback through the publisher’s website, social media channels, or by contacting Dr. Abu Bako directly via email or his institutional affiliations.`,
+                "Readers can provide feedback through the publisher’s website, social media channels, or by contacting Dr. Abu Bako directly via email or his institutional affiliations.",
         },
     ];
+
 
     return (
         <Accordion showDivider={true} selectionBehavior="toggle"  >
             {faqData.map((item) => (
                 <AccordionItem
-                indicator={<LucideArrowLeft className="text-yellow-500" />}
+                    indicator={<LucideArrowLeft className="text-yellow-500" />}
                     key={item.key}
                     title={item.question}
                     aria-label={item.question}
                     classNames={{
-                        title: `font-bold text-lg` 
-                      }}
+                        title: `font-bold text-lg`
+                    }}
                 >
-                   <div className="text-base py-5">
-                   {item.answer}
-                   </div>
+                    <div className="text-base py-5">
+                        {item.answer}
+                    </div>
                 </AccordionItem>
             ))}
         </Accordion>
