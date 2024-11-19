@@ -1,4 +1,6 @@
-import Jumbotron from "@/components/ui/Jumbotron";
+import GoogleCaptchaWrapper from '@/components/ui/GoogleCaptchaWrapper';
+import Jumbotron from '@/components/ui/Jumbotron';
+import { Toaster } from 'react-hot-toast';
 
 export default function AboutLayout({
   children,
@@ -6,11 +8,11 @@ export default function AboutLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="block">
-      <div className="block">
-        <Jumbotron />
-        {children}
-      </div>
-    </section>
+      <section className='block'>
+          <Toaster />
+          <Jumbotron />
+          {children}
+      </section>
+
   );
 }

@@ -14,6 +14,7 @@ const words = [
   'Hallo',
 ];
 const welcomeWords = [
+  'THE STRATEGIC VOTER', // English
   'Welcome', // English
   'Bienvenue', // French
   'Benvenuto', // Italian

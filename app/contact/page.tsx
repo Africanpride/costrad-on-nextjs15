@@ -1,11 +1,77 @@
+'use client';
 import { title } from '@/components/primitives';
 import Introduction from '@/components/ui/Introduction';
 import { bebas } from '@/config/fonts';
+import { Button, Checkbox, Input, Textarea } from '@nextui-org/react';
+import Link from 'next/link';
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
-export default function ContacttPage() {
+type ContactFormInputs = {
+  firstname: string;
+  lastname: string;
+  email: string;
+  message: string;
+};
+
+export default function ContactPage() {
+  const [isSelected, setIsSelected] = useState<boolean>(false);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ContactFormInputs>();
+
+  
+
+  const onSubmit: SubmitHandler<ContactFormInputs> = async (data) => {
+    if (!isSelected) {
+      toast.error('Please agree to the privacy policy');
+      return;
+    }
+
+    const formData = {
+      name: `${data.firstname} ${data.lastname}`,
+      email: data.email,
+      message: data.message,
+    };
+
+    await toast.promise(
+      (async () => {
+        const response = await fetch('/api/talk-to-us', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to send message');
+        }
+
+        const result = await response.json();
+        console.log('Success:', result);
+
+        reset();
+        setIsSelected(false);
+
+        return result;
+      })(),
+      {
+        loading: 'Sending message...',
+        success: 'Message sent successfully!',
+        error: 'Failed to send message',
+      }
+    );
+  };
+
   return (
-    <section className='py-32'>
-      <div className='container mx-auto'>
+    <section className='py-32 '>
+      <div className='container mx-auto max-w-[70rem] px-4 '>
         <div className='mb-14'>
           <span className='text-sm font-semibold'>Reach Us</span>
           <h1 className='mb-3 mt-1 text-balance text-3xl font-semibold md:text-4xl'>
@@ -105,84 +171,97 @@ export default function ContacttPage() {
                 Mon-Fri, 9am-5pm GMT.
               </p>
               <a href='#' className='font-semibold hover:underline'>
-			  +233200201334
+                +233200201334
               </a>
             </div>
           </div>
-          <div className='mx-auto flex w-full flex-col gap-6 rounded-lg md:max-w-auto bg-muted p-10'>
-            <div className='grid gap-4 md:grid-cols-2'>
-              <div className='grid w-full items-center gap-1.5'>
-                <label
-                  className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
-                  htmlFor='firstname'>
-                  First Name<sup className='ml-0.5'>*</sup>
-                </label>
-                <input
-                  type='text'
-                  className='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
-                  id='firstname'
-                  placeholder='Your First Name'
+
+          <div className='mx-auto flex w-full flex-col gap-6 md:rounded-lg md:max-w-auto md:bg-muted p-4 md:p-10'>
+            <form onSubmit={handleSubmit(onSubmit)} className=' space-y-3'>
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                <Input
+                  variant='flat'
+                  autoFocus
+                  {...register('firstname', { required: true })}
+                  name='firstname'
+                  label='First Name'
+                  // placeholder="Enter your First Name"
+                  className='md:max-w-auto]'
+                  isInvalid={errors.firstname ? true : false}
+                  isClearable
+                  color='success'
+                />
+
+                <Input
+                  variant='flat'
+                  {...register('lastname', { required: true })}
+                  name='lastname'
+                  label='Last Name'
+                  // placeholder="Enter your Last Name"
+                  className='md:max-w-auto]'
+                  isInvalid={errors.lastname ? true : false}
+                  isClearable
+                  color='success'
                 />
               </div>
-              <div className='grid w-full items-center gap-1.5'>
-                <label
-                  className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
-                  htmlFor='lastname'>
-                  Last Name<sup className='ml-0.5'>*</sup>
-                </label>
-                <input
-                  type='text'
-                  className='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
-                  id='lastname'
-                  placeholder='Your Last Name'
+
+              <div className='w-full'>
+                <Input
+                  variant='flat'
+                  {...register('email', { required: true })}
+                  name='email'
+                  type='email'
+                  label='Email Address'
+                  className='md:max-w-auto]'
+                  isInvalid={errors.email ? true : false}
+                  description="We'll never share your email with anyone else."
+                  isClearable
+                  color='success'
                 />
               </div>
-            </div>
-            <div className='grid w-full items-center gap-1.5'>
-              <label
-                className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
-                htmlFor='email'>
-                Email Address<sup className='ml-0.5'>*</sup>
-              </label>
-              <input
-                type='email'
-                className='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
-                id='email'
-                placeholder='Your Email'
-              />
-            </div>
-            <div className='grid w-full gap-1.5'>
-              <label
-                className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
-                htmlFor='message'>
-                Your Message<sup className='ml-0.5'>*</sup>
-              </label>
-              <textarea
-                className='flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
-                placeholder='How can we help you?'
-                id='message'
-              />
-            </div>
-            <div className='flex items-center space-x-2'>
-              <button
-                type='button'
-                role='checkbox'
-                aria-checked='false'
-                data-state='unchecked'
-                value='on'
-                className='peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground'
-                id='terms'
-              />
-              <label
-                htmlFor='terms'
-                className='text-sm font-medium leading-none text-muted-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-70'>
-                I agree to the
-                <span className='ml-1 underline'>privacy policy</span>
-              </label>
-            </div>
-            <button className='inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full'>
-              Submit
-            </button>
+
+              <div className='grid w-full gap-1.5 md:col-span-2'>
+                <Textarea
+                  {...register('message', { required: 'Message is required' })}
+                  color='success'
+                  variant={'flat'}
+                  label='Description'
+                  labelPlacement='inside'
+                  placeholder='Enter your description'
+                  className='col-span-12 md:col-span-6 mb-6 md:mb-0'
+                />
+                {/* <textarea
+                  {...register('message', { required: 'Message is required' })}
+                  className='flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+                  placeholder='How can we help you?'
+                /> */}
+                {errors.message && (
+                  <span className='text-sm text-red-500'>
+                    {errors.message.message}
+                  </span>
+                )}
+              </div>
+
+              <div className='flex items-center space-x-2 md:col-span-2'>
+                <Checkbox isSelected={isSelected} onValueChange={setIsSelected}>
+                  <label
+                    htmlFor='terms'
+                    className='text-sm font-medium leading-none text-muted-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-70'>
+                    I agree to the
+                    <Link href={'/'}>
+                      <span className='ml-1 underline'>privacy policy</span>
+                    </Link>
+                  </label>
+                </Checkbox>
+              </div>
+
+              <Button
+                isDisabled={!isSelected}
+                type='submit'
+                className='inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full md:col-span-2'>
+                Submit
+              </Button>
+            </form>
           </div>
         </div>
       </div>
