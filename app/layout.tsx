@@ -18,9 +18,31 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   icons: {
-    icon: '/favicon.ico',
+    icon: "/ghana.svg",
   },
+  // keywords: siteConfig.keywords,
+  publisher: 'Dr. Abu Bako',
+  robots: "index, follow",
+  formatDetection: {
+    telephone: true,
+    date: true,
+    address: true,
+    email: true,
+    url: true,
+  },
+
 };
+
+// export const metadata: Metadata = {
+//   title: {
+//     default: siteConfig.name,
+//     template: `%s - ${siteConfig.name}`,
+//   },
+//   description: siteConfig.description,
+//   icons: {
+//     icon: '/favicon.ico',
+//   },
+// };
 
 export const viewport: Viewport = {
   themeColor: [
@@ -34,6 +56,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  
   return (
     <html suppressHydrationWarning lang='en'>
       <head />

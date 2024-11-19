@@ -15,10 +15,19 @@ module.exports = {
     			bebas: ['var(--font-bebas)', 'sans-serif'],
     			plusjakartasans: ["var(--font-plusjakartasans), 'sans-serif'"]
     		},
+    		typography: {
+    			DEFAULT: {
+    				css: {
+    					h1: {
+    						fontFamily: 'var(--font-bebas, sans-serif)'
+    					}
+    				}
+    			}
+    		},
     		borderRadius: {
     			lg: 'var(--radius)',
     			md: 'calc(var(--radius) - 2px)',
-    			sm: 'calc(var(--radius) - 4px)'
+    				sm: 'calc(var(--radius) - 4px)'
     		},
     		colors: {
     			background: 'hsl(var(--background))',
@@ -87,5 +96,5 @@ module.exports = {
     	}
     },
 	darkMode: ["class", 'class'],
-	plugins: [nextui(), require("tailwindcss-animate")],
+	plugins: [nextui(), require("tailwindcss-animate"), require('@tailwindcss/typography')],
 }

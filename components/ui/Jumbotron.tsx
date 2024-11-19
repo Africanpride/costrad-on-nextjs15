@@ -20,7 +20,7 @@ export default function Jumbotron({
 
 
         {/* Hero Image Section */}
-        <div className="relative w-full h-[300px] sm:h-[300px] md:h-[400px] overflow-hidden">
+        <div className="relative w-full h-[400px]  md:h-[400px] overflow-hidden">
           <Image
             src={`/images/${heroImage}`}
             alt="Today at Apple Hero"

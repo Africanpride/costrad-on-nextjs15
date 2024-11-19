@@ -21,9 +21,9 @@ const Stage1 = (props: Props) => {
           and the good of your territory.
         </div>
         <br />
-        <br />
 
-        <cite className='text-xl pt-6'>&mdash; Dr. Abu Bako</cite>
+
+        <cite className='text-xl pt-4'>&mdash; Dr. Abu Bako</cite>
       </blockquote>
       {/* <span className=' p-5 text-[6.5rem] '>”</span> */}
     </section>

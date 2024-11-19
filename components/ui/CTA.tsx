@@ -48,7 +48,7 @@ const CTA = (props: Props) => {
       min-h-[500px]  w-full mx-auto py-12 px-4 sm:px-6 md:py-16 md:px-8 z-20'>
         <h2 className={` text-black dark:text-white sm:text-4xl max-w-3xl`}>
           <div
-            className={`${bebas.className} font-display text-4xl tracking-tighter text-neutral-900 sm:text-5xl`}>
+            className={`${bebas.className} font-display text-4xl tracking-tighter text-accent-background sm:text-5xl`}>
             Be Empowered to Decide!
           </div>
           <div className='mt-4 text-lg tracking-tight text-neutral-900 '>
