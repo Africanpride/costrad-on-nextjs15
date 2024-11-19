@@ -1,22 +1,25 @@
 import { bebas } from '@/config/fonts';
 import React from 'react';
+import Image from 'next/image';
+
 
 type Props = {};
 
 const Introduction = (props: Props) => {
   return (
-    <div className=' container mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-3 min-h-screen h-auto space-y-3 p-5 md:p-12 '>
+    <div className=' container mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-4 min-h-screen h-auto space-y-3 p-5 md:p-12 '>
       <div
-        className={` md:col-span-1  text-4xl md:text-6xl space-y-1 `}
+        className={` md:col-span-1  text-4xl md:text-6xl space-y-2 `}
         data-scroll
         data-scroll-speed={0.1}>
         <div className={' text-gray-500 text-3xl uppercase font-light'}>An Overview</div>
-        <div className='w-1/3 text-yellow-500'>&#8212;</div>
-        <div className={`${bebas.className}`}>The Strategic Voter</div>{' '}
+        <div className='w-1/3 text-red-500'>&#8212;</div>
+        <div className={`${bebas.className} pb-4 leading-[3.7rem] `}>The <br /> Strategic <br /> Voter</div>{' '}
+        <Image src={'/images/print2.png '} alt="alt" width={250} height={250} className='rounded-3xl md:pr-4' />
       </div>
-      <div className='md:col-span-2 md:text-2xl space-y-2  '>
+      <div className='md:col-span-2 md:text-xl space-y-2  '>
         <p>
-          This book, "The Strategic Voter Volume 1" by Dr. Abu Bako, is a
+          This book, <span className='text-red-500'>"The Strategic Voter Volume 1"</span> by Dr. Abu Bako, is a
           valuable resource that equips readers with the knowledge and skills
           necessary to make informed decisions at the polls. Written by a
           renowned expert in leadership and governance, the book provides

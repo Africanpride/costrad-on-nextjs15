@@ -7,7 +7,7 @@ type Props = {}
 const MainLogo = (props: Props) => {
     return (
         <>
-            <Link href={'/'} className={`text-lg md:text-[2.2em] shadow-sm text-yellow-500 ${playfair_display.className}`}>
+            <Link href={'/'} className={`text-lg md:text-[2.2em] shadow-sm text-red-500 ${playfair_display.className}`}>
                 The Strategic Voter
             </Link>
 

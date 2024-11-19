@@ -16,10 +16,10 @@ export default function AuthortPage() {
 					About The Author
 				</span>{" "}
 				<br />
-				<span className='w-1/3 text-yellow-500'>&#8212;</span>
+				<span className='w-1/3 text-red-500'>&#8212;</span>
 				<div className={`${bebas.className}`}>Dr. Abu Bako</div>
 			</div>
-			<div className='md:col-span-2 md:text-2xl space-y-2  '>
+			<div className='md:col-span-2 md:text-xl space-y-2  '>
 				<p>
 					Dr. Abu Bako, an Economist by profession, is the Founding
 					President and Chief Servant of the Logos-Rhema Foundation

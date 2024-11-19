@@ -79,7 +79,7 @@ export default function Component() {
               <X className='h-6 w-6' />
               <span className='sr-only'>Close</span>
             </Button>
-            <div className='absolute left-4 top-1/2 -translate-y-1/2 rotate-180 text-3xl text-yellow-500 [writing-mode:vertical-lr]'>
+            <div className='absolute left-4 top-1/2 -translate-y-1/2 rotate-180 text-3xl text-red-500 [writing-mode:vertical-lr]'>
               The Strategic Voter
             </div>
             <div className='absolute right-4 top-1/2 -translate-y-1/2 flex flex-col items-center gap-4'>
@@ -106,7 +106,7 @@ export default function Component() {
                     onClick={() => handleLinkClick(item.href)}
                     className='group relative text-3xl font-light text-white sm:text-4xl transition-all duration-300'>
                     {item.label}
-                    <span className='absolute -bottom-2 left-0 h-0.5 w-0 bg-yellow-600 transition-all duration-300 group-hover:w-full' />
+                    <span className='absolute -bottom-2 left-0 h-0.5 w-0 bg-red-600 transition-all duration-300 group-hover:w-full' />
                   </button>
                 </motion.div>
               ))}

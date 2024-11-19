@@ -1,5 +1,4 @@
 import { specialElite } from '@/config/fonts';
-import Image from 'next/image';
 import React from 'react';
 
 type Props = {};

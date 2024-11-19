@@ -43,7 +43,7 @@ const Start = (props: Props) => {
           <LucideMoveDown className='animate-bounce w-6 h-6' />
         </div>
       </div>
-      <div className='bg-yellow-700 min-h-dvh relative p-4 md:p-6 order-1 '>
+      <div className='bg-red-700 min-h-dvh relative p-4 md:p-6 order-1 '>
         <div
           className='absolute inset-0 z-0'
           style={{
@@ -67,13 +67,13 @@ const Start = (props: Props) => {
                 Strategic <br /> Voter{' '}
               </p>
             </div>
-            <Divider className='my-4 w-2/5 bg-yellow-500 ' />
-            <div className='text-yellow-500 '>
+            <Divider className='my-4 w-2/5 bg-red-500 ' />
+            <div className='text-red-500 '>
               <p className='text-lg'>
                 THE KINGDOM PATTERNS SERIES &#x2014; VOLUME ONE
               </p>
-              <p className={` text-sm  text-yellow-500 `}>
-                &mdash; Authored By: Dr. Abu Bako
+              <p className={` text-sm  text-red-500 `}>
+                <span className='text-white'>&mdash; Authored By:</span> Dr. Abu Bako
               </p>
             </div>
           </div>

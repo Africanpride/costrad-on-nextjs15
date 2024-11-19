@@ -32,8 +32,8 @@ export default function Home() {
         {isLoading && <Preloader />}
       </AnimatePresence>
       <Start />
-      <Stage1 />
       <BookIntro />
+      <Stage1 />
       <Jumbotron />
       <CTA />
       <Newsletter />

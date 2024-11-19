@@ -56,7 +56,7 @@ export default function Faqs() {
                 <>
                     Readers can purchase or download the book from various online platforms such as Amazon, Google Books, or directly from the publisher's{" "}
                     <Link href="https://www.thestrategicvoter.com/the-book" className="text-warning">
-                        <span className="font-bold text-yellow-500">website</span>
+                        <span className="font-bold text-red-500">website</span>
                     </Link>.
                 </>
             ),
@@ -92,7 +92,7 @@ export default function Faqs() {
         <Accordion showDivider={true} selectionBehavior="toggle"  >
             {faqData.map((item) => (
                 <AccordionItem
-                    indicator={<LucideArrowLeft className="text-yellow-500" />}
+                    indicator={<LucideArrowLeft className="text-red-500" />}
                     key={item.key}
                     title={item.question}
                     aria-label={item.question}
