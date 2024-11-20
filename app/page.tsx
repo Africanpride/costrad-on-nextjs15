@@ -34,7 +34,7 @@ export default function Home() {
       <Start />
       <BookIntro />
       <Stage1 />
-      <Jumbotron />
+      <Jumbotron heroImage='library.png' height='md:h-[550px]' />
       <CTA />
       <Newsletter />
     </main>

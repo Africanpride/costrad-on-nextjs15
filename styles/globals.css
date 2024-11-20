@@ -65,8 +65,8 @@
   body {
     @apply bg-background text-foreground;
   }
-
-
 }
 
-
+h1 {
+  font-family: var(--font-bebas);
+}

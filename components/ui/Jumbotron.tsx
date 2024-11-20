@@ -4,11 +4,13 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 interface JumbotronProps {
-  heroImage?: string
+  heroImage?: string;
+  height?: string;
 }
 
 export default function Jumbotron({ 
-  heroImage = "vote.jpg"
+  heroImage = "vote.jpg",
+  height = 'md:h-[400px]'
 }: JumbotronProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -20,11 +22,11 @@ export default function Jumbotron({
 
 
         {/* Hero Image Section */}
-        <div className="relative w-full h-[400px]  md:h-[400px] overflow-hidden">
+        <div className={`relative w-full h-[400px] ${height}  overflow-hidden`}>
           <Image
             src={`/images/${heroImage}`}
             alt="Today at Apple Hero"
-            fill
+            fill={true}
             priority
             className="object-cover object-center"
             sizes="(max-width: 768px) 100vw, (max-width: 1440px) 1440px"

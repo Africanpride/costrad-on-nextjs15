@@ -79,7 +79,7 @@ const Section2 = () => {
 
 const Nav = () => {
   return (
-    <div className='flex flex-col h-auto md:flex-row items-start shrink-0 gap-8 md:gap-20 z-50 pt-5 md:pt-[10dvh]'>
+    <div className='flex flex-col h-auto md:flex-row items-start shrink-0 gap-8 md:gap-20 z-50 pt-5 md:pt-[14dvh]'>
       <div className='flex flex-col '>
         <h3 className='mb-2 uppercase md:text-2xl text-gray-500'>About</h3>
         {menuItems.map((item) => (

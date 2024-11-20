@@ -43,15 +43,15 @@ const CTA = (props: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <section className={` bg-neutral-200 dark:bg-gray-800 `}>
+    <section className={` bg-neutral-200 dark:bg-gray-950 `}>
       <div className=' flex flex-col md:flex-row  justify-center md:flex md:items-center md:justify-between 
       min-h-[500px]  w-full mx-auto py-12 px-4 sm:px-6 md:py-16 md:px-8 z-20'>
-        <h2 className={` text-black dark:text-white sm:text-4xl max-w-3xl`}>
+        <h2 className={`  sm:text-4xl max-w-3xl`}>
           <div
             className={`${bebas.className} font-display text-4xl tracking-tighter text-accent-background sm:text-5xl`}>
             Be Empowered to Decide!
           </div>
-          <div className='mt-4 text-lg tracking-tight text-neutral-900 '>
+          <div className='mt-4 text-lg tracking-tight '>
             Share the power of strategic voting! Encourage others to make
             informed decisions that makes impact. Spread the word, inspire
             action, and empower voters everywhere today.
