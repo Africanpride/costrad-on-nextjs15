@@ -14,7 +14,7 @@ export default function AboutLayout({
       <section className='block'>
           <Toaster />
           <Jumbotron />
-         <div className='py-5'>
+         <div className='p-5'>
          {children}
          </div>
       </section>
