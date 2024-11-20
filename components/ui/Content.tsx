@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import React, { useCallback, useLayoutEffect, useRef } from 'react';
-import { menuItems, siteConfig } from '../../config/site';
+import { affiliateMenu, menuItems, quickLinks, siteConfig } from '../../config/site';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import Marquee from './marquee';
@@ -98,15 +98,35 @@ const Nav = () => {
       </div>
       <div className='flex flex-col '>
         <h3 className='mb-2 uppercase md:text-2xl text-gray-500'>Affiliations</h3>
-        <Link href={'http://www.costrad.org'} target='_blank'>
-          COSTrAD
-        </Link>
-        <Link href={'https://gapnetwork.org'} target='_blank'>
-          Gapnet
-        </Link>
-        <Link href={'https://www.logosrhema.org'} target='_blank'>
-          Logos-Rhema Foundation
-        </Link>
+        {affiliateMenu.map((item) => (
+          <div key={item.label}>
+            {/* <span className='absolute -left-8 text-sm text-zinc-600'>
+                    {item.number}
+                  </span> */}
+            <Link
+              href={item.href}
+              className='group relative  font-light transition-all duration-300'>
+              {item.label}
+              <span className='absolute -bottom-1 left-0 h-0.5 w-0 bg-red-600 transition-all duration-300 group-hover:w-full' />
+            </Link>
+          </div>
+        ))}
+      </div>
+      <div className='flex flex-col '>
+        <h3 className='mb-2 uppercase md:text-2xl text-gray-500'>Policies</h3>
+        {quickLinks.map((item) => (
+          <div key={item.label}>
+            {/* <span className='absolute -left-8 text-sm text-zinc-600'>
+                    {item.number}
+                  </span> */}
+            <Link
+              href={item.href}
+              className='group relative  font-light transition-all duration-300'>
+              {item.label}
+              <span className='absolute -bottom-1 left-0 h-0.5 w-0 bg-red-600 transition-all duration-300 group-hover:w-full' />
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
   );

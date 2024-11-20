@@ -71,6 +71,34 @@ export const siteConfig = {
   },
 };
 
+export const quickLinks =[
+  {
+    label: 'Privacy Policy',
+    href: '/privacy'
+  },
+  {
+    label: 'Terms & Consitions',
+    href: '/terms'
+  },
+  {
+    label: 'Cookies',
+    href: '/cookies'
+  },
+]
+export const affiliateMenu =[
+  {
+    label: 'COSTrAD',
+    href: 'https://www.costrad.org'
+  },
+  {
+    label: 'GAPNET',
+    href: 'https://www.gapnetwork.org'
+  },
+  {
+    label: 'Logos-Rhema Foundation',
+    href: 'https://www.logosrhema.org'
+  },
+]
 export const menuItems = [
   { number: '01', label: 'Welcome', href: '/' },
   { number: '02', label: 'The Book', href: '/the-book' },
@@ -80,8 +108,8 @@ export const menuItems = [
     label: 'Strategic Voter 101',
     href: '/strategic-voter-101',
   },
-  { number: '05', label: 'Events & Webinars', href: '/events-and-webinar' },
-  { number: '06', label: 'contact', href: '/contact' },
+  // { number: '05', label: 'Events & Webinars', href: '/events-and-webinar' },
+  { number: '05', label: 'contact', href: '/contact' },
 ];
 
 
