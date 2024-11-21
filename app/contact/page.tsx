@@ -248,7 +248,7 @@ export default function ContactPage() {
                 <Checkbox isSelected={isSelected} onValueChange={setIsSelected}>
                   <label
                     htmlFor='terms'
-                    className='text-sm font-medium leading-none text-muted-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-70'>
+                    className='text-sm font-medium md:leading-none text-muted-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-70'>
                     I agree to the
                     <Link href={'/'}>
                       <span className='ml-1 underline'>privacy policy</span>

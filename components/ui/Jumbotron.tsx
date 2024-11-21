@@ -6,11 +6,13 @@ import { useState } from 'react'
 interface JumbotronProps {
   heroImage?: string;
   height?: string;
+  shade?: string;
 }
 
 export default function Jumbotron({ 
   heroImage = "vote.jpg",
-  height = 'md:h-[400px]'
+  height = 'md:h-[400px]',
+  shade = '30'
 }: JumbotronProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -25,13 +27,13 @@ export default function Jumbotron({
         <div className={`relative w-full h-[400px] ${height}  overflow-hidden`}>
           <Image
             src={`/images/${heroImage}`}
-            alt="Today at Apple Hero"
+            alt="The Strategic Voter"
             fill={true}
             priority
             className="object-cover object-center"
             sizes="(max-width: 768px) 100vw, (max-width: 1440px) 1440px"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/30"></div>
+          <div className={`absolute inset-0 bg-black/${shade}`}></div>
         </div>
 
         {/* Mobile Navigation Menu */}

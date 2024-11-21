@@ -30,7 +30,7 @@ const Start = (props: Props) => {
             className=' animation-duration-100 animate-pulse absolute  '
           />
           <div
-            className='text-xl md:text-5xl leading-[0.9em] text-white text-center'
+            className='text-xl md:text-5xl md:leading-[0.9em] text-white text-center'
             data-scroll
             data-scroll-speed={0.2}>
             <span>A profound exploration of the strategic thinking</span>
