@@ -36,6 +36,8 @@ import {
   XIcon,
 } from 'react-share';
 import { shareSocial } from '@/config/site';
+import Link from 'next/link';
+import SocialShare from '../SocialShare';
 
 type Props = {};
 
@@ -45,7 +47,7 @@ const CTA = (props: Props) => {
   return (
     <section className={` bg-neutral-200 dark:bg-gray-950 `}>
       <div className=' flex flex-col md:flex-row  justify-center md:flex md:items-center md:justify-between 
-      min-h-[500px]  w-full mx-auto py-12 px-4 sm:px-6 md:py-16 md:px-8 z-20'>
+      min-h-[500px]  w-full mx-auto py-12 px-4 sm:px-6 md:py-16 md:px-8 z-20 space-y-4 '>
         <h2 className={`  sm:text-4xl max-w-3xl`}>
           <div
             className={`${bebas.className} font-display text-4xl tracking-tighter text-accent-background sm:text-5xl`}>
@@ -57,22 +59,27 @@ const CTA = (props: Props) => {
             action, and empower voters everywhere today.
           </div>
         </h2>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-4 pt-5 md:pt-0 '>
-          <div className=' inline-flex rounded-md shadow'>
-            <button
-              type='button'
-              className='py-4 px-6  bg-neutral-600 hover:bg-neutral-700 focus:ring-neutral-500 focus:ring-offset-neutral-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg '>
-              Grab Your Copy
-            </button>
-          </div>
-          <div className='inline-flex rounded-md shadow'>
-            <button
-              onClick={onOpen}
-              type='button'
-              className='py-4 px-6  bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg '>
-              Share With Friends
-            </button>
-          </div>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-2 md:pt-0 '>
+          <Button
+            onPress={onOpen}
+            // variant="bordered"
+            type='button'
+            color="success"
+            variant="flat"
+            className='px-6 py-6 w-full transition ease-in duration-200 text-center font-semibold '>
+            Share With Friends
+          </Button>
+          <Button
+            as={Link}
+            href="/the-book"
+            type='button'
+            variant="solid"
+            color='default'
+            className='px-6 py-6 font-semibold text-gray-700  '>
+            Grab Your Copy
+          </Button>
+
+
         </div>
       </div>
 
@@ -81,28 +88,14 @@ const CTA = (props: Props) => {
           <ModalContent>
             {(onClose) => (
               <>
-                <ModalHeader className='flex flex-col gap-1'>
+                <ModalHeader className='flex flex-col gap-1 text-success-400'>
                   Share with Others
                 </ModalHeader>
                 <ModalBody>
-                  <div className='flex items-center justify-start gap-4'>
-                    <WhatsappShareButton
-                      url={shareSocial.url}
-                      title={shareSocial.title}
-                      separator=':: '
-                      className=''>
-                      <Button
-                        radius='full'
-                        className='pr-1'
-                        endContent={<WhatsappIcon size={32} round />}>
-                        {' '}
-                        WhatsApp
-                      </Button>
-                    </WhatsappShareButton>
-                  </div>
+                  <SocialShare />
                 </ModalBody>
                 <ModalFooter>
-                  <Button color='success' variant='ghost' onPress={onClose}>
+                  <Button size='sm' color='default' variant='solid' onPress={onClose}>
                     Close
                   </Button>
                 </ModalFooter>
