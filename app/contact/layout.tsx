@@ -1,20 +1,21 @@
+import GoogleCaptchaWrapper from '@/components/ui/GoogleCaptchaWrapper';
+import Jumbotron from '@/components/ui/Jumbotron';
+import { Toaster } from 'react-hot-toast';
 
 
 
-very good. make it 10 key lessons. also, provide references to these lessons from the book. (where we can find these lessons in the book)
 
+export default function AboutLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+      <section className='block'>
+          <Toaster />
+          <Jumbotron />
+          {children}
+      </section>
 
-llama3.2:latest 10:18 am
-Based on the provided context, I've attempted to expand on the previous summary by extracting 10 key lessons from the book "The Strategic Voter". Here they are:
-
-The Power of Collective Action : The author emphasizes that individual actions, when combined with collective efforts, can lead to significant positive change. (Refer to page 11-12: "THE STRATEGIC VOTER VOL EDITED 11 11 2024 11 21 AM.pdf") - The author highlights the importance of community engagement and civic participation in shaping the future of one's nation.
-Leadership and Governance are Interconnected : The book stresses that effective leadership and governance are not separate entities, but rather intertwined aspects of building a strong nation. (Refer to page 13-14: "company makes or suffers") - The author encourages readers to consider the spiritual dimensions of leadership and their impact on governance.
-Understanding One's Territory is Crucial : The author argues that understanding one's territory, including its redemptive purpose and vision, is essential for strategic voting. (Refer to page 15-16: "These books are valuable in this season") - This lesson emphasizes the importance of being informed about local issues, values, and priorities when casting votes.
-The Importance of Accountability and Transparency : The book highlights the need for accountability and transparency in governance, particularly in situations where corruption and abuse of power are prevalent. (Refer to page 17-18: "13company makes or suffers") - This lesson underscores the significance of holding leaders accountable for their actions.
-Civic Engagement as a Spiritual Duty : The author views civic engagement as a spiritual duty, emphasizing that Christians have a responsibility to engage with the world around them in a way that honors God's mission. (Refer to page 20-21: "Thank you! And of course, I appreciate very much Mrs Mandy Hayford") - This lesson encourages readers to see voting and political participation as an integral part of their faith journey.
-The Character of the Leader Matters : The author stresses that the character of the leader matters significantly in determining the direction of a nation. (Refer to page 23-24: "53leaders it deserves especially") - This lesson highlights the importance of choosing leaders who embody strong values and integrity.
-Strategic Voting is about Choosing Leaders who Align with Values : The book emphasizes that strategic voting is not just about casting votes, but also about choosing leaders who align with one's values and vision. (Refer to page 25-26: "This book is one step in the right direction") - This lesson encourages readers to consider the values and priorities of potential leaders when making informed voting decisions.
-The Power of Community Engagement : The author highlights the importance of community engagement in building a strong society. (Refer to page 27-28: "These books are valuable in this season") - This lesson emphasizes the need for collective action and civic participation in shaping the future of one's nation.
-Spiritual Leadership is Essential for Sustainable Institutions : The book argues that spiritual leadership is essential for building sustainable institutions that reflect God's mission and values. (Refer to page 30-31: "13company makes or suffers") - This lesson underscores the significance of choosing leaders who are guided by a deeper sense of purpose and values.
-Voting is a Spiritual Act : The author views voting as a spiritual act, emphasizing that Christians have a responsibility to use their voices to shape the world around them in ways that honor God's mission. (Refer to page 32-33: "Civic Engagement as a Spiritual Duty") - This lesson encourages readers to see voting and political participation as an integral part of their faith journey.
-Please note that these references are based on my interpretation of the context provided, and may not accurately reflect the entire content and message of the book.
+  );
+}
