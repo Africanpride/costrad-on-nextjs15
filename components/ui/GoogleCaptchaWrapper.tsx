@@ -11,6 +11,13 @@ export default function GoogleCaptchaWrapper({
 }) {
   const recaptchaKey: string | undefined = process?.env?.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
+  if (!recaptchaKey) {
+    console.error(
+      "RECAPTCHA_SITE_KEY is not defined in .env.local. Please define it."
+    );
+  }
+  
+
   return (
     <GoogleReCaptchaProvider
       reCaptchaKey={recaptchaKey ?? "NOT DEFINED"}

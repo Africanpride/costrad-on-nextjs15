@@ -78,6 +78,7 @@ const CTA = (props: Props) => {
             className='px-6 py-6 font-semibold text-gray-700  '>
             Grab Your Copy
           </Button>
+          <div className="hidden mt-3 w-fit  group items-center text-foreground hover:shadow-sm relative overflow-hidden rounded-full p-[2px]"><span className="absolute inset-[-1000%] bg-[conic-gradient(from_90deg_at_50%_50%,#338EF7_0%,#F54180_50%,#338EF7_100%)]" /><div className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-background transition-background p-2.5 text-xs font-medium hover:font-semibold text-foreground backdrop-blur-3xl">Explore Components</div></div>
 
 
         </div>
