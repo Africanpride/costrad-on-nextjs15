@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   icons: {
-    icon: '/images/favicon.png',
+    icon: '/images/logo.png',
   },
   // keywords: siteConfig.keywords,
   publisher: 'Dr. Abu Bako',

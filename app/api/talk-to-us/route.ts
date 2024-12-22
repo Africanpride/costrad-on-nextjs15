@@ -50,7 +50,7 @@ export async function POST(request: Request) {
         <h3>New Contact Form Submission</h3>
         <p><strong>Name:</strong> ${formData.name}</p>
         <p><strong>Email:</strong> ${formData.email}</p>
-        <p><strong>Message:</strong> ${formData.message}</p>
+        <p><strong>Message:</strong> <br /> ${formData.message}</p>
       `,
     };
 

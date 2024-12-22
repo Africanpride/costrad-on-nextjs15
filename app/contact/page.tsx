@@ -1,8 +1,7 @@
 'use client';
-import { title } from '@/components/primitives';
-import Introduction from '@/components/ui/Introduction';
 import { bebas } from '@/config/fonts';
 import { Button, Checkbox, Input, Textarea } from '@nextui-org/react';
+import React from 'react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -52,7 +51,7 @@ export default function ContactPage() {
         }
 
         const result = await response.json();
-        console.log('Success:', result);
+        // console.log('Success:', result);
 
         reset();
         setIsSelected(false);
@@ -79,7 +78,7 @@ export default function ContactPage() {
             We'd love to assist you. Fill out the form or drop us an email.
           </p>
         </div>
-        <div className="grid gap-10 md:grid-cols-2 divide-y-1">
+        <div className="grid gap-10 md:grid-cols-2 ">
           <div className="grid gap-10 sm:grid-cols-2">
             <div>
               <svg
@@ -178,15 +177,17 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className='mx-auto flex w-full flex-col gap-6 md:rounded-lg md:max-w-auto md:bg-muted p-4 md:p-10'>
-            <form onSubmit={handleSubmit(onSubmit)} className=' space-y-3'>
+          <div className='mx-auto container flex w-full flex-col gap-6 md:rounded-lg 
+          md:max-w-auto  p-4 md:p-10'>
+            <form onSubmit={handleSubmit(onSubmit)} className=' space-y-6'>
               <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                 <Input
-                  variant='flat'
+                  variant='underlined'
+                  labelPlacement='inside'
+                  label='First Name'
                   autoFocus
                   {...register('firstname', { required: true })}
                   name='firstname'
-                  label='First Name'
                   // placeholder="Enter your First Name"
                   className='md:max-w-auto]'
                   isInvalid={errors.firstname ? true : false}
@@ -195,7 +196,7 @@ export default function ContactPage() {
                 />
 
                 <Input
-                  variant='flat'
+                  variant='underlined'
                   {...register('lastname', { required: true })}
                   name='lastname'
                   label='Last Name'
@@ -209,14 +210,14 @@ export default function ContactPage() {
 
               <div className='w-full'>
                 <Input
-                  variant='flat'
+                  variant='underlined'
                   {...register('email', { required: true })}
+                  label='Your Email Address'
                   name='email'
                   type='email'
-                  label='Email Address'
+                  aria-label='Email Address'
                   className='md:max-w-auto]'
                   isInvalid={errors.email ? true : false}
-                  description="We'll never share your email with anyone else."
                   isClearable
                   color='success'
                 />
@@ -224,14 +225,24 @@ export default function ContactPage() {
 
               <div className='grid w-full gap-1.5 md:col-span-2'>
                 <Textarea
+                  // isClearable
+                  className="max-w-full"
+                  label='Message '
+
+                  placeholder="Your Message"
+                  variant="underlined"
+                  // eslint-disable-next-line no-console
+                  color={errors.message ? 'danger' : 'success'}
+                  onClear={() => console.log("textarea cleared")}
                   {...register('message', { required: 'Message is required' })}
-                  color= {errors.message ? 'danger' : 'success'}
-                  variant={'flat'}
+                />
+                {/* <Textarea
+                  variant={'underlined'}
                   label='Message'
                   labelPlacement='inside'
                   placeholder={errors.message ? errors.message.message : 'Enter your message'}
                   className='col-span-12 md:col-span-6 mb-6 md:mb-0'
-                  />
+                /> */}
                 {/* <textarea
                   {...register('message', { required: 'Message is required' })}
                   className='flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
@@ -250,7 +261,7 @@ export default function ContactPage() {
                     htmlFor='terms'
                     className='text-sm font-medium md:leading-none text-muted-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-70'>
                     I agree to the
-                    <Link href={'/'}>
+                    <Link href={'/privacy'}>
                       <span className='ml-1 underline'>privacy policy</span>
                     </Link>
                   </label>

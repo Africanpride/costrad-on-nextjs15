@@ -85,8 +85,8 @@ const CTA = (props: Props) => {
       </div>
 
       <>
-        <Modal backdrop={'blur'} isOpen={isOpen} onClose={onClose}>
-          <ModalContent>
+        <Modal  backdrop={'blur'} isOpen={isOpen} onClose={onClose}>
+          <ModalContent className="dark:bg-background" >
             {(onClose) => (
               <>
                 <ModalHeader className='flex flex-col gap-1 text-success-400'>

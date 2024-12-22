@@ -6,10 +6,7 @@ type Props = {};
 
 export default function MainMenu(props: Props) {
   return (
-    <div className="relative flex items-center gap-2 group cursor-pointer ">
-      <div className="pt-2">
-        <ThemeSwitch />
-      </div>
+    <div className="relative flex items-center gap-x-6  cursor-pointer ">
       <div className="py-1 bg-neutral-950 shadow-sm flex items-center gap-x-4
        group-hover:bg-neutral-900 transition-all duration-300
       rounded-full p-1 pl-5 ">
