@@ -61,7 +61,7 @@ const Newsletter = () => {
 
 
   return (
-    <section className={` bg-neutral-200 dark:bg-black `}>
+    <section className={` bg-white dark:bg-black `}>
       <div className=' flex flex-col md:flex-row  justify-center md:flex md:items-center md:justify-between 
     min-h-[500px]  w-full mx-auto py-12 px-4 sm:px-6 md:py-16 md:px-8 z-20 space-y-4  '>
 
@@ -127,7 +127,7 @@ const Newsletter = () => {
                 type='submit'
                 variant="flat"
                 color='success'
-                className='px-6 py-6 font-semibold bg-green-950 text-white  col-span-2 rounded-none uppercase '>
+                className='px-6 py-6 font-semibold bg-green-950 text-white  col-span-2 rounded-lg uppercase '>
                 <span>Sign up for Updates</span> <span><LucideMailCheck /></span>
               </Button>
             </div>
