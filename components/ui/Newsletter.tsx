@@ -12,7 +12,7 @@ type NewsletterFormInputs = {
 
 
 const Newsletter = () => {
- const {
+  const {
     register,
     handleSubmit,
     reset,
@@ -25,6 +25,8 @@ const Newsletter = () => {
       name: `${data.firstname} ${data.lastname}`,
       email: data.email,
     };
+
+    console.log('formData:', formData);
 
     await toast.promise(
       (async () => {
@@ -72,7 +74,8 @@ const Newsletter = () => {
                 notified.
               </p>
             </div>
-            <form>
+
+            <form onSubmit={handleSubmit(onSubmit)} className='space-y-2' >
 
               <div className='grid grid-cols-1 md:grid-cols-2 gap-2'>
                 <Input
@@ -100,44 +103,29 @@ const Newsletter = () => {
                   color='success'
                 />
               </div>
-              <div className='mt-2 flex rounded-xl bg-white py-1.5 pr-1.5 shadow-sm shadow-neutral-900/25 focus-within:ring-2 focus-within:ring-neutral-900/10'>
-                <input
-                  type='email'
-                  required
-                  placeholder='Email address'
-                  aria-label='Email address'
-                  className='-my-2.5 flex-auto bg-transparent pl-6 pr-2.5 text-base text-slate-900 placeholder:text-success-500 focus:outline-none'
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-2'>
+
+                <Input
+                  variant='flat'
+                  {...register('email', { required: true })}
+                  name='email'
+                  label='Email Address'
+                  // placeholder="Enter your Last Name"
+                  className='md:max-w-auto] md:col-span-2'
+                  isInvalid={errors.email ? true : false}
+                  isClearable
+                  color='success'
                 />
                 <Button
-                  as={Link}
-                  href="/the-book"
-                  type='button'
+                  type='submit'
                   variant="solid"
                   color='success'
-                  className='px-6 py-6 font-semibold rounded-xl  text-white '>
+                  className='px-6 py-6 font-semibold rounded-xl  text-white col-span-2 '>
                   Sign up for Updates
                 </Button>
-                {/* <button
-                  className='inline-flex justify-center rounded-2xl bg-neutral-600 p-4 text-base font-semibold text-white hover:bg-neutral-500 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-500 active:text-white/70'
-                  type='submit'>
-                  <span className='sr-only sm:not-sr-only'>Sign up today</span>
-                  <span className='sm:hidden'>
-                    <svg
-                      aria-hidden='true'
-                      viewBox='0 0 24 24'
-                      className='h-6 w-6'>
-                      <path
-                        d='m14 7 5 5-5 5M19 12H5'
-                        fill='none'
-                        stroke='currentColor'
-                        strokeWidth={2}
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                      />
-                    </svg>
-                  </span>
-                </button> */}
               </div>
+
+
             </form>
           </div>
         </div>

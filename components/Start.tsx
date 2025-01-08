@@ -20,6 +20,7 @@ const Start = (props: Props) => {
         <div className='flex items-center justify-center max-w-4xl container mx-auto relative'>
           <Image
             src={'/images/globe.png'}
+            priority
             alt='alt'
             width={400}
             height={400}

@@ -68,9 +68,9 @@ const Section2 = () => {
           </Link>
         </div>
         <div className='flex items-center gap-10'>
-          <Link href={'/'}>LinkedIn</Link>
-          <Link href={'/'}>Facebook</Link>
-          <Link href={'/'}>X</Link>
+          <Link target='_blank' href={'https://gh.linkedin.com/in/abu-bako-69a65718'}>LinkedIn</Link>
+          <Link target='_blank' href={'https://www.facebook.com/drabubako/'}>Facebook</Link>
+          <Link target='_blank' href={'https://twitter.com/drabubako/status/980861107891032065'}>X</Link>
         </div>
       </div>
     </div>
