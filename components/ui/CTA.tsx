@@ -71,7 +71,8 @@ const CTA = (props: Props) => {
           </Button>
           <Button
             as={Link}
-            href="/the-book"
+            href="https://selar.co/TheStrategicVoterVol1Revised"
+            target='_blank'
             type='button'
             variant="solid"
             color='default'
