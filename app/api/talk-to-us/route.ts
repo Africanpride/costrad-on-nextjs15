@@ -5,7 +5,7 @@ const nodemailer = require('nodemailer');
 export async function POST(request: Request) {
   try {
     const formData = await request.json();
-    // console.log(formData);
+    console.log(formData);
 
     // return NextResponse.json({status: 200});
 
@@ -17,7 +17,7 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!formData.name || !formData.email || !formData.message) {
+    if (!formData.name || !formData.email) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -44,13 +44,11 @@ export async function POST(request: Request) {
       text: `
         Name: ${formData.name}
         Email: ${formData.email}
-        Message: ${formData.message}
       `,
       html: `
         <h3>New Contact Form Submission</h3>
         <p><strong>Name:</strong> ${formData.name}</p>
         <p><strong>Email:</strong> ${formData.email}</p>
-        <p><strong>Message:</strong> <br /> ${formData.message}</p>
       `,
     };
 
