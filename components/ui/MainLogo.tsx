@@ -13,7 +13,7 @@ const MainLogo = (props: Props) => {
             className={`text-[1.2em] leading-[1em] flex h-5 items-center space-x-2 text-medium`}
         >
             <Image
-                src={'/images/logo.png'}
+                src={'/images/costrad.png'}
                 alt='The Strategic Voter'
                 height={50}
                 width={50}
