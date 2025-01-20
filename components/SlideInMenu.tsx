@@ -72,6 +72,7 @@ export default function Component() {
               <div className='absolute left-4 top-4 z-50'>
                 <ThemeSwitch />
               </div>
+              
               <div className='absolute right-4 top-4'>
                 <div className='flex justify-end items-center gap-x-4 w-full '>
                   <span className='uppercase text-xs cursor-pointer dark:text-red-500 text-white ' onClick={onClose}>Close</span>
@@ -85,8 +86,9 @@ export default function Component() {
                   </Button>
                 </div>
               </div>
+
               <div className=' h-dvh absolute left-5 top-1/2 -translate-y-1/2
-               rotate-180 text-medium text-yellow-500 [writing-mode:vertical-lr] text-center
+               rotate-180 text-xs text-yellow-500 [writing-mode:vertical-lr] text-center
                '>
                 <span className='uppercase font-bold '>{siteConfig.name}</span>
               </div>
@@ -107,7 +109,7 @@ export default function Component() {
                     key={item.number}
                     className='group relative flex items-start justify-center'
                     variants={itemVariants}>
-                    <span className='absolute -left-8 text-sm text-zinc-600'>
+                    <span className='absolute -left-8 text-xs text-zinc-600'>
                       {item.number}
                     </span>
                     <button

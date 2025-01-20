@@ -38,7 +38,8 @@ export const siteConfig = {
     },
     {
       label: 'Contact',
-      href: '/contact'
+      href: '/contact',
+      number: '07',
     },
 
 
