@@ -7,7 +7,8 @@ import {
   ModalBody,
   Button,
   useDisclosure,
-} from '@nextui-org/react';
+} from "@heroui/react";
+
 import { X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import MainMenu from './ui/Menu';
@@ -62,10 +63,10 @@ export default function Component() {
           onClose={onClose}
           size='full'
           classNames={{
-            base: 'bg-black',
+            base: 'fixed inset-0 dark:bg-black bg-white',
             closeButton: 'hidden',
           }}>
-          <ModalContent className={`  text-current `}>
+          <ModalContent className={`  `}>
             <ModalBody className='relative flex h-screen w-full flex-col items-center justify-center p-0'>
 
 
@@ -75,7 +76,7 @@ export default function Component() {
               
               <div className='absolute right-4 top-4'>
                 <div className='flex justify-end items-center gap-x-4 w-full '>
-                  <span className='uppercase text-xs cursor-pointer dark:text-red-500 text-white ' onClick={onClose}>Close</span>
+                  <span className='uppercase text-xs cursor-pointer  ' onClick={onClose}>Close</span>
                   <Button
                     isIconOnly
                     variant='light'
@@ -93,9 +94,9 @@ export default function Component() {
                 <span className='uppercase font-bold '>{siteConfig.name}</span>
               </div>
               <div className='absolute right-4 top-1/2 -translate-y-1/2 flex flex-col items-center gap-4'>
-                <div className='h-20 w-px bg-zinc-700' />
-                <div className='text-lg text-white [writing-mode:vertical-lr]'>
-                  COSTrAD
+                <div className='h-20 w-px bg-purple-700' />
+                <div className='text-lg text-purple-500 [writing-mode:vertical-lr]'>
+                  {siteConfig.shortName}
                 </div>
               </div>
 
@@ -109,14 +110,14 @@ export default function Component() {
                     key={item.number}
                     className='group relative flex items-start justify-center'
                     variants={itemVariants}>
-                    <span className='absolute -left-8 text-xs text-zinc-600'>
+                    <span className='absolute -left-8 text-xs text-purple-400'>
                       {item.number}
                     </span>
                     <button
                       onClick={() => handleLinkClick(item.href)}
-                      className='group relative text-3xl font-light text-white sm:text-4xl transition-all duration-300'>
+                      className='group relative text-3xl font-light sm:text-4xl transition-all duration-300'>
                       {item.label}
-                      <span className='absolute -bottom-2 left-0 h-0.5 w-0 bg-red-600 transition-all duration-300 group-hover:w-full' />
+                      <span className='absolute -bottom-2 left-0 h-0.5 w-0 bg-purple-600 transition-all duration-300 group-hover:w-full' />
                     </button>
                   </motion.div>
                 ))}

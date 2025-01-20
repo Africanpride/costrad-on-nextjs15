@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 import MainMenu from './ui/Menu';
 import Link from 'next/link';
-import { Divider } from '@nextui-org/react';
+import { Divider } from "@heroui/react";
 
 type Props = {};
 

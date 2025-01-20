@@ -1,7 +1,7 @@
 import Faqs from "@/components/ui/Faqs";
 import Introduction from "@/components/ui/Introduction";
 import { bebas } from "@/config/fonts";
-import { Divider } from "@nextui-org/react";
+import { Divider } from "@heroui/react";
 import Link from "next/link";
 
 export default function FaqsPage() {

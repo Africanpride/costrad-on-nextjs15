@@ -1,15 +1,20 @@
 // Here is the corrected version of your configuration:
 
-import { nextui } from '@nextui-org/theme';
+import { heroui } from "@heroui/theme";
 import tailwindcssAnimate from 'tailwindcss-animate';
 import typography from '@tailwindcss/typography';
+
+
+
+const colors = require('tailwindcss/colors')
+
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	content: [
 		'./components/**/*.{js,ts,jsx,tsx,mdx}',
 		'./app/**/*.{js,ts,jsx,tsx,mdx}',
-		'./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
+		"./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
 	],
 	theme: {
 		extend: {
@@ -36,6 +41,14 @@ module.exports = {
 			colors: {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				transparent: 'transparent',
+				current: 'currentColor',
+				black: colors.black,
+				white: colors.white,
+				gray: colors.gray,
+				emerald: colors.emerald,
+				indigo: colors.indigo,
+				yellow: colors.yellow,
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))',
@@ -100,5 +113,5 @@ module.exports = {
 		},
 	},
 	darkMode: 'class',
-	plugins: [nextui(), tailwindcssAnimate, typography],
+	plugins: [heroui(), tailwindcssAnimate, typography],
 };

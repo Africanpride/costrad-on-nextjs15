@@ -2,6 +2,7 @@ export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: 'College of Sustainable Transformation and Development (COSTrAD)',
+  shortName: 'COSTrAD',
   description: "Strategic Voting, Voting Strategies, Election Strategy, Territorial Vision, Leadership Development, Governance, Sustainable Institutions, National Development, Economic Growth, Political Participation, Civic Engagement, Community Building, Social Responsibility, Ethical Leadership, Spiritual Leadership, God's Mission, Dominance Mandate, Ruling with God, Strategic Stewardship, Kingship, Priesthood, Visionary Leadership, Effective Governance, Responsible Leadership, Political Engagement, Social Impact, Community Impact, Economic Impact",
   author: 'Pius Opoku-Fofie',
   year: new Date().getFullYear(),

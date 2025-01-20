@@ -1,5 +1,5 @@
 import { bebas } from '@/config/fonts';
-import { Divider } from '@nextui-org/react';
+import { Divider } from "@heroui/react";
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';

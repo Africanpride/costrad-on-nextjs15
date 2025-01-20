@@ -1,6 +1,6 @@
 "use client"
 import { bebas } from "@/config/fonts";
-import { Accordion, AccordionItem } from "@nextui-org/react";
+import { Accordion, AccordionItem } from "@heroui/react";
 import { LucideArrowLeft } from "lucide-react";
 import Link from "next/link";
 

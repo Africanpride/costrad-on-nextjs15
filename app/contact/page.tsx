@@ -1,6 +1,6 @@
 'use client';
 import { bebas } from '@/config/fonts';
-import { Button, Checkbox, Input, Textarea } from '@nextui-org/react';
+import { Button, Checkbox, Input, Textarea } from "@heroui/react";
 import React from 'react';
 import Link from 'next/link';
 import { useState } from 'react';

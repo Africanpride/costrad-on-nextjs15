@@ -1,5 +1,5 @@
 import { bebas } from '@/config/fonts';
-import { Button, Input, Link } from '@nextui-org/react';
+import { Button, Input, Link } from "@heroui/react";
 import { LucideArrowBigRight, LucideChevronRightCircle, LucideMailCheck, LucideMailX } from 'lucide-react';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
