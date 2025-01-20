@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 import { Metadata, Viewport } from 'next';
 import clsx from 'clsx';
-import { bebas, plusJakartaSans } from '@/config/fonts';
+import { bebas, montserrat, playfair_display, plusJakartaSans } from '@/config/fonts';
 
 import { Providers } from './providers';
 
@@ -50,7 +50,7 @@ export default function RootLayout({
       <body
         className={clsx(
           'min-h-screen light  text-foreground bg-background  antialiased ',
-          plusJakartaSans.className, bebas.variable
+          montserrat.className, playfair_display.variable
         )}>
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'light' }}>
           <main className='relative overflow-x-hidden'>

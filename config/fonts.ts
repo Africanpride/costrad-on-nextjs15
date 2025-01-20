@@ -1,10 +1,11 @@
 import {
   Bebas_Neue,
-  Source_Sans_3,
   Playfair_Display,
   Poppins,
   Plus_Jakarta_Sans,
-  Special_Elite
+  Special_Elite,
+  Poiret_One,
+  Montserrat
 } from "next/font/google";
 
 
@@ -14,6 +15,11 @@ type Props = {
   style: string | string[];
   display: string | string[];
 };
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-montserrat",
+});
 
 const specialElite = Special_Elite({
   subsets: ["latin"],
@@ -45,6 +51,8 @@ const playfair_display = Playfair_Display({
   style: ["italic"],
   display: "swap",
   adjustFontFallback: false,
+  variable: "--font-playfair_display",
+
 });
 
 const poppins = Poppins({
@@ -55,6 +63,5 @@ const poppins = Poppins({
   adjustFontFallback: false,
 });
 
-const sourceCodePro700 = Source_Sans_3({ subsets: ["latin"], weight: "700" });
 
-export { poppins, playfair_display, bebas, sourceCodePro700, plusJakartaSans, specialElite };
+export { poppins, montserrat, playfair_display, bebas, plusJakartaSans, specialElite };
