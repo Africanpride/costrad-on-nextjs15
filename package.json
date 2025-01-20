@@ -34,6 +34,7 @@
         "locomotive-scroll": "^5.0.0-beta.21",
         "lucide-react": "^0.456.0",
         "next": "^15.1.2",
+        "next-auth": "^5.0.0-beta.25",
         "next-themes": "^0.2.1",
         "nodemailer": "^6.9.16",
         "react": "^19.0.0",
@@ -43,7 +44,6 @@
         "react-hot-toast": "^2.4.1",
         "react-share": "^5.1.0",
         "sass": "^1.80.4",
-        "tailwind-merge": "^2.5.4",
         "tailwindcss-animate": "^1.0.7"
     },
     "devDependencies": {
@@ -64,6 +64,7 @@
         "eslint-plugin-react-hooks": "^4.6.0",
         "eslint-plugin-unused-imports": "^3.2.0",
         "postcss": "8.4.38",
+        "tailwind-variants": "0.1.20",
         "tailwindcss": "3.4.17",
         "typescript": "5.7.3"
     },
