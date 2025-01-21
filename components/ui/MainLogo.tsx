@@ -1,5 +1,6 @@
+"use client"
 import { bebas } from '@/config/fonts';
-import { Divider } from "@heroui/react";
+import { Avatar, Divider } from "@heroui/react";
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -10,25 +11,22 @@ const MainLogo = (props: Props) => {
     return (
         <Link
             href={'/'}
-            className={`text-[1.2em] leading-[1em] flex h-5 items-center space-x-2 text-medium`}
+            className={`text-[1rem] leading-[1em] flex h-5 items-center space-x-3 cursor-pointer`}
         >
-            <Image
+            <Avatar
+                className="w-[5.4rem] h-[5.4rem] text-large"
                 src={'/images/costrad.png'}
-                alt='The Strategic Voter'
-                height={50}
-                width={50}
-                style={{ width: 'auto', height: 'auto' }}
             />
             <Divider orientation='vertical' className='bg-gray-300' />
             <span
-                className={`${bebas.className} text-gray-300`}
-                // style={{
-                //     background: 'linear-gradient(45deg, #ff0000, #0000ff)', // Replace with your desired gradient or background
-                //     WebkitBackgroundClip: 'text',
-                //     WebkitTextFillColor: 'transparent',
-                // }}
+                className={`${bebas.className} text-purple-900 dark:text-purple-500`}
+            // style={{
+            //     background: 'linear-gradient(45deg, #ff0000, #0000ff)', // Replace with your desired gradient or background
+            //     WebkitBackgroundClip: 'text',
+            //     WebkitTextFillColor: 'transparent',
+            // }}
             >
-                The <br /> Strategic <br /> Voter
+                College of Sustainable  Transformation<br /> And Development - (COSTrAD)
             </span>
         </Link>
     );

@@ -49,7 +49,7 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 
   return (
     <HeroUIProvider navigate={router.push}>
-      <NextThemesProvider {...themeProps}>
+      <NextThemesProvider  {...themeProps}>
         <div ref={scrollContainerRef} data-scroll-container>
           {children}
         </div>
