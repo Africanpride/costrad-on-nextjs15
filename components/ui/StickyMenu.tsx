@@ -28,7 +28,7 @@ export default function StickyMenu() {
     id="menu"
     className={clsx(
       'w-full block transition-all duration-300 bg-white dark:bg-neutral-950',
-      isFixed ? 'fixed top-0 left-0 right-0 shadow-md z-50 py-4' : 'relative py-7'
+      isFixed ? 'fixed top-0 left-0 right-0 shadow-md z-50 py-4' : 'relative py-5'
     )}
     >
       <div className="flex items-center justify-between px-3 py-2 ">

@@ -1,132 +1,89 @@
 "use client"
-import {
-    Cloud,
-    CreditCard,
-    Github,
-    Keyboard,
-    LifeBuoy,
-    LogOut,
-    Mail,
-    MessageSquare,
-    Plus,
-    User as UserIcon,
-    PlusCircle,
-    Settings,
-    UserPlus,
-    Users,
-} from "lucide-react"
 
+import { useEffect, useState } from "react"
+import { signIn, signOut } from "@/auth"
+import { Session } from "@auth/core/types"
+import { User } from "@heroui/react"
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuGroup,
     DropdownMenuItem,
     DropdownMenuLabel,
-    DropdownMenuPortal,
     DropdownMenuSeparator,
     DropdownMenuShortcut,
-    DropdownMenuSub,
-    DropdownMenuSubContent,
-    DropdownMenuSubTrigger,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { User } from "@heroui/react"
+import { User as UserIcon, LogOut } from "lucide-react"
+import { SignInButton } from "./auth/signin-button"
 
 export default function UserLand() {
+    const [session, setSession] = useState<Session | null>(null)
+
+    useEffect(() => {
+        async function fetchSession() {
+            const res = await fetch("/api/auth/session") // Fetch from API
+            const sessionData: Session | null = await res.json()
+            setSession(sessionData)
+        }
+        fetchSession()
+    }, [])
+
+    async function handleSignOut() {
+        // Send a request to your API to log out
+        const res = await fetch("/api/auth/session", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+
+        if (res.ok) {
+            // Optionally, handle any state changes after sign-out, like redirecting the user
+            window.location.reload() // For example, reload the page to reflect the state
+        } else {
+            console.error("Failed to sign out")
+        }
+    }
+
+
     return (
-        <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-                <User
-                    as="button"
-                    avatarProps={{
-                        isBordered: false,
-                        src: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
-                    }}
-                    className="transition-transform text-neutral-950 dark:text-white text-small "
-                    description="@africanpride"
-                    name="Pius Opoku"
-                />
-            </DropdownMenuTrigger> 
-            <DropdownMenuContent className=" w-60 ">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuGroup className="cursor-pointer " >
-                    <DropdownMenuItem  className="cursor-pointer ">
-                        <UserIcon />
-                        <span>Profile</span>
-                        <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem  className="cursor-pointer ">
-                        <CreditCard />
-                        <span>Billing</span>
-                        <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem  className="cursor-pointer ">
-                        <Settings />
-                        <span>Settings</span>
-                        <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem  className="cursor-pointer ">
-                        <Keyboard />
-                        <span>Keyboard shortcuts</span>
-                        <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-                    </DropdownMenuItem>
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <DropdownMenuGroup>
-                    <DropdownMenuItem  className="cursor-pointer ">
-                        <Users />
-                        <span>Team</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuSub>
-                        <DropdownMenuSubTrigger>
-                            <UserPlus />
-                            <span>Invite users</span>
-                        </DropdownMenuSubTrigger>
-                        <DropdownMenuPortal>
-                            <DropdownMenuSubContent>
-                                <DropdownMenuItem  className="cursor-pointer ">
-                                    <Mail />
-                                    <span>Email</span>
-                                </DropdownMenuItem>
-                                <DropdownMenuItem  className="cursor-pointer ">
-                                    <MessageSquare />
-                                    <span>Message</span>
-                                </DropdownMenuItem>
-                                <DropdownMenuSeparator />
-                                <DropdownMenuItem  className="cursor-pointer ">
-                                    <PlusCircle />
-                                    <span>More...</span>
-                                </DropdownMenuItem>
-                            </DropdownMenuSubContent>
-                        </DropdownMenuPortal>
-                    </DropdownMenuSub>
-                    <DropdownMenuItem  className="cursor-pointer ">
-                        <Plus />
-                        <span>New Team</span>
-                        <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
-                    </DropdownMenuItem>
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem  className="cursor-pointer ">
-                    <Github />
-                    <span>GitHub</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem  className="cursor-pointer ">
-                    <LifeBuoy />
-                    <span>Support</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem disabled>
-                    <Cloud />
-                    <span>API</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem  className="cursor-pointer ">
-                    <LogOut />
-                    <span>Log out</span>
-                    <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
-                </DropdownMenuItem>
-            </DropdownMenuContent>
-        </DropdownMenu>
+        <>
+            {session?.user ? (
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <User
+                            as="button"
+                            avatarProps={{
+                                isBordered: false,
+                                src: session.user.image ?? "https://i.pravatar.cc/150",
+                            }}
+                            className="transition-transform text-neutral-950 dark:text-white text-small"
+                            description={session.user.email ?? ""}
+                            name={session.user.name ?? "User"}
+                        />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="w-60">
+                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuGroup className="cursor-pointer">
+                            <DropdownMenuItem className="cursor-pointer">
+                                <UserIcon />
+                                <span>Profile</span>
+                                <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                            </DropdownMenuItem>
+                        </DropdownMenuGroup>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem className="cursor-pointer" onClick={() => handleSignOut()}>
+                            <LogOut />
+                            <span>Log out</span>
+                            <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            ) : (
+                <SignInButton />
+            )}
+        </>
     )
 }
