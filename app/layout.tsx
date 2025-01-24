@@ -42,11 +42,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <head />
       <body className={clsx('min-h-screen text-foreground bg-background antialiased', montserrat.className, playfair_display.variable)}>
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'light' }}>
+          {/* Sticky Header Component */}
+          <StickyMenu />
           <main className="relative overflow-x-hidden">
-            {/* Sticky Header Component */}
-            <StickyMenu />
             {children}
-            <Footer />
+            {/* <Footer /> */}
           </main>
         </Providers>
       </body>
