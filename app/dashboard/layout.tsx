@@ -15,7 +15,6 @@ export default async function AboutLayout({
     const session = await auth();
   return (
       <SessionProvider session={session}>
-        <div>123456</div>
           <Toaster />
           {/* <Jumbotron /> */}
          <div className='p-5'>

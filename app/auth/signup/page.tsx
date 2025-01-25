@@ -106,7 +106,7 @@ export default function SignInPage() {
               </div>
               <Button type="submit" className="w-full">Login</Button>
               <div className="text-center text-sm">
-                Don&apos;t have an account? <Link href="/auth/signup" className="underline">Sign up</Link>
+                Have an account? <Link href="/auth/login" className="underline">Sign In</Link>
               </div>
             </div>
           </div>

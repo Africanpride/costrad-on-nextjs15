@@ -10,13 +10,14 @@ export default function ClientComponent() {
 
 
     // Handle loading state first
-    if (status != "authenticated") return <div>Loading...</div>;
+    if (status === "unauthenticated") return <div>Loading...</div>;
 
     
     return (
-        <div>
+        <div className="space-y-3">
             <h1>Welcome, {session?.user?.name}</h1>
             <p>Email: {session?.user?.email}</p>
+            <div>Image: {session?.user?.image }</div>
             <Avatar
                 src={image}
                 className="w-[5.4rem] h-[5.4rem] text-large bg-purple-800"
