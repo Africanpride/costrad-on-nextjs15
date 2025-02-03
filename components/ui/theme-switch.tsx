@@ -8,6 +8,7 @@ import { useIsSSR } from "@react-aria/ssr";
 import clsx from "clsx";
 
 import { SunFilledIcon, MoonFilledIcon } from "@/components/ui/icons";
+import { LucideMoonStar } from "lucide-react";
 
 export interface ThemeSwitchProps {
   className?: string;
@@ -74,7 +75,7 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
           {!isSelected || isSSR ? (
             <SunFilledIcon className="text-yellow-500" size={22} />
           ) : (
-            <MoonFilledIcon className="text-gray-400 shadow-sm" size={22} />
+            <LucideMoonStar className="text-neutral-950 shadow-sm" size={22} />
           )}
         </div>
       </Component>

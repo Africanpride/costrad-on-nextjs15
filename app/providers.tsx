@@ -8,6 +8,8 @@ import { ThemeProviderProps } from "next-themes/dist/types";
 import { useState, useRef } from "react";
 import { ILocomotiveScrollOptions } from "locomotive-scroll/dist/types/types";
 
+
+
 export interface ProvidersProps {
   children: React.ReactNode;
   themeProps?: ThemeProviderProps;
@@ -48,12 +50,15 @@ export function Providers({ children, themeProps }: ProvidersProps) {
   }, []);
 
   return (
-    <HeroUIProvider navigate={router.push}>
-      <NextThemesProvider  {...themeProps}>
-        <div ref={scrollContainerRef} data-scroll-container>
-          {children}
-        </div>
-      </NextThemesProvider>
-    </HeroUIProvider>
+
+
+        <HeroUIProvider navigate={router.push}>
+          <NextThemesProvider  {...themeProps}>
+            <div ref={scrollContainerRef} data-scroll-container>
+              {children}
+            </div>
+          </NextThemesProvider>
+        </HeroUIProvider>
+
   );
 }

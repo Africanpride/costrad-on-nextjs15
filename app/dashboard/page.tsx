@@ -1,32 +1,43 @@
-"use client";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+import UserCard from "./user-card";
+import { OrganizationCard } from "./organization-card";
+import AccountSwitcher from "@/components/account-switch";
 
-import { useSession } from "next-auth/react";
-import { Avatar } from '@heroui/react';
-
-export default function ClientComponent() {
-    const { data: session, status } = useSession();
-
-    const image: string = session?.user?.image ?? ""; // Fallback to empty string if undefined
-
-
-    // Handle loading state first
-    if (status === "unauthenticated") return <div>Loading...</div>;
-
-    
-    return (
-        <div className="space-y-3">
-            <h1>Welcome, {session?.user?.name}</h1>
-            <p>Email: {session?.user?.email}</p>
-            <div>Image: {session?.user?.image }</div>
-            <Avatar
-                src={image}
-                className="w-[5.4rem] h-[5.4rem] text-large bg-purple-800"
-            />
-         <div>
-         <pre className="whitespace-pre-wrap break-all px-4 py-6">
-          {JSON.stringify(session, null, 2)}
-        </pre>
-         </div>
-        </div>
-    );
+export default async function DashboardPage() {
+	const [session, activeSessions, deviceSessions, organization] =
+		await Promise.all([
+			auth.api.getSession({
+				headers: await headers(),
+			}),
+			auth.api.listSessions({
+				headers: await headers(),
+			}),
+			auth.api.listDeviceSessions({
+				headers: await headers(),
+			}),
+			auth.api.getFullOrganization({
+				headers: await headers(),
+			}),
+		]).catch((e) => {
+			throw redirect("/sign-in");
+		});
+	return (
+		<div className="w-full">
+			<div className="flex gap-4 flex-col">
+				<AccountSwitcher
+					sessions={JSON.parse(JSON.stringify(deviceSessions))}
+				/>
+				<UserCard
+					session={JSON.parse(JSON.stringify(session))}
+					activeSessions={JSON.parse(JSON.stringify(activeSessions))}
+				/>
+				<OrganizationCard
+					session={JSON.parse(JSON.stringify(session))}
+					activeOrganization={JSON.parse(JSON.stringify(organization))}
+				/>
+			</div>
+		</div>
+	);
 }

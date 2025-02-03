@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { signIn, signOut } from "@/auth"
 import { Session } from "@auth/core/types"
 import { User } from "@heroui/react"
 import {

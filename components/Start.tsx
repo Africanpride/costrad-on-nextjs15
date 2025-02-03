@@ -13,7 +13,7 @@ const Start = (props: Props) => {
     <section
       className={`${bebas.className} md:min-h-screen h-auto grid grid-cols-1 md:grid-cols-3 `}>
       <div
-        className='bg-blue-950 col-span-1 md:col-span-2 min-h-dvh h-full flex flex-col
+        className='bg-purple-950 col-span-1 md:col-span-2 min-h-dvh h-full flex flex-col
              justify-center md:justify-between items-start p-4 md:p-6 relative  order-2 '>
         <div></div>
 

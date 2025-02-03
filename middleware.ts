@@ -1,11 +1,25 @@
-export { auth as middleware } from "@/auth"
+import { betterFetch } from "@better-fetch/fetch";
+import { NextRequest, NextResponse } from "next/server";
+import type { Session } from "./lib/auth-types";
 
-// Or like this if you need to do something here.
-// export default auth((req) => {
-//   console.log(req.auth) //  { session: { user: { ... } } }
-// })
+export async function middleware(request: NextRequest) {
+	const { data: session } = await betterFetch<Session>(
+		"/api/auth/get-session",
+		{
+			baseURL: request.nextUrl.origin,
+			headers: {
+				//get the cookie from the request
+				cookie: request.headers.get("cookie") || "",
+			},
+		},
+	);
 
-// Read more: https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
-export const config = {
-  matcher: ["/dashboard/:path*"],
+	if (!session) {
+		return NextResponse.redirect(new URL("/sign-in", request.url));
+	}
+	return NextResponse.next();
 }
+
+export const config = {
+	matcher: ["/dashboard"],
+};

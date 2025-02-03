@@ -5,7 +5,6 @@ import { montserrat, playfair_display } from '@/config/fonts';
 
 import { Providers } from './providers';
 import { siteConfig } from '@/config/site';
-import Footer from '@/components/ui/Footer';
 import StickyMenu from '@/components/ui/StickyMenu';
 
 export const metadata: Metadata = {

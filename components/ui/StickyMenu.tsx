@@ -50,7 +50,8 @@ export default function StickyMenu() {
           <UserLand />
         </div>
         <div className="sm:hidden block">
-          <SlideInMenu />
+          123456
+          {/* <SlideInMenu /> */}
         </div>
       </div>
     </div>
