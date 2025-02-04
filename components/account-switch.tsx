@@ -40,7 +40,7 @@ export default function AccountSwitcher({
 				>
 					<Avatar className="mr-2 h-6 w-6">
 						<AvatarImage
-							src={currentUser?.user.image || ""}
+							src={currentUser?.user.image || " http://i.pravatar.cc/150 "}
 							alt={currentUser?.user.name}
 						/>
 						<AvatarFallback>{currentUser?.user.name.charAt(0)}</AvatarFallback>
@@ -54,7 +54,7 @@ export default function AccountSwitcher({
 					<CommandList>
 						<CommandGroup heading="Current Account">
 							<CommandItem
-								onSelect={() => {}}
+								onSelect={() => { }}
 								className="text-sm w-full justify-between"
 								key={currentUser?.user.id}
 							>

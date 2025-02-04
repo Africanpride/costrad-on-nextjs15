@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Session } from "@auth/core/types"
 import { User } from "@heroui/react"
 import {
     DropdownMenu,
@@ -15,34 +14,28 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { User as UserIcon, LogOut } from "lucide-react"
 import { SignInButton } from "./auth/signin-button"
+import { signOut, useSession } from "@/lib/auth-client"
+import { Session } from "@/lib/auth-types"
+import { useRouter } from "next/navigation"
 
 export default function UserLand() {
-    const [session, setSession] = useState<Session | null>(null)
+    const router = useRouter();
 
-    useEffect(() => {
-        async function fetchSession() {
-            const res = await fetch("/api/auth/session") // Fetch from API
-            const sessionData: Session | null = await res.json()
-            setSession(sessionData)
-        }
-        fetchSession()
-    }, [])
+    const { data: session } = useSession() as { data: Session };
 
     async function handleSignOut() {
-        // Send a request to your API to log out
-        const res = await fetch("/api/auth/session", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
 
-        if (res.ok) {
-            // Optionally, handle any state changes after sign-out, like redirecting the user
-            window.location.reload() // For example, reload the page to reflect the state
-        } else {
-            console.error("Failed to sign out")
-        }
+        await signOut({
+            fetchOptions: {
+                onSuccess() {
+                    router.push("/");
+                },
+                onError() {
+                    console.log("Error signing out");
+                },
+            }
+        });
+
     }
 
 

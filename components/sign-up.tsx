@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { PasswordInput } from "@/components/ui/password-input";
 import { DiscordLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { signIn, signUp } from "@/lib/auth-client";
@@ -19,8 +18,11 @@ import Image from "next/image";
 import { Loader2, X } from "lucide-react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { PasswordInput } from "./ui/password-input";
+import Link from "next/link";
+import { FacebookIcon } from "react-share";
 
-export function SignUp() {
+export function SignUpComponent() {
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
@@ -44,7 +46,7 @@ export function SignUp() {
 	const [loading, setLoading] = useState(false);
 
 	return (
-		<Card className="z-50 rounded-md rounded-t-none max-w-md">
+		<Card className="z-50 rounded-md rounded-t-none max-w-md border-none shadow-none ">
 			<CardHeader>
 				<CardTitle className="text-lg md:text-xl">Sign Up</CardTitle>
 				<CardDescription className="text-xs md:text-sm">
@@ -179,34 +181,12 @@ export function SignUp() {
 							"Create an account"
 						)}
 					</Button>
-					<div className="flex items-center gap-2">
+					<div className="grid grid-cols-4 gap-2">
+
+
 						<Button
 							variant="outline"
-							className="w-full gap-2"
-							onClick={async () => {
-								await signIn.social({
-									provider: "github",
-									callbackURL: "/dashboard",
-								});
-							}}
-						>
-							<GitHubLogoIcon />
-						</Button>
-						<Button
-							variant="outline"
-							className="w-full gap-2"
-							onClick={async () => {
-								await signIn.social({
-									provider: "discord",
-									callbackURL: "/dashboard",
-								});
-							}}
-						>
-							<DiscordLogoIcon />
-						</Button>
-						<Button
-							variant="outline"
-							className="w-full gap-2"
+							className=" gap-2"
 							onClick={async () => {
 								await signIn.social({
 									provider: "google",
@@ -240,9 +220,9 @@ export function SignUp() {
 						</Button>
 						<Button
 							variant="outline"
-							className="w-full gap-2"
+							className="gap-2"
 							onClick={async () => {
-								await signIn.social({
+								const { data } = await signIn.social({
 									provider: "microsoft",
 									callbackURL: "/dashboard",
 								});
@@ -260,14 +240,70 @@ export function SignUp() {
 								></path>
 							</svg>
 						</Button>
+
+						<Button
+							variant="outline"
+							className="gap-2"
+							onClick={async () => {
+								await signIn.social({
+									provider: "facebook",
+									callbackURL: "/dashboard",
+								});
+							}}
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="1.3em"
+								height="1.3em"
+								viewBox="0 0 24 24"
+							>
+								<path
+									fill="currentColor"
+									d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95"
+								></path>
+							</svg>
+						</Button>
+						<Button
+							variant="outline"
+							className="gap-2"
+							onClick={async () => {
+								await signIn.social({
+									provider: "twitter",
+									callbackURL: "/dashboard",
+								});
+							}}
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="1em"
+								height="1em"
+								viewBox="0 0 14 14"
+							>
+								<g fill="none">
+									<g clipPath="url(#primeTwitter0)">
+										<path
+											fill="currentColor"
+											d="M11.025.656h2.147L8.482 6.03L14 13.344H9.68L6.294 8.909l-3.87 4.435H.275l5.016-5.75L0 .657h4.43L7.486 4.71zm-.755 11.4h1.19L3.78 1.877H2.504z"
+										></path>
+									</g>
+									<defs>
+										<clipPath id="primeTwitter0">
+											<path fill="#fff" d="M0 0h14v14H0z"></path>
+										</clipPath>
+									</defs>
+								</g>
+							</svg>
+						</Button>
 					</div>
 				</div>
 			</CardContent>
-			<CardFooter>
-				<div className="flex justify-center w-full border-t py-4">
-					<p className="text-center text-xs text-neutral-500">
-						Secured by <span className="text-orange-400">better-auth.</span>
-					</p>
+			<CardFooter className="py-5 flex flex-col ">
+				<div className="text-balance text-center text-sm text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
+					Have an account? Rather <Link href={'/auth/sign-in'} className="font-bold">Login</Link>.
+				</div>
+				<div className="text-balance text-center pt-5 text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
+					By clicking continue, you agree to our <a href={'/terms'}>Terms of Service</a>{" "}
+					and <a href={'/privacy'}>Privacy Policy</a>.
 				</div>
 			</CardFooter>
 		</Card>

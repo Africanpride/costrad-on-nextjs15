@@ -13,7 +13,7 @@ export default function StickyMenu() {
   const pathname = usePathname(); // Get the current route
 
   // Define pages where StickyMenu should NOT be displayed
-  const hideStickyMenu = ["/auth/login", "/auth/signup", "/auth/reset-password"].includes(pathname);
+  const hideStickyMenu = pathname.startsWith("/auth");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,8 +50,8 @@ export default function StickyMenu() {
           <UserLand />
         </div>
         <div className="sm:hidden block">
-          123456
-          {/* <SlideInMenu /> */}
+          
+          <SlideInMenu />
         </div>
       </div>
     </div>

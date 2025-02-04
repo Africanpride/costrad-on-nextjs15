@@ -143,7 +143,7 @@ export const auth = betterAuth({
     oAuthProxy(),
     nextCookies(),
     oidcProvider({
-      loginPage: "/sign-in",
+      loginPage: "/auth/sign-in",
     }),
   ],
 });

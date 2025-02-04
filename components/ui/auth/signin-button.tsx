@@ -8,7 +8,7 @@ export function SignInButton() {
 
   return (
     <Button 
-      onPress={() => router.push("/sign-in")} // Redirect to the sign-in page
+      onPress={() => router.push("/auth/sign-in")} // Redirect to the sign-in page
       className="uppercase rounded-none bg-purple-700 text-white font-bold" 
       size="sm" 
       variant="solid"

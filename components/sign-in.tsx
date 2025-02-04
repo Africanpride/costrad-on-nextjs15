@@ -12,7 +12,6 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { PasswordInput } from "@/components/ui/password-input";
 import { signIn } from "@/lib/auth-client";
 import { DiscordLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 import { Key, Loader2 } from "lucide-react";
@@ -20,15 +19,17 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
+import { PasswordInput } from "./ui/password-input";
 
-export default function SignIn() {
+export default function SignInComponent() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [rememberMe, setRememberMe] = useState(false);
 	const router = useRouter();
 	const [loading, setLoading] = useState(false);
 	return (
-		<Card className="z-50 rounded-md rounded-t-none max-w-md">
+
+		<Card className="z-50 rounded-md rounded-t-none max-w-md shadow-none border-none ">
 			<CardHeader>
 				<CardTitle className="text-lg md:text-xl">Sign In</CardTitle>
 				<CardDescription className="text-xs md:text-sm">
@@ -54,7 +55,7 @@ export default function SignIn() {
 						<div className="flex items-center">
 							<Label htmlFor="password">Password</Label>
 							<Link
-								href="/forget-password"
+								href="/auth/forget-password"
 								className="ml-auto inline-block text-sm underline"
 							>
 								Forgot your password?
@@ -63,7 +64,7 @@ export default function SignIn() {
 						<PasswordInput
 							id="password"
 							value={password}
-							onChange={(e) => setPassword(e.target.value)}
+							onChange={(e: any) => setPassword(e.target.value)}
 							autoComplete="password"
 							placeholder="Password"
 						/>
@@ -106,29 +107,8 @@ export default function SignIn() {
 						{loading ? <Loader2 size={16} className="animate-spin" /> : "Login"}
 					</Button>
 					<div className="grid grid-cols-4 gap-2">
-						<Button
-							variant="outline"
-							className="gap-2"
-							onClick={async () => {
-								await signIn.social({
-									provider: "github",
-									callbackURL: "/dashboard",
-								});
-							}}
-						>
-							<GitHubLogoIcon />
-						</Button>
-						<Button
-							variant="outline"
-							className="gap-2"
-							onClick={async () => {
-								await signIn.social({
-									provider: "discord",
-								});
-							}}
-						>
-							<DiscordLogoIcon />
-						</Button>
+
+
 						<Button
 							variant="outline"
 							className=" gap-2"
@@ -182,28 +162,6 @@ export default function SignIn() {
 								<path
 									fill="currentColor"
 									d="M2 3h9v9H2zm9 19H2v-9h9zM21 3v9h-9V3zm0 19h-9v-9h9z"
-								></path>
-							</svg>
-						</Button>
-						<Button
-							variant="outline"
-							className="gap-2"
-							onClick={async () => {
-								await signIn.social({
-									provider: "twitch",
-									callbackURL: "/dashboard",
-								});
-							}}
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="1.2em"
-								height="1.2em"
-								viewBox="0 0 24 24"
-							>
-								<path
-									fill="currentColor"
-									d="M11.64 5.93h1.43v4.28h-1.43m3.93-4.28H17v4.28h-1.43M7 2L3.43 5.57v12.86h4.28V22l3.58-3.57h2.85L20.57 12V2m-1.43 9.29l-2.85 2.85h-2.86l-2.5 2.5v-2.5H7.71V3.43h11.43Z"
 								></path>
 							</svg>
 						</Button>
@@ -283,11 +241,13 @@ export default function SignIn() {
 					</Button>
 				</div>
 			</CardContent>
-			<CardFooter>
-				<div className="flex justify-center w-full border-t py-4">
-					<p className="text-center text-xs text-neutral-500">
-						Secured by <span className="text-orange-400">better-auth.</span>
-					</p>
+			<CardFooter className="py-5 flex flex-col ">
+				<div className="text-balance text-center text-sm text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
+					Don't have an account? Rather <Link href={'/auth/sign-up'} className="font-bold">Register</Link>.
+				</div>
+				<div className="text-balance text-center pt-5 text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
+					By clicking continue, you agree to our <a href={'/terms'}>Terms of Service</a>{" "}
+					and <a href={'/privacy'}>Privacy Policy</a>.
 				</div>
 			</CardFooter>
 		</Card>

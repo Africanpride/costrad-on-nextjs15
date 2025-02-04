@@ -13,7 +13,7 @@ import {
 import { toast } from "sonner";
 
 export const client = createAuthClient({
-  baseURL: "http://localhost:3000", // the base url of your auth server
+  baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3000" as string, // the base url of your auth server
   plugins: [
     organizationClient(),
     twoFactorClient({
