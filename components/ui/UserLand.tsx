@@ -12,31 +12,19 @@ import {
     DropdownMenuShortcut,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { User as UserIcon, LogOut } from "lucide-react"
+import { User as UserIcon, LogOut, Settings } from "lucide-react"
 import { SignInButton } from "./auth/signin-button"
 import { signOut, useSession } from "@/lib/auth-client"
 import { Session } from "@/lib/auth-types"
 import { useRouter } from "next/navigation"
+import { client } from '../../lib/auth-client';
 
 export default function UserLand() {
     const router = useRouter();
 
+    const [isSignOut, setIsSignOut] = useState<boolean>(false);
+
     const { data: session } = useSession() as { data: Session };
-
-    async function handleSignOut() {
-
-        await signOut({
-            fetchOptions: {
-                onSuccess() {
-                    router.push("/");
-                },
-                onError() {
-                    console.log("Error signing out");
-                },
-            }
-        });
-
-    }
 
 
     return (
@@ -59,14 +47,38 @@ export default function UserLand() {
                         <DropdownMenuLabel>My Account</DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup className="cursor-pointer">
-                            <DropdownMenuItem className="cursor-pointer">
+                            <DropdownMenuItem onSelect={
+                                () => {
+                                    router.push("dashboard");
+                                }
+                            } className="cursor-pointer">
                                 <UserIcon />
                                 <span>Profile</span>
                                 <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                             </DropdownMenuItem>
+                            <DropdownMenuItem className="cursor-pointer" onSelect={
+                                () => {
+                                    router.push("dashboard");
+                                }
+                            } >
+                                <Settings />
+                                <span>Settings</span>
+                                <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+                            </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem className="cursor-pointer" onClick={() => handleSignOut()}>
+                        <DropdownMenuItem className="cursor-pointer"
+                            onClick={async () => {
+                                setIsSignOut(true);
+                                await signOut({
+                                    fetchOptions: {
+                                        onSuccess() {
+                                            router.push("/");
+                                        },
+                                    },
+                                });
+                                setIsSignOut(false);
+                            }} >
                             <LogOut />
                             <span>Log out</span>
                             <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
@@ -74,6 +86,7 @@ export default function UserLand() {
                     </DropdownMenuContent>
                 </DropdownMenu>
             ) : (
+
                 <SignInButton />
             )}
         </>

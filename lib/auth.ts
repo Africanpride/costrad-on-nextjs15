@@ -10,6 +10,7 @@ import {
   oAuthProxy,
   openAPI,
   oidcProvider,
+  emailOTP,
 } from "better-auth/plugins";
 import { reactInvitationEmail } from "./email/invitation";
 import { LibsqlDialect } from "@libsql/kysely-libsql";
@@ -40,13 +41,12 @@ if (!dialect) {
 
 export const auth = betterAuth({
   appName: "College of Sustainable Transformation and Development",
+
   database: new Database("./sqlite.db"),
 
-  // database: {
-  //   dialect,
-  //   type: "sqlite",
-  // },
   emailVerification: {
+    autoSignInAfterVerification: true,
+    sendOnSignUp: true,
     async sendVerificationEmail({ user, url }) {
       const res = await resend.emails.send({
         from,
@@ -54,21 +54,23 @@ export const auth = betterAuth({
         subject: "Verify your email address",
         html: `<a href="${url}">Verify your email address</a>`,
       });
-      console.log(res, user.email);
     },
   },
+
   account: {
     accountLinking: {
-      trustedProviders: ["google", "github", "demo-app"],
+      trustedProviders: ["google", "facebook", "microsoft", "linkedin"],
     },
   },
   emailAndPassword: {
     enabled: true,
+    requireEmailVerification: true,
+    minPasswordLength: 8,
     async sendResetPassword({ user, url }) {
       await resend.emails.send({
-        from,
+        from: "no-reply@costrad.org",
         to: user.email,
-        subject: "Reset your password",
+        subject: "Reset your COSTrAD password",
         react: reactResetPasswordEmail({
           username: user.email,
           resetLink: url,
@@ -81,10 +83,6 @@ export const auth = betterAuth({
       clientId: process.env.FACEBOOK_CLIENT_ID || "",
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET || "",
     },
-    github: {
-      clientId: process.env.GITHUB_CLIENT_ID || "",
-      clientSecret: process.env.GITHUB_CLIENT_SECRET || "",
-    },
     google: {
       clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
@@ -93,13 +91,22 @@ export const auth = betterAuth({
       clientId: process.env.MICROSOFT_CLIENT_ID || "",
       clientSecret: process.env.MICROSOFT_CLIENT_SECRET || "",
     },
-
-    twitter: {
-      clientId: process.env.TWITTER_CLIENT_ID || "",
-      clientSecret: process.env.TWITTER_CLIENT_SECRET || "",
-    },
   },
   plugins: [
+    emailOTP({
+      async sendVerificationOTP({ email, otp, type = "sign-in" }) {
+        await resend.emails.send({
+          from,
+          to: email,
+          subject: "Your Login OTP",
+          html: `<p>Hello,</p>
+                 <p>Your One-Time Password (OTP) is: <strong>${otp}</strong></p>
+                 <p>This OTP is valid for 10 minutes.</p>
+                 <p>If you did not request this, please ignore this email.</p>`,
+        });
+      },
+    }),
+
     organization({
       async sendInvitationEmail(data) {
         await resend.emails.send({
@@ -114,9 +121,8 @@ export const auth = betterAuth({
             inviteLink:
               process.env.NODE_ENV === "development"
                 ? `http://localhost:3000/accept-invitation/${data.id}`
-                : `${
-                    process.env.BETTER_AUTH_URL ||
-                    "https://demo.better-auth.com"
+                : `$${
+                    process.env.BETTER_AUTH_URL
                   }/accept-invitation/${data.id}`,
           }),
         });
@@ -134,7 +140,9 @@ export const auth = betterAuth({
         },
       },
     }),
+    openAPI(),
     passkey(),
+    oneTap(),
     openAPI(),
     bearer(),
     admin(),

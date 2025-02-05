@@ -48,7 +48,7 @@ export function SignUpComponent() {
 	return (
 		<Card className="z-50 rounded-md rounded-t-none max-w-md border-none shadow-none ">
 			<CardHeader>
-				<CardTitle className="text-lg md:text-xl">Sign Up</CardTitle>
+				<CardTitle className="text-lg md:text-xl">COSTrAD Sign Up</CardTitle>
 				<CardDescription className="text-xs md:text-sm">
 					Enter your information to create an account
 				</CardDescription>
@@ -181,7 +181,7 @@ export function SignUpComponent() {
 							"Create an account"
 						)}
 					</Button>
-					<div className="grid grid-cols-4 gap-2">
+					<div className="grid grid-cols-3 gap-2">
 
 
 						<Button
@@ -190,7 +190,7 @@ export function SignUpComponent() {
 							onClick={async () => {
 								await signIn.social({
 									provider: "google",
-									callbackURL: "/dashboard",
+									callbackURL: "/",
 								});
 							}}
 						>
@@ -224,7 +224,7 @@ export function SignUpComponent() {
 							onClick={async () => {
 								const { data } = await signIn.social({
 									provider: "microsoft",
-									callbackURL: "/dashboard",
+									callbackURL: "/",
 								});
 							}}
 						>
@@ -247,7 +247,7 @@ export function SignUpComponent() {
 							onClick={async () => {
 								await signIn.social({
 									provider: "facebook",
-									callbackURL: "/dashboard",
+									callbackURL: "/",
 								});
 							}}
 						>
@@ -263,37 +263,7 @@ export function SignUpComponent() {
 								></path>
 							</svg>
 						</Button>
-						<Button
-							variant="outline"
-							className="gap-2"
-							onClick={async () => {
-								await signIn.social({
-									provider: "twitter",
-									callbackURL: "/dashboard",
-								});
-							}}
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="1em"
-								height="1em"
-								viewBox="0 0 14 14"
-							>
-								<g fill="none">
-									<g clipPath="url(#primeTwitter0)">
-										<path
-											fill="currentColor"
-											d="M11.025.656h2.147L8.482 6.03L14 13.344H9.68L6.294 8.909l-3.87 4.435H.275l5.016-5.75L0 .657h4.43L7.486 4.71zm-.755 11.4h1.19L3.78 1.877H2.504z"
-										></path>
-									</g>
-									<defs>
-										<clipPath id="primeTwitter0">
-											<path fill="#fff" d="M0 0h14v14H0z"></path>
-										</clipPath>
-									</defs>
-								</g>
-							</svg>
-						</Button>
+
 					</div>
 				</div>
 			</CardContent>

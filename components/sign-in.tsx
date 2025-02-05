@@ -12,7 +12,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signIn } from "@/lib/auth-client";
+import { client, signIn } from "@/lib/auth-client";
 import { DiscordLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 import { Key, Loader2 } from "lucide-react";
 import Link from "next/link";
@@ -31,7 +31,7 @@ export default function SignInComponent() {
 
 		<Card className="z-50 rounded-md rounded-t-none max-w-md shadow-none border-none ">
 			<CardHeader>
-				<CardTitle className="text-lg md:text-xl">Sign In</CardTitle>
+				<CardTitle className="text-lg md:text-xl">COSTrAD Sign In</CardTitle>
 				<CardDescription className="text-xs md:text-sm">
 					Enter your email below to login to your account
 				</CardDescription>
@@ -87,7 +87,7 @@ export default function SignInComponent() {
 								{
 									email: email,
 									password: password,
-									callbackURL: "/dashboard",
+									callbackURL: "/",
 									rememberMe,
 								},
 								{
@@ -106,7 +106,8 @@ export default function SignInComponent() {
 					>
 						{loading ? <Loader2 size={16} className="animate-spin" /> : "Login"}
 					</Button>
-					<div className="grid grid-cols-4 gap-2">
+					<div className="grid grid-cols-3 gap-2">
+
 
 
 						<Button
@@ -115,7 +116,7 @@ export default function SignInComponent() {
 							onClick={async () => {
 								await signIn.social({
 									provider: "google",
-									callbackURL: "/dashboard",
+									callbackURL: "/",
 								});
 							}}
 						>
@@ -149,7 +150,7 @@ export default function SignInComponent() {
 							onClick={async () => {
 								const { data } = await signIn.social({
 									provider: "microsoft",
-									callbackURL: "/dashboard",
+									callbackURL: "/",
 								});
 							}}
 						>
@@ -172,7 +173,7 @@ export default function SignInComponent() {
 							onClick={async () => {
 								await signIn.social({
 									provider: "facebook",
-									callbackURL: "/dashboard",
+									callbackURL: "/",
 								});
 							}}
 						>
@@ -188,57 +189,9 @@ export default function SignInComponent() {
 								></path>
 							</svg>
 						</Button>
-						<Button
-							variant="outline"
-							className="gap-2"
-							onClick={async () => {
-								await signIn.social({
-									provider: "twitter",
-									callbackURL: "/dashboard",
-								});
-							}}
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="1em"
-								height="1em"
-								viewBox="0 0 14 14"
-							>
-								<g fill="none">
-									<g clipPath="url(#primeTwitter0)">
-										<path
-											fill="currentColor"
-											d="M11.025.656h2.147L8.482 6.03L14 13.344H9.68L6.294 8.909l-3.87 4.435H.275l5.016-5.75L0 .657h4.43L7.486 4.71zm-.755 11.4h1.19L3.78 1.877H2.504z"
-										></path>
-									</g>
-									<defs>
-										<clipPath id="primeTwitter0">
-											<path fill="#fff" d="M0 0h14v14H0z"></path>
-										</clipPath>
-									</defs>
-								</g>
-							</svg>
-						</Button>
 					</div>
-					<Button
-						variant="outline"
-						className="gap-2"
-						onClick={async () => {
-							await signIn.passkey({
-								fetchOptions: {
-									onSuccess(context) {
-										router.push("/dashboard");
-									},
-									onError(context) {
-										toast.error(context.error.message);
-									},
-								},
-							});
-						}}
-					>
-						<Key size={16} />
-						Sign-in with Passkey
-					</Button>
+
+
 				</div>
 			</CardContent>
 			<CardFooter className="py-5 flex flex-col ">

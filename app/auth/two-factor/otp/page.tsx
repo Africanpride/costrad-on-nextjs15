@@ -10,12 +10,12 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { client } from "@/lib/auth-client";
+import { client, useSession } from "@/lib/auth-client";
 import { AlertCircle, CheckCircle2, Mail } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function Component() {
+export default function TwoFactorOTPViaEmail() {
 	const [otp, setOtp] = useState("");
 	const [isOtpSent, setIsOtpSent] = useState(false);
 	const [message, setMessage] = useState("");
@@ -23,7 +23,9 @@ export default function Component() {
 	const [isValidated, setIsValidated] = useState(false);
 
 	// In a real app, this email would come from your authentication context
-	const userEmail = "user@example.com";
+	const { data: session } = useSession();
+	const userEmail = session?.user?.email || "Not logged in";
+	console.log(userEmail);
 
 	const requestOTP = async () => {
 		const res = await client.twoFactor.sendOtp();
@@ -45,7 +47,7 @@ export default function Component() {
 			router.push("/");
 		} else {
 			setIsError(true);
-			setMessage("Invalid OTP");
+			setMessage("OTP Code is Invalid ");
 		}
 	};
 	return (
