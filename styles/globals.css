@@ -58,15 +58,24 @@
     --chart-5: 340 75% 55%;
   }
 }
+
 @layer base {
   * {
     @apply border-border;
+    /* font-family: 'montserrat', sans-serif;
+    font-style: normal; */
   }
   body {
     @apply bg-background text-foreground;
   }
+
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-oswald);
+    font-weight: 200; /* Default weight, adjust as needed */
+    
+    
+  }
 }
 
-h1 {
-  font-family: var(--font-bebas);
-}
+

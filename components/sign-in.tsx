@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
 	Card,
 	CardContent,
@@ -12,14 +11,16 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { client, signIn } from "@/lib/auth-client";
-import { DiscordLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
-import { Key, Loader2 } from "lucide-react";
+import { signIn } from "@/lib/auth-client";
+import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { PasswordInput } from "./ui/password-input";
+import { Button } from "@heroui/button";
+import { Divider } from "@heroui/react";
+import SeperatorWithText from "./ui/seperatorWithText";
 
 export default function SignInComponent() {
 	const [email, setEmail] = useState("");
@@ -27,93 +28,114 @@ export default function SignInComponent() {
 	const [rememberMe, setRememberMe] = useState(false);
 	const router = useRouter();
 	const [loading, setLoading] = useState(false);
+
+	const [signInResponse, setSignInResponse] = useState<string | null>(null);
+	const [signupEmail, setSignupEmail] = useState<string | null>(null);
+
+
+	// Use useEffect to retrieve and set the signupEmail from sessionStorage
+	useEffect(() => {
+		const emailFromStorage = sessionStorage.getItem("signupEmail");
+		setSignupEmail(emailFromStorage); // Update the state
+	}, []); // Empty dependency array ensures this runs only once on mount
+
+	const handleSubmit = async (e: { preventDefault: () => void }) => {
+		e.preventDefault();
+		setLoading(true);
+
+		const signInPromise = signIn.email({
+			email,
+			password,
+			callbackURL: "/",
+			rememberMe,
+		}).then((response) => {
+			if (response?.error) {
+				console.log(response);
+				setSignInResponse(response.error.statusText as string);
+			}
+
+			if (response?.data?.user?.emailVerified === false) {
+				sessionStorage.setItem("signupEmail", response?.data?.user?.email);
+				// if error, timeout for 2 seconds and redirect to 
+				setTimeout(() => {
+					router.push("/auth/emailVerification");
+				}, 2000);
+			}
+
+		});
+
+		toast.promise(signInPromise, {
+			loading: "Signing in...",
+			success: () => {
+				setLoading(false);
+				return signInResponse;
+			},
+			error: (error) => {
+				setLoading(false);
+				setSignInResponse(error.message);
+				return signInResponse;
+			}
+		});
+	};
+
 	return (
+		<div>
+			<Card className="z-50 rounded-md rounded-t-none max-w-md shadow-none border-none">
+				<CardHeader>
+					<CardTitle className="text-lg md:text-xl">COSTrAD Sign In</CardTitle>
+					<CardDescription className="text-xs md:text-sm">
+						Enter your email below to login to your account
+					</CardDescription>
+				</CardHeader>
+				<CardContent className="py-5">
 
-		<Card className="z-50 rounded-md rounded-t-none max-w-md shadow-none border-none ">
-			<CardHeader>
-				<CardTitle className="text-lg md:text-xl">COSTrAD Sign In</CardTitle>
-				<CardDescription className="text-xs md:text-sm">
-					Enter your email below to login to your account
-				</CardDescription>
-			</CardHeader>
-			<CardContent>
-				<div className="grid gap-4">
-					<div className="grid gap-2">
-						<Label htmlFor="email">Email</Label>
-						<Input
-							id="email"
-							type="email"
-							placeholder="m@example.com"
-							required
-							onChange={(e) => {
-								setEmail(e.target.value);
-							}}
-							value={email}
-						/>
-					</div>
-					<div className="grid gap-2">
-						<div className="flex items-center">
-							<Label htmlFor="password">Password</Label>
-							<Link
-								href="/auth/forget-password"
-								className="ml-auto inline-block text-sm underline"
-							>
-								Forgot your password?
-							</Link>
+
+					<form id="emailAndPassword" className="grid gap-4" onSubmit={handleSubmit}>
+						<div className="grid gap-2">
+							<Label htmlFor="email">Email</Label>
+							<Input
+								id="email"
+								type="email"
+								placeholder="me@example.com"
+								required
+								onChange={(e) => setEmail(e.target.value)}
+								value={email}
+							/>
 						</div>
-						<PasswordInput
-							id="password"
-							value={password}
-							onChange={(e: any) => setPassword(e.target.value)}
-							autoComplete="password"
-							placeholder="Password"
-						/>
-					</div>
-					<div className="flex items-center gap-2">
-						<Checkbox
-							onClick={() => {
-								setRememberMe(!rememberMe);
-							}}
-						/>
-						<Label>Remember me</Label>
-					</div>
-
-					<Button
-						type="submit"
-						className="w-full"
-						disabled={loading}
-						onClick={async () => {
-							await signIn.email(
-								{
-									email: email,
-									password: password,
-									callbackURL: "/",
-									rememberMe,
-								},
-								{
-									onRequest: () => {
-										setLoading(true);
-									},
-									onResponse: () => {
-										setLoading(false);
-									},
-									onError: (ctx) => {
-										toast.error(ctx.error.message);
-									},
-								},
-							);
-						}}
-					>
-						{loading ? <Loader2 size={16} className="animate-spin" /> : "Login"}
-					</Button>
-					<div className="grid grid-cols-3 gap-2">
-
+						<div className="grid gap-2">
+							<div className="flex items-center">
+								<Label htmlFor="password">Password</Label>
+								<Link
+									href="/auth/forget-password"
+									className="ml-auto inline-block text-sm underline"
+								>
+									Forgot your password?
+								</Link>
+							</div>
+							<PasswordInput
+								id="password"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+								autoComplete="password"
+								placeholder="Password"
+							/>
+						</div>
+						<div className="flex items-center gap-2">
+							<Checkbox onClick={() => setRememberMe(!rememberMe)} />
+							<Label>Remember me</Label>
+						</div>
+						<Button type="submit" className="w-full" disabled={loading}>
+							{loading ? <Loader2 size={16} className="animate-spin" /> : "Login"}
+						</Button>
+					</form>
+					<SeperatorWithText seperatorText="Or" />
+					<div className="grid grid-cols-2 gap-2">
 
 
 						<Button
-							variant="outline"
+							variant="flat"
 							className=" gap-2"
-							onClick={async () => {
+							onPress={async () => {
 								await signIn.social({
 									provider: "google",
 									callbackURL: "/",
@@ -145,9 +167,9 @@ export default function SignInComponent() {
 							</svg>
 						</Button>
 						<Button
-							variant="outline"
+							variant="flat"
 							className="gap-2"
-							onClick={async () => {
+							onPress={async () => {
 								const { data } = await signIn.social({
 									provider: "microsoft",
 									callbackURL: "/",
@@ -167,10 +189,10 @@ export default function SignInComponent() {
 							</svg>
 						</Button>
 
-						<Button
-							variant="outline"
+						{/* <Button
+							variant="flat"
 							className="gap-2"
-							onClick={async () => {
+							onPress={async () => {
 								await signIn.social({
 									provider: "facebook",
 									callbackURL: "/",
@@ -188,21 +210,20 @@ export default function SignInComponent() {
 									d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95"
 								></path>
 							</svg>
-						</Button>
+						</Button> */}
+
 					</div>
 
-
-				</div>
-			</CardContent>
-			<CardFooter className="py-5 flex flex-col ">
-				<div className="text-balance text-center text-sm text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
-					Don't have an account? Rather <Link href={'/auth/sign-up'} className="font-bold">Register</Link>.
-				</div>
-				<div className="text-balance text-center pt-5 text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
-					By clicking continue, you agree to our <a href={'/terms'}>Terms of Service</a>{" "}
-					and <a href={'/privacy'}>Privacy Policy</a>.
-				</div>
-			</CardFooter>
-		</Card>
+				</CardContent>
+				<CardFooter className=" flex flex-col">
+					<div className="text-balance text-center text-sm text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
+						Don't have an account? Rather <Link href={'/auth/sign-up'} className="font-bold">Register</Link>.
+					</div>
+					<div className="text-balance text-center pt-2 text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
+						By clicking continue, you agree to our <br /><a href={'/terms'}>Terms of Service</a> and <a href={'/privacy'}>Privacy Policy</a>.
+					</div>
+				</CardFooter>
+			</Card>
+		</div>
 	);
 }

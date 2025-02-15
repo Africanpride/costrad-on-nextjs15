@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site";
 import type { Metadata } from "next/types";
 
 export function createMetadata(override: Metadata): Metadata {
@@ -8,12 +9,12 @@ export function createMetadata(override: Metadata): Metadata {
 			description: override.description ?? undefined,
 			url: "https://demo.better-auth.com",
 			images: "https://demo.better-auth.com/og.png",
-			siteName: "Better Auth",
+			siteName: siteConfig.name as string,
 			...override.openGraph,
 		},
 		twitter: {
 			card: "summary_large_image",
-			creator: "@beakcru",
+			creator: "@africanpride",
 			title: override.title ?? undefined,
 			description: override.description ?? undefined,
 			images: "https://demo.better-auth.com/og.png",

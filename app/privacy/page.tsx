@@ -3,8 +3,8 @@ import { title } from "@/components/primitives";
 export default function Privacy() {
   return (
 <>
-    <div className="max-w-7xl mx-auto  md:p-8  md:border border-gray-200 dark:border-neutral-700/30 rounded-3xl space-y-6" >
-        <h1 className="text-3xl font-bold mb-4">Privacy Policy for The Strategic Voter</h1>
+    <div className="max-w-7xl mx-auto  md:p-8  space-y-6" >
+        <h1 className="text-5xl  mb-4">Privacy Policy for The Strategic Voter</h1>
 
         <section className="">
             <h2 className="text-2xl font-semibold mb-2">Introduction</h2>

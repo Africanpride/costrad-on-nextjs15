@@ -4,10 +4,9 @@ type Props = {}
 
 const Loading = (props: Props) => {
   return (
-    <div className='flex justify-center items-center w-full h-screen bg-black text-white '>
-        <div> Loading ...</div>
-    </div>
-  )
+    <div className="h-screen flex justify-center items-center"><div className="loaderAnim" /></div>
+
+  );
 }
 
 export default Loading

@@ -35,7 +35,7 @@ export default function ResetPassword() {
 			toast.error(res.error.message);
 		}
 		setIsSubmitting(false);
-		router.push("/sign-in");
+		router.push("/auth/sign-in");
 	}
 	return (
 		<div className="flex flex-col items-center justify-center min-h-[calc(100vh-10rem)]">

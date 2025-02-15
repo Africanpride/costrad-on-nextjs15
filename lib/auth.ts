@@ -1,68 +1,82 @@
 import { betterAuth } from "better-auth";
-import Database from "better-sqlite3";
+import { PrismaClient } from "@prisma/client";
 import {
   bearer,
   admin,
   multiSession,
   organization,
   twoFactor,
-  oneTap,
   oAuthProxy,
   openAPI,
   oidcProvider,
   emailOTP,
 } from "better-auth/plugins";
 import { reactInvitationEmail } from "./email/invitation";
-import { LibsqlDialect } from "@libsql/kysely-libsql";
 import { reactResetPasswordEmail } from "./email/rest-password";
 import { resend } from "./email/resend";
-import { MysqlDialect } from "kysely";
-import { createPool } from "mysql2/promise";
 import { nextCookies } from "better-auth/next-js";
-import { passkey } from "better-auth/plugins/passkey";
+import { baseUrl } from "./metadata";
+import { prismaAdapter } from "better-auth/adapters/prisma";
+// import { prisma } from "@/prisma/prisma";
 
-const from = process.env.BETTER_AUTH_EMAIL || "delivered@resend.dev";
+
+if (!process.env.DATABASE_URL) {
+  throw new Error("Missing DATABASE_URL environment variable");
+}
+const from = process.env.BETTER_AUTH_EMAIL || "notifications@costrad.org";
 const to = process.env.TEST_EMAIL || "";
 
-const libsql = new LibsqlDialect({
-  url: process.env.TURSO_DATABASE_URL || "",
-  authToken: process.env.TURSO_AUTH_TOKEN || "",
-});
-
-const mysql = process.env.USE_MYSQL
-  ? new MysqlDialect(createPool(process.env.MYSQL_DATABASE_URL || ""))
-  : null;
-
-const dialect = process.env.USE_MYSQL ? mysql : libsql;
-
-if (!dialect) {
-  throw new Error("No dialect found");
-}
+const prisma = new PrismaClient();
 
 export const auth = betterAuth({
   appName: "College of Sustainable Transformation and Development",
 
-  database: new Database("./sqlite.db"),
+  database: prismaAdapter(prisma, {
+    provider: "postgresql"
+  }),
+  onAPIError: {
+    throw: true,
+    statusCode: 401,
+    message: "Unauthorized",
+    redirectTo: "/auth/sign-in",
+
+  },
+
+  baseUrl: baseUrl,
 
   emailVerification: {
     autoSignInAfterVerification: true,
     sendOnSignUp: true,
+
+
     async sendVerificationEmail({ user, url }) {
       const res = await resend.emails.send({
         from,
-        to: to || user.email,
+        to: user.email,
         subject: "Verify your email address",
         html: `<a href="${url}">Verify your email address</a>`,
       });
     },
   },
+  rateLimit: {
+    enabled: true,
+    max: 100,
+    duration: 60,
+  },
+  trustedOrigins: [
+    "http://localhost:3000",
+    "https://costrad.org",
+    "https://e858-102-208-88-18.ngrok-free.app",
+  ],
 
   account: {
     accountLinking: {
+      enabled: true,
       trustedProviders: ["google", "facebook", "microsoft", "linkedin"],
     },
   },
   emailAndPassword: {
+    autoSignIn: false,
     enabled: true,
     requireEmailVerification: true,
     minPasswordLength: 8,
@@ -79,10 +93,10 @@ export const auth = betterAuth({
     },
   },
   socialProviders: {
-    facebook: {
-      clientId: process.env.FACEBOOK_CLIENT_ID || "",
-      clientSecret: process.env.FACEBOOK_CLIENT_SECRET || "",
-    },
+    // facebook: {
+    //   clientId: process.env.FACEBOOK_CLIENT_ID || "",
+    //   clientSecret: process.env.FACEBOOK_CLIENT_SECRET || "",
+    // },
     google: {
       clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
@@ -140,18 +154,16 @@ export const auth = betterAuth({
         },
       },
     }),
+
     openAPI(),
-    passkey(),
-    oneTap(),
-    openAPI(),
+    // passkey(),
     bearer(),
     admin(),
     multiSession(),
-    oneTap(),
     oAuthProxy(),
-    nextCookies(),
     oidcProvider({
       loginPage: "/auth/sign-in",
     }),
+    nextCookies(),
   ],
 });

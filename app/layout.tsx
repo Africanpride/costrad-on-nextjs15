@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 import { Metadata, Viewport } from 'next';
 import clsx from 'clsx';
-import { montserrat, playfair_display } from '@/config/fonts';
+import { montserrat, oswald, playfair_display, plusJakartaSans } from '@/config/fonts';
 
 import { Providers } from './providers';
 import { siteConfig } from '@/config/site';
@@ -37,9 +37,11 @@ export const viewport: Viewport = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
 
   return (
-    <html suppressHydrationWarning lang="en">
+    <html suppressHydrationWarning lang="en" 
+    className={`${oswald.variable} ${montserrat.className } min-h-screen text-foreground bg-background antialiased`}
+    >
       <head />
-      <body className={clsx('min-h-screen text-foreground bg-background antialiased', montserrat.className, playfair_display.variable)}>
+      <body>
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'light' }}>
           {/* Sticky Header Component */}
           <StickyMenu />

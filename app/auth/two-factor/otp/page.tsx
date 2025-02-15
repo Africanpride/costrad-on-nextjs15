@@ -23,17 +23,30 @@ export default function TwoFactorOTPViaEmail() {
 	const [isValidated, setIsValidated] = useState(false);
 
 	// In a real app, this email would come from your authentication context
-	const { data: session } = useSession();
-	const userEmail = session?.user?.email || "Not logged in";
+	// retrieve the user email from the sessionStorage
+	const userEmail = sessionStorage.getItem("userEmail");
 	console.log(userEmail);
 
 	const requestOTP = async () => {
-		const res = await client.twoFactor.sendOtp();
-		// In a real app, this would call your backend API to send the OTP
-		setMessage("OTP sent to your email");
-		setIsError(false);
-		setIsOtpSent(true);
+		if (!userEmail) {
+			setMessage("User email is not available");
+			setIsError(true);
+			return;
+		}
+		try {
+			await client.emailOtp.sendVerificationOtp({
+				email: userEmail,
+				type: "sign-in",
+			});
+			setMessage("OTP sent to your email");
+			setIsError(false);
+			setIsOtpSent(true);
+		} catch (error) {
+			setMessage("Failed to send OTP. Please try again.");
+			setIsError(true);
+		}
 	};
+
 	const router = useRouter();
 
 	const validateOTP = async () => {
@@ -91,9 +104,8 @@ export default function TwoFactorOTPViaEmail() {
 					</div>
 					{message && (
 						<div
-							className={`flex items-center gap-2 mt-4 ${
-								isError ? "text-red-500" : "text-primary"
-							}`}
+							className={`flex items-center gap-2 mt-4 ${isError ? "text-red-500" : "text-primary"
+								}`}
 						>
 							{isError ? (
 								<AlertCircle className="h-4 w-4" />

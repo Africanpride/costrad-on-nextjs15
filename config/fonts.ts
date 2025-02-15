@@ -18,7 +18,7 @@ type Props = {
 
 export const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
   variable: "--font-montserrat",
 });
 
@@ -37,7 +37,7 @@ export const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const oswald = Oswald({
-  weight: ["200","300","400","500","600","700"],
+  weight: ["200", "300", "400", "500", "600", "700"],
   subsets: ["latin"],
   style: ["normal"],
   display: "swap",

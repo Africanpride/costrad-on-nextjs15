@@ -67,7 +67,7 @@ const Newsletter = () => {
 
         <div className='grid grid-cols-1 md:grid-cols-3 gap-x-8 md:pt-0 '>
           <div className='md:col-span-2'>
-            <p className={`${bebas.className} font-display text-4xl font-medium tracking-tighter  sm:text-5xl`}>
+            <p className={` font-display text-4xl font-medium tracking-tighter  sm:text-5xl`}>
               Stay up to date
             </p>
             <p className='mt-4 text-lg tracking-tight '>

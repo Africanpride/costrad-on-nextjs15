@@ -55,7 +55,9 @@ export default function TwoFactorComponent() {
   };
 
   if (isLoading) {
-    return <div>Loading ... </div>;
+    return (
+      <div className="h-screen flex justify-center items-center"><div className="loaderAnim" /></div>
+    );
   }
 
   return (
@@ -96,9 +98,9 @@ export default function TwoFactorComponent() {
             </form>
           </CardContent>
           <CardFooter className="text-sm text-muted-foreground gap-2">
-            <Link href={`/auth/two-factor/otp?userId=${session?.userId}`}>
+            <Link href={`/auth/two-factor/otp`}>
               <Button variant="link" size="sm">
-              {session?.userId} Switch to <span className="font-bold">Email Verification</span>
+                Switch to <span className="font-bold">Email Verification</span>
               </Button>
             </Link>
 

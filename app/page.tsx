@@ -12,6 +12,7 @@ import { Suspense, useEffect, useState } from 'react';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
+  console.log(process.env.NODE_ENV);
 
   useEffect(() => {
     (async () => {

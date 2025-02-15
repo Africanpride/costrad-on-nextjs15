@@ -31,7 +31,7 @@ export default function Component() {
 		try {
 			const res = await client.forgetPassword({
 				email,
-				redirectTo: "/reset-password",
+				redirectTo: "/auth/reset-password",
 			});
 			setIsSubmitted(true);
 		} catch (err) {

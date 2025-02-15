@@ -3,25 +3,25 @@ import { title } from "@/components/primitives";
 export default function CookiePolicy() {
   return (
     <>
-      <div className="max-w-7xl mx-auto md:p-8 md:border border-gray-200 dark:border-neutral-700/30 rounded-3xl space-y-6">
-        <h1 className="text-3xl font-bold mb-4">Cookie Policy for The Strategic Voter</h1>
+    <div className="max-w-7xl mx-auto  md:p-8  space-y-6" >
+    <h1 className="text-5xl  mb-4">Cookie Policy for The Strategic Voter</h1>
 
         <section className="">
-          <h2 className="text-2xl font-semibold mb-2">Introduction</h2>
+          <h2 className="text-2xl font-bold mb-2">Introduction</h2>
           <p>
             The Strategic Voter is committed to ensuring the privacy and security of our website visitors. This Cookie Policy explains how we use cookies and similar tracking technologies on our website to enhance your user experience and provide you with relevant content and services.
           </p>
         </section>
 
         <section className="">
-          <h2 className="text-2xl font-semibold mb-2">What are Cookies?</h2>
+          <h2 className="text-2xl font-bold mb-2">What are Cookies?</h2>
           <p>
             Cookies are small text files that are stored on your device when you visit a website. They are widely used to make websites work more efficiently and to provide information to the owners of the site. Cookies can be "persistent" (which remain on your device until they expire or are deleted) or "session" (which are deleted when you close your browser).
           </p>
         </section>
 
         <section className="">
-          <h2 className="text-2xl font-semibold mb-2">Types of Cookies We Use</h2>
+          <h2 className="text-2xl font-bold mb-2">Types of Cookies We Use</h2>
           <p>
             We use the following types of cookies on our website:
           </p>
@@ -34,7 +34,7 @@ export default function CookiePolicy() {
         </section>
 
         <section className="">
-          <h2 className="text-2xl font-semibold mb-2">How We Use Cookies</h2>
+          <h2 className="text-2xl font-bold mb-2">How We Use Cookies</h2>
           <p>
             We use cookies for various purposes, including:
           </p>
@@ -47,7 +47,7 @@ export default function CookiePolicy() {
         </section>
 
         <section className="">
-          <h2 className="text-2xl font-semibold mb-2">Managing Cookies</h2>
+          <h2 className="text-2xl font-bold mb-2">Managing Cookies</h2>
           <p>
             You can manage cookies through your browser settings. Most web browsers allow you to:
           </p>
@@ -62,7 +62,7 @@ export default function CookiePolicy() {
         </section>
 
         <section className="">
-          <h2 className="text-2xl font-semibold mb-2">Third-Party Cookies</h2>
+          <h2 className="text-2xl font-bold mb-2">Third-Party Cookies</h2>
           <p>
             Our website may use third-party services that set cookies on your device. These services include:
           </p>
@@ -74,14 +74,14 @@ export default function CookiePolicy() {
         </section>
 
         <section className="">
-          <h2 className="text-2xl font-semibold mb-2">Changes to This Cookie Policy</h2>
+          <h2 className="text-2xl font-bold mb-2">Changes to This Cookie Policy</h2>
           <p>
             We may update this Cookie Policy from time to time. We will notify you of any significant changes by posting the new Cookie Policy on our website. Your continued use of our services after such changes constitutes your acceptance of the new Cookie Policy.
           </p>
         </section>
 
         <section className="">
-          <h2 className="text-2xl font-semibold mb-2">Contact Us</h2>
+          <h2 className="text-2xl font-bold mb-2">Contact Us</h2>
           <p>
             If you have any questions or concerns about this Cookie Policy or our use of cookies, please contact us at:
           </p>

@@ -48,17 +48,17 @@ const CTA = (props: Props) => {
     <section className={` bg-neutral-200 dark:bg-gray-950 `}>
       <div className=' flex flex-col md:flex-row  justify-center md:flex md:items-center md:justify-between 
       min-h-[500px]  w-full mx-auto py-12 px-4 sm:px-6 md:py-16 md:px-8 z-20 space-y-4 '>
-        <h2 className={`  sm:text-4xl max-w-3xl`}>
-          <div
+        <div className={`  sm:text-4xl max-w-3xl`}>
+          <h2
             className={`${bebas.className} font-display text-4xl tracking-tighter text-accent-background sm:text-5xl`}>
             Be Empowered to Decide!
-          </div>
+          </h2>
           <div className='mt-4 text-lg tracking-tight '>
             Share the power of strategic voting! Encourage others to make
             informed decisions that makes impact. Spread the word, inspire
             action, and empower voters everywhere today.
           </div>
-        </h2>
+        </div>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-2 md:pt-0 '>
           <Button
             onPress={onOpen}
@@ -74,7 +74,7 @@ const CTA = (props: Props) => {
             href="https://selar.co/TheStrategicVoterVol1Revised"
             target='_blank'
             type='button'
-            variant="solid"
+            variant="bordered"
             color='default'
             className='px-6 py-6 font-semibold text-gray-700  '>
             Grab Your Copy
