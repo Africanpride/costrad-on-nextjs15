@@ -26,7 +26,10 @@ if (!process.env.DATABASE_URL) {
 const from = process.env.BETTER_AUTH_EMAIL || "notifications@costrad.org";
 const to = process.env.TEST_EMAIL || "";
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  log: ['info'],
+  
+});
 
 export const auth = betterAuth({
   appName: "College of Sustainable Transformation and Development",

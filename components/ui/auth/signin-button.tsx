@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, redirect } from 'next/navigation';
 import { Button } from "@heroui/button"
 import { LogOut, LucideArrowUpRight, UserIcon } from "lucide-react"
 import { client, signOut } from "@/lib/auth-client";
@@ -70,16 +70,15 @@ export function SignInButton() {
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="cursor-pointer"
-              onClick={async () => {
-                setIsSignOut(true);
-                await signOut({
+              onClick={async (e) => {
+                e.preventDefault();
+                await client.signOut({
                   fetchOptions: {
-                    onSuccess() {
-                      router.push("/");
+                    onSuccess: () => {
+                      router.push("/"); // redirect to login page
                     },
                   },
                 });
-                setIsSignOut(false);
               }} >
               <LogOut />
               <span>Log out</span>

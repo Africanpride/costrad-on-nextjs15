@@ -19,64 +19,79 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { PasswordInput } from "./ui/password-input";
 import { Button } from "@heroui/button";
-import { Divider } from "@heroui/react";
 import SeperatorWithText from "./ui/seperatorWithText";
+import { checkUserExist } from "@/app/actions/checkUserExist";
 
 export default function SignInComponent() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [rememberMe, setRememberMe] = useState(false);
-	const router = useRouter();
 	const [loading, setLoading] = useState(false);
+	const router = useRouter();
 
-	const [signInResponse, setSignInResponse] = useState<string | null>(null);
-	const [signupEmail, setSignupEmail] = useState<string | null>(null);
-
-
-	// Use useEffect to retrieve and set the signupEmail from sessionStorage
+	// Prepopulate email if saved previously
 	useEffect(() => {
-		const emailFromStorage = sessionStorage.getItem("signupEmail");
-		setSignupEmail(emailFromStorage); // Update the state
-	}, []); // Empty dependency array ensures this runs only once on mount
+		const storedEmail = sessionStorage.getItem("signupEmail");
+		if (storedEmail) setEmail(storedEmail);
+	}, []);
 
-	const handleSubmit = async (e: { preventDefault: () => void }) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		setLoading(true);
 
-		const signInPromise = signIn.email({
-			email,
-			password,
-			callbackURL: "/",
-			rememberMe,
-		}).then((response) => {
-			if (response?.error) {
-				console.log(response);
-				setSignInResponse(response.error.statusText as string);
+		try {
+			// Check if the user exists
+			const userExist = await checkUserExist(email);
+
+			// If the user exists but is not verified, save the email and redirect
+			if (userExist && !userExist.emailVerified) {
+				sessionStorage.setItem("signupEmail", email);
+				router.push("/auth/emailVerification");
+				return;
 			}
 
-			if (response?.data?.user?.emailVerified === false) {
-				sessionStorage.setItem("signupEmail", response?.data?.user?.email);
-				// if error, timeout for 2 seconds and redirect to 
-				setTimeout(() => {
-					router.push("/auth/emailVerification");
-				}, 2000);
-			}
+			// Create a promise for signing in
+			const signInPromise = signIn.email({
+				email,
+				password,
+				callbackURL: "/",
+				rememberMe,
+			}).then((response) => {
+				if (response?.error) {
+					// This will trigger the error callback in toast.promise
+					throw new Error(response.error.status.toString());
+				}
+				return response;
+			});
 
-		});
-
-		toast.promise(signInPromise, {
-			loading: "Signing in...",
-			success: () => {
-				setLoading(false);
-				return signInResponse;
-			},
-			error: (error) => {
-				setLoading(false);
-				setSignInResponse(error.message);
-				return signInResponse;
-			}
-		});
+			// Use toast.promise to show loading, success, and error states.
+			// Use toast.promise to handle promise notifications
+			toast.promise(
+				signInPromise,
+				{
+					loading: "Authenticating User...",
+					success: (response) => {
+						// Turn off loading state on success
+						setLoading(false);
+						// Customize this message as needed.
+						return "Signed in successfully!";
+					},
+					error: (error) => {
+						const errorMsg = "Invalid email or password.";
+						setLoading(false);
+						return errorMsg;
+					},
+				}
+			);
+		} catch (error: any) {
+			// Optional: Additional error handling here if needed.
+			toast.error("Error signing in. Please try again later.");
+		} finally {
+			setLoading(false);
+		}
 	};
+
+
 
 	return (
 		<div>
@@ -88,8 +103,6 @@ export default function SignInComponent() {
 					</CardDescription>
 				</CardHeader>
 				<CardContent className="py-5">
-
-
 					<form id="emailAndPassword" className="grid gap-4" onSubmit={handleSubmit}>
 						<div className="grid gap-2">
 							<Label htmlFor="email">Email</Label>
@@ -105,10 +118,7 @@ export default function SignInComponent() {
 						<div className="grid gap-2">
 							<div className="flex items-center">
 								<Label htmlFor="password">Password</Label>
-								<Link
-									href="/auth/forget-password"
-									className="ml-auto inline-block text-sm underline"
-								>
+								<Link href="/auth/forget-password" className="ml-auto inline-block text-sm underline">
 									Forgot your password?
 								</Link>
 							</div>
@@ -130,24 +140,15 @@ export default function SignInComponent() {
 					</form>
 					<SeperatorWithText seperatorText="Or" />
 					<div className="grid grid-cols-2 gap-2">
-
-
 						<Button
 							variant="flat"
-							className=" gap-2"
-							onPress={async () => {
-								await signIn.social({
-									provider: "google",
-									callbackURL: "/",
-								});
-							}}
+							className="gap-2"
+							onPress={async () =>
+								await signIn.social({ provider: "google", callbackURL: "/" })
+							}
 						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="0.98em"
-								height="1em"
-								viewBox="0 0 256 262"
-							>
+							{/* Google SVG Icon */}
+							<svg xmlns="http://www.w3.org/2000/svg" width="0.98em" height="1em" viewBox="0 0 256 262">
 								<path
 									fill="#4285F4"
 									d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622l38.755 30.023l2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"
@@ -169,58 +170,29 @@ export default function SignInComponent() {
 						<Button
 							variant="flat"
 							className="gap-2"
-							onPress={async () => {
-								const { data } = await signIn.social({
-									provider: "microsoft",
-									callbackURL: "/",
-								});
-							}}
+							onPress={async () =>
+								await signIn.social({ provider: "microsoft", callbackURL: "/" })
+							}
 						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="1.2em"
-								height="1.2em"
-								viewBox="0 0 24 24"
-							>
-								<path
-									fill="currentColor"
-									d="M2 3h9v9H2zm9 19H2v-9h9zM21 3v9h-9V3zm0 19h-9v-9h9z"
-								></path>
+							{/* Microsoft SVG Icon */}
+							<svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24">
+								<path fill="currentColor" d="M2 3h9v9H2zm9 19H2v-9h9zm11-19v9h-9V3zm0 19h-9v-9h9z"></path>
 							</svg>
 						</Button>
-
-						{/* <Button
-							variant="flat"
-							className="gap-2"
-							onPress={async () => {
-								await signIn.social({
-									provider: "facebook",
-									callbackURL: "/",
-								});
-							}}
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="1.3em"
-								height="1.3em"
-								viewBox="0 0 24 24"
-							>
-								<path
-									fill="currentColor"
-									d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95"
-								></path>
-							</svg>
-						</Button> */}
-
 					</div>
-
 				</CardContent>
-				<CardFooter className=" flex flex-col">
+				<CardFooter className="flex flex-col">
 					<div className="text-balance text-center text-sm text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
-						Don't have an account? Rather <Link href={'/auth/sign-up'} className="font-bold">Register</Link>.
+						Don't have an account? Rather{" "}
+						<Link href="/auth/sign-up" className="font-bold">
+							Register
+						</Link>
+						.
 					</div>
 					<div className="text-balance text-center pt-2 text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
-						By clicking continue, you agree to our <br /><a href={'/terms'}>Terms of Service</a> and <a href={'/privacy'}>Privacy Policy</a>.
+						By clicking continue, you agree to our <br />
+						<a href="/terms">Terms of Service</a> and{" "}
+						<a href="/privacy">Privacy Policy</a>.
 					</div>
 				</CardFooter>
 			</Card>
