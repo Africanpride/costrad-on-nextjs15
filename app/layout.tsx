@@ -6,6 +6,7 @@ import { montserrat, oswald, playfair_display, plusJakartaSans } from '@/config/
 import { Providers } from './providers';
 import { siteConfig } from '@/config/site';
 import StickyMenu from '@/components/ui/StickyMenu';
+import { Toaster } from 'sonner';
 
 export const metadata: Metadata = {
   title: {
@@ -48,6 +49,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <main className="relative overflow-x-hidden">
             {children}
             {/* <Footer /> */}
+            <Toaster />
           </main>
         </Providers>
       </body>

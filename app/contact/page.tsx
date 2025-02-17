@@ -1,11 +1,14 @@
 'use client';
 import { bebas } from '@/config/fonts';
 import { Button, Checkbox, Input, Textarea } from "@heroui/react";
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { betterFetch } from "@better-fetch/fetch";
+import type { auth } from "@/lib/auth";
+import { request } from 'http';
 
 type ContactFormInputs = {
   firstname: string;
@@ -13,6 +16,9 @@ type ContactFormInputs = {
   email: string;
   message: string;
 };
+
+type Session = typeof auth.$Infer.Session;
+
 
 export default function ContactPage() {
   const [isSelected, setIsSelected] = useState<boolean>(false);
@@ -65,6 +71,21 @@ export default function ContactPage() {
       }
     );
   };
+
+  useEffect(() => {
+    async function getUser() {
+      const { data: session } = await betterFetch<Session>("/api/auth/get-session", {
+        baseURL: window.location.origin,
+        headers: {
+          cookie: document.cookie || "", // Forward the cookies from the browser
+        },
+      });
+
+      console.log("SESSION DATA: ", session);
+
+    }
+    getUser();
+  }, []);
 
   return (
     <section className="py-32">

@@ -159,9 +159,9 @@ export function SignUpComponent() {
 							className="w-full"
 							disabled={loading}
 							onClick={async () => {
-								console.log("SUBMITTING APPLICATION 123456789")
+								console.log("SUBMITTING APPLICATION")
 								setLoading(true);
-								
+
 								const signUpPromise = signUp.email({
 									email,
 									password,
@@ -185,7 +185,7 @@ export function SignUpComponent() {
 										router.push("/");
 									}
 
-									if(response?.data?.user?.id !== null) {
+									if (response?.data?.user?.id !== null) {
 
 										setSignUpResponse("Sign-up successful!");
 									}
@@ -193,15 +193,17 @@ export function SignUpComponent() {
 								});
 
 								toast.promise(signUpPromise, {
-									loading: "Signing in...",
+									loading: "Signing up...",
 									success: () => {
+										const successMessage = "Sign-up successful!";
 										setLoading(false);
-										return signUpResponse;
+										return successMessage;
 									},
 									error: (error) => {
 										setLoading(false);
-										setSignUpResponse(error.message);
-										return signUpResponse;
+										const errorMessage = "Sign-up failed!";
+										setSignUpResponse(errorMessage);
+										return errorMessage;
 									}
 								});
 							}}
@@ -271,7 +273,7 @@ export function SignUpComponent() {
 									></path>
 								</svg>
 							</Button>
-{/* 
+							{/* 
 							<Button
 								variant="outline"
 								className="gap-2"

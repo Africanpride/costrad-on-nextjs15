@@ -168,6 +168,7 @@ export default function UserCard(props: {
 													toast.success("Session terminated successfully");
 												}
 												router.refresh();
+												// router.push("/auth/sign-in");
 												setIsTerminating(undefined);
 											}}
 										>
