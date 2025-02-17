@@ -28,7 +28,8 @@ const to = process.env.TEST_EMAIL || "";
 
 const prisma = new PrismaClient({
   log: ['info'],
-  
+  errorFormat: 'pretty',
+
 });
 
 export const auth = betterAuth({
