@@ -7,6 +7,8 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
 import { useState, useRef } from "react";
 import { ILocomotiveScrollOptions } from "locomotive-scroll/dist/types/types";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 
 
 
@@ -20,6 +22,9 @@ interface ExtendedLocomotiveScrollOptions extends ILocomotiveScrollOptions {
 }
 
 export function Providers({ children, themeProps }: ProvidersProps) {
+  // Keep a single QueryClient instance for the entire lifespan of the app
+  const [queryClient] = useState(() => new QueryClient());
+
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -52,13 +57,15 @@ export function Providers({ children, themeProps }: ProvidersProps) {
   return (
 
 
-        <HeroUIProvider navigate={router.push}>
-          <NextThemesProvider  {...themeProps}>
-            <div ref={scrollContainerRef} data-scroll-container>
-              {children}
-            </div>
-          </NextThemesProvider>
-        </HeroUIProvider>
+    <HeroUIProvider navigate={router.push}>
+      <NextThemesProvider  {...themeProps}>
+        <div ref={scrollContainerRef} data-scroll-container>
+          <QueryClientProvider client={queryClient}>
+            {children}
+          </QueryClientProvider>
+        </div>
+      </NextThemesProvider>
+    </HeroUIProvider>
 
   );
 }

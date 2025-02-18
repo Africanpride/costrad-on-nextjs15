@@ -13,7 +13,7 @@ export default function StickyMenu() {
   const pathname = usePathname(); // Get the current route
 
   // Define pages where StickyMenu should NOT be displayed
-  const hideStickyMenu = pathname.startsWith("/auth");
+  // const hideStickyMenu = pathname.startsWith("/auth");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,7 +29,7 @@ export default function StickyMenu() {
   }, []);
 
   // If the current path is in the hide list, don't render the menu
-  if (hideStickyMenu) return null;
+  // if (hideStickyMenu) return null;
 
   return (
     <div
