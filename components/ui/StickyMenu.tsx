@@ -35,14 +35,14 @@ export default function StickyMenu() {
     <div
       id="menu"
       className={clsx(
-        "w-full block transition-all shadow  bg-white dark:bg-neutral-950",
-        isFixed ? "fixed top-0 left-0 right-0 duration-600 z-50 py-3.5" : "relative py-5"
+        "w-full block transition-all shadow  bg-background ",
+        isFixed ? "fixed top-0 left-0 right-0 duration-600 z-50 py-3.5 " : "relative py-5 "
       )}
     >
       <div className="flex items-center justify-between px-2 py-2">
         <MainLogo />
         <div className="flex items-center gap-x-4">
-          <div className="sm:block hidden bg-white dark:bg-neutral-950 p-2 px-6 rounded-full">
+          <div className="sm:block hidden  p-2 px-6 rounded-full">
             <WebMenu />
           </div>
         </div>

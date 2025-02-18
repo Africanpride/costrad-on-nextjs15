@@ -48,7 +48,7 @@ export function SignInButton() {
                 isBordered: false,
                 src: session?.user.image ?? "https://i.pravatar.cc/150",
               }}
-              className="transition-transform text-neutral-950 dark:text-white text-small"
+              className="transition-transform text-current  text-small"
               description={session.user.email ?? ""}
               name={session.user.name ?? "User"}
             />
