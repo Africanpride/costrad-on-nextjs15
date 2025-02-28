@@ -40,51 +40,36 @@ export default function SignInComponent() {
 		setLoading(true);
 
 		try {
-			// Check if the user exists
-			const userExist = await checkUserExist(email);
-
-			// If the user exists but is not verified, save the email and redirect
-			if (userExist && !userExist.emailVerified) {
-				sessionStorage.setItem("signupEmail", email);
-				router.push("/auth/emailVerification");
-				return;
-			}
-
-			// Create a promise for signing in
-			const signInPromise = signIn.email({
-				email,
-				password,
-				callbackURL: "/",
-				rememberMe,
-			}).then((response) => {
-				if (response?.error) {
-					// This will trigger the error callback in toast.promise
-					throw new Error(response.error.status.toString());
-				}
-				return response;
-			});
-
-			// Use toast.promise to show loading, success, and error states.
-			// Use toast.promise to handle promise notifications
-			toast.promise(
-				signInPromise,
+			const signInPromise = signIn.email(
+				{ email, password, callbackURL: "/", rememberMe },
 				{
-					loading: "Authenticating User...",
-					success: (response) => {
-						// Turn off loading state on success
-						setLoading(false);
-						// Customize this message as needed.
-						return "Signed in successfully!";
+					onSuccess: () => {
+						console.log("Signed in successfully!");
 					},
-					error: (error) => {
-						const errorMsg = "Invalid email or password.";
-						setLoading(false);
-						return errorMsg;
+					onError: (ctx) => {
+						if (ctx.error.status === 403) {
+							toast.error("Please verify your email address.");
+							sessionStorage.setItem("signupEmail", email);
+							router.push("/auth/emailVerification");
+						} else if (ctx.error.status === 404) {
+							toast.error("User or Password Error");
+						} else if (ctx.error.status === 400) {
+							toast.error("User or Password Error");
+						} else if (ctx.error.status === 401) {
+							toast.error("Invalid email or password.");
+						} else {
+							toast.error(ctx.error.message || "Something went wrong. Try again.");
+						}
 					},
 				}
 			);
+
+			await toast.promise(signInPromise, {
+				loading: "Authenticating User...",
+				success: "Signed in successfully!",
+				error: "Login failed. Please check your details.",
+			});
 		} catch (error: any) {
-			// Optional: Additional error handling here if needed.
 			toast.error("Error signing in. Please try again later.");
 		} finally {
 			setLoading(false);

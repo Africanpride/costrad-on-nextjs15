@@ -17,8 +17,10 @@ import { resend } from "./email/resend";
 import { nextCookies } from "better-auth/next-js";
 import { baseUrl } from "./metadata";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-// import { prisma } from "@/prisma/prisma";
+import { createAuthMiddleware, APIError } from "better-auth/api";
+import { redirect } from "next/navigation";
 
+// import { prisma } from "@/prisma/prisma";
 
 if (!process.env.DATABASE_URL) {
   throw new Error("Missing DATABASE_URL environment variable");
@@ -27,32 +29,58 @@ const from = process.env.BETTER_AUTH_EMAIL || "notifications@costrad.org";
 const to = process.env.TEST_EMAIL || "";
 
 const prisma = new PrismaClient({
-  log: ['info'],
-  errorFormat: 'pretty',
-
+  log: ["info"],
+  errorFormat: "pretty",
 });
 
 export const auth = betterAuth({
   appName: "College of Sustainable Transformation and Development",
 
   database: prismaAdapter(prisma, {
-    provider: "postgresql"
+    provider: "postgresql",
   }),
 
-  onAPIError: {
-    throw: true,
-    statusCode: 401,
-    message: "Unauthorized",
-    redirectTo: "/auth/sign-in",
+  hooks: {
+    before: createAuthMiddleware(async (ctx) => {
+      // console.log("BEFORE HOOK", ctx);
+      if (ctx.path === "/sign-in/email") {
+      }
+      if (ctx.path === "/sign-in/email") {
+        if (ctx.body?.email) {
+          const user = await prisma.user.findUnique({
+            where: { email: ctx.body.email },
+          });
 
+          if (!user) {
+            throw new APIError("BAD_REQUEST", {
+              message: "User not found",
+              status: 404,
+            });
+          }
+
+          if (user.emailVerified === false) {
+            throw new APIError("FORBIDDEN", {
+              message: "Email not verified",
+              status: 403,
+            });
+          }
+        }
+      }
+    }),
   },
+
+  // onAPIError: {
+  //   throw: true,
+  //   statusCode: 401,
+  //   message: "Unauthorized",
+
+  // },
 
   baseUrl: baseUrl,
 
   emailVerification: {
     autoSignInAfterVerification: true,
     sendOnSignUp: true,
-
 
     async sendVerificationEmail({ user, url }) {
       const res = await resend.emails.send({

@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
-import { montserrat, oswald } from "@/config/fonts";
+import { bebas, montserrat, oswald } from "@/config/fonts";
 
 import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
@@ -40,7 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       suppressHydrationWarning
       lang="en"
-      className={`${oswald.variable} ${montserrat.className} min-h-screen text-foreground bg-background antialiased`}
+      className={`${oswald.variable} ${bebas.variable} ${montserrat.className} min-h-screen text-foreground bg-background antialiased`}
     >
       <head />
       <body>
