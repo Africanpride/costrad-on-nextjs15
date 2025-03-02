@@ -30,7 +30,12 @@ import {
 import { siteConfig } from "@/config/site"
 import MainLogo from "./ui/MainLogo"
 import Link from "next/link"
-import { useSession } from "@/lib/auth-client"
+import { useSession } from "@/hooks/use-session";
+import Loading from "./Loading"
+import { router } from "better-auth/api"
+import { useRouter } from "next/navigation"
+import { User } from '@heroui/react';
+import { client } from "@/lib/auth-client"
 
 const data = {
   user: {
@@ -157,20 +162,33 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { data: user } = useSession();
-  if (!user) return <div>Loading...</div>;
+  const { data: session, isPending, error } = client.useSession(); // Get the user's session
+  const router = useRouter()
+
+
+
+  if (isPending) return <Loading />;
+  if (!session) return <div>Loading...</div>;
+
+  const userData = {
+    name: String(session?.user?.name || "Guest"),
+    email: String(session?.user?.email || "guest@example.com"),
+    avatar: String(session?.user?.image || "/avatars/default.jpg"),
+  };
 
   return (
-    user && (
+    session && (
       <Sidebar
         className="top-[--header-height] !h-[calc(100svh-var(--header-height))]"
         {...props}
       >
         <SidebarHeader>
           <SidebarMenu>
-            <SidebarMenuItem>
+            <SidebarMenuItem className="cursor-pointer" onClick={() => {
+              router.push("/");
+            }} >
               <SidebarMenuButton size="lg" asChild>
-                <a href={'/'}>
+                <div>
                   <div className="flex aspect-square size-8 items-center justify-center rounded-lg 
              bg-sidebar-primary text-sidebar-primary-foreground">
                     <MainLogo logoSize="w-12 h-12" hideText={true} />
@@ -180,7 +198,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     <span className="truncate font-semibold">{siteConfig.shortName}</span>
                     <span className="truncate text-xs font-oswald ">Dashboard</span>
                   </div>
-                </a>
+                </div>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -191,7 +209,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <NavSecondary items={data.navSecondary} className="mt-auto" />
         </SidebarContent>
         <SidebarFooter>
-          <NavUser user={data.user} />
+          <NavUser user={userData} />
         </SidebarFooter>
       </Sidebar>
     )
