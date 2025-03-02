@@ -30,6 +30,7 @@ import {
 import { siteConfig } from "@/config/site"
 import MainLogo from "./ui/MainLogo"
 import Link from "next/link"
+import { useSession } from "@/lib/auth-client"
 
 const data = {
   user: {
@@ -156,37 +157,43 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  return (
-    <Sidebar
-      className="top-[--header-height] !h-[calc(100svh-var(--header-height))]"
-      {...props}
-    >
-      <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
-              <Link href={'/'}>
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                <MainLogo logoSize="w-8 h-8 " hideText={true} />
+  const { data: user } = useSession();
+  if (!user) return <div>Loading...</div>;
 
-                </div>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">{siteConfig.shortName}</span>
-                  <span className="truncate text-xs font-oswald ">Admin Portal</span>
-                </div>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarHeader>
-      <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
-      </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
-    </Sidebar>
+  return (
+    user && (
+      <Sidebar
+        className="top-[--header-height] !h-[calc(100svh-var(--header-height))]"
+        {...props}
+      >
+        <SidebarHeader>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton size="lg" asChild>
+                <a href={'/'}>
+                  <div className="flex aspect-square size-8 items-center justify-center rounded-lg 
+             bg-sidebar-primary text-sidebar-primary-foreground">
+                    <MainLogo logoSize="w-12 h-12" hideText={true} />
+
+                  </div>
+                  <div className="grid flex-1 text-left text-sm leading-tight px-2 ">
+                    <span className="truncate font-semibold">{siteConfig.shortName}</span>
+                    <span className="truncate text-xs font-oswald ">Dashboard</span>
+                  </div>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarHeader>
+        <SidebarContent>
+          <NavMain items={data.navMain} />
+          <NavProjects projects={data.projects} />
+          <NavSecondary items={data.navSecondary} className="mt-auto" />
+        </SidebarContent>
+        <SidebarFooter>
+          <NavUser user={data.user} />
+        </SidebarFooter>
+      </Sidebar>
+    )
   )
 }
