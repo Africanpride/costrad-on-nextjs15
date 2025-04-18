@@ -10,9 +10,7 @@
         "postinstall": "prisma generate",
         "vercel-build": "prisma generate && next build",
         "prisma:generate": "prisma generate"
-
     },
-
     "dependencies": {
         "@clerk/nextjs": "^6.10.2",
         "@gsap/react": "^2.1.1",
@@ -53,6 +51,8 @@
         "@tailwindcss/typography": "^0.5.15",
         "@tanstack/react-query": "^5.66.4",
         "@types/pg": "^8.11.11",
+        "@vercel/analytics": "^1.5.0",
+        "@vercel/speed-insights": "^1.2.0",
         "better-auth": "^1.1.18",
         "better-sqlite3": "^11.8.1",
         "class-variance-authority": "^0.7.1",

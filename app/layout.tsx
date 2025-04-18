@@ -7,6 +7,8 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import StickyMenuWrapper from "@/components/ui/StickyMenuWrapper"; // Import wrapper
 import { Toaster } from "sonner";
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: {
@@ -52,6 +54,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Toaster />
           </main>
         </Providers>
+        <Analytics />
+        <SpeedInsights/>
       </body>
     </html>
   );
