@@ -83,7 +83,7 @@ export default function InvitationPage() {
 					setInvitation(res.data);
 				}
 			});
-	}, []);
+	}, [params.id]);
 
 	return (
 		<div className="min-h-[80vh] flex items-center justify-center">

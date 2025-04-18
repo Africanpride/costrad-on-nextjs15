@@ -13,7 +13,7 @@ export default function Home() {
                     <MainLogo />
                 </div>
                 <hr className='pt-2' />
-                <div>
+                <div className='text-center'>
                     <h1 className="sm:text-4xl  text-2xl font-bold text-gray-900 dark:text-white">
                         Maintenance In Progress!
                     </h1>
@@ -24,8 +24,8 @@ export default function Home() {
                 </div>
                 <div>
 
-                    <p className="text-sm wrap-break-word ">
-                        <Link href="email:webmaster@costrad.org">webmaster@costrad.org</Link>, <Link href="email:info@costrad.org">info@costrad.org</Link>, <Link href="tel: +233200201334">+233 20 020 1334</Link> 
+                    <p className="text-sm wrap-break-word text-center ">
+                        <Link href="email:info@costrad.org">info@costrad.org</Link>, <Link href="email:webmaster@costrad.org">webmaster@costrad.org</Link>, <Link href="tel: +233200201334">+233 20 020 1334</Link>
                     </p>
                 </div>
             </div>

@@ -23,7 +23,13 @@
     "paths": {
       "@/*": ["./*"],
       "@/fonts": ["./styles/fonts"],
-      "@functions*": ["./utils/functions/*"]
+      "@functions*": ["./utils/functions/*"],
+      "@components/*": ["./components/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@styles/*": ["./styles/*"],
+      "@lib/*": ["./lib/*"],
+      "@assets/*": ["./assets/*"],
+      "@auth/*": ["./auth/*"],
 
     }
   },
