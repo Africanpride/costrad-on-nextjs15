@@ -184,3 +184,5 @@ export default function SignInComponent() {
 		</div>
 	);
 }
+
+export const dynamic = 'force-dynamic';

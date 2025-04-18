@@ -64,3 +64,5 @@ export default function EmailVerification() {
 		</div>
 	);
 }
+
+export const dynamic = 'force-dynamic';

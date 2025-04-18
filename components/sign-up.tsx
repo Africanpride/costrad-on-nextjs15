@@ -321,3 +321,5 @@ async function convertImageToBase64(file: File): Promise<string> {
 		reader.readAsDataURL(file);
 	});
 }
+
+export const dynamic = 'force-dynamic';
