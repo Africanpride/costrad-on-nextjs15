@@ -13,7 +13,7 @@ const MainLogo = ({ hideText = false, textColor = "text-purple-900 dark:text-pur
     return (
         <Link
             href={'/'}
-            className="flex h-3 sm:h-5 items-center space-x-1 sm:space-x-3 cursor-pointer"
+            className="flex h-auto  items-center space-x-1 sm:space-x-3 cursor-pointer divide-x-1 divide-dotted"
         >
             <Avatar
                 className={`${logoSize} text-large bg-purple-800 `}
@@ -21,12 +21,12 @@ const MainLogo = ({ hideText = false, textColor = "text-purple-900 dark:text-pur
             />
             {!hideText && (
                 <>
-                    <Divider orientation='vertical' className='bg-gray-300' />
-                    <span className={`${oswald.className} ${textColor} uppercase text-xs sm:text-medium
+                    {/* <Divider orientation='vertical' className='bg-gray-300' /> */}
+                    <div className={`${oswald.className} ${textColor} uppercase text-xs sm:text-medium pl-3
                         sm:leading-[1.2rem] font-light `}>
                         College of Sustainable  Transformation<br />
                         And Development - <span className='normal-case font-medium'>(COSTrAD)</span>
-                    </span>
+                    </div>
                 </>
             )}
         </Link>

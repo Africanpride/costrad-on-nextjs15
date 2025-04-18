@@ -1,43 +1,35 @@
-'use client';
-
-import Start from '@/components/Start';
-import Preloader from '@/components/ui/animations/Preloader';
-import BookIntro from '@/components/ui/BookIntro';
-import CTA from '@/components/ui/CTA';
-import Jumbotron from '@/components/ui/Jumbotron';
-import Newsletter from '@/components/ui/Newsletter';
-import Stage1 from '@/components/ui/Stage1';
-import { AnimatePresence } from 'framer-motion';
-import { Suspense, useEffect, useState } from 'react';
+import MainLogo from '@/components/ui/MainLogo'
+import { ThemeSwitch } from '@/components/ui/theme-switch'
+import Link from 'next/link'
+import React from 'react'
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-  console.log(process.env.NODE_ENV);
+    return (
+        <main className='flex h-screen min-h-screen flex-col items-center justify-center p-4 relative'>
+            <div className='absolute top-5 right-3 '>            <ThemeSwitch className='pt-2 pl-6' /></div>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 sm:gap-3 lg:grid-cols-1 lg:gap-8 space-y-2">
 
-  useEffect(() => {
-    (async () => {
-      const LocomotiveScroll = (await import('locomotive-scroll')).default;
-      const locomotiveScroll = new LocomotiveScroll();
+                <div>
+                    <MainLogo />
+                </div>
+                <hr className='pt-2' />
+                <div>
+                    <h1 className="sm:text-4xl  text-2xl font-bold text-gray-900 dark:text-white">
+                        Maintenance In Progress!
+                    </h1>
+                    <p className="text-lg">
+                        We are currently working on some updates. <br />
+                        Please check back later.
+                    </p>
+                </div>
+                <div>
 
-      setTimeout(() => {
-        setIsLoading(false);
-        document.body.style.cursor = 'default';
-        window.scrollTo(0, 0);
-      }, 2000);
-    })();
-  }, []);
+                    <p className="text-sm wrap-break-word ">
+                        <Link href="email:webmaster@costrad.org">webmaster@costrad.org</Link>, <Link href="email:info@costrad.org">info@costrad.org</Link>, <Link href="tel: +233200201334">+233 20 020 1334</Link> 
+                    </p>
+                </div>
+            </div>
 
-  return (
-    <main className='overflow-x-hidden '>
-      <AnimatePresence mode='wait'>
-        {isLoading && <Preloader />}
-      </AnimatePresence>
-      <Start />
-      <BookIntro />
-      <Stage1 />
-      <Jumbotron heroImage='library.png' height='md:h-[550px]' />
-      <CTA />
-      <Newsletter />
-    </main>
-  );
+        </main>
+    )
 }

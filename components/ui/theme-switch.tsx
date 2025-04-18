@@ -13,11 +13,17 @@ import { LucideMoonStar } from "lucide-react";
 export interface ThemeSwitchProps {
   className?: string;
   classNames?: SwitchProps["classNames"];
+  text?: string;
+  displayText?: boolean;
+  size?: number;
 }
 
 export const ThemeSwitch: FC<ThemeSwitchProps> = ({
   className,
   classNames,
+  text = "Theme",
+  displayText = false,
+  size = 22,
 }) => {
   const { theme, setTheme } = useTheme();
   const isSSR = useIsSSR();
@@ -73,10 +79,11 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
           })}
         >
           {!isSelected || isSSR ? (
-            <SunFilledIcon className="text-yellow-500" size={22} />
+            <SunFilledIcon className="text-yellow-500" size={size} />
           ) : (
-            <LucideMoonStar className="text-neutral-950 shadow-sm" size={22} />
+            <LucideMoonStar className="text-neutral-950 shadow-sm" size={size} />
           )}
+          {displayText && <span className="ml-2 ">{text}</span>}
         </div>
       </Component>
     </div>

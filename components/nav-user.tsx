@@ -29,6 +29,9 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { client, signOut } from "@/lib/auth-client"
+import { useRouter } from "next/navigation"
+import { ThemeSwitch } from './ui/theme-switch';
 
 export function NavUser({
   user,
@@ -40,6 +43,7 @@ export function NavUser({
   }
 }) {
   const { isMobile } = useSidebar()
+  const router = useRouter();
 
   return (
     <SidebarMenu>
@@ -80,6 +84,10 @@ export function NavUser({
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <ThemeSwitch size={20} displayText={true} text="Switch Theme"  />
+              </DropdownMenuItem>
+            <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <Sparkles />
@@ -102,7 +110,15 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer" onClick={async () => {
+              await client.signOut({
+                fetchOptions: {
+                  onSuccess: () => {
+                    router.push("/"); // redirect to login page
+                  },
+                },
+              });
+            }}>
               <LogOut />
               Log out
             </DropdownMenuItem>

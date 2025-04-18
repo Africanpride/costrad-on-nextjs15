@@ -69,20 +69,18 @@ export function SignInButton() {
 
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="cursor-pointer"
-              onClick={async (e) => {
-                e.preventDefault();
-                await client.signOut({
-                  fetchOptions: {
-                    onSuccess: () => {
-                      router.push("/"); // redirect to login page
-                    },
+            <DropdownMenuItem className="cursor-pointer" onClick={async () => {
+              await client.signOut({
+                fetchOptions: {
+                  onSuccess: () => {
+                    router.push("/"); // redirect to login page
                   },
-                });
-              }} >
+                },
+              });
+            }}>
               <LogOut />
-              <span>Log out</span>
-              <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+              Log out
+            <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

@@ -162,13 +162,14 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { data: session, isPending, error } = client.useSession(); // Get the user's session
+  const { data: session, isPending } = client.useSession(); // Get the user's session
   const router = useRouter()
 
 
 
   if (isPending) return <Loading />;
   if (!session) return <div>Loading...</div>;
+
 
   const userData = {
     name: String(session?.user?.name || "Guest"),
