@@ -6,8 +6,13 @@
         "dev": "next dev --turbo",
         "build": "next build",
         "start": "next start",
-        "lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
+        "lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix",
+        "postinstall": "prisma generate",
+        "vercel-build": "prisma generate && prisma migrate deploy && next build",
+        "prisma:generate": "prisma generate"
+
     },
+
     "dependencies": {
         "@clerk/nextjs": "^6.10.2",
         "@gsap/react": "^2.1.1",
