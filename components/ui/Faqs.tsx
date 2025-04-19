@@ -58,7 +58,7 @@ export default function Faqs() {
                     <Link
                         href="https://www.thestrategicvoter.com/the-book"
                         className="text-warning"
-                        legacyBehavior>
+                        >
                         <span className="font-bold text-red-500">website</span>
                     </Link>.
                 </>

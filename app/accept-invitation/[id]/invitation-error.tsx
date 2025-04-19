@@ -32,7 +32,7 @@ export function InvitationError() {
 				</p>
 			</CardContent>
             <CardFooter>
-				<Link href="/" className="w-full" legacyBehavior>
+				<Link href="/" className="w-full" >
 					<Button variant="outline" className="w-full">
 						Go back to home
 					</Button>

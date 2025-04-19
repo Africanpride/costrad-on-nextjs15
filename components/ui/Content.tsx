@@ -62,7 +62,7 @@ const Section2 = () => {
       </div>
       <div className='w-full md:flex items-center justify-between'>
         <div>
-          <Link href={'/'} legacyBehavior>
+          <Link href={'/'} >
             {siteConfig.year} &copy; copyright &#x2014; All Rights Reserved.
           </Link>
         </div>
@@ -89,7 +89,7 @@ const Nav = () => {
             <Link
               href={item.href}
               className='group relative  font-light transition-all duration-300'
-              legacyBehavior>
+              >
               {item.label}
               <span className='absolute -bottom-1 left-0 h-0.5 w-0 bg-red-600 transition-all duration-300 group-hover:w-full' />
             </Link>
@@ -107,7 +107,7 @@ const Nav = () => {
               href={item.href}
               target='_blank'
               className='group relative  font-light transition-all duration-300'
-              legacyBehavior>
+              >
               {item.label}
               <span className='absolute -bottom-1 left-0 h-0.5 w-0 bg-red-600 transition-all duration-300 group-hover:w-full' />
             </Link>
@@ -124,7 +124,7 @@ const Nav = () => {
             <Link
               href={item.href}
               className='group relative  font-light transition-all duration-300'
-              legacyBehavior>
+              >
               {item.label}
               <span className='absolute -bottom-1 left-0 h-0.5 w-0 bg-red-600 transition-all duration-300 group-hover:w-full' />
             </Link>

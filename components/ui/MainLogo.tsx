@@ -11,14 +11,15 @@ type MainLogoProps = {
 
 const MainLogo = ({ hideText = false, textColor = "text-purple-900 dark:text-purple-500", logoSize = "w-[3.2rem] h-[3.2rem]  sm:w-[5.4rem] sm:h-[5.4rem]" }: MainLogoProps) => {
     return (
-        <Link
-            href={'/'}
+        <div
             className="flex h-auto  items-center space-x-1 sm:space-x-3 cursor-pointer divide-x-1 divide-dotted"
-            >
-                       <Avatar
-                className={`${logoSize} text-large bg-purple-800 `}
-                src={'/images/costrad.png'}
-            />
+        >
+            <Link href={'/'} >
+                <Avatar
+                    className={`${logoSize} text-large  `}
+                    src={'/images/costrad.png'}
+                />
+            </Link>
             {!hideText && (
                 <div>
                     {/* <Divider orientation='vertical' className='bg-gray-300' /> */}
@@ -29,7 +30,7 @@ const MainLogo = ({ hideText = false, textColor = "text-purple-900 dark:text-pur
                     </div>
                 </div>
             )}
-        </Link>
+        </div>
     );
 };
 

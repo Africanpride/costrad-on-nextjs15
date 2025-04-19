@@ -46,14 +46,10 @@ export function WebMenu() {
             <NavigationMenu>
                 <NavigationMenuList>
                     <NavigationMenuItem>
-                        <Link href={'/'}>
-
 
                             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                 <span className="uppercase">Home</span>
                             </NavigationMenuLink>
-
-                        </Link>
 
                     </NavigationMenuItem>
 
@@ -122,18 +118,15 @@ export function WebMenu() {
                         </NavigationMenuContent>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <Link href="/contact" legacyBehavior passHref>
-                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                            <NavigationMenuLink href="/contact" className={navigationMenuTriggerStyle()}>
                                 <span className="uppercase">Contact</span>
                             </NavigationMenuLink>
-                        </Link>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <Link href="/donate" legacyBehavior passHref>
-                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                            <NavigationMenuLink href="/donate" className={navigationMenuTriggerStyle()}>
                                 <span className="uppercase">Donate</span>
                             </NavigationMenuLink>
-                        </Link>
+
                     </NavigationMenuItem>
 
                 </NavigationMenuList>
