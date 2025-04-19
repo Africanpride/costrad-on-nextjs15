@@ -52,7 +52,6 @@ const Section2 = () => {
 
   return (
     <div className='flex justify-between md:items-end relative '>
-
       <div className='text-[6.5rem] md:text-[12.5rem] md:leading-[0.8] md:mt-10 absolute -left-14 bottom-16 md:bottom-5 '>
         <div className='w-full opacity-20'>
           <Marquee className=' ' speed={70}>
@@ -63,7 +62,7 @@ const Section2 = () => {
       </div>
       <div className='w-full md:flex items-center justify-between'>
         <div>
-          <Link href={'/'}>
+          <Link href={'/'} legacyBehavior>
             {siteConfig.year} &copy; copyright &#x2014; All Rights Reserved.
           </Link>
         </div>
@@ -89,7 +88,8 @@ const Nav = () => {
                   </span> */}
             <Link
               href={item.href}
-              className='group relative  font-light transition-all duration-300'>
+              className='group relative  font-light transition-all duration-300'
+              legacyBehavior>
               {item.label}
               <span className='absolute -bottom-1 left-0 h-0.5 w-0 bg-red-600 transition-all duration-300 group-hover:w-full' />
             </Link>
@@ -106,7 +106,8 @@ const Nav = () => {
             <Link
               href={item.href}
               target='_blank'
-              className='group relative  font-light transition-all duration-300'>
+              className='group relative  font-light transition-all duration-300'
+              legacyBehavior>
               {item.label}
               <span className='absolute -bottom-1 left-0 h-0.5 w-0 bg-red-600 transition-all duration-300 group-hover:w-full' />
             </Link>
@@ -121,8 +122,9 @@ const Nav = () => {
                     {item.number}
                   </span> */}
             <Link
-              href={item.href}              
-              className='group relative  font-light transition-all duration-300'>
+              href={item.href}
+              className='group relative  font-light transition-all duration-300'
+              legacyBehavior>
               {item.label}
               <span className='absolute -bottom-1 left-0 h-0.5 w-0 bg-red-600 transition-all duration-300 group-hover:w-full' />
             </Link>

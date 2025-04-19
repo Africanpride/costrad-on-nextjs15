@@ -74,10 +74,10 @@ export default function Component() {
 	}
 
 	return (
-		<main className="flex flex-col items-center justify-center min-h-[calc(100vh-10rem)]">
-			{/* Radial gradient for the container to give a faded look */}
-			<div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-			<Card className="w-[350px]">
+        <main className="flex flex-col items-center justify-center min-h-[calc(100vh-10rem)]">
+            {/* Radial gradient for the container to give a faded look */}
+            <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+            <Card className="w-[350px]">
 				<CardHeader>
 					<CardTitle>Forgot password</CardTitle>
 					<CardDescription>
@@ -115,13 +115,13 @@ export default function Component() {
 					</form>
 				</CardContent>
 				<CardFooter className="flex justify-center">
-					<Link href="/auth/sign-in">
+					<Link href="/auth/sign-in" legacyBehavior>
 						<Button variant="link" className="px-0">
 							Back to sign in
 						</Button>
 					</Link>
 				</CardFooter>
 			</Card>
-		</main>
-	);
+        </main>
+    );
 }

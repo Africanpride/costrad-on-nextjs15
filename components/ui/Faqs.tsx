@@ -55,7 +55,10 @@ export default function Faqs() {
             answer: (
                 <>
                     Readers can purchase or download the book from various online platforms such as Amazon, Google Books, or directly from the publisher's{" "}
-                    <Link href="https://www.thestrategicvoter.com/the-book" className="text-warning">
+                    <Link
+                        href="https://www.thestrategicvoter.com/the-book"
+                        className="text-warning"
+                        legacyBehavior>
                         <span className="font-bold text-red-500">website</span>
                     </Link>.
                 </>

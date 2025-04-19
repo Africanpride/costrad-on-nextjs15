@@ -46,11 +46,15 @@ export function WebMenu() {
             <NavigationMenu>
                 <NavigationMenuList>
                     <NavigationMenuItem>
-                        <Link href="/" legacyBehavior passHref>
+                        <Link href={'/'}>
+
+
                             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                 <span className="uppercase">Home</span>
                             </NavigationMenuLink>
+
                         </Link>
+
                     </NavigationMenuItem>
 
                     <NavigationMenuItem>

@@ -14,20 +14,20 @@ const MainLogo = ({ hideText = false, textColor = "text-purple-900 dark:text-pur
         <Link
             href={'/'}
             className="flex h-auto  items-center space-x-1 sm:space-x-3 cursor-pointer divide-x-1 divide-dotted"
-        >
-            <Avatar
+            >
+                       <Avatar
                 className={`${logoSize} text-large bg-purple-800 `}
                 src={'/images/costrad.png'}
             />
             {!hideText && (
-                <>
+                <div>
                     {/* <Divider orientation='vertical' className='bg-gray-300' /> */}
                     <div className={`${oswald.className} ${textColor} uppercase text-xs sm:text-medium pl-3
                         sm:leading-[1.2rem] font-light `}>
                         College of Sustainable  Transformation<br />
                         And Development - <span className='normal-case font-medium'>(COSTrAD)</span>
                     </div>
-                </>
+                </div>
             )}
         </Link>
     );

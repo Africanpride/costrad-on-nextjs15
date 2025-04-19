@@ -19,7 +19,7 @@ export default function SignInLayout({
     return (
         <div className="grid grid-cols-1 sm:grid-cols-3 w-full h-screen relative">
             <div className='absolute top-4 right-5 z-20 '><ThemeSwitch className='pt-2 pl-6' /></div>
-            <Link href={'/'} className='absolute top-5 left-5 z-50 '>
+            <Link href={'/'} className='absolute top-5 left-5 z-50 ' legacyBehavior>
                 {/* <LucideAArrowDown className='text-red-500' /> */}
                 <LucideHome className='text-current' />
             </Link>
@@ -43,6 +43,5 @@ export default function SignInLayout({
                 <Toaster />
             </div>
         </div>
-
     );
 }

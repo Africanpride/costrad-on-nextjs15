@@ -22,6 +22,7 @@ import { Button } from "@heroui/button";
 import SeperatorWithText from "./ui/seperatorWithText";
 import { checkUserExist } from "@/app/actions/checkUserExist";
 
+export const dynamic = 'force-dynamic';
 export default function SignInComponent() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -184,5 +185,3 @@ export default function SignInComponent() {
 		</div>
 	);
 }
-
-export const dynamic = 'force-dynamic';
