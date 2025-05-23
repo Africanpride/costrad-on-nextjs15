@@ -31,12 +31,12 @@ export function SignInButton() {
       {!session ? (
         <Button
           onPress={() => router.push("/auth/sign-in")} // Redirect to the sign-in page
-          className="uppercase rounded-none bg-purple-700 text-white font-bold"
+          className="uppercase rounded-none bg-purple-700 text-white font-bold cursor-pointer "
           size="sm"
           variant="solid"
           endContent={<LucideArrowUpRight className="bg-black text-white" />}
         >
-          <span className="text-sm normal-case">{session ? "" : "LOGIN/SIGNUP"}</span>
+          <span className="text-sm normal-case  ">{session ? "" : "LOGIN/SIGNUP"}</span>
         </Button>
       ) : (
         <DropdownMenu>

@@ -43,18 +43,18 @@ export function WebMenu() {
     return (
         <div className="flex items-center justify-end gap-x-4 text-[1.2em] divide-x-1 divide-dotted space-x-1 ">
 
-            <NavigationMenu>
+            <NavigationMenu className="pr-5">
                 <NavigationMenuList>
                     <NavigationMenuItem>
 
                             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                <span className="uppercase">Home</span>
+                                <span className="uppercase cursor-pointer">Home</span>
                             </NavigationMenuLink>
 
                     </NavigationMenuItem>
 
                     <NavigationMenuItem>
-                        <NavigationMenuTrigger><span className="uppercase">About</span></NavigationMenuTrigger>
+                        <NavigationMenuTrigger><span className="uppercase cursor-pointer">About</span></NavigationMenuTrigger>
                         <NavigationMenuContent>
                             <ul className="grid w-auto sm:w-[300px] gap-3 p-2  md:grid-cols-1   ">
                                 {gettingStarted.map((component) => (
@@ -70,7 +70,7 @@ export function WebMenu() {
                         </NavigationMenuContent>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <NavigationMenuTrigger><span className="uppercase ">Institutes</span></NavigationMenuTrigger>
+                        <NavigationMenuTrigger><span className="uppercase cursor-pointer ">Institutes</span></NavigationMenuTrigger>
                         <NavigationMenuContent>
                             <ul className="grid p-0 md:w-[500px] lg:w-[600px] lg:grid-cols-[.75fr_1fr]">
                                 <li className="row-span-4">
@@ -132,7 +132,7 @@ export function WebMenu() {
                 </NavigationMenuList>
             </NavigationMenu>
 
-            <ThemeSwitch className='pt-2 pl-6' />
+            <ThemeSwitch className='pt-2 pl-2' />
 
         </div>
     )
