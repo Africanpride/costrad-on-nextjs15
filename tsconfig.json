@@ -30,6 +30,7 @@
       "@lib/*": ["./lib/*"],
       "@assets/*": ["./assets/*"],
       "@auth/*": ["./auth/*"],
+      "@views/*": ["./[pathname]/views/*"],
 
     }
   },

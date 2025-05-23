@@ -288,7 +288,7 @@
     "@babel/plugin-transform-modules-commonjs" "^7.27.1"
     "@babel/plugin-transform-typescript" "^7.27.1"
 
-"@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.20.13", "@babel/runtime@^7.23.8", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.2", "@babel/runtime@^7.7.2":
+"@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.17.9", "@babel/runtime@^7.20.13", "@babel/runtime@^7.23.8", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.2", "@babel/runtime@^7.7.2":
   version "7.27.1"
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.27.1.tgz"
   integrity sha512-1x3D2xEk2fRo3PAhwQwu5UubzgiVWSXTBfWpVd2Mx2AzRqJuDJCsgaDVZ7HB5iGzDW1Hl1sWN2mFyKjmR9uAog==
@@ -465,6 +465,11 @@
   resolved "https://registry.npmjs.org/@darkroom.engineering/tempus/-/tempus-0.0.46.tgz"
   integrity sha512-s5vav3KMHYezvUCl4ee5epg0oimF6M8C9gAaKxFnFaTvX2q3ywFDryIv6XLd0mRFUt3S1uHDJqKaiEcs2ZVSvw==
 
+"@daveyplate/better-auth-ui@^1.7.3":
+  version "1.7.3"
+  resolved "https://registry.npmjs.org/@daveyplate/better-auth-ui/-/better-auth-ui-1.7.3.tgz"
+  integrity sha512-wZJAIXtO8HlrwECtrMFsUmSYGOw3dbsv9Pf+UgRd2KEAD5RYs99XIPx+aeQWFTl8qfKhBV9orRfjsJrPBLLAng==
+
 "@emnapi/core@^1.4.3":
   version "1.4.3"
   resolved "https://registry.npmjs.org/@emnapi/core/-/core-1.4.3.tgz"
@@ -596,6 +601,19 @@
   version "2.1.2"
   resolved "https://registry.npmjs.org/@gsap/react/-/react-2.1.2.tgz"
   integrity sha512-JqliybO1837UcgH2hVOM4VO+38APk3ECNrsuSM4MuXp+rbf+/2IG2K1YJiqfTcXQHH7XlA0m3ykniFYstfq0Iw==
+
+"@hcaptcha/loader@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/@hcaptcha/loader/-/loader-2.0.0.tgz"
+  integrity sha512-fFQH6ApU/zCCl6Y1bnbsxsp1Er/lKX+qlgljrpWDeFcenpEtoP68hExlKSXECospzKLeSWcr06cbTjlR/x3IJA==
+
+"@hcaptcha/react-hcaptcha@^1.12.0":
+  version "1.12.0"
+  resolved "https://registry.npmjs.org/@hcaptcha/react-hcaptcha/-/react-hcaptcha-1.12.0.tgz"
+  integrity sha512-QiHnQQ52k8SJJSHkc3cq4TlYzag7oPd4f5ZqnjVSe4fJDSlZaOQFtu5F5AYisVslwaitdDELPVLRsRJxiiI0Aw==
+  dependencies:
+    "@babel/runtime" "^7.17.9"
+    "@hcaptcha/loader" "^2.0.0"
 
 "@heroui/accordion@2.2.16":
   version "2.2.16"
@@ -1828,6 +1846,11 @@
   version "0.3.19"
   resolved "https://registry.npmjs.org/@libsql/linux-x64-musl/-/linux-x64-musl-0.3.19.tgz"
   integrity sha512-BLsXyJaL8gZD8+3W2LU08lDEd9MIgGds0yPy5iNPp8tfhXx3pV/Fge2GErN0FC+nzt4DYQtjL+A9GUMglQefXQ==
+
+"@marsidev/react-turnstile@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/@marsidev/react-turnstile/-/react-turnstile-1.1.0.tgz"
+  integrity sha512-X7bP9ZYutDd+E+klPYF+/BJHqEyyVkN4KKmZcNRr84zs3DcMoftlMAuoKqNSnqg0HE7NQ1844+TLFSJoztCdSA==
 
 "@mongodb-js/saslprep@^1.1.9":
   version "1.2.2"
@@ -4650,6 +4673,13 @@
   resolved "https://registry.npmjs.org/@vercel/speed-insights/-/speed-insights-1.2.0.tgz"
   integrity sha512-y9GVzrUJ2xmgtQlzFP2KhVRoCglwfRQgjyfY607aU0hh0Un6d0OUyrJkjuAlsV18qR4zfoFPs/BiIj9YDS6Wzw==
 
+"@wojtekmaj/react-recaptcha-v3@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.npmjs.org/@wojtekmaj/react-recaptcha-v3/-/react-recaptcha-v3-0.1.4.tgz"
+  integrity sha512-zszMOdgI+y1Dz3496pRFr3t68n9+OmX/puLQNnOBDC7WrjM+nOKGyjIMCTe+3J14KDvzcxETeiglyDMGl0Yh/Q==
+  dependencies:
+    warning "^4.0.0"
+
 acorn-jsx@^5.3.2:
   version "5.3.2"
   resolved "https://registry.npmjs.org/acorn-jsx/-/acorn-jsx-5.3.2.tgz"
@@ -6578,7 +6608,7 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hoist-non-react-statics@^3.3.2:
+hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.2:
   version "3.3.2"
   resolved "https://registry.npmjs.org/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz"
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
@@ -7186,7 +7216,7 @@ long@^5.2.1:
   resolved "https://registry.npmjs.org/long/-/long-5.3.2.tgz"
   integrity sha512-mNAgZ1GmyNhD7AuqnTG3/VQ26o760+ZYBPKjPvugO8+nLbYfX6TVpJPseBvopbdY+qpZ/lKUnmEc1LeZYS3QAA==
 
-loose-envify@^1.4.0:
+loose-envify@^1.0.0, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz"
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
@@ -8121,7 +8151,7 @@ prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.5.0, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -8202,6 +8232,14 @@ rc9@^2.1.2:
     defu "^6.1.4"
     destr "^2.0.3"
 
+react-async-script@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/react-async-script/-/react-async-script-1.2.0.tgz"
+  integrity sha512-bCpkbm9JiAuMGhkqoAiC0lLkb40DJ0HOEJIku+9JDjxX3Rcs+ztEOG13wbrOskt3n2DTrjshhaQ/iay+SnGg5Q==
+  dependencies:
+    hoist-non-react-statics "^3.3.0"
+    prop-types "^15.5.0"
+
 react-avatar-editor@^13.0.2:
   version "13.0.2"
   resolved "https://registry.npmjs.org/react-avatar-editor/-/react-avatar-editor-13.0.2.tgz"
@@ -8236,6 +8274,14 @@ react-google-recaptcha-v3@^1.10.1:
   integrity sha512-K3AYzSE0SasTn+XvV2tq+6YaxM+zQypk9rbCgG4OVUt7Rh4ze9basIKefoBz9sC0CNslJj9N1uwTTgRMJQbQJQ==
   dependencies:
     hoist-non-react-statics "^3.3.2"
+
+react-google-recaptcha@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.npmjs.org/react-google-recaptcha/-/react-google-recaptcha-3.1.0.tgz"
+  integrity sha512-cYW2/DWas8nEKZGD7SCu9BSuVz8iOcOLHChHyi7upUuVhkpkhYG/6N3KDiTQ3XAiZ2UAZkfvYKMfAHOzBOcGEg==
+  dependencies:
+    prop-types "^15.5.0"
+    react-async-script "^1.2.0"
 
 react-hook-form@^7.51.4, react-hook-form@^7.53.1, react-hook-form@^7.54.2:
   version "7.56.4"
@@ -9421,6 +9467,13 @@ vary@^1:
   version "1.1.2"
   resolved "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
+
+warning@^4.0.0:
+  version "4.0.3"
+  resolved "https://registry.npmjs.org/warning/-/warning-4.0.3.tgz"
+  integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
+  dependencies:
+    loose-envify "^1.0.0"
 
 web-streams-polyfill@^3.0.3:
   version "3.3.3"

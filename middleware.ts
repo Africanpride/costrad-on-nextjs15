@@ -5,7 +5,7 @@ import type { auth } from "@/lib/auth";
 
 type Session = typeof auth.$Infer.Session;
 // 1. Specify protected and public routes
-const protectedRoutes = ["/dashboard", "/contact"];
+const protectedRoutes = ["/dashboard","/admin"];
 const publicRoutes = [
   "/auth/sign-in",
   "/auth/sign-up",
