@@ -6,6 +6,7 @@ import {
   Special_Elite,
   Poiret_One,
   Montserrat,
+  Open_Sans,
   Oswald,
 } from "next/font/google";
 
@@ -16,6 +17,11 @@ type Props = {
   display: string | string[];
 };
 
+export const opensans = Open_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-opensans",
+});
 export const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700"],
