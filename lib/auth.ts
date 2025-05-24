@@ -70,12 +70,14 @@ export const auth = betterAuth({
   //   }),
   // },
 
-  // onAPIError: {
-  //   throw: true,
-  //   statusCode: 401,
-  //   message: "Unauthorized",
-
-  // },
+ onAPIError: {
+		throw: true,
+		onError: (error, ctx) => {
+			// Custom error handling
+			console.error("Auth error:", error);
+		},
+		errorURL: "/auth/error"
+	},
 
   baseUrl: baseUrl,
 

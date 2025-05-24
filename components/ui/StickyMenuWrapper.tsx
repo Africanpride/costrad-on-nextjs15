@@ -7,7 +7,7 @@ export default function StickyMenuWrapper() {
   const pathname = usePathname();
 
   // Definition of pages where StickyMenu should be hidden
-  const hiddenPaths = ["/admin","/dashboard","/www","/coming-soon"];
+  const hiddenPaths = ["/admin","/www","/coming-soon"];
 
   // Check if pathname starts with "/auth/" or is in hiddenPaths
   if (pathname.startsWith("/auth/") || hiddenPaths.includes(pathname)) {

@@ -30,15 +30,18 @@ export function SignInButton() {
   return (
     <>
       {!session ? (
+        <div className="flex items-center gap-0 h-6">
+
         <Button
           onPress={() => router.push("/auth/sign-in")} // Redirect to the sign-in page
-          className="uppercase rounded-none bg-purple-700 text-white font-bold cursor-pointer "
+          className="uppercase  bg-secondary text-white font-bold cursor-pointer h-full "
           size="sm"
           variant="solid"
-          endContent={<LucideArrowUpRight className="bg-black text-white" />}
         >
-          <span className="text-sm normal-case  ">{session ? "" : "LOGIN/SIGNUP"}</span>
+          <span className="text-sm normal-case text-foreground  ">{session ? "" : "LOGIN/SIGNUP"}</span>
         </Button>
+        <LucideArrowUpRight className="bg-black text-white text-xs h-full" />
+        </div>
       ) : (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

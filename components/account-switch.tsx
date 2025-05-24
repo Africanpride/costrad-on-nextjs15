@@ -106,7 +106,7 @@ export default function AccountSwitcher({
 						<CommandGroup>
 							<CommandItem
 								onSelect={() => {
-									router.push("/sign-in");
+									router.push("/auth/sign-in");
 									setOpen(false);
 								}}
 								className="cursor-pointer text-sm"
