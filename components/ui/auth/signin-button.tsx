@@ -40,7 +40,7 @@ export function SignInButton() {
         >
           <span className="text-sm normal-case text-foreground  ">{session ? "" : "LOGIN/SIGNUP"}</span>
         </Button>
-        <LucideArrowUpRight className="bg-primary text-secondary h-full" />
+        <LucideArrowUpRight className="bg-primary text-secondary text-[5em] h-full" />
         </div>
       ) : (
         <DropdownMenu>
