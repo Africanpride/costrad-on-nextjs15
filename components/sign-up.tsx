@@ -48,7 +48,7 @@ export function SignUpComponent() {
   const [loading, setLoading] = useState(false);
 
   return (
-    <Card className="z-50 rounded-md rounded-t-none max-w-md border-none shadow-none ">
+    <Card className="z-50 rounded-none bg-transparent max-w-md border-none shadow-none ">
       <CardHeader>
         <CardTitle className="text-lg md:text-xl">COSTrAD Sign Up</CardTitle>
         <CardDescription className="text-xs md:text-sm">

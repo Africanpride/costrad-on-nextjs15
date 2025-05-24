@@ -61,7 +61,7 @@ const Newsletter = () => {
 
 
   return (
-    <section className={` bg-white dark:bg-black `}>
+    <section className={` bg-secondary`}>
       <div className=' flex flex-col md:flex-row  justify-center md:flex md:items-center md:justify-between 
     min-h-[500px]  w-full mx-auto py-12 px-4 sm:px-6 md:py-16 md:px-8 z-20 space-y-4  '>
 
