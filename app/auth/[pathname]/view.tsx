@@ -54,10 +54,27 @@ export function AuthView({ pathname }: { pathname: string }) {
           "flex flex-col justify-center items-center h-dvh not-only:text-muted-foreground text-xs space-y-4"
         )}
       >
-        <AuthCard pathname={pathname} />
+        <AuthCard
+          pathname={pathname}
+          socialLayout="grid"
+          localization={{
+            signIn: "Log in",
+            signUp: "Register",
+            magicLink: "Sign in with Email",
+          }}
+          classNames={{
+          footerLink: "cursor-pointer",
+
+          }}
+          otpSeparators={2}
+
+
+        //   add social login
+    
+          
+          
+        />
         <div className="flex flex-col">
-
-
           <div className="text-balance text-center pt-2 text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
             By clicking continue, you agree to our <br />
             <a href="/terms">Terms of Service</a> and{" "}

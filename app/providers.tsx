@@ -10,7 +10,12 @@ import { HeroUIProvider } from "@heroui/system";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
 import { useState, useRef } from "react";
-import { ILocomotiveScrollOptions } from "locomotive-scroll/dist/types/types";
+// LocomotiveScroll types are not exported directly, so define the options type inline
+type ILocomotiveScrollOptions = {
+  el: HTMLElement | null;
+  smooth?: boolean;
+  [key: string]: any;
+};
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export interface ProvidersProps {
@@ -49,10 +54,10 @@ export function Providers({ children, themeProps }: ProvidersProps) {
     async function initializeLocomotiveScroll() {
       const LocomotiveScroll = (await import("locomotive-scroll")).default;
       const locomotiveScroll = new LocomotiveScroll({
-        el: scrollContainerRef.current,
-        smooth: true,
+        // el: scrollContainerRef.current,
+        // smooth: true,
         autoResize: true,
-      } as ExtendedLocomotiveScrollOptions);
+      });
 
       return locomotiveScroll;
     }
@@ -74,6 +79,27 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 
   return (
     <AuthUIProvider
+      signInSocial={async (provider: string) => {
+        // Example: redirect to the provider's sign-in URL
+        let url = "";
+        if (provider === "google") {
+          url = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/sign-in?provider=google`;
+        } else if (provider === "github") {
+          url = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/sign-in?provider=github`;
+        }
+        window.location.href = url;
+        return Promise.resolve();
+      }}
+      twoFactor={["otp", "totp"]}
+      settingsURL="/dashboard/settings" // Your custom settings route
+      captcha={{
+        provider: "google-recaptcha-v3",
+        siteKey:`${process.env.RECAPTCHA_SECRET_KEY}`,
+      }}
+      rememberMe={true}
+      emailVerification={true}
+      credentials={true}
+      providers={["google", "apple", "microsoft", "facebook"]}
       basePath={process.env.NEXT_PUBLIC_BASE_URL}
       authClient={authClient}
       navigate={router.push}
@@ -83,6 +109,19 @@ export function Providers({ children, themeProps }: ProvidersProps) {
         router.refresh();
       }}
       Link={AuthUILink}
+      localization={{
+        signIn: "Log in",
+        signInDescription: "Use your email and password to log in.",
+        signUp: "Create Account",
+        forgotPassword: "Reset Password",
+        emailPlaceholder: "your-email@example.com",
+        passwordPlaceholder: "Secret password",
+        magicLinkEmail: "Check your inbox for your login link!",
+        forgotPasswordEmail: "Check your inbox for the password reset link.",
+        resetPasswordSuccess: "You can now sign in with your new password!",
+        changePasswordSuccess: "Your password has been successfully updated.",
+        deleteAccountSuccess: "Your account has been permanently deleted.",
+      }}
     >
       <HeroUIProvider navigate={router.push}>
         <NextThemesProvider {...themeProps}>

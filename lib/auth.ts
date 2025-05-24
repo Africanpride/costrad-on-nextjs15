@@ -41,34 +41,34 @@ export const auth = betterAuth({
   }),
   
 
-  hooks: {
-    before: createAuthMiddleware(async (ctx) => {
-      // console.log("BEFORE HOOK", ctx);
-      if (ctx.path === "/sign-in/email") {
-      }
-      if (ctx.path === "/sign-in/email") {
-        if (ctx.body?.email) {
-          const user = await prisma.user.findUnique({
-            where: { email: ctx.body.email },
-          });
+  // hooks: {
+  //   before: createAuthMiddleware(async (ctx) => {
+  //     // console.log("BEFORE HOOK", ctx);
+  //     if (ctx.path === "/sign-in/email") {
+  //     }
+  //     if (ctx.path === "/sign-in/email") {
+  //       if (ctx.body?.email) {
+  //         const user = await prisma.user.findUnique({
+  //           where: { email: ctx.body.email },
+  //         });
 
-          if (!user) {
-            throw new APIError("BAD_REQUEST", {
-              message: "User not found",
-              status: 404,
-            });
-          }
+  //         if (!user) {
+  //           throw new APIError("BAD_REQUEST", {
+  //             message: "User not found",
+  //             status: 404,
+  //           });
+  //         }
 
-          if (user.emailVerified === false) {
-            throw new APIError("FORBIDDEN", {
-              message: "Email not verified",
-              status: 403,
-            });
-          }
-        }
-      }
-    }),
-  },
+  //         if (user.emailVerified === false) {
+  //           throw new APIError("FORBIDDEN", {
+  //             message: "Email not verified",
+  //             status: 403,
+  //           });
+  //         }
+  //       }
+  //     }
+  //   }),
+  // },
 
   // onAPIError: {
   //   throw: true,

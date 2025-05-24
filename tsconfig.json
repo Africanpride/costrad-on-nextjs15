@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "explainFiles": true,
     "skipLibCheck": true,
@@ -14,26 +18,55 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@/fonts": ["./styles/fonts"],
-      "@functions*": ["./utils/functions/*"],
-      "@components/*": ["./components/*"],
-      "@hooks/*": ["./hooks/*"],
-      "@styles/*": ["./styles/*"],
-      "@lib/*": ["./lib/*"],
-      "@assets/*": ["./assets/*"],
-      "@auth/*": ["./auth/*"],
-      "@views/*": ["./[pathname]/views/*"],
-
-    }
+      "@/*": [
+        "./*"
+      ],
+      "@/fonts": [
+        "./styles/fonts"
+      ],
+      "@functions*": [
+        "./utils/functions/*"
+      ],
+      "@components/*": [
+        "./components/*"
+      ],
+      "@hooks/*": [
+        "./hooks/*"
+      ],
+      "@styles/*": [
+        "./styles/*"
+      ],
+      "@lib/*": [
+        "./lib/*"
+      ],
+      "@assets/*": [
+        "./assets/*"
+      ],
+      "@auth/*": [
+        "./auth/*"
+      ],
+      "@views/*": [
+        "./[pathname]/views/*"
+      ]
+    },
+    "moduleResolution": "node"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "lib/user.ts", "app/api/webhooks/clerk/route.js", "app/gsap/page.js"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "lib/user.ts",
+    "app/api/webhooks/clerk/route.js",
+    "app/gsap/page.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -78,17 +78,17 @@ export default function Component() {
 
   return (
     <>
-      <div className='flex items-center justify-end gap-x-2 '>
+      <div className='flex items-center bg-background justify-end gap-x-2 '>
         <div className={`${bebas.className}  `} onClick={onOpen}>
           <MainMenu />
         </div>
 
         <div>
-          <Drawer isOpen={isOpen} size={'xs'} onClose={onClose} className='rounded-none' >
+          <Drawer isOpen={isOpen} size={'xs'} onClose={onClose} className='rounded-none bg-background' >
             <DrawerContent>
               {(onClose) => (
                 <>
-                  <DrawerHeader className="flex flex-col gap-1">{siteConfig.shortName}</DrawerHeader>
+                  {/* <DrawerHeader className="flex flex-col gap-1">{siteConfig.shortName}</DrawerHeader> */}
                   <DrawerBody className='flex flex-col justify-center gap-2'>
                     <div className='space-y-4 '>
                       <div className='pb-5'>
