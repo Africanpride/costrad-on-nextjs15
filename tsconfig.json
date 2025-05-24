@@ -55,7 +55,7 @@
         "./[pathname]/views/*"
       ]
     },
-    "moduleResolution": "node"
+    "moduleResolution": "nodenext"
   },
   "include": [
     "next-env.d.ts",

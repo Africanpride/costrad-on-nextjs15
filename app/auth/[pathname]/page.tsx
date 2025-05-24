@@ -5,6 +5,7 @@ import { redirect } from "next/navigation"
 
 import { auth } from "@/lib/auth"
 import { AuthView } from "./view"
+import SignInComponent from "@/components/sign-in"
 
 export function generateStaticParams() {
     return Object.values(authViewPaths).map((pathname) => ({ pathname }))
@@ -21,5 +22,6 @@ export default async function AuthPage({ params }: { params: Promise<{ pathname:
         if (!sessionData) redirect("/auth/sign-in?redirectTo=/auth/settings")
     }
 
-    return <AuthView pathname={pathname} />
+    return     <SignInComponent />
+    // return <AuthView pathname={pathname} />
 }

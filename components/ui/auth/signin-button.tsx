@@ -15,6 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { User } from "@heroui/react";
+import { UserButton } from "@daveyplate/better-auth-ui";
 
 export function SignInButton() {
   const router = useRouter(); // Use Next.js router
@@ -41,6 +42,7 @@ export function SignInButton() {
       ) : (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
+
 
             <User
               as="button"
