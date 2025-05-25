@@ -23,7 +23,7 @@ const MainLogo = ({
         />
       </Link>
       {!hideText && (
-        <div>
+        <Link href={"/"}>
           {/* <Divider orientation='vertical' className='bg-gray-300' /> */}
           <div
             className={`${oswald.className} ${textColor} uppercase text-xs md:text-sm pl-3 border-left 
@@ -35,7 +35,7 @@ const MainLogo = ({
             And Development -{" "}
             <span className="normal-case font-medium">(COSTrAD)</span>
           </div>
-        </div>
+        </Link>
       )}
     </div>
   );

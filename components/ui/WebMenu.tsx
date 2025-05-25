@@ -47,7 +47,7 @@ export function WebMenu() {
                 <NavigationMenuList>
                     <NavigationMenuItem>
 
-                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                            <NavigationMenuLink  href="/"  className={navigationMenuTriggerStyle()}>
                                 <span className="uppercase cursor-pointer">Home</span>
                             </NavigationMenuLink>
 

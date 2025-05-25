@@ -4,6 +4,8 @@ import { useRouter, redirect } from "next/navigation";
 import { Button } from "@heroui/button";
 import { LogOut, LucideArrowUpRight, UserIcon } from "lucide-react";
 import { client, signOut } from "@/lib/auth-client";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,8 +16,8 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
+import { User } from "@heroui/react";
+import { UserButton } from "@daveyplate/better-auth-ui";
 
 export function SignInButton() {
   const router = useRouter(); // Use Next.js router
@@ -48,14 +50,26 @@ export function SignInButton() {
       ) : (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-           <Avatar className="hidden h-9 w-9 sm:flex ">
-							<AvatarImage
-								src={session?.user.image || "#"}
-								alt="Avatar"
-								className="object-cover"
-							/>
-							<AvatarFallback>{session?.user.name.charAt(0)}</AvatarFallback>
-						</Avatar>
+            <div className="flex items-start justify-between z-30 ">
+              <div className="flex items-center gap-4">
+                <Avatar className="hidden h-9 w-9 sm:flex ">
+                  <AvatarImage
+                    src={session?.user.image || "#"}
+                    alt="Avatar"
+                    className="object-cover"
+                  />
+                  <AvatarFallback>
+                    {session?.user.name.charAt(0)}
+                  </AvatarFallback>
+                </Avatar>
+                <div className="grid gap-1">
+                  <p className="text-sm font-medium leading-none">
+                    {session?.user.name}
+                  </p>
+                  <p className="text-sm">{session?.user.email}</p>
+                </div>
+              </div>
+            </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-60">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
