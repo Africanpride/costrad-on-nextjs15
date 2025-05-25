@@ -7,48 +7,44 @@ const footerLinks = [
   {
     title: "Quick Links",
     links: [
-      "Company and team",
-      "Security",
-      "Press",
-      "Careers",
-      "Service status",
-      "Investor relations",
-      "Affiliates and partnerships",
-      "Help centre",
-      "Reviews",
-      "Accessibility",
+      { label: "Getting Started", href: "/getting-started" },
+      { label: "Security", href: "/security" },
+      { label: "Press", href: "/press" },
+      { label: "Careers", href: "/careers" },
+      { label: "Service status", href: "/service-status" },
+      { label: "Investor relations", href: "/investors" },
+      { label: "Affiliates and partnerships", href: "/affiliates" },
+      { label: "Help centre", href: "/help" },
+      { label: "Reviews", href: "/reviews" },
+      { label: "Accessibility", href: "/accessibility" },
     ],
   },
   {
     title: "Wise Products",
     links: [
-      "International money transfers",
-      "Wise account",
-      "International debit card",
-      "Large amount transfer",
-      "Receive money",
-      "Assets",
-      "Wise Platform",
-      "Wise Business",
-      "Business debit card",
-      "Mass payments",
-      "Accept card payments",
+      { label: "International money transfers", href: "/money-transfers" },
+      { label: "Wise account", href: "/account" },
+      { label: "International debit card", href: "/debit-card" },
+      { label: "Large amount transfer", href: "/large-transfer" },
+      { label: "Receive money", href: "/receive" },
+      { label: "Assets", href: "/assets" },
+      { label: "Wise Platform", href: "/platform" },
+      { label: "Wise Business", href: "/business" },
+      { label: "Business debit card", href: "/business-card" },
+      { label: "Mass payments", href: "/mass-payments" },
+      { label: "Accept card payments", href: "/accept-payments" },
     ],
   },
   {
     title: "Institutes",
     links: [
-      "Family Development Institute (FDI)",
-      "Research privacy policy",
-      "Currency converter",
-      "International stock ticker",
-      "Swift/BIC codes",
-      "IBAN codes",
-      "Rate alerts",
-      "Compare exchange rates",
-      "Incorporate your company",
-      "Invoice generator",
-      "Business Calculators",
+      { label: "Family Development Institute (FDI)", href: "/institutes/fdi" },
+      { label: "Mindset Transformation Institute (MTI)", href: "/institutes/mti" },
+      { label: "Institute of Government, Govenance and Leadership", href: "/institutes/governance" },
+      { label: "International stock ticker", href: "/stock-ticker" },
+      { label: "Swift/BIC codes", href: "/swift-codes" },
+      { label: "Education Training and Development Institute (ETADI)", href: "/institutes/etadi" },
+      { label: "Institute of Arts, Sports and Culture (IOASC)", href: "/institutes/ioasc" },
     ],
   },
 ];
@@ -60,6 +56,7 @@ const legalLinks = [
   { label: "Complaints", href: "complaints" },
   { label: "Sitemap", href: "sitemap" },
   { label: "Cookie Policy", href: "cookies" },
+  { label: "Accessibility", href: "accessibility" },
 ];
 
 const socialLinks = [
@@ -75,11 +72,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
           {footerLinks.map((section) => (
             <div key={section.title}>
-              <h3 className="font-semibold mb-4 text-lg ">{section.title}</h3>
+              <h3 className="font-semibold mb-4 text-xl ">{section.title}</h3>
               <ul className="space-y-2">
-                {section.links.map((label) => (
+                {section.links.map(({ label, href }) => (
                   <li key={label}>
-                    <Link href="#" className="hover:underline">
+                    <Link href={href} className="hover:underline">
                       {label}
                     </Link>
                   </li>
@@ -88,7 +85,7 @@ export default function Footer() {
             </div>
           ))}
           <div>
-            <h3 className="font-semibold mb-4">Follow us</h3>
+            <h3 className="font-semibold mb-4 text-xl ">Follow us</h3>
 
             <div className="flex gap-4">
               <Link

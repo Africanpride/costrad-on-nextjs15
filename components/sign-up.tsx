@@ -153,7 +153,7 @@ export function SignUpComponent() {
           </div>
           <Button
             type="submit"
-            className="w-full cursor-pointer "
+            className="w-full cursor-pointer text-background bg-foreground "
             disabled={loading}
             onClick={async () => {
               console.log("SUBMITTING APPLICATION");
