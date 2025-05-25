@@ -12,7 +12,6 @@
         "prisma:generate": "prisma generate"
     },
     "dependencies": {
-        "@clerk/nextjs": "^6.10.2",
         "@daveyplate/better-auth-ui": "^1.7.3",
         "@gsap/react": "^2.1.1",
         "@hcaptcha/react-hcaptcha": "^1.12.0",

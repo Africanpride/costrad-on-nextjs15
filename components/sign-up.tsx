@@ -48,7 +48,7 @@ export function SignUpComponent() {
   const [loading, setLoading] = useState(false);
 
   return (
-    <Card className="z-50 rounded-none bg-transparent max-w-md border-none shadow-none ">
+    <Card className=" rounded-none bg-transparent max-w-md border-none shadow-none ">
       <CardHeader>
         <CardTitle className="text-lg md:text-xl">COSTrAD Sign Up</CardTitle>
         <CardDescription className="text-xs md:text-sm">
@@ -222,7 +222,7 @@ export function SignUpComponent() {
           <div className="grid grid-cols-2 gap-2">
             <Button
               variant="outline"
-              className=" gap-2"
+              className=" gap-2 cursor-pointer"
               onClick={async () => {
                 await signIn.social({
                   provider: "google",
@@ -256,7 +256,7 @@ export function SignUpComponent() {
             </Button>
             <Button
               variant="outline"
-              className="gap-2"
+              className="gap-2 cursor-pointer"
               onClick={async () => {
                 const { data } = await signIn.social({
                   provider: "microsoft",

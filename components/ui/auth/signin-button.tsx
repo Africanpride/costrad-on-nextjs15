@@ -30,7 +30,7 @@ export function SignInButton() {
   return (
     <>
       {!session ? (
-        <div className="flex items-center gap-0 h-7">
+        <div className="flex items-center gap-0 h-7 pr-2">
 
         <Button
           onPress={() => router.push("/auth/sign-in")} // Redirect to the sign-in page
@@ -51,7 +51,7 @@ export function SignInButton() {
               as="button"
               avatarProps={{
                 isBordered: false,
-                src: session?.user.image ?? "https://i.pravatar.cc/150",
+                src: session?.user.image ?? `https://avatar.iran.liara.run/username?username=${session?.user.name ?? "User"}`,
               }}
               className="transition-transform text-current  text-small"
               description={session.user.email ?? ""}

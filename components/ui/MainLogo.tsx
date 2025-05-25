@@ -12,7 +12,7 @@ type MainLogoProps = {
 const MainLogo = ({
   hideText = false,
   textColor = " ",
-  logoSize = "w-20 h-20",
+  logoSize = " w-16 h-16  md:w-20 md:h-20 ",
 }: MainLogoProps) => {
   return (
     <div className="flex h-auto  items-center space-x-3 sm:space-x-3 cursor-pointer ">
@@ -26,7 +26,7 @@ const MainLogo = ({
         <div>
           {/* <Divider orientation='vertical' className='bg-gray-300' /> */}
           <div
-            className={`${oswald.className} ${textColor} uppercase text-medium pl-3 border-left 
+            className={`${oswald.className} ${textColor} uppercase text-xs md:text-medium pl-3 border-left 
                     border-dotted border-l-indigo-500/50  border-l-1  border-style-dotted           
                         sm:leading-[1.2rem] font-light `}
           >

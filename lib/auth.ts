@@ -22,9 +22,9 @@ import { redirect } from "next/navigation";
 
 // import { prisma } from "@/prisma/prisma";
 
-if (!process.env.DATABASE_URL) {
-  throw new Error("Missing DATABASE_URL environment variable");
-}
+// if (!process.env.DATABASE_URL) {
+//   throw new Error("Missing DATABASE_URL environment variable");
+// }
 const from = process.env.BETTER_AUTH_EMAIL || "notifications@costrad.org";
 const to = process.env.TEST_EMAIL || "";
 
@@ -102,7 +102,7 @@ export const auth = betterAuth({
   trustedOrigins: [
     "http://localhost:3000",
     "https://costrad.org",
-    "https://e858-102-208-88-18.ngrok-free.app",
+    "https://scholars-endangered-gzip-powerful.trycloudflare.com",
   ],
 
   account: {

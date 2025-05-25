@@ -82,7 +82,7 @@ export default function SignInComponent() {
 
   return (
     <div>
-      <Card className="z-50 rounded-none bg-transparent max-w-3xl shadow-none border-none">
+      <Card className=" rounded-none bg-transparent w-full px-5 shadow-none border-none">
         <CardHeader>
           <CardTitle className="text-lg md:text-xl">COSTrAD Sign In</CardTitle>
           <CardDescription className="text-xs md:text-sm">
@@ -137,10 +137,13 @@ export default function SignInComponent() {
             </Button>
           </form>
           <SeperatorWithText seperatorText="Or" />
+          
           <div className="grid grid-cols-2 gap-2">
             <Button
+              id="google-signin"
               variant="outline"
-              className="gap-2"
+              className="gap-2 z-10 pointer-events-auto cursor-pointer "
+            
               onClick={async () => {
                 await signIn.social({
                   provider: "google",
@@ -175,7 +178,7 @@ export default function SignInComponent() {
             </Button>
             <Button
               variant="outline"
-              className="gap-2"
+              className="gap-2 z-10 cursor-pointer"
               onClick={async () => {
                 const { data } = await signIn.social({
                   provider: "microsoft",

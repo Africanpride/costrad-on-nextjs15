@@ -1,211 +1,196 @@
+import Link from "next/link";
+import Image from "next/image";
 import { siteConfig } from "@/config/site";
-import React from "react";
+import { Facebook, Twitter, Instagram } from "lucide-react"; // Use "Twitter" for X
 
-const Footer = () => {
+const footerLinks = [
+  {
+    title: "Quick Links",
+    links: [
+      "Company and team",
+      "Security",
+      "Press",
+      "Careers",
+      "Service status",
+      "Investor relations",
+      "Affiliates and partnerships",
+      "Help centre",
+      "Reviews",
+      "Accessibility",
+    ],
+  },
+  {
+    title: "Wise Products",
+    links: [
+      "International money transfers",
+      "Wise account",
+      "International debit card",
+      "Large amount transfer",
+      "Receive money",
+      "Assets",
+      "Wise Platform",
+      "Wise Business",
+      "Business debit card",
+      "Mass payments",
+      "Accept card payments",
+    ],
+  },
+  {
+    title: "Institutes",
+    links: [
+      "Family Development Institute (FDI)",
+      "Research privacy policy",
+      "Currency converter",
+      "International stock ticker",
+      "Swift/BIC codes",
+      "IBAN codes",
+      "Rate alerts",
+      "Compare exchange rates",
+      "Incorporate your company",
+      "Invoice generator",
+      "Business Calculators",
+    ],
+  },
+];
+
+const legalLinks = [
+  { label: "Privacy policy", href: "privacy" },
+  { label: "Terms & Conditions", href: "terms" },
+  { label: "Legal", href: "legal" },
+  { label: "Complaints", href: "complaints" },
+  { label: "Sitemap", href: "sitemap" },
+  { label: "Cookie Policy", href: "cookies" },
+];
+
+const socialLinks = [
+  { name: "Facebook", icon: Facebook, href: "#" },
+  { name: "X", icon: Twitter, href: "#" },
+  { name: "Instagram", icon: Instagram, href: "#" },
+];
+
+export default function Footer() {
   return (
-    <footer className="bg-[#1A1D2B]">
-      <div className="container mx-auto p-0 md:p-8 xl:px-0">
-        <div className="mx-auto max-w-7xl px-6 pb-10 pt-16">
-          <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-            <div className="space-y-4">
-             
-              <div className="max-w-md pr-16 text-md text-gray-200">
-                Enhance productivity and efficiency with cutting-edge artificial
-                intelligence solutions for your business operations.
-              </div>
-              <div className="flex space-x-2">
-                <a
-                  href=""
-                  target="_blank"
-                  className="text-gray-200 hover:text-gray-200"
-                >
-                  <span className="sr-only">Linkedin</span>
-                  <svg
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    className="h-6 w-6"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </a>
-                <a
-                  href=""
-                  target="_blank"
-                  className="text-gray-200 hover:text-gray-200"
-                >
-                  <span className="sr-only">Twitter</span>
-                  <svg
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    className="h-6 w-6"
-                    aria-hidden="true"
-                  >
-                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
-                  </svg>
-                </a>
-              </div>
+    <footer className="bg-background text-foreground text-smborder-foreground/20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14  pt-8 border-t ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+          {footerLinks.map((section) => (
+            <div key={section.title}>
+              <h3 className="font-semibold mb-4 text-lg ">{section.title}</h3>
+              <ul className="space-y-2">
+                {section.links.map((label) => (
+                  <li key={label}>
+                    <Link href="#" className="hover:underline">
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-              <div className="md:grid md:grid-cols-2 md:gap-8">
-                <div>
-                  <h3 className="text-md font-semibold leading-6 text-white">
-                    Our Solutions
-                  </h3>
-                  <ul role="list" className="mt-6 space-y-4">
-                    <li>
-                      <a
-                        href="/aiplatform"
-                        className="text-md leading-6 text-gray-300 hover:text-gray-50"
-                      >
-                        AI Platform
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/aialgorithms"
-                        className="text-md leading-6 text-gray-300 hover:text-gray-50"
-                      >
-                        AI Algorithms
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/industryapplications"
-                        className="text-md leading-6 text-gray-300 hover:text-gray-50"
-                      >
-                        Industry Applications
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="mt-10 md:mt-0">
-                  <h3 className="text-md font-semibold leading-6 text-white">
-                    Use Cases
-                  </h3>
-                  <ul role="list" className="mt-6 space-y-4">
-                    <li>
-                      <a
-                        href="/predictiveanalysis"
-                        className="text-md leading-6 text-gray-300 hover:text-gray-50"
-                      >
-                        Predictive Analysis
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/customerexperience"
-                        className="text-md leading-6 text-gray-300 hover:text-gray-50"
-                      >
-                        Customer Experience
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/automation"
-                        className="text-md leading-6 text-gray-300 hover:text-gray-50"
-                      >
-                        Automation
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="md:grid md:grid-cols-2 md:gap-8">
-                <div>
-                  <h3 className="text-md font-semibold leading-6 text-white">
-                    Resources
-                  </h3>
-                  <ul role="list" className="mt-6 space-y-4">
-                    <li>
-                      <a
-                        href="/pricing"
-                        className="text-md leading-6 text-gray-300 hover:text-gray-50"
-                      >
-                        Pricing
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/blog"
-                        className="text-md leading-6 text-gray-300 hover:text-gray-50"
-                      >
-                        Blog
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/casestudies"
-                        className="text-md leading-6 text-gray-300 hover:text-gray-50"
-                      >
-                        Case Studies
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/terms"
-                        className="text-md leading-6 text-gray-300 hover:text-gray-50"
-                      >
-                        Terms of Service
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/privacy"
-                        className="text-md leading-6 text-gray-300 hover:text-gray-50"
-                      >
-                        Privacy Policy
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="mt-10 md:mt-0">
-                  <h3 className="text-md font-semibold leading-6 text-white">
-                    Company
-                  </h3>
-                  <ul role="list" className="mt-6 space-y-4">
-                    <li>
-                      <a
-                        href="/aboutus"
-                        className="text-md leading-6 text-gray-300 hover:text-gray-50"
-                      >
-                        About Us
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/careers"
-                        className="text-md leading-6 text-gray-300 hover:text-gray-50"
-                      >
-                        Careers
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/contactus"
-                        className="text-md leading-6 text-gray-300 hover:text-gray-50"
-                      >
-                        Contact Us
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+          ))}
+          <div>
+            <h3 className="font-semibold mb-4">Follow us</h3>
+
+            <div className="flex gap-4">
+              <Link
+                href="#"
+                aria-label="Facebook"
+                className="text-foreground h-8 w-8 hover:text-green-800 transition"
+              >
+                <svg
+                  className="w-6 h-6 fill-current"
+                  role="img"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Facebook</title>
+                  <path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z" />
+                </svg>
+              </Link>
+              <Link href={"#"} className="h-8 w-8">
+                <svg
+                  className="w-6 h-6 fill-current"
+                  role="img"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>YouTube</title>
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+              </Link>
+              <Link href={"#"} className="h-8 w-8">
+                <svg
+                  className="w-6 h-6 fill-current"
+                  role="img"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>TikTok</title>
+                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+                </svg>
+              </Link>
+              <Link href={"#"} className="h-8 w-8">
+                <svg
+                  className="w-6 h-6 fill-current"
+                  role="img"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>X</title>
+                  <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+                </svg>
+              </Link>
+              <Link href={"#"} className="h-8 w-8">
+                <svg
+                  className="w-6 h-6 fill-current"
+                  role="img"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Instagram</title>
+                  <path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077" />
+                </svg>
+              </Link>
             </div>
           </div>
-          <div className="mt-16 border-t border-gray-400/30 pt-8 sm:mt-20 lg:mt-24">
-            <div className="text-md text-center text-white">
-              Copyright &copy; { siteConfig.year } . All Rights Reserved.
-            </div>
+        </div>
+
+        <div className="border-t border-foreground/20 pt-12 flex flex-col sm:flex-row items-center sm:justify-center gap-6">
+          {/* <div className="flex items-center space-x-2">
+            <Image src="/images/costrad.png" alt="costrad" width={80} height={24} />
+          </div> */}
+
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-center sm:text-left">
+            {legalLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="hover:underline"
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
+        </div>
+
+        <div className="mt-6 text-xs text-center space-y-2">
+          <div className="flex items-center justify-center gap-2">
+            <div>&copy; COSTrAD {siteConfig.year}</div>
+            <div className="flex gap-x-2">
+              <div className="h-2 rounded-full transition-all animate-pulse  w-6 bg-purple-600 dark:bg-purple-600" />
+              <div className="dark:bg-muted h-2 w-2.5 rounded-full animate-ping bg-purple-300 transition-all" />
+              <div className="dark:bg-muted h-2 w-2.5 rounded-full bg-purple-400 transition-all" />
+            </div>
+            <div>All Rights Reserved. </div>
+          </div>
+
+          <p className="max-w-4xl text-center mx-auto text-xs pt-4">
+            The College of Sustainable Transformation and Development  &mdash; COSTrAD™ is under the Logos-Rhema Foundation 
+            which is a registered Non-Profit Organization with Reg. number: <span className="text-accent-foreground">CG046792017</span> under the laws of the Republic of Ghana.
+
+          </p>
+         
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}
