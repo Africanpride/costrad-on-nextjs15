@@ -145,7 +145,7 @@ export default function UserCard(props: {
 						.map((session) => {
 							return (
 								<div key={session.id}>
-									<div className="flex items-center gap-2 text-sm  text-black font-medium dark:text-white">
+									<div className="flex items-center gap-2 text-sm  font-medium ">
 										{new UAParser(session.userAgent || "").getDevice().type ===
 										"mobile" ? (
 											<MobileIcon className="text-red-500" />
@@ -155,7 +155,7 @@ export default function UserCard(props: {
 										{new UAParser(session.userAgent || "").getOS().name},{" "}
 										{new UAParser(session.userAgent || "").getBrowser().name}
 										<button
-											className=" opacity-80  cursor-pointer text-xs border-muted-foreground text-red-600  underline "
+											className=" opacity-80  cursor-pointer text-xs border-muted-foreground text-danger  underline "
 											onClick={async () => {
 												setIsTerminating(session.id);
 												const res = await client.revokeSession({

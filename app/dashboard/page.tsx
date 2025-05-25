@@ -31,9 +31,7 @@ export default async function DashboardPage() {
 			
 				<UserCard
 					session={JSON.parse(JSON.stringify(session))}
-					activeSessions={JSON.parse(JSON.stringify(activeSessions))}
-          
-				
+					activeSessions={JSON.parse(JSON.stringify(activeSessions))}				
 				/>
 				
 			</div>

@@ -7,6 +7,7 @@ import MainLogo from "@/components/ui/MainLogo";
 import { WebMenu } from "@/components/ui/WebMenu";
 import SlideInMenu from "@/components/SlideInMenu";
 import { SignInButton } from "./auth/signin-button";
+import { User } from "@heroui/react";
 
 export default function StickyMenu() {
   const [isFixed, setIsFixed] = useState(false);
@@ -36,7 +37,9 @@ export default function StickyMenu() {
       id="menu"
       className={clsx(
         "w-full block transition-all shadow  bg-background",
-        isFixed ? "fixed top-0 left-0 right-0 duration-600 z-50 py-3.5" : "relative py-5 "
+        isFixed
+          ? "fixed top-0 left-0 right-0 duration-600 z-50 py-3.5"
+          : "relative py-5 "
       )}
     >
       <div className="flex items-center justify-between px-2 py-2">
@@ -47,10 +50,10 @@ export default function StickyMenu() {
           </div>
         </div>
         <div className="sm:flex cursor-pointer items-center gap-x-3 hidden">
+        
           <SignInButton />
         </div>
         <div className="sm:hidden block">
-          
           <SlideInMenu />
         </div>
       </div>
