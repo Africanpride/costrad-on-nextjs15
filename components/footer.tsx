@@ -70,7 +70,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-background text-foreground text-smborder-foreground/20">
+    <footer className="bg-background text-foreground text-sm border-foreground/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14  pt-8 border-t ">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
           {footerLinks.map((section) => (
@@ -176,9 +176,9 @@ export default function Footer() {
           <div className="flex items-center justify-center gap-2">
             <div>&copy; COSTrAD {siteConfig.year}</div>
             <div className="flex gap-x-2">
-              <div className="h-2 rounded-full transition-all animate-pulse  w-6 bg-purple-600 dark:bg-purple-600" />
-              <div className="dark:bg-muted h-2 w-2.5 rounded-full animate-ping bg-purple-300 transition-all" />
-              <div className="dark:bg-muted h-2 w-2.5 rounded-full bg-purple-400 transition-all" />
+              <div className="h-2 rounded-full transition-all animate-pulse  w-6 bg-primary dark:bg-primary" />
+              <div className="dark:bg-muted h-2 w-2.5 rounded-full animate-ping bg-primary transition-all" />
+              <div className="dark:bg-muted h-2 w-2.5 rounded-full bg-primary transition-all" />
             </div>
             <div>All Rights Reserved. </div>
           </div>

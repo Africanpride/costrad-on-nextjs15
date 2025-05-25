@@ -128,7 +128,7 @@ export default function SignInComponent() {
               <Checkbox onClick={() => setRememberMe(!rememberMe)} />
               <Label>Remember me</Label>
             </div>
-            <Button type="submit" className="w-full" disabled={loading}>
+            <Button type="submit" className="w-full cursor-pointer text-background bg-foreground " disabled={loading}>
               {loading ? (
                 <Loader2 size={16} className="animate-spin" />
               ) : (

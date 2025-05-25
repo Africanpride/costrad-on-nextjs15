@@ -153,7 +153,7 @@ export function SignUpComponent() {
           </div>
           <Button
             type="submit"
-            className="w-full"
+            className="w-full cursor-pointer "
             disabled={loading}
             onClick={async () => {
               console.log("SUBMITTING APPLICATION");

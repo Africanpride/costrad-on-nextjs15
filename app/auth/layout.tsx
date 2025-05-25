@@ -19,11 +19,11 @@ export default function SignInLayout({
     return (
         <div className="grid grid-cols-1 sm:grid-cols-3 w-full h-screen relative">
             <div className='absolute top-4 right-5 z-20 '><ThemeSwitch className='pt-2 pl-6' /></div>
-            <Link href={'/'} className='absolute top-3 md:top-5 left-3 md:eft-5 z-90 ' >
+            <Link href={'/'} className='absolute top-3 md:top-7 left-3 md:left-7 z-90 ' >
                 {/* <LucideAArrowDown className='text-red-500' /> */}
                 <LucideHome className='text-current' />
             </Link>
-            <div className="sm:flex sm:col-span-2  justify-center items-center hidden relative">
+            <div className="sm:flex sm:col-span-2 box-border m-2  justify-center items-center hidden relative">
                 <Image priority src={'/images/wallpaper.jpg'} alt="alt" width={1000} height={1000}
                     className="inset-0 absolute "
                     style={

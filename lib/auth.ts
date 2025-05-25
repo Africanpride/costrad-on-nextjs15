@@ -20,17 +20,14 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 import { createAuthMiddleware, APIError } from "better-auth/api";
 import { redirect } from "next/navigation";
 
-// import { prisma } from "@/prisma/prisma";
 
-// if (!process.env.DATABASE_URL) {
-//   throw new Error("Missing DATABASE_URL environment variable");
-// }
 const from = process.env.BETTER_AUTH_EMAIL || "notifications@costrad.org";
 const to = process.env.TEST_EMAIL || "";
 
 const prisma = new PrismaClient({
-  log: ["info"],
+  log: ["info", "warn", "error"],
   errorFormat: "pretty",
+  
 });
 
 export const auth = betterAuth({
