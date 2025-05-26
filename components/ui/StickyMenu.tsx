@@ -8,10 +8,18 @@ import { WebMenu } from "@/components/ui/WebMenu";
 import SlideInMenu from "@/components/SlideInMenu";
 import { SignInButton } from "./auth/signin-button";
 import { User } from "@heroui/react";
+import { client } from "@/lib/auth-client";
+import { Skeleton } from "./skeleton";
 
 export default function StickyMenu() {
   const [isFixed, setIsFixed] = useState(false);
   const pathname = usePathname(); // Get the current route
+
+  const {
+    data: session,
+    isPending, //loading state
+    error, //error object
+  } = client.useSession();
 
   // Define pages where StickyMenu should NOT be displayed
   // const hideStickyMenu = pathname.startsWith("/auth");
@@ -50,9 +58,19 @@ export default function StickyMenu() {
           </div>
         </div>
         <div className="sm:flex cursor-pointer items-center gap-x-3 hidden">
-        
-          <SignInButton />
+          {isPending ? (
+            <div className="flex items-center space-x-4">
+              <Skeleton className="h-12 w-12 rounded-full" />
+              <div className="space-y-2">
+                <Skeleton className="h-4 w-[250px]" />
+                <Skeleton className="h-4 w-[200px]" />
+              </div>
+            </div>
+          ) : (
+            <SignInButton />
+          )}
         </div>
+
         <div className="sm:hidden block">
           <SlideInMenu />
         </div>
