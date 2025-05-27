@@ -73,7 +73,7 @@ export default function UserCard(props: {
 	return (
 		<Card>
 			<CardHeader>
-				<CardTitle>User</CardTitle>
+				{/* <CardTitle>User</CardTitle> */}
 			</CardHeader>
 			<CardContent className="grid gap-8 grid-cols-1">
 				<div className="flex items-start justify-between">
@@ -88,7 +88,7 @@ export default function UserCard(props: {
 						</Avatar>
 						<div className="grid gap-1">
 							<p className="text-sm font-medium leading-none">
-								{session?.user.name}
+								{session?.user.name} 
 							</p>
 							<p className="text-sm">{session?.user.email}</p>
 						</div>

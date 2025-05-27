@@ -19,13 +19,13 @@ import { ThemeSwitch } from "./theme-switch"
 
 export const gettingStarted: { title: string; href: string; description: string }[] = [
     {
-        title: "Alert Dialog",
+        title: "Why COSTrAD",
         href: "/docs/primitives/alert-dialog",
         description:
             "A modal dialog that interrupts the user with important content and expects a response.",
     },
     {
-        title: "Hover Card",
+        title: "Mission & Vision",
         href: "/docs/primitives/hover-card",
         description:
             "For sighted users to preview content available behind a link.",
@@ -72,7 +72,7 @@ export function WebMenu() {
                     <NavigationMenuItem>
                         <NavigationMenuTrigger><span className="uppercase cursor-pointer ">Institutes</span></NavigationMenuTrigger>
                         <NavigationMenuContent>
-                            <ul className="grid p-0 md:w-[500px] lg:w-[600px] lg:grid-cols-[.75fr_1fr]">
+                            <ul className="grid p-0 md:w-[700px] lg:w-[800px] lg:grid-cols-[.75fr_1fr]">
                                 <li className="row-span-4">
                                     <NavigationMenuLink asChild>
                                         <a
@@ -81,38 +81,42 @@ export function WebMenu() {
                                             {/* <Icons.logo className="h-6 w-6" /> */}
                                             <div className="mb-2 mt-4 text-lg font-medium">
                                                 COSTrAD
-
                                             </div>
                                             <p className="text-sm leading-tight text-muted-foreground">
-                                                Beautifully designed components that you can copy and
-                                                paste into your apps. Accessible. Customizable. Open
-                                                Source.
+                                                 The College of Sustainable Transformation and Development  &mdash; COSTrAD™
                                             </p>
                                         </a>
                                     </NavigationMenuLink>
                                 </li>
                                 <div className="p-2">
-                                    <ListItem href="/docs" title="Introduction">
+                                    <ListItem href="/institutes/mti" title="Minset Transformation Institute - (MTI)">
                                         Re-usable components built using Radix UI and Tailwind CSS.
                                     </ListItem>
-                                    <ListItem href="/docs" title="Introduction">
+                                  
+                                    <ListItem href="/institutes/fdi" title="Family Development Institute - (FDI)">
                                         Re-usable components built using Radix UI and Tailwind CSS.
                                     </ListItem>
-                                    <ListItem href="/docs/installation" title="Installation">
-                                        How to install dependencies and structure your app.
-                                    </ListItem>
-                                    <ListItem href="/docs/primitives/typography" title="Typography">
-                                        Styles for headings, paragraphs, lists...etc
-                                    </ListItem>
-                                    <ListItem href="/docs" title="Introduction">
+                                  
+                                    <ListItem href="/institutes/igpp" title="Institute of Governance & Public Policy - (IGPP)">
                                         Re-usable components built using Radix UI and Tailwind CSS.
                                     </ListItem>
-                                    <ListItem href="/docs/installation" title="Installation">
-                                        How to install dependencies and structure your app.
+                                  
+                                    <ListItem href="/institutes/iea" title="Institute of Economic Affairs - (IEA)">
+                                        Re-usable components built using Radix UI and Tailwind CSS.
                                     </ListItem>
-                                    <ListItem href="/docs/primitives/typography" title="Typography">
-                                        Styles for headings, paragraphs, lists...etc
+                                  
+                                    <ListItem href="/institutes/etadi" title="Education Training & Development Institute - (ETADI)">
+                                        Re-usable components built using Radix UI and Tailwind CSS.
                                     </ListItem>
+                                  
+                                    <ListItem href="/institutes/moci" title="Media of Communication Institute - (MOCI)">
+                                        Re-usable components built using Radix UI and Tailwind CSS.
+                                    </ListItem>
+                                  
+                                    <ListItem href="/institutes/ioasc" title="Institute of Arts, Sports & Culture - (IOASC)">
+                                        Re-usable components built using Radix UI and Tailwind CSS.
+                                    </ListItem>
+                                  
                                 </div>
                             </ul>
                         </NavigationMenuContent>
