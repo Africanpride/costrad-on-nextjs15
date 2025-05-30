@@ -4,6 +4,8 @@
 @import "./animations.css";
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 @layer base {
   body {
     background-color: hsl(var(--background));
