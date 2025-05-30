@@ -1,5 +1,6 @@
 'use client';
 
+import CallToAction from '@/components/CallToAction';
 import HeroSection from '@/components/HeroSection';
 import Start from '@/components/Start';
 import Preloader from '@/components/ui/animations/Preloader';
@@ -39,6 +40,7 @@ export default function Home() {
       <Jumbotron heroImage='library.png' height='md:h-[550px]' />
       <CTA />
       <Newsletter />
+      <CallToAction />
     </main>
   );
 }

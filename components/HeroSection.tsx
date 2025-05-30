@@ -1,20 +1,22 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useDebugValue } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import { Divider } from "@heroui/react";
 import { bebas } from "@/config/fonts";
 import { LucideMoveDown } from "lucide-react";
 import { useMediaQuery } from "react-responsive";
+import { Separator } from "@radix-ui/react-separator";
+import { useDevice } from "@/hooks/useDevice";
 
 export const HeroSection: React.FC = () => {
-  const isMobile = useMediaQuery({ maxWidth: 767 }); // Tailwind's `md` breakpoint
+  const { isMobile, isDesktop } = useDevice();
 
   return (
     <section
-      className={`${bebas.className} md:min-h-screen h-auto grid grid-cols-1  `}
+      className={`${bebas.className} md:min-h-dvh h-dvh grid grid-cols-1  `}
     >
       <div
         className="bg-purple-950 col-span-1 md:col-span-2 min-h-dvh h-full flex flex-col
@@ -73,7 +75,7 @@ export const HeroSection: React.FC = () => {
           <div
             data-scroll
             data-scroll-speed={0.1}
-            className="space-y-4 bg-background p-4"
+            className="space-y-4 bg-background p-4 sm:p-8"
           >
             <div className="text-[3em] text-current">
               <p className="leading-[0.9em] ">
@@ -82,11 +84,11 @@ export const HeroSection: React.FC = () => {
                 Seemingly Impossible{" "}
               </p>
             </div>
-            <Separator className="my-4 w-2/5 h-2 bg-primary"  />
+            <Separator className="my-4 w-1/5 h-1 bg-accent"  />
 
-            <div className="text-red-500 ">
+            <div className="text-primary ">
               <p className="text-lg">
-                &mdash; Explore what COSTrAD can help you achieve.
+                &mdash; &nbsp; Explore what COSTrAD can help you achieve.
               </p>
             </div>
           </div>
