@@ -34,7 +34,7 @@ const Start = (props: Props) => {
             className='text-xl md:text-5xl md:leading-[0.9em] text-white text-center'
             data-scroll
             data-scroll-speed={0.2}>
-            <span>A profound exploration of the strategic thinking</span>
+            <span>COSTrAD</span>
             <br />
             <span>behind informed voting decisions.</span>
           </div>

@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   IconCamera,
   IconChartBar,
@@ -17,12 +17,12 @@ import {
   IconSearch,
   IconSettings,
   IconUsers,
-} from "@tabler/icons-react"
+} from "@tabler/icons-react";
 
-import { NavDocuments } from "@/components/nav-documents"
-import { NavMain } from "@/components/nav-main"
-import { NavSecondary } from "@/components/nav-secondary"
-import { NavUser } from "@/components/nav-user"
+import { NavDocuments } from "@/components/nav-documents";
+import { NavMain } from "@/components/nav-main";
+import { NavSecondary } from "@/components/nav-secondary";
+import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
   SidebarContent,
@@ -31,24 +31,26 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
+import { client } from "@/lib/auth-client";
+import Link from "next/link";
 
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "costrad",
+    email: "m@costrad.org",
+    avatar: "/images/avatar.png",
   },
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      url: "/admin/",
       icon: IconDashboard,
     },
     {
-      title: "Lifecycle",
-      url: "#",
-      icon: IconListDetails,
+      title: "Profile",
+      url: "/profile",
+      icon: IconUsers,
     },
     {
       title: "Analytics",
@@ -56,12 +58,17 @@ const data = {
       icon: IconChartBar,
     },
     {
-      title: "Projects",
+      title: "Donations",
+      url: "#",
+      icon: IconListDetails,
+    },
+    {
+      title: "Publications",
       url: "#",
       icon: IconFolder,
     },
     {
-      title: "Team",
+      title: "Participants",
       url: "#",
       icon: IconUsers,
     },
@@ -142,15 +149,25 @@ const data = {
       url: "#",
       icon: IconReport,
     },
-    {
-      name: "Word Assistant",
-      url: "#",
-      icon: IconFileWord,
-    },
+   
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { data: session, isPending, error } = client.useSession();
+  if (isPending) {
+    // Optionally render a loading state
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    // Handle error state
+    console.error("Error fetching session:", error);
+    return <div>Error loading user data</div>;
+  }
+
+  const user = session?.user;
+
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -160,10 +177,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
-              <a href="#">
+              <Link href="/">
                 <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Acme Inc.</span>
-              </a>
+                <span className="text-base font-semibold">COSTrAD.Org</span>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
@@ -173,9 +190,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavDocuments items={data.documents} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
+      {user ? (
+        <NavUser
+          user={{
+            name: user.name ?? "",
+            email: user.email ?? "",
+            avatar: user.image ?? "/avatars/avatar.png",
+          }}
+        />
+      ) : (
+        <div>Please sign in</div> // Or a sign-in button/link
+      )}
     </Sidebar>
-  )
+  );
 }

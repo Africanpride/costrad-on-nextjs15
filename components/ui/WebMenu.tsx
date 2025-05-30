@@ -31,8 +31,8 @@ export const gettingStarted: { title: string; href: string; description: string 
             "For sighted users to preview content available behind a link.",
     },
     {
-        title: "Progress",
-        href: "/docs/primitives/progress",
+        title: "Our Story",
+        href: "/our-story",
         description:
             "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
     },

@@ -16,41 +16,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ backgroundImageUrl ='/
   const { isMobile } = useDevice();
 
   return (
-    <section className={`${bebas.className} md:min-h-dvh h-dvh grid grid-cols-1`}>
-      <div
-        className="bg-purple-950 col-span-1 md:col-span-2 min-h-dvh h-full flex flex-col
-        justify-center md:justify-between items-start p-4 md:p-6 relative order-2"
-      >
-        <div></div>
-
-        <div className="flex items-center justify-center max-w-4xl container mx-auto relative">
-          <Image
-            src="/images/globe.png"
-            priority
-            alt="alt"
-            width={400}
-            height={400}
-            style={{
-              height: "25em",
-              width: "25em",
-            }}
-            className="animation-duration-100 animate-pulse absolute"
-          />
-          <div
-            className="text-xl md:text-5xl md:leading-[0.9em] text-white text-center"
-            data-scroll
-            data-scroll-speed={0.2}
-          >
-            <span>A profound exploration of the strategic thinking</span>
-            <br />
-            <span>behind informed voting decisions.</span>
-          </div>
-        </div>
-
-        <div className="hidden md:block">
-          <LucideMoveDown className="animate-bounce w-6 h-6" />
-        </div>
-      </div>
+    <section className={`${bebas.className} md:min-h-dvh h-dvh grid grid-cols-1`}>     
 
       <div className="bg-red-700 min-h-dvh relative p-4 md:p-6 order-1">
         <div

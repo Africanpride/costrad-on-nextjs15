@@ -2,6 +2,7 @@
 
 import HeroSection from "@/components/HeroSection";
 import Start from "@/components/Start";
+import { Testimonials } from "@/components/Testimonials";
 import Preloader from "@/components/ui/animations/Preloader";
 import BookIntro from "@/components/ui/BookIntro";
 import CTA from "@/components/ui/CTA";
@@ -33,10 +34,11 @@ export default function Home() {
         {isLoading && <Preloader />}
       </AnimatePresence>
       <HeroSection backgroundImageUrl="/images/united-nations.jpg" />
-      <Start />
+      {/* <Start /> */}
       {/* <BookIntro /> */}
       {/* <Stage1 /> */}
-      {/* <Jumbotron heroImage="library.png" height="md:h-[550px]" /> */}
+      <Jumbotron heroImage="library.png" height="md:h-[550px]" />
+      <Testimonials />
       <CTA />
       {/* <Newsletter /> */}
     </main>

@@ -77,12 +77,12 @@ export function SignInButton() {
             <DropdownMenuGroup className="cursor-pointer">
               <DropdownMenuItem
                 onSelect={() => {
-                  router.push("dashboard");
+                  router.push("account");
                 }}
                 className="cursor-pointer"
               >
                 <UserIcon />
-                <span>Dashboard</span>
+                <span>Account</span>
                 <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
               </DropdownMenuItem>
             </DropdownMenuGroup>
