@@ -82,14 +82,11 @@ export const HeroSection: React.FC = () => {
                 Seemingly Impossible{" "}
               </p>
             </div>
-            <Divider className="my-4 w-2/5 bg-red-500 " />
+            <Separator className="my-4 w-2/5 h-2 bg-primary"  />
+
             <div className="text-red-500 ">
               <p className="text-lg">
-                THE KINGDOM PATTERNS SERIES &#x2014; VOLUME ONE
-              </p>
-              <p className={` text-sm  text-red-500 `}>
-                <span className="text-white">&mdash; Authored By:</span> Dr. Abu
-                Bako
+                &mdash; Explore what COSTrAD can help you achieve.
               </p>
             </div>
           </div>
