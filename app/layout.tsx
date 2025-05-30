@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
-import { bebas, montserrat, oswald, opensans } from "@/config/fonts";
+import { bebas, montserrat, oswald, opensans, anton } from "@/config/fonts";
 
 import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
@@ -47,7 +47,7 @@ export default function RootLayout({
     <html
       suppressHydrationWarning
       lang="en"
-      className={`${oswald.variable} ${bebas.variable} ${opensans.className} min-h-screen text-foreground bg-background antialiased`}
+      className={`${oswald.variable} ${bebas.variable} ${anton.variable} ${opensans.className} min-h-screen text-foreground bg-background antialiased`}
     >
       <head />
       <body>

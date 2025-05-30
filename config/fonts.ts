@@ -1,3 +1,4 @@
+// fonts.ts
 import {
   Bebas_Neue,
   Playfair_Display,
@@ -8,6 +9,7 @@ import {
   Montserrat,
   Open_Sans,
   Oswald,
+  Anton
 } from "next/font/google";
 
 type Props = {
@@ -17,6 +19,11 @@ type Props = {
   display: string | string[];
 };
 
+export const anton = Anton({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-anton",
+});
 export const opensans = Open_Sans({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],

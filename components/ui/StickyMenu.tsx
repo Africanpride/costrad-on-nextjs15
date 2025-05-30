@@ -7,73 +7,64 @@ import MainLogo from "@/components/ui/MainLogo";
 import { WebMenu } from "@/components/ui/WebMenu";
 import SlideInMenu from "@/components/SlideInMenu";
 import { SignInButton } from "./auth/signin-button";
-import { User } from "@heroui/react";
 import { client } from "@/lib/auth-client";
 import { Skeleton } from "./skeleton";
+import { useDevice } from "@/hooks/useDevice"; // orientation + width-aware device hook
 
 export default function StickyMenu() {
   const [isFixed, setIsFixed] = useState(false);
-  const pathname = usePathname(); // Get the current route
+  const pathname = usePathname();
 
-  const {
-    data: session,
-    isPending, //loading state
-    error, //error object
-  } = client.useSession();
-
-  // Define pages where StickyMenu should NOT be displayed
-  // const hideStickyMenu = pathname.startsWith("/auth");
+  const { data: session, isPending } = client.useSession();
+  const { isMobile, isDesktop } = useDevice();
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsFixed(true);
-      } else {
-        setIsFixed(false);
-      }
+      setIsFixed(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // If the current path is in the hide list, don't render the menu
-  // if (hideStickyMenu) return null;
-
   return (
     <div
       id="menu"
       className={clsx(
-        "w-full block transition-all shadow  bg-background",
+        "w-full block transition-all shadow bg-background",
         isFixed
           ? "fixed top-0 left-0 right-0 duration-600 z-50 py-3.5"
-          : "relative py-5 "
+          : "relative py-5"
       )}
     >
       <div className="flex items-center justify-between px-2 py-2">
         <MainLogo />
-        <div className="flex items-center gap-x-4">
-          <div className="sm:block hidden  p-2 px-6 rounded-full">
-            <WebMenu />
-          </div>
-        </div>
-        <div className="sm:flex cursor-pointer items-center gap-x-3 hidden">
-          {isPending ? (
-            <div className="flex items-center space-x-4">
-              <Skeleton className="h-12 w-12 rounded-full" />
-              <div className="space-y-2">
-                <Skeleton className="h-4 w-[250px]" />
-                <Skeleton className="h-4 w-[200px]" />
-              </div>
-            </div>
-          ) : (
-            <SignInButton />
-          )}
-        </div>
 
-        <div className="sm:hidden block">
-          <SlideInMenu />
-        </div>
+        {isDesktop && (
+          <div className="flex items-center gap-x-4">
+            <div className="p-2 px-6 rounded-full">
+              <WebMenu />
+            </div>
+          </div>
+        )}
+
+        {isDesktop && (
+          <div className="flex cursor-pointer items-center gap-x-3">
+            {isPending ? (
+              <div className="flex items-center space-x-4">
+                <Skeleton className="h-12 w-12 rounded-full" />
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-[250px]" />
+                  <Skeleton className="h-4 w-[200px]" />
+                </div>
+              </div>
+            ) : (
+              <SignInButton />
+            )}
+          </div>
+        )}
+
+        {isMobile && <SlideInMenu />}
       </div>
     </div>
   );

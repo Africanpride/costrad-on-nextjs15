@@ -1,5 +1,6 @@
 'use client';
 
+import HeroSection from '@/components/HeroSection';
 import Start from '@/components/Start';
 import Preloader from '@/components/ui/animations/Preloader';
 import BookIntro from '@/components/ui/BookIntro';
@@ -31,6 +32,7 @@ export default function Home() {
       <AnimatePresence mode='wait'>
         {isLoading && <Preloader />}
       </AnimatePresence>
+      <HeroSection />
       <Start />
       <BookIntro />
       <Stage1 />
