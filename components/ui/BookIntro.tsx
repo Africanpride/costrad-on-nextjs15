@@ -19,7 +19,7 @@ const BookIntro = (props: Props) => {
               Discover the Power of Strategic Voting
             </h3>
             <p className='mb-8 text-foreground lg:text-lg'>
-              The Strategic Voter isn’t just a book; it’s a guide to
+              COSTrAD isn’t just a book; it’s a guide to
               reclaiming your authority as a co-ruler of governance under God's
               principles. Learn how every decision at the ballot shapes the
               future of your nation, your generation, and your legacy. Equip
@@ -59,19 +59,19 @@ const BookIntro = (props: Props) => {
 
             <div className='relative aspect-[8/5] size-full min-h-74'>
               <div className='absolute right-0 top-0 z-40 flex aspect-[3/5] w-3/5 -translate-x-[24%] translate-y-[24%] -rotate-[30deg] justify-center text-clip rounded-3xl bg-background shadow-lg shadow-foreground/20 md:max-xl:-translate-x-[8%] md:max-xl:translate-y-[16%]'>
-                <Image src={'/images/cover.png'} alt="The Strategic Voter" width={400} height={400} className='absolute inset-0 rounded-3xl' style={{
+                <Image src={'/images/cover.png'} alt="COSTrAD" width={400} height={400} className='absolute inset-0 rounded-3xl' style={{
                   width: 'auto',
                   height: 'auto'
                 }} />
               </div>
               <div className='absolute right-0 top-0 z-40 flex aspect-[3/5] w-3/5 -translate-x-[16%] translate-y-[8%] -rotate-[15deg] justify-center text-clip rounded-3xl bg-background shadow-xl shadow-foreground/20 md:max-xl:-translate-x-[6%] md:max-xl:translate-y-[6%]'>
-                <Image src={'/images/cover.png'} alt="The Strategic Voter" width={400} height={400} className='absolute inset-0 rounded-3xl' style={{
+                <Image src={'/images/cover.png'} alt="COSTrAD" width={400} height={400} className='absolute inset-0 rounded-3xl' style={{
                   width: 'auto',
                   height: 'auto'
                 }} />
               </div>
               <div className='absolute right-0 top-0 z-40 flex aspect-[3/5] w-3/5 items-center justify-center text-clip rounded-3xl  '>
-                <Image src={'/images/cover.png'} alt="The Strategic Voter" width={400} height={400} className='absolute inset-0 rounded-3xl shadow-xl shadow-foreground/20' style={{
+                <Image src={'/images/cover.png'} alt="COSTrAD" width={400} height={400} className='absolute inset-0 rounded-3xl shadow-xl shadow-foreground/20' style={{
                   width: 'auto',
                   height: 'auto'
                 }} />

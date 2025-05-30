@@ -142,5 +142,5 @@ export const menuItems = [
 
 export const shareSocial = {
   url: 'https://www.costrad.org',
-  title: 'The Strategic Voter - By: Dr. Abu Bako'
+  title: 'COSTrAD - By: Dr. Abu Bako'
 }

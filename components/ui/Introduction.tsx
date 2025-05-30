@@ -15,11 +15,11 @@ const Introduction = (props: Props) => {
         <div className={' text-gray-500 text-3xl uppercase font-light'}>An Overview</div>
         <div className='w-1/3 text-red-500'>&#8212;</div>
         <div className={`${bebas.className} pb-4 md:leading-[3.7rem] `}>The <br /> Strategic <br /> Voter</div>{' '}
-        <Image src={'/images/favicon.png'} width={250} height={250} alt='The Strategic Voter' className='rounded-3xl md:pr-4' />
+        <Image src={'/images/favicon.png'} width={250} height={250} alt='COSTrAD' className='rounded-3xl md:pr-4' />
       </div>
       <div className='md:col-span-2 md:text-xl space-y-2  '>
         <p>
-          This book, <span className='text-red-500'>"The Strategic Voter Volume 1"</span> by Dr. Abu Bako, is a
+          This book, <span className='text-red-500'>"COSTrAD Volume 1"</span> by Dr. Abu Bako, is a
           valuable resource that equips readers with the knowledge and skills
           necessary to make informed decisions at the polls. Written by a
           renowned expert in leadership and governance, the book provides

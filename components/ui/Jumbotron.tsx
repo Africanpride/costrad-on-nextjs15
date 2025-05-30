@@ -27,7 +27,7 @@ export default function Jumbotron({
         <div className={`relative w-full h-[400px] ${height}  overflow-hidden`}>
           <Image
             src={`/images/${heroImage}`}
-            alt="The Strategic Voter"
+            alt="COSTrAD"
             fill={true}
             priority
             className="object-cover object-center"

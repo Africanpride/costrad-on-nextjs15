@@ -55,8 +55,8 @@ const Section2 = () => {
       <div className='text-[6.5rem] md:text-[12.5rem] md:leading-[0.8] md:mt-10 absolute -left-14 bottom-16 md:bottom-5 '>
         <div className='w-full opacity-20'>
           <Marquee className=' ' speed={70}>
-            <p ref={firstText}> The Strategic Voter &#x2014; </p>
-            <p ref={secondText}> The Strategic Voter &#x2014; </p>
+            <p ref={firstText}> COSTrAD &#x2014; </p>
+            <p ref={secondText}> COSTrAD &#x2014; </p>
           </Marquee>
         </div>
       </div>

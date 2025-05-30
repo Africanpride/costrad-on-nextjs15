@@ -4,11 +4,11 @@ export default function Privacy() {
   return (
 <>
     <div className="max-w-7xl mx-auto  md:p-8  space-y-6" >
-        <h1 className="text-5xl  mb-4">Privacy Policy for The Strategic Voter</h1>
+        <h1 className="text-5xl  mb-4">Privacy Policy for COSTrAD</h1>
 
         <section className="">
             <h2 className="text-2xl font-semibold mb-2">Introduction</h2>
-            <p>The Strategic Voter is committed to protecting the privacy and security of our members and visitors to our website. This Privacy Policy explains how we collect, use, and protect your personal information when you interact with us online and offline. By using our website or services, you consent to the terms of this Privacy Policy.</p>
+            <p>COSTrAD is committed to protecting the privacy and security of our members and visitors to our website. This Privacy Policy explains how we collect, use, and protect your personal information when you interact with us online and offline. By using our website or services, you consent to the terms of this Privacy Policy.</p>
         </section>
 
         <section className="">
@@ -76,7 +76,7 @@ export default function Privacy() {
             <h2 className="text-2xl font-semibold mb-2">Contact Us</h2>
             <p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:</p>
             <p className="mt-2">
-            The Strategic Voter<br />
+            COSTrAD<br />
             C/O Logos-Rhema Foundation, Behind Trade Fair, La. Accra. <br />
             Email: info@strategic-voter.com<br />
             Phone: +233200201334

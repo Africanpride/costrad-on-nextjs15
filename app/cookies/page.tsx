@@ -4,12 +4,12 @@ export default function CookiePolicy() {
   return (
     <>
     <div className="max-w-7xl mx-auto  md:p-8  space-y-6" >
-    <h1 className="text-5xl  mb-4">Cookie Policy for The Strategic Voter</h1>
+    <h1 className="text-5xl  mb-4">Cookie Policy for COSTrAD</h1>
 
         <section className="">
           <h2 className="text-2xl font-bold mb-2">Introduction</h2>
           <p>
-            The Strategic Voter is committed to ensuring the privacy and security of our website visitors. This Cookie Policy explains how we use cookies and similar tracking technologies on our website to enhance your user experience and provide you with relevant content and services.
+            COSTrAD is committed to ensuring the privacy and security of our website visitors. This Cookie Policy explains how we use cookies and similar tracking technologies on our website to enhance your user experience and provide you with relevant content and services.
           </p>
         </section>
 
@@ -86,7 +86,7 @@ export default function CookiePolicy() {
             If you have any questions or concerns about this Cookie Policy or our use of cookies, please contact us at:
           </p>
           <p className="mt-2">
-            The Strategic Voter<br />
+            COSTrAD<br />
             C/O Logos-Rhema Foundation, Behind Trade Fair, La. Accra. <br />
             Email: info@strategic-voter.com<br />
             Phone: +233200201334

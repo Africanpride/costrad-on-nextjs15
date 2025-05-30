@@ -59,7 +59,7 @@ type Props = {
 
 export default function SocialShare({
     shareUrl = "https://www.thestrategicvoter.com",
-    title = "The Strategic Voter - by Dr. Abu Bako",
+    title = "COSTrAD - by Dr. Abu Bako",
 }
 ) {
 

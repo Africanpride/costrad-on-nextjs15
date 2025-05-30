@@ -7,8 +7,8 @@ export default function AdminLayout({
 }) {
   return (
     <>
-    <Toaster />
     {children}
+    <Toaster />
     </>
 
   )

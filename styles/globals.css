@@ -15,8 +15,9 @@
   h3,
   h4,
   h5 {
-    font-family: var(--font-plusJakartaSans);
-    font-weight: 200; /* Default weight, adjust as needed */
+    font-family: var(--font-opensans);
+    font-weight: 300; /* Default weight, adjust as needed */
+    text-transform: uppercase; /* Uppercase for all headings */
   }
 }
 
