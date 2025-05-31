@@ -1,6 +1,8 @@
 "use client";
 import { bebas, oswald } from "@/config/fonts";
+import Image from "next/image";
 import { Avatar, Divider } from "@heroui/react";
+import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import Link from "next/link";
 
 type MainLogoProps = {
@@ -16,17 +18,22 @@ const MainLogo = ({
 }: MainLogoProps) => {
   return (
     <div className="flex h-auto  items-center space-x-3 sm:space-x-3 cursor-pointer ">
-      <Link href={"/"}>
-        <Avatar
-          className={`${logoSize} text-large  `}
-          src={"/images/costrad.png"}
-        />
+      <Link href="/" className="!opacity-100">
+        <div className={`relative rounded-full overflow-hidden ${logoSize}`}>
+          <Image
+            src="/images/costrad.png"
+            alt="COSTrAD"
+            fill
+            className="object-cover"
+          />
+        </div>
       </Link>
+
       {!hideText && (
         <Link href={"/"}>
           {/* <Divider orientation='vertical' className='bg-gray-300' /> */}
           <div
-            className={`${oswald.className} ${textColor} uppercase text-xs md:text-sm pl-3 border-left 
+            className={`${oswald.className} ${textColor} uppercase text-[9px] md:text-sm pl-3 border-left 
                     border-dotted border-l-indigo-500/50  border-l-1  border-style-dotted           
                         sm:leading-[1.2rem] font-light `}
           >

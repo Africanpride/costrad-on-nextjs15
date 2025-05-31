@@ -63,7 +63,7 @@ const Donate = ({
         <div className="container sm:text-center">
           <div className="mx-auto flex max-w-5xl flex-col gap-6">
             <h1 className="text-3xl  lg:text-6xl">{heading}</h1>
-            <p className="text-balance text-muted-foreground lg:text-lg">
+            <p className="text-balance text-current lg:text-lg">
               {description}
             </p>
           </div>
@@ -107,7 +107,7 @@ const Donate = ({
               <span className="">COSTrAD</span> &nbsp; Giving Guide
             </h1>
 
-            <p className="mt-3 text-lg text-current  max-w-5xl">
+            <p className="mt-3 text-current  max-w-5xl">
               We present several payment options, including Discover,
               MasterCard, American Express, Paypal, and Visa. Our customer
               service team is available to take your call between 9 a.m. and 5
