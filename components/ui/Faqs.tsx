@@ -1,10 +1,9 @@
 "use client"
-import { bebas } from "@/config/fonts";
 import { Accordion, AccordionItem } from "@heroui/react";
 import { LucideArrowLeft } from "lucide-react";
 import Link from "next/link";
 
-export default function Faqs() {
+export default function FaqsComponent() {
 
     const faqData = [
         {
@@ -92,15 +91,15 @@ export default function Faqs() {
 
 
     return (
-        <Accordion showDivider={true} selectionBehavior="toggle"  >
+        <Accordion>
             {faqData.map((item) => (
                 <AccordionItem
-                    indicator={<LucideArrowLeft className="text-red-500" />}
+                    indicator={<LucideArrowLeft className="text-primary" />}
                     key={item.key}
                     title={item.question}
                     aria-label={item.question}
                     classNames={{
-                        title: `font-bold text-lg`
+                        title: ` text-4xl`,
                     }}
                 >
                     <div className="text-base py-5">

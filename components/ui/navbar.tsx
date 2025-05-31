@@ -35,8 +35,8 @@ export const Navbar = () => {
         input: "text-sm",
       }}
       endContent={
-        <Kbd className="hidden lg:inline-block" keys={["command"]}>
-          K
+        <Kbd className="hidden lg:inline-block">
+          ⌘K
         </Kbd>
       }
       labelPlacement="outside"
@@ -116,15 +116,15 @@ export const Navbar = () => {
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
-                color={
+                className={
                   index === 2
-                    ? "primary"
+                    ? "text-primary"
                     : index === siteConfig.navMenuItems.length - 1
-                      ? "danger"
-                      : "foreground"
+                      ? "text-danger"
+                      : "text-foreground"
                 }
                 href="#"
-                size="lg"
+                // size="lg" // Remove or replace if not supported
               >
                 {item.label}
               </Link>

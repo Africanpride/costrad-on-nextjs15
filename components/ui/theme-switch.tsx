@@ -12,7 +12,10 @@ import { LucideMoonStar } from "lucide-react";
 
 export interface ThemeSwitchProps {
   className?: string;
-  classNames?: SwitchProps["classNames"];
+  classNames?: {
+    base?: string;
+    wrapper?: string;
+  };
   text?: string;
   displayText?: boolean;
   size?: number;

@@ -1,44 +1,51 @@
-    "use client";
-    import React, { useEffect, useRef } from 'react';
-    import LocomotiveScroll from 'locomotive-scroll';
-    import 'locomotive-scroll/dist/locomotive-scroll.css';
-    import { useRouter } from 'next/router';
-    const SmoothScroll: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
-        const containerRef = useRef<HTMLDivElement | null>(null);
-        const locomotiveRef = useRef<LocomotiveScroll | null>(null);
-        const router = useRouter();
+'use client';
+import React, { useEffect, useRef } from 'react';
+import 'locomotive-scroll/dist/locomotive-scroll.css';
+import { useRouter } from 'next/router';
 
-        useEffect(() => {
-            if (!containerRef.current) return;
+const SmoothScroll: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const locomotiveRef = useRef<any>(null);
+  const router = useRouter();
 
-            locomotiveRef.current = new LocomotiveScroll({
-                el: containerRef.current,
-                smooth: true,
-                // Add any other options you need
-            });
+  useEffect(() => {
+    if (!containerRef.current) return;
 
-            // Update Locomotive Scroll on route changes (important for Next.js)
-            const routerChangeHandler = () => {
-                (locomotiveRef.current as any)?.update?.();
-            };
+    let scrollInstance: any = null;
 
-            router.events.on('routeChangeComplete', routerChangeHandler);
+    import('locomotive-scroll').then((LocomotiveModule) => {
+      const LocomotiveScroll = LocomotiveModule.default;
 
-            return () => {
-                router.events.off('routeChangeComplete', routerChangeHandler);
-                locomotiveRef.current?.destroy();
-            };
-        }, [router]);
+      scrollInstance = new LocomotiveScroll({
+        el: containerRef.current!,
+        smooth: true,
+      });
 
-        useEffect(() => {
-            (locomotiveRef.current as any)?.update?.();
-        }, [children]);
+      locomotiveRef.current = scrollInstance;
 
-        return (
-            <div className="app-container" data-scroll-container ref={containerRef}>
-                {children}
-            </div>
-        );
-    };
+      const routerChangeHandler = () => {
+        scrollInstance?.update?.();
+      };
 
-    export default SmoothScroll;
+      router.events.on('routeChangeComplete', routerChangeHandler);
+
+      // Cleanup
+      return () => {
+        router.events.off('routeChangeComplete', routerChangeHandler);
+        scrollInstance?.destroy();
+      };
+    });
+  }, [router]);
+
+  useEffect(() => {
+    locomotiveRef.current?.update?.();
+  }, [children]);
+
+  return (
+    <div className="app-container" data-scroll-container ref={containerRef}>
+      {children}
+    </div>
+  );
+};
+
+export default SmoothScroll;
