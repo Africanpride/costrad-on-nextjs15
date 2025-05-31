@@ -59,109 +59,111 @@ export default function BillingSection() {
         </TabsList>
 
         <TabsContent value="overview" className="space-y-6">
-          <Card className="border-zinc-200 dark:border-zinc-800 dark:bg-zinc-950">
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                <div>
-                  <CardTitle className="text-zinc-900 dark:text-zinc-100">
-                    Current Plan
-                  </CardTitle>
-                  <CardDescription className="text-zinc-500 dark:text-zinc-400">
-                    You are currently on the Pro plan.
-                  </CardDescription>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <Card className="border-zinc-200 dark:border-zinc-800 dark:bg-zinc-950">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle className="text-zinc-900 dark:text-zinc-100">
+                      Current Plan
+                    </CardTitle>
+                    <CardDescription className="text-zinc-500 dark:text-zinc-400">
+                      You are currently on the Pro plan.
+                    </CardDescription>
+                  </div>
+                  <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100 hover:bg-green-100 dark:hover:bg-green-900">
+                    Active
+                  </Badge>
                 </div>
-                <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100 hover:bg-green-100 dark:hover:bg-green-900">
-                  Active
-                </Badge>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-end justify-between">
-                <div>
-                  <p className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
-                    $49
-                  </p>
-                  <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                    per month
-                  </p>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-end justify-between">
+                  <div>
+                    <p className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
+                      $49
+                    </p>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                      per month
+                    </p>
+                  </div>
+                  <Button className="bg-black dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200">
+                    Change plan
+                  </Button>
                 </div>
-                <Button className="bg-black dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200">
-                  Change plan
-                </Button>
-              </div>
-              <div className="space-y-1">
-                <div className="flex items-center justify-between text-sm">
-                  <p className="text-zinc-500 dark:text-zinc-400">
-                    Next billing date
-                  </p>
-                  <p className="font-medium text-zinc-900 dark:text-zinc-100">
-                    May 1, 2023
-                  </p>
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between text-sm">
+                    <p className="text-zinc-500 dark:text-zinc-400">
+                      Next billing date
+                    </p>
+                    <p className="font-medium text-zinc-900 dark:text-zinc-100">
+                      May 1, 2023
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <p className="text-zinc-500 dark:text-zinc-400">
+                      Billing cycle
+                    </p>
+                    <p className="font-medium text-zinc-900 dark:text-zinc-100">
+                      Monthly
+                    </p>
+                  </div>
                 </div>
-                <div className="flex items-center justify-between text-sm">
-                  <p className="text-zinc-500 dark:text-zinc-400">
-                    Billing cycle
-                  </p>
-                  <p className="font-medium text-zinc-900 dark:text-zinc-100">
-                    Monthly
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
 
-          <Card className="border-zinc-200 dark:border-zinc-800 dark:bg-zinc-950">
-            <CardHeader>
-              <CardTitle className="text-zinc-900 dark:text-zinc-100">
-                Usage
-              </CardTitle>
-              <CardDescription className="text-zinc-500 dark:text-zinc-400">
-                Your current usage for this billing period.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-sm">
-                  <p className="font-medium text-zinc-900 dark:text-zinc-100">
-                    API Requests
-                  </p>
-                  <p className="text-zinc-500 dark:text-zinc-400">
-                    12,543 / 50,000
-                  </p>
+            <Card className="border-zinc-200 dark:border-zinc-800 dark:bg-zinc-950">
+              <CardHeader>
+                <CardTitle className="text-zinc-900 dark:text-zinc-100">
+                  Usage
+                </CardTitle>
+                <CardDescription className="text-zinc-500 dark:text-zinc-400">
+                  Your current usage for this billing period.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-sm">
+                    <p className="font-medium text-zinc-900 dark:text-zinc-100">
+                      API Requests
+                    </p>
+                    <p className="text-zinc-500 dark:text-zinc-400">
+                      12,543 / 50,000
+                    </p>
+                  </div>
+                  <Progress
+                    value={25}
+                    className="h-2 bg-zinc-100 dark:bg-zinc-800"
+                  />
                 </div>
-                <Progress
-                  value={25}
-                  className="h-2 bg-zinc-100 dark:bg-zinc-800"
-                />
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-sm">
-                  <p className="font-medium text-zinc-900 dark:text-zinc-100">
-                    Storage
-                  </p>
-                  <p className="text-zinc-500 dark:text-zinc-400">
-                    2.1 GB / 10 GB
-                  </p>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-sm">
+                    <p className="font-medium text-zinc-900 dark:text-zinc-100">
+                      Storage
+                    </p>
+                    <p className="text-zinc-500 dark:text-zinc-400">
+                      2.1 GB / 10 GB
+                    </p>
+                  </div>
+                  <Progress
+                    value={21}
+                    className="h-2 bg-zinc-100 dark:bg-zinc-800"
+                  />
                 </div>
-                <Progress
-                  value={21}
-                  className="h-2 bg-zinc-100 dark:bg-zinc-800"
-                />
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-sm">
-                  <p className="font-medium text-zinc-900 dark:text-zinc-100">
-                    Team Members
-                  </p>
-                  <p className="text-zinc-500 dark:text-zinc-400">3 / 10</p>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-sm">
+                    <p className="font-medium text-zinc-900 dark:text-zinc-100">
+                      Team Members
+                    </p>
+                    <p className="text-zinc-500 dark:text-zinc-400">3 / 10</p>
+                  </div>
+                  <Progress
+                    value={30}
+                    className="h-2 bg-zinc-100 dark:bg-zinc-800"
+                  />
                 </div>
-                <Progress
-                  value={30}
-                  className="h-2 bg-zinc-100 dark:bg-zinc-800"
-                />
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </div>
         </TabsContent>
 
         <TabsContent value="payment-methods" className="space-y-6">

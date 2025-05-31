@@ -20,7 +20,7 @@ const footerLinks = [
   {
     title: "Wise Products",
     links: [
-      { label: "My Account", href: "/account" },
+      { label: "My Dashboard", href: "/dashboard" },
       { label: "Getting Started", href: "/getting-started" },
       { label: "Frequently Asked Questions", href: "/faqs" },
       { label: "Receive money", href: "/receive" },

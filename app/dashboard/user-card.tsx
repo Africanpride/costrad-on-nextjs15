@@ -71,315 +71,380 @@ export default function UserCard(props: {
   const [emailVerificationPending, setEmailVerificationPending] =
     useState<boolean>(false);
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>User</CardTitle>
-      </CardHeader>
-      <CardContent className="grid gap-8 grid-cols-1">
-        <div className="flex items-start justify-between">
-          <div className="flex items-center gap-4">
-            <Avatar className="hidden h-9 w-9 sm:flex ">
-              <AvatarImage
-                src={session?.user.image || "#"}
-                alt="Avatar"
-                className="object-cover"
-              />
-              <AvatarFallback>{session?.user.name.charAt(0)}</AvatarFallback>
-            </Avatar>
-            <div className="grid gap-1">
-              <p className="text-sm font-medium leading-none">
-                {session?.user.name}
-              </p>
-              <p className="text-sm">{session?.user.email}</p>
+    <div className="space-y-6">
+      <div>
+        <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+          Account
+        </h2>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400">
+          Customize your account settings.
+        </p>
+      </div>
+      <Card>
+        <CardHeader>{/* <CardTitle>User</CardTitle> */}</CardHeader>
+        <CardContent className="grid gap-8 grid-cols-1">
+          <div className="flex items-start justify-between">
+            <div className="flex items-center gap-4">
+              <Avatar className="hidden h-9 w-9 sm:flex ">
+                <AvatarImage
+                  src={session?.user.image || "#"}
+                  alt="Avatar"
+                  className="object-cover"
+                />
+                <AvatarFallback>{session?.user.name.charAt(0)}</AvatarFallback>
+              </Avatar>
+              <div className="grid gap-1">
+                <p className="text-sm font-medium leading-none">
+                  {session?.user.name}
+                </p>
+                <p className="text-sm">{session?.user.email}</p>
+              </div>
             </div>
+            <EditUserDialog />
           </div>
-          <EditUserDialog />
-        </div>
 
-        {session?.user.emailVerified ? null : (
-          <Alert>
-            <AlertTitle>Verify Your Email Address</AlertTitle>
-            <AlertDescription className="text-muted-foreground">
-              Please verify your email address. Check your inbox for the
-              verification email. If you haven't received the email, click the
-              button below to resend.
-            </AlertDescription>
-            <Button
-              size="sm"
-              variant="secondary"
-              className="mt-2"
-              onClick={async () => {
-                await client.sendVerificationEmail(
-                  {
-                    email: session?.user.email || "",
-                  },
-                  {
-                    onRequest(context) {
-                      setEmailVerificationPending(true);
+          {session?.user.emailVerified ? null : (
+            <Alert>
+              <AlertTitle>Verify Your Email Address</AlertTitle>
+              <AlertDescription className="text-muted-foreground">
+                Please verify your email address. Check your inbox for the
+                verification email. If you haven't received the email, click the
+                button below to resend.
+              </AlertDescription>
+              <Button
+                size="sm"
+                variant="secondary"
+                className="mt-2"
+                onClick={async () => {
+                  await client.sendVerificationEmail(
+                    {
+                      email: session?.user.email || "",
                     },
-                    onError(context) {
-                      toast.error(context.error.message);
-                      setEmailVerificationPending(false);
-                    },
-                    onSuccess() {
-                      toast.success("Verification email sent successfully");
-                      setEmailVerificationPending(false);
-                    },
-                  },
+                    {
+                      onRequest(context) {
+                        setEmailVerificationPending(true);
+                      },
+                      onError(context) {
+                        toast.error(context.error.message);
+                        setEmailVerificationPending(false);
+                      },
+                      onSuccess() {
+                        toast.success("Verification email sent successfully");
+                        setEmailVerificationPending(false);
+                      },
+                    }
+                  );
+                }}
+              >
+                {emailVerificationPending ? (
+                  <Loader2 size={15} className="animate-spin" />
+                ) : (
+                  "Resend Verification Email"
+                )}
+              </Button>
+            </Alert>
+          )}
+
+          <div className="border-l-2 px-2 w-max gap-1 flex flex-col text-forground ">
+            <p className="text-xs font-medium ">Active Sessions</p>
+            {props.activeSessions
+              .filter((session) => session.userAgent)
+              .map((session) => {
+                return (
+                  <div key={session.id}>
+                    <div className="flex items-center gap-2 text-sm  font-medium ">
+                      {new UAParser(session.userAgent || "").getDevice()
+                        .type === "mobile" ? (
+                        <MobileIcon className="text-red-500" />
+                      ) : (
+                        <Laptop size={16} />
+                      )}
+                      {new UAParser(session.userAgent || "").getOS().name},{" "}
+                      {new UAParser(session.userAgent || "").getBrowser().name}
+                      <button
+                        className=" opacity-80  cursor-pointer text-xs border-muted-foreground text-danger  underline "
+                        onClick={async () => {
+                          setIsTerminating(session.id);
+                          const res = await client.revokeSession({
+                            token: session.token,
+                          });
+
+                          if (res.error) {
+                            toast.error(res.error.message);
+                          } else {
+                            toast.success("Session terminated successfully");
+                          }
+                          router.refresh();
+                          router.push("/");
+                          setIsTerminating(undefined);
+                        }}
+                      >
+                        {isTerminating === session.id ? (
+                          <Loader2 size={15} className="animate-spin" />
+                        ) : session.id === props.session?.session.id ? (
+                          "Sign Out of Application"
+                        ) : (
+                          "Terminate"
+                        )}
+                      </button>
+                    </div>
+                  </div>
                 );
-              }}
-            >
-              {emailVerificationPending ? (
-                <Loader2 size={15} className="animate-spin" />
-              ) : (
-                "Resend Verification Email"
-              )}
-            </Button>
-          </Alert>
-        )}
-
-
-        <div className="border-y py-4 flex items-center flex-wrap justify-between gap-2">
-          <div className="flex flex-col gap-2">
-            <p className="text-sm">Passkeys</p>
-            <div className="flex gap-2 flex-wrap">
-              <AddPasskey />
-              <ListPasskeys />
-            </div>
+              })}
           </div>
-          <div className="flex flex-col gap-2">
-            <p className="text-sm">Two Factor</p>
-            <div className="flex gap-2">
-              {!!session?.user.twoFactorEnabled && (
-                <Dialog>
+          <div className="border-y py-4 flex items-center flex-wrap justify-between gap-2">
+            <div className="flex flex-col gap-2">
+              <p className="text-sm">Passkeys</p>
+              <div className="flex gap-2 flex-wrap">
+                <AddPasskey />
+                <ListPasskeys />
+              </div>
+            </div>
+            <div className="flex flex-col gap-2">
+              <p className="text-sm">Two Factor</p>
+              <div className="flex gap-2">
+                {!!session?.user.twoFactorEnabled && (
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" className="gap-2">
+                        <QrCode size={16} />
+                        <span className="md:text-sm text-xs">Scan QR Code</span>
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px] w-11/12">
+                      <DialogHeader>
+                        <DialogTitle>Scan QR Code</DialogTitle>
+                        <DialogDescription>
+                          Scan the QR code with your TOTP app
+                        </DialogDescription>
+                      </DialogHeader>
+
+                      {twoFactorVerifyURI ? (
+                        <>
+                          <div className="flex items-center justify-center">
+                            <QRCode value={twoFactorVerifyURI} />
+                          </div>
+                          <div className="flex gap-2 items-center justify-center">
+                            <p className="text-sm text-muted-foreground">
+                              Copy URI to clipboard
+                            </p>
+                            <CopyButton textToCopy={twoFactorVerifyURI} />
+                          </div>
+                        </>
+                      ) : (
+                        <div className="flex flex-col gap-2">
+                          <PasswordInput
+                            value={twoFaPassword}
+                            onChange={(e: {
+                              target: { value: SetStateAction<string> };
+                            }) => setTwoFaPassword(e.target.value)}
+                            placeholder="Enter Password"
+                          />
+                          <Button
+                            onClick={async () => {
+                              if (twoFaPassword.length < 8) {
+                                toast.error(
+                                  "Password must be at least 8 characters"
+                                );
+                                return;
+                              }
+                              await client.twoFactor.getTotpUri(
+                                {
+                                  password: twoFaPassword,
+                                },
+                                {
+                                  onSuccess(context) {
+                                    setTwoFactorVerifyURI(context.data.totpURI);
+                                  },
+                                }
+                              );
+                              setTwoFaPassword("");
+                            }}
+                          >
+                            Show QR Code
+                          </Button>
+                        </div>
+                      )}
+                    </DialogContent>
+                  </Dialog>
+                )}
+                <Dialog
+                  open={twoFactorDialog}
+                  onOpenChange={setTwoFactorDialog}
+                >
                   <DialogTrigger asChild>
-                    <Button variant="outline" className="gap-2">
-                      <QrCode size={16} />
-                      <span className="md:text-sm text-xs">Scan QR Code</span>
+                    <Button
+                      variant={
+                        session?.user.twoFactorEnabled
+                          ? "destructive"
+                          : "outline"
+                      }
+                      className="gap-2"
+                    >
+                      {session?.user.twoFactorEnabled ? (
+                        <ShieldOff size={16} />
+                      ) : (
+                        <ShieldCheck size={16} />
+                      )}
+                      <span className="md:text-sm text-xs">
+                        {session?.user.twoFactorEnabled
+                          ? "Disable 2FA"
+                          : "Enable 2FA"}
+                      </span>
                     </Button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[425px] w-11/12">
                     <DialogHeader>
-                      <DialogTitle>Scan QR Code</DialogTitle>
+                      <DialogTitle>
+                        {session?.user.twoFactorEnabled
+                          ? "Disable 2FA"
+                          : "Enable 2FA"}
+                      </DialogTitle>
                       <DialogDescription>
-                        Scan the QR code with your TOTP app
+                        {session?.user.twoFactorEnabled
+                          ? "Disable the second factor authentication from your account"
+                          : "Enable 2FA to secure your account"}
                       </DialogDescription>
                     </DialogHeader>
 
                     {twoFactorVerifyURI ? (
-                      <>
+                      <div className="flex flex-col gap-2">
                         <div className="flex items-center justify-center">
                           <QRCode value={twoFactorVerifyURI} />
                         </div>
-                        <div className="flex gap-2 items-center justify-center">
-                          <p className="text-sm text-muted-foreground">
-                            Copy URI to clipboard
-                          </p>
-                          <CopyButton textToCopy={twoFactorVerifyURI} />
-                        </div>
-                      </>
+                        <Label htmlFor="password">
+                          Scan the QR code with your TOTP app
+                        </Label>
+                        <Input
+                          value={twoFaPassword}
+                          onChange={(e) => setTwoFaPassword(e.target.value)}
+                          placeholder="Enter OTP"
+                        />
+                      </div>
                     ) : (
                       <div className="flex flex-col gap-2">
+                        <Label htmlFor="password">Password</Label>
                         <PasswordInput
+                          id="password"
+                          placeholder="Password"
                           value={twoFaPassword}
-                          onChange={(e: { target: { value: SetStateAction<string>; }; }) => setTwoFaPassword(e.target.value)}
-                          placeholder="Enter Password"
+                          onChange={(e: {
+                            target: { value: SetStateAction<string> };
+                          }) => setTwoFaPassword(e.target.value)}
                         />
-                        <Button
-                          onClick={async () => {
-                            if (twoFaPassword.length < 8) {
-                              toast.error(
-                                "Password must be at least 8 characters",
-                              );
-                              return;
-                            }
-                            await client.twoFactor.getTotpUri(
-                              {
-                                password: twoFaPassword,
-                              },
-                              {
-                                onSuccess(context) {
-                                  setTwoFactorVerifyURI(context.data.totpURI);
-                                },
-                              },
+                      </div>
+                    )}
+                    <DialogFooter>
+                      <Button
+                        disabled={isPendingTwoFa}
+                        onClick={async () => {
+                          if (twoFaPassword.length < 8 && !twoFactorVerifyURI) {
+                            toast.error(
+                              "Password must be at least 8 characters"
                             );
-                            setTwoFaPassword("");
-                          }}
-                        >
-                          Show QR Code
-                        </Button>
-                      </div>
-                    )}
-                  </DialogContent>
-                </Dialog>
-              )}
-              <Dialog open={twoFactorDialog} onOpenChange={setTwoFactorDialog}>
-                <DialogTrigger asChild>
-                  <Button
-                    variant={
-                      session?.user.twoFactorEnabled ? "destructive" : "outline"
-                    }
-                    className="gap-2"
-                  >
-                    {session?.user.twoFactorEnabled ? (
-                      <ShieldOff size={16} />
-                    ) : (
-                      <ShieldCheck size={16} />
-                    )}
-                    <span className="md:text-sm text-xs">
-                      {session?.user.twoFactorEnabled
-                        ? "Disable 2FA"
-                        : "Enable 2FA"}
-                    </span>
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px] w-11/12">
-                  <DialogHeader>
-                    <DialogTitle>
-                      {session?.user.twoFactorEnabled
-                        ? "Disable 2FA"
-                        : "Enable 2FA"}
-                    </DialogTitle>
-                    <DialogDescription>
-                      {session?.user.twoFactorEnabled
-                        ? "Disable the second factor authentication from your account"
-                        : "Enable 2FA to secure your account"}
-                    </DialogDescription>
-                  </DialogHeader>
-
-                  {twoFactorVerifyURI ? (
-                    <div className="flex flex-col gap-2">
-                      <div className="flex items-center justify-center">
-                        <QRCode value={twoFactorVerifyURI} />
-                      </div>
-                      <Label htmlFor="password">
-                        Scan the QR code with your TOTP app
-                      </Label>
-                      <Input
-                        value={twoFaPassword}
-                        onChange={(e) => setTwoFaPassword(e.target.value)}
-                        placeholder="Enter OTP"
-                      />
-                    </div>
-                  ) : (
-                    <div className="flex flex-col gap-2">
-                      <Label htmlFor="password">Password</Label>
-                      <PasswordInput
-                        id="password"
-                        placeholder="Password"
-                        value={twoFaPassword}
-                        onChange={(e: { target: { value: SetStateAction<string>; }; }) => setTwoFaPassword(e.target.value)}
-                      />
-                    </div>
-                  )}
-                  <DialogFooter>
-                    <Button
-                      disabled={isPendingTwoFa}
-                      onClick={async () => {
-                        if (twoFaPassword.length < 8 && !twoFactorVerifyURI) {
-                          toast.error("Password must be at least 8 characters");
-                          return;
-                        }
-                        setIsPendingTwoFa(true);
-                        if (session?.user.twoFactorEnabled) {
-                          const res = await client.twoFactor.disable({
-                            //@ts-ignore
-                            password: twoFaPassword,
-                            fetchOptions: {
-                              onError(context) {
-                                toast.error(context.error.message);
-                              },
-                              onSuccess() {
-                                toast("2FA disabled successfully");
-                                setTwoFactorDialog(false);
-                              },
-                            },
-                          });
-                        } else {
-                          if (twoFactorVerifyURI) {
-                            await client.twoFactor.verifyTotp({
-                              code: twoFaPassword,
+                            return;
+                          }
+                          setIsPendingTwoFa(true);
+                          if (session?.user.twoFactorEnabled) {
+                            const res = await client.twoFactor.disable({
+                              //@ts-ignore
+                              password: twoFaPassword,
                               fetchOptions: {
                                 onError(context) {
-                                  setIsPendingTwoFa(false);
-                                  setTwoFaPassword("");
                                   toast.error(context.error.message);
                                 },
                                 onSuccess() {
-                                  toast("2FA enabled successfully");
-                                  setTwoFactorVerifyURI("");
-                                  setIsPendingTwoFa(false);
-                                  setTwoFaPassword("");
+                                  toast("2FA disabled successfully");
                                   setTwoFactorDialog(false);
                                 },
                               },
                             });
-                            return;
+                          } else {
+                            if (twoFactorVerifyURI) {
+                              await client.twoFactor.verifyTotp({
+                                code: twoFaPassword,
+                                fetchOptions: {
+                                  onError(context) {
+                                    setIsPendingTwoFa(false);
+                                    setTwoFaPassword("");
+                                    toast.error(context.error.message);
+                                  },
+                                  onSuccess() {
+                                    toast("2FA enabled successfully");
+                                    setTwoFactorVerifyURI("");
+                                    setIsPendingTwoFa(false);
+                                    setTwoFaPassword("");
+                                    setTwoFactorDialog(false);
+                                  },
+                                },
+                              });
+                              return;
+                            }
+                            const res = await client.twoFactor.enable({
+                              password: twoFaPassword,
+                              fetchOptions: {
+                                onError(context) {
+                                  toast.error(context.error.message);
+                                },
+                                onSuccess(ctx) {
+                                  setTwoFactorVerifyURI(ctx.data.totpURI);
+                                  // toast.success("2FA enabled successfully");
+                                  // setTwoFactorDialog(false);
+                                },
+                              },
+                            });
                           }
-                          const res = await client.twoFactor.enable({
-                            password: twoFaPassword,
-                            fetchOptions: {
-                              onError(context) {
-                                toast.error(context.error.message);
-                              },
-                              onSuccess(ctx) {
-                                setTwoFactorVerifyURI(ctx.data.totpURI);
-                                // toast.success("2FA enabled successfully");
-                                // setTwoFactorDialog(false);
-                              },
-                            },
-                          });
-                        }
-                        setIsPendingTwoFa(false);
-                        setTwoFaPassword("");
-                      }}
-                    >
-                      {isPendingTwoFa ? (
-                        <Loader2 size={15} className="animate-spin" />
-                      ) : session?.user.twoFactorEnabled ? (
-                        "Disable 2FA"
-                      ) : (
-                        "Enable 2FA"
-                      )}
-                    </Button>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
+                          setIsPendingTwoFa(false);
+                          setTwoFaPassword("");
+                        }}
+                      >
+                        {isPendingTwoFa ? (
+                          <Loader2 size={15} className="animate-spin" />
+                        ) : session?.user.twoFactorEnabled ? (
+                          "Disable 2FA"
+                        ) : (
+                          "Enable 2FA"
+                        )}
+                      </Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+              </div>
             </div>
           </div>
-        </div>
-      </CardContent>
-      <CardFooter className="gap-2 justify-between items-center">
-        <ChangePassword />
-        <Button
-          className="gap-2 z-10"
-          variant="secondary"
-          onClick={async () => {
-            setIsSignOut(true);
-            await signOut({
-              fetchOptions: {
-                onSuccess() {
-                  router.push("/");
+        </CardContent>
+        <CardFooter className="gap-2 justify-between items-center">
+          <ChangePassword />
+          <Button
+            className="gap-2 z-10"
+            variant="secondary"
+            onClick={async () => {
+              setIsSignOut(true);
+              await signOut({
+                fetchOptions: {
+                  onSuccess() {
+                    router.push("/");
+                  },
                 },
-              },
-            });
-            setIsSignOut(false);
-          }}
-          disabled={isSignOut}
-        >
-          <span className="text-sm">
-            {isSignOut ? (
-              <Loader2 size={15} className="animate-spin" />
-            ) : (
-              <div className="flex items-center gap-2">
-                <LogOut size={16} />
-                Sign Out
-              </div>
-            )}
-          </span>
-        </Button>
-      </CardFooter>
-    </Card>
+              });
+              setIsSignOut(false);
+            }}
+            disabled={isSignOut}
+          >
+            <span className="text-sm">
+              {isSignOut ? (
+                <Loader2 size={15} className="animate-spin" />
+              ) : (
+                <div className="flex items-center gap-2">
+                  <LogOut size={16} />
+                  Sign Out of Costrad
+                </div>
+              )}
+            </span>
+          </Button>
+        </CardFooter>
+      </Card>
+    </div>
   );
 }
 
@@ -427,21 +492,27 @@ function ChangePassword() {
           <PasswordInput
             id="current-password"
             value={currentPassword}
-            onChange={(e: { target: { value: SetStateAction<string>; }; }) => setCurrentPassword(e.target.value)}
+            onChange={(e: { target: { value: SetStateAction<string> } }) =>
+              setCurrentPassword(e.target.value)
+            }
             autoComplete="new-password"
             placeholder="Password"
           />
           <Label htmlFor="new-password">New Password</Label>
           <PasswordInput
             value={newPassword}
-            onChange={(e: { target: { value: SetStateAction<string>; }; }) => setNewPassword(e.target.value)}
+            onChange={(e: { target: { value: SetStateAction<string> } }) =>
+              setNewPassword(e.target.value)
+            }
             autoComplete="new-password"
             placeholder="New Password"
           />
           <Label htmlFor="password">Confirm Password</Label>
           <PasswordInput
             value={confirmPassword}
-            onChange={(e: { target: { value: SetStateAction<string>; }; }) => setConfirmPassword(e.target.value)}
+            onChange={(e: { target: { value: SetStateAction<string> } }) =>
+              setConfirmPassword(e.target.value)
+            }
             autoComplete="new-password"
             placeholder="Confirm Password"
           />
@@ -475,7 +546,7 @@ function ChangePassword() {
               if (res.error) {
                 toast.error(
                   res.error.message ||
-                    "Couldn't change your password! Make sure it's correct",
+                    "Couldn't change your password! Make sure it's correct"
                 );
               } else {
                 setOpen(false);
