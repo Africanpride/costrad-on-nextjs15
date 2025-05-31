@@ -10,7 +10,7 @@ interface JumbotronProps {
 }
 
 export default function Jumbotron({ 
-  heroImage = "vote.jpg",
+  heroImage = "global.jpg",
   height = 'md:h-[400px]',
   shade = '30'
 }: JumbotronProps) {

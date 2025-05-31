@@ -104,7 +104,7 @@ const Donate = ({
         <div className="border-gray-500/20 gap-4 grid md:border md:gap-8 md:items-center md:p-8 rounded-3xl xl:gap-20">
           <div className="sm:p-4 md:p-8 space-y-5">
             <h1 className="block text-2xl text-current sm:text-3xl lg:text-5xl lg:leading-tight ">
-              <span className="">COSTrAD</span> &nbsp; Giving Guide
+              <span className="">COSTrAD</span> Giving Guide
             </h1>
 
             <p className="mt-3 text-current  max-w-5xl">

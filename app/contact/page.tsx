@@ -277,16 +277,17 @@ export default function ContactPage() {
               </div>
 
               <div className='flex items-center space-x-2 md:col-span-2'>
-                <Checkbox isSelected={isSelected} onValueChange={setIsSelected}>
-                  <label
-                    htmlFor='terms'
-                    className='text-sm font-medium md:leading-none text-muted-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-70'>
-                    I agree to the
-                    <Link href={'/privacy'}>
-                      <span className='ml-1 underline'>privacy policy</span>
-                    </Link>
-                  </label>
-                </Checkbox>
+                <Checkbox
+                  id='privacy-policy'
+                  checked={isSelected}
+                  onChange={(e) => setIsSelected(e.target.checked)}
+                />
+                <label htmlFor='privacy-policy' className='text-sm text-muted-foreground'>
+                  I agree to the{' '}
+                  <Link href='/privacy-policy' className='text-blue-500 hover:underline'>
+                    privacy policy
+                  </Link>
+                </label>
               </div>
 
               <Button

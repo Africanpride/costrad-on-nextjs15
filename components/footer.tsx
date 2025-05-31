@@ -18,7 +18,7 @@ const footerLinks = [
     ],
   },
   {
-    title: "Wise Products",
+    title: "My COSTRAD",
     links: [
       { label: "My Dashboard", href: "/dashboard" },
       { label: "Getting Started", href: "/getting-started" },
@@ -34,9 +34,8 @@ const footerLinks = [
     links: [
       { label: "Family Development Institute (FDI)", href: "/institutes/fdi" },
       { label: "Mindset Transformation Institute (MTI)", href: "/institutes/mti" },
-      { label: "Institute of Government, Govenance and Leadership", href: "/institutes/governance" },
-      { label: "International stock ticker", href: "/stock-ticker" },
-      { label: "Swift/BIC codes", href: "/swift-codes" },
+      { label: "Institute of Economic Affairs (IEA)", href: "/institutes/iea" },
+      { label: "Institute of Government, Govenance and Leadership (IGPP)", href: "/institutes/governance" },
       { label: "Education Training and Development Institute (ETADI)", href: "/institutes/etadi" },
       { label: "Institute of Arts, Sports and Culture (IOASC)", href: "/institutes/ioasc" },
     ],
