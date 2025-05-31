@@ -23,7 +23,7 @@ const footerLinks = [
       { label: "My Dashboard", href: "/dashboard" },
       { label: "Getting Started", href: "/getting-started" },
       { label: "Frequently Asked Questions", href: "/faqs" },
-      { label: "Receive money", href: "/receive" },
+      { label: "How to Donate", href: "/donate" },
       { label: "Assets", href: "/assets" },
 
       { label: "Accept card payments", href: "/accept-payments" },
@@ -33,11 +33,28 @@ const footerLinks = [
     title: "Institutes",
     links: [
       { label: "Family Development Institute (FDI)", href: "/institutes/fdi" },
-      { label: "Mindset Transformation Institute (MTI)", href: "/institutes/mti" },
+      {
+        label: "Mindset Transformation Institute (MTI)",
+        href: "/institutes/mti",
+      },
       { label: "Institute of Economic Affairs (IEA)", href: "/institutes/iea" },
-      { label: "Institute of Government, Govenance and Leadership (IGPP)", href: "/institutes/governance" },
-      { label: "Education Training and Development Institute (ETADI)", href: "/institutes/etadi" },
-      { label: "Institute of Arts, Sports and Culture (IOASC)", href: "/institutes/ioasc" },
+      {
+        label: "Institute of Government, Govenance and Leadership (IGPP)",
+        href: "/institutes/governance",
+      },
+      {
+        label: "Education Training and Development Institute (ETADI)",
+        href: "/institutes/etadi",
+      },
+      {
+        label:
+          "College of Sustainable Transformation and Development (COSTrAD) ",
+        href: "/institutes/costrad",
+      },
+      {
+        label: "Institute of Arts, Sports and Culture (IOASC)",
+        href: "/institutes/ioasc",
+      },
     ],
   },
 ];
@@ -62,10 +79,13 @@ export default function Footer() {
   return (
     <footer className="bg-background text-foreground text-sm border-foreground/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14  pt-8 border-t ">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 mb-10">
           {footerLinks.map((section) => (
-            <div key={section.title}>
-              <h3 className="font-semibold mb-4 text-xl ">{section.title}</h3>
+            <div
+              key={section.title}
+              className={section.title === "Institutes" ? "col-span-2" : ""}
+            >
+              <h3 className="font-semibold mb-4 text-xl">{section.title}</h3>
               <ul className="space-y-2">
                 {section.links.map(({ label, href }) => (
                   <li key={label}>
@@ -77,6 +97,7 @@ export default function Footer() {
               </ul>
             </div>
           ))}
+
           <div>
             <h3 className="font-semibold mb-4 text-xl ">Follow us</h3>
 
@@ -164,7 +185,7 @@ export default function Footer() {
 
         <div className="mt-6 text-xs text-center space-y-2">
           <div className="flex items-center justify-center gap-2">
-            <div>&copy; COSTrAD {siteConfig.year}  </div>
+            <div>&copy; COSTrAD {siteConfig.year} </div>
             <div className="flex gap-x-2">
               <div className="h-2 rounded-full transition-all animate-pulse  w-6 bg-primary dark:bg-primary" />
               <div className="dark:bg-muted h-2 w-2.5 rounded-full bg-sidebar-border transition-all" />
@@ -174,11 +195,12 @@ export default function Footer() {
           </div>
 
           <p className="max-w-4xl text-center mx-auto text-xs pt-4">
-            The College of Sustainable Transformation and Development  &mdash; COSTrAD™ is under the Logos-Rhema Foundation 
-            which is a registered Non-Profit Organization with Reg. number: <span className="text-accent-foreground">CG046792017</span> under the laws of the Republic of Ghana.
-
+            The College of Sustainable Transformation and Development &mdash;
+            COSTrAD™ is under the Logos-Rhema Foundation which is a registered
+            Non-Profit Organization with Reg. number:{" "}
+            <span className="text-accent-foreground">CG046792017</span> under
+            the laws of the Republic of Ghana.
           </p>
-         
         </div>
       </div>
     </footer>
