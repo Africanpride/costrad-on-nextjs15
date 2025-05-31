@@ -1,3 +1,15 @@
+.prominent-titles {
+  display: inline-block;
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+  --tw-gradient-from: #f1dc39 var(--tw-gradient-from-position);
+  --tw-gradient-stops:
+    var(--tw-gradient-from), #c96e05 var(--tw-gradient-via-position),
+    var(--tw-gradient-to);
+  --tw-gradient-to: #8d37d8 var(--tw-gradient-to-position);
+  background-clip: text;
+  color: transparent;
+}
+
 .special-elite-text {
   font-family: var(--font-special-elite);
 }

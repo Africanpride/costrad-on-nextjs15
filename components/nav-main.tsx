@@ -44,8 +44,8 @@ export function NavMain({
         </SidebarMenu>
         <SidebarMenu>
           {items.map((item) => (
-            <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton tooltip={item.title}>
+            <SidebarMenuItem className="cursor-pointer" key={item.title}>
+              <SidebarMenuButton className="cursor-pointer" tooltip={item.title}>
                 {item.icon && <item.icon />}
                 <span>{item.title}</span>
               </SidebarMenuButton>

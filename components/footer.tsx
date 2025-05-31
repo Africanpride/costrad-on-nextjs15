@@ -7,25 +7,22 @@ const footerLinks = [
   {
     title: "Quick Links",
     links: [
+      { label: "About COSTrAD", href: "/about" },
       { label: "Getting Started", href: "/getting-started" },
-      { label: "Security", href: "/security" },
+      { label: "Our Story", href: "/our-story" },
       { label: "Press", href: "/press" },
       { label: "Careers", href: "/careers" },
-      { label: "Service status", href: "/service-status" },
       { label: "Investor relations", href: "/investors" },
-      { label: "Affiliates and partnerships", href: "/affiliates" },
       { label: "Help centre", href: "/help" },
       { label: "Reviews", href: "/reviews" },
-      { label: "Accessibility", href: "/accessibility" },
     ],
   },
   {
     title: "Wise Products",
     links: [
-      { label: "International money transfers", href: "/money-transfers" },
-      { label: "Wise account", href: "/account" },
-      { label: "International debit card", href: "/debit-card" },
-      { label: "Our Story", href: "/our-story" },
+      { label: "My Account", href: "/account" },
+      { label: "Getting Started", href: "/getting-started" },
+      { label: "Frequently Asked Questions", href: "/faqs" },
       { label: "Receive money", href: "/receive" },
       { label: "Assets", href: "/assets" },
 
