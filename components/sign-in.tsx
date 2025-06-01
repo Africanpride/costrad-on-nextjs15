@@ -16,7 +16,7 @@ import { Label } from "@/components/ui/label";
 import { signIn } from "@/lib/auth-client";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { PasswordInput } from "./ui/password-input";
@@ -31,6 +31,9 @@ export default function SignInComponent() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  const searchParams = useSearchParams();
+  const costradCallbackUrl = searchParams.get("callbackUrl") || "/";
+
   // Prepopulate email if saved previously
   useEffect(() => {
     const storedEmail = sessionStorage.getItem("signupEmail");
@@ -43,7 +46,7 @@ export default function SignInComponent() {
 
     try {
       const signInPromise = signIn.email(
-        { email, password, callbackURL: "/", rememberMe },
+        { email, password, callbackURL: costradCallbackUrl, rememberMe },
         {
           onSuccess: () => {
             console.log("Signed in successfully!");
@@ -128,7 +131,11 @@ export default function SignInComponent() {
               <Checkbox onClick={() => setRememberMe(!rememberMe)} />
               <Label>Remember me</Label>
             </div>
-            <Button type="submit" className="w-full cursor-pointer text-background bg-foreground " disabled={loading}>
+            <Button
+              type="submit"
+              className="w-full cursor-pointer text-background bg-foreground "
+              disabled={loading}
+            >
               {loading ? (
                 <Loader2 size={16} className="animate-spin" />
               ) : (
@@ -137,17 +144,16 @@ export default function SignInComponent() {
             </Button>
           </form>
           <SeperatorWithText seperatorText="Or" />
-          
+
           <div className="grid grid-cols-2 gap-2">
             <Button
               id="google-signin"
               variant="outline"
               className="gap-2 z-10 pointer-events-auto cursor-pointer "
-            
               onClick={async () => {
                 await signIn.social({
                   provider: "google",
-                  callbackURL: "/",
+                  callbackURL: costradCallbackUrl,
                 });
               }}
             >
@@ -182,7 +188,7 @@ export default function SignInComponent() {
               onClick={async () => {
                 const { data } = await signIn.social({
                   provider: "microsoft",
-                  callbackURL: "/",
+                  callbackURL: costradCallbackUrl,
                 });
               }}
             >

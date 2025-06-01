@@ -21,12 +21,10 @@ const footerLinks = [
     title: "My COSTRAD",
     links: [
       { label: "My Dashboard", href: "/dashboard" },
+      
       { label: "Getting Started", href: "/getting-started" },
       { label: "Frequently Asked Questions", href: "/faqs" },
       { label: "How to Donate", href: "/donate" },
-      { label: "Assets", href: "/assets" },
-
-      { label: "Accept card payments", href: "/accept-payments" },
     ],
   },
   {
@@ -85,8 +83,8 @@ export default function Footer() {
               key={section.title}
               className={section.title === "Institutes" ? "col-span-2" : ""}
             >
-              <h3 className="font-semibold mb-4 text-xl">{section.title}</h3>
-              <ul className="space-y-2">
+              <h3 className="font-semibold mb-5 text-xl">{section.title}</h3>
+              <ul className="space-y-4">
                 {section.links.map(({ label, href }) => (
                   <li key={label}>
                     <Link href={href} className="hover:underline">

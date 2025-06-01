@@ -26,9 +26,11 @@ export async function middleware(request: NextRequest) {
 
   const cookies = getSessionCookie(request);
 
-  if (isProtectedRoute && !cookies) {
-    return NextResponse.redirect(new URL("/auth/sign-in", request.url));
-  }
+if (isProtectedRoute && !cookies) {
+  const callbackUrl = encodeURIComponent(request.nextUrl.pathname);
+  return NextResponse.redirect(new URL(`/auth/sign-in?callbackUrl=${callbackUrl}`, request.url));
+}
+
   
   // if (isPublicButProtected && !cookies) {
   //   return NextResponse.redirect(new URL("/auth/sign-in", request.url));
