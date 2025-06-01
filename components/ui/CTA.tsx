@@ -30,10 +30,8 @@ const CTA = (props: Props) => {
             <h1 className="mb-3 text-3xl sm:text-5xl  md:mb-4 md:text-4xl lg:mb-6">
               Stay Ahead of the Curve
             </h1>
-            <p className="text-muted-foreground lg:text-lg">
-              Be the first to know about our exciting events—get important
-              updates, notifications, and announcements delivered straight to
-              you.
+            <p className="text-foreground lg:text-lg">
+              Stay in the loop and never miss out on what's happening! Be the first to hear about our latest and most exciting events, special announcements, important updates, and exclusive notifications—all sent directly to you. Join us and make sure you're always up to date with everything we have going on.
             </p>
           </div>
           <div className="col-span-full md:col-span-1 ">

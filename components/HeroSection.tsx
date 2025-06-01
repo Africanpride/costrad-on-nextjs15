@@ -16,7 +16,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ backgroundImageUrl ='/
   const { isMobile } = useDevice();
 
   return (
-    <section className={`${bebas.className} md:min-h-dvh h-dvh grid grid-cols-1`}>     
+    <section className={`${bebas.className} md:min-h-dvh h-screen grid grid-cols-1 z-0 `}>     
 
       <div className="bg-red-700 min-h-dvh relative p-4 md:p-6 order-1">
         <div
@@ -41,7 +41,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ backgroundImageUrl ='/
             data-scroll-speed={0.1}
             className="space-y-4 bg-background p-4 sm:p-8"
           >
-            <div className="text-[3em] text-current">
+            <div className="text-[2em] text-current">
               <p className="leading-[0.9em]">
                 Doing The
                 <br />

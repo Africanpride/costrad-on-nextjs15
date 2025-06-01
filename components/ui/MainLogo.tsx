@@ -33,8 +33,8 @@ const MainLogo = ({
         <Link href={"/"}>
           {/* <Divider orientation='vertical' className='bg-gray-300' /> */}
           <div
-            className={`${oswald.className} ${textColor} uppercase text-[9px] md:text-sm pl-3 border-left 
-                    border-dotted border-l-indigo-500/50  border-l-1  border-style-dotted           
+            className={`${oswald.className} ${textColor} uppercase text-[12px] md:text-sm pl-3 border-left 
+                    border-dotted border-l-foreground/20  border-l-1  border-style-dotted           
                         sm:leading-[1.2rem] font-light `}
           >
             College of Sustainable Transformation

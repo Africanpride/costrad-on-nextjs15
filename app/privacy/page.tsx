@@ -78,7 +78,7 @@ export default function Privacy() {
             <p className="mt-2">
             COSTrAD<br />
             C/O Logos-Rhema Foundation, Behind Trade Fair, La. Accra. <br />
-            Email: info@strategic-voter.com<br />
+            Email: info@costrad.org <br />
             Phone: +233200201334
           </p>
         </section>

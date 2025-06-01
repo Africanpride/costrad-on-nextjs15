@@ -67,9 +67,9 @@ const Donate = ({
               {description}
             </p>
           </div>
-          <Button asChild size="lg" className="mt-10 text-current">
-            <a href={button.url}>{button.text}</a>
-          </Button>
+          {/* <Button asChild size="lg" className="mt-10 text-current">
+            <a href={button.url}>{button.text} </a>
+          </Button> */}
           <div className="hidden mx-auto mt-10  w-fit flex-col items-center gap-4 sm:flex-row">
             <span className="mx-4 inline-flex items-center -space-x-4">
               {reviews.avatars.map((avatar, index) => (

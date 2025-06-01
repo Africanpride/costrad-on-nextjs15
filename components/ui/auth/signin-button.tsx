@@ -50,23 +50,25 @@ export function SignInButton() {
       ) : (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <div className="flex items-start justify-between z-30 ">
-              <div className="flex items-center gap-4">
-                <Avatar className="hidden h-9 w-9 sm:flex ">
-                  <AvatarImage
-                    src={session?.user.image || "#"}
-                    alt="Avatar"
-                    className="object-cover"
-                  />
-                  <AvatarFallback>
-                    {session?.user.name.charAt(0)}
-                  </AvatarFallback>
-                </Avatar>
+            <div className="flex items-start justify-between z-30  ">
+              <div className="flex items-center  gap-x-2">
+                <div className="pr-2">
+                  <Avatar className="hidden h-9 w-9 sm:flex outline-2 outline-offset-1 outline-accent box-content ">
+                    <AvatarImage
+                      src={session?.user.image || "#"}
+                      alt="Avatar"
+                      className="object-cover"
+                    />
+                    <AvatarFallback>
+                      {session?.user.name.charAt(0)}
+                    </AvatarFallback>
+                  </Avatar>
+                </div>
                 <div className="grid gap-1">
-                  <p className="text-sm font-medium leading-none">
+                  <p className="text-sm uppercase font-thin leading-none">
                     {session?.user.name}
                   </p>
-                  <p className="text-sm">{session?.user.email}</p>
+                  <p className="text-xs">{session?.user.email}</p>
                 </div>
               </div>
             </div>

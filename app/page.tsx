@@ -1,6 +1,7 @@
 "use client";
 
 import HeroSection from "@/components/HeroSection";
+import { InstitutesIntro } from "@/components/InstitutesIntro";
 import Start from "@/components/Start";
 import { Testimonials } from "@/components/Testimonials";
 import Preloader from "@/components/ui/animations/Preloader";
@@ -34,6 +35,7 @@ export default function Home() {
         {isLoading && <Preloader />}
       </AnimatePresence>
       <HeroSection backgroundImageUrl="/images/united-nations.jpg" />
+      <InstitutesIntro />
       {/* <Start /> */}
       {/* <BookIntro /> */}
       {/* <Stage1 /> */}

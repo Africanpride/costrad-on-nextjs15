@@ -9,7 +9,9 @@ import {
   Montserrat,
   Open_Sans,
   Oswald,
-  Anton
+  Anton,
+    IBM_Plex_Sans_Condensed,
+
 } from "next/font/google";
 
 type Props = {
@@ -18,6 +20,16 @@ type Props = {
   style: string | string[];
   display: string | string[];
 };
+
+
+export const ibmplex = IBM_Plex_Sans_Condensed({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  style: "normal",
+  display: "swap",
+  adjustFontFallback: false,
+  variable: "--font-ibm-plex-sans-condensed",
+});
 
 export const anton = Anton({
   subsets: ["latin"],

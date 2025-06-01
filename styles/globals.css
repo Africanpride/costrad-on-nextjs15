@@ -17,11 +17,34 @@
   h3,
   h4,
   h5 {
-    font-family: var(--font-opensans);
-    font-weight: 300; /* Default weight, adjust as needed */
+    font-family: var(--font-opensans), sans-serif; /* Default font for headings */
+    font-weight: 200; /* Default weight, adjust as needed */
     text-transform: uppercase; /* Uppercase for all headings */
+    margin: 0; /* Reset margin for headings */
+    padding: 0; /* Reset padding for headings */
+    line-height: 1.2; /* Adjust line height for better readability */
+    letter-spacing: 0.05em; /* Slightly increase letter spacing for clarity */
+    color: var(--primary); /* Default color for headings */
+  }
+
+  p {
+    font-family: var(--font-oswald), sans-serif; /* Default font for paragraphs */
+    font-size: larger;
+    font-weight: 200; /* Default weight for paragraphs */
+    margin: 0; /* Reset margin for paragraphs */
+    padding: 0; /* Reset padding for paragraphs */
+    line-height: 1.6; /* Adjust line height for better readability */
+    color: var(--foreground); /* Default color for paragraphs */
   }
 }
+
+:root {
+}
+
+.font-opensans {
+  font-family: var(--font-opensans);
+}
+
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -69,9 +92,9 @@
     }
   to {
     transform: translateX(calc(-100% - var(--gap)));
-    }
   }
-  @keyframes marquee-vertical {
+}
+@keyframes marquee-vertical {
   from {
     transform: translateY(0);
     }
@@ -81,6 +104,7 @@
   }
 }
 :root {
+  --font-opensans: 'Open Sans', sans-serif;
   --radius: 0.3rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);

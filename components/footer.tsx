@@ -12,7 +12,6 @@ const footerLinks = [
       { label: "Our Story", href: "/our-story" },
       { label: "Press", href: "/press" },
       { label: "Careers", href: "/careers" },
-      { label: "Investor relations", href: "/investors" },
       { label: "Help centre", href: "/help" },
       { label: "Reviews", href: "/reviews" },
     ],
@@ -84,7 +83,7 @@ export default function Footer() {
               className={section.title === "Institutes" ? "col-span-2" : ""}
             >
               <h3 className="font-semibold mb-5 text-xl">{section.title}</h3>
-              <ul className="space-y-4">
+              <ul className="space-y-2">
                 {section.links.map(({ label, href }) => (
                   <li key={label}>
                     <Link href={href} className="hover:underline">
@@ -168,7 +167,7 @@ export default function Footer() {
             <Image src="/images/costrad.png" alt="costrad" width={80} height={24} />
           </div> */}
 
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-center sm:text-left">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-center uppercase sm:text-left">
             {legalLinks.map((link) => (
               <Link
                 key={link.label}
@@ -181,7 +180,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-6 text-xs text-center space-y-2">
+        <div className="mt-6 text-xs text-center space-y-2 ">
           <div className="flex items-center justify-center gap-2">
             <div>&copy; COSTrAD {siteConfig.year} </div>
             <div className="flex gap-x-2">
@@ -189,15 +188,11 @@ export default function Footer() {
               <div className="dark:bg-muted h-2 w-2.5 rounded-full bg-sidebar-border transition-all" />
               <div className="dark:bg-muted h-2 w-2.5 rounded-full animate-pulse bg-muted-foreground transition-all" />
             </div>
-            <div>All Rights Reserved.</div>
+            <div className="">All Rights Reserved.</div>
           </div>
 
-          <p className="max-w-4xl text-center mx-auto text-xs pt-4">
-            The College of Sustainable Transformation and Development &mdash;
-            COSTrAD™ is under the Logos-Rhema Foundation which is a registered
-            Non-Profit Organization with Reg. number:{" "}
-            <span className="text-accent-foreground">CG046792017</span> under
-            the laws of the Republic of Ghana.
+          <p className="max-w-3xl font-light  text-center mx-auto text-[11px] uppercase pt-4">
+            The College of Sustainable Transformation and Development — widely known as COSTrAD™ — functions as an academic and development-oriented institution that operates under the umbrella and direction of the Logos-Rhema Foundation. This foundation is a legally recognized and fully registered Non-Profit Organization that is committed to driving sustainable change through education, research, and community engagement. It holds the official registration number <span className="text-primary font-bold ">CG046792017</span>, as recorded under the regulatory framework and legal statutes of the Republic of Ghana. The institution’s affiliation with the foundation ensures it adheres to strong governance principles, social responsibility, and national compliance standards.
           </p>
         </div>
       </div>
