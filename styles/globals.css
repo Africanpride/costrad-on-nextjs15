@@ -12,12 +12,15 @@
     color: hsl(var(--foreground));
   }
 
+  
+
   h1,
   h2,
   h3,
   h4,
   h5 {
-    font-family: var(--font-opensans), sans-serif; /* Default font for headings */
+    font-family:
+      var(--font-opensans), sans-serif; /* Default font for headings */
     font-weight: 200; /* Default weight, adjust as needed */
     text-transform: uppercase; /* Uppercase for all headings */
     margin: 0; /* Reset margin for headings */
@@ -28,8 +31,9 @@
   }
 
   p {
-    font-family: var(--font-oswald), sans-serif; /* Default font for paragraphs */
-    font-size: larger;
+    font-family:
+      var(--font-oswald), sans-serif; /* Default font for paragraphs */
+    font-size: large;
     font-weight: 200; /* Default weight for paragraphs */
     margin: 0; /* Reset margin for paragraphs */
     padding: 0; /* Reset padding for paragraphs */
@@ -38,13 +42,15 @@
   }
 }
 
-:root {
-}
-
 .font-opensans {
   font-family: var(--font-opensans);
 }
-
+.font-oswald {
+  font-family: var(--font-oswald), sans-serif;
+}
+.font-ibmplex {
+  font-family: var(--font-ibmplex);
+}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -72,6 +78,7 @@
   --color-ring: var(--ring);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
+  --color-firefly: var(--firefly);
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
@@ -87,24 +94,24 @@
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   @keyframes marquee {
-  from {
-    transform: translateX(0);
+    from {
+      transform: translateX(0);
     }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
   }
-}
-@keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
     }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
     }
   }
 }
 :root {
-  --font-opensans: 'Open Sans', sans-serif;
+  --font-opensans: "Open Sans", sans-serif;
   --radius: 0.3rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
@@ -126,6 +133,7 @@
   --input: oklch(0.92 0.004 286.32);
   --ring: oklch(0.795 0.184 86.047);
   --chart-1: oklch(0.646 0.222 41.116);
+  --firefly: oklch(0.6 0.118 184.704);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
@@ -161,6 +169,7 @@
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.554 0.135 66.442);
   --chart-1: oklch(0.488 0.243 264.376);
+  --firefly: oklch(0.696 0.17 162.48);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);

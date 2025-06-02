@@ -63,7 +63,7 @@ export default function Privacy() {
                     className="aspect-[0.8] rounded-lg object-cover"
                   />
                   <img
-                    src="/images/our-story/our-story.jpg"
+                    src="/images/our-story/our-story6.jpg"
                     alt="about 6"
                     className="aspect-[0.9] rounded-lg object-cover"
                   />

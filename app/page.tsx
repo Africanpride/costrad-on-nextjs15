@@ -10,6 +10,7 @@ import CTA from "@/components/ui/CTA";
 import Jumbotron from "@/components/ui/Jumbotron";
 import Newsletter from "@/components/ui/Newsletter";
 import Stage1 from "@/components/ui/Stage1";
+import WhyCostrad from "@/components/WhyCostrad";
 import { AnimatePresence } from "framer-motion";
 import { Suspense, useEffect, useState } from "react";
 
@@ -36,9 +37,7 @@ export default function Home() {
       </AnimatePresence>
       <HeroSection backgroundImageUrl="/images/united-nations.jpg" />
       <InstitutesIntro />
-      {/* <Start /> */}
-      {/* <BookIntro /> */}
-      {/* <Stage1 /> */}
+      <WhyCostrad />
       <Jumbotron heroImage="library.png" height="md:h-[550px]" />
       <Testimonials />
       <CTA />

@@ -1,0 +1,32 @@
+// app/donate/page.tsx
+import AboutSectionFour from "@/components/AboutSectionFour";
+import AboutSectionOne from "@/components/AboutSectionOne";
+import AboutSectionThree from "@/components/AboutSectionThree";
+import AboutSectionTwo from "@/components/AboutSectionTwo";
+import DonateSection from "@/components/donate-section";
+
+export default function AboutPage() {
+  return (
+    <div className="space-y-4">
+      <AboutSectionOne />
+      <AboutSectionTwo />
+      <section className="md:py-8 md:px-12 max-w-5xl mx-auto text-lg md:text-3xl md:text-center md:font-opensans ">
+        Our Mission is to raise and develop generations of{" "}
+        <span className="text-chart-2 ">transformational leaders</span>,
+        equipped to bring systemic and sustainable change, to every sphere of
+        society.
+      </section>
+      <AboutSectionThree />
+
+      <section className="md:py-8 md:px-8 max-w-8xl mx-auto text-lg md:text-3xl md:text-center md:font-opensans ">
+        We teach you the necessary skills and qualities to effectively lead and
+        manage people, organizations, and systems. Leaders must possess strong
+        communication, decision-making, and{" "}
+        <span className="text-chart-2">problem-solving skills</span>, as well as
+        the ability to inspire and motivate others.
+      </section>
+
+      <AboutSectionFour />
+    </div>
+  );
+}

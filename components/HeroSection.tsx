@@ -41,8 +41,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ backgroundImageUrl ='/
             data-scroll-speed={0.1}
             className="space-y-4 bg-background p-4 sm:p-8"
           >
-            <div className="text-[2em] text-current">
-              <p className="leading-[0.9em]">
+            <div className="text-[4em] text-current">
+              <p className="leading-[0.9em] ">
                 Doing The
                 <br />
                 Seemingly Impossible{" "}

@@ -543,9 +543,9 @@ const Donate = ({
                       </span>
                     </h1>
 
-                    <p className="text-md font-medium text-gray-800 md:text-lg md:leading-normal tracking-tight dark:text-gray-200">
+                    <p className="text-md text-gray-800 md:text-lg md:leading-normal tracking-tight dark:text-gray-200">
                       For your donations via cheque, mail to "
-                      <span className="font-bold  text-gray-900 dark:text-gray-50 text-gradient__teal">
+                      <span className="  text-gray-900 dark:text-gray-50 text-gradient__teal">
                         P.O Box CT 4467 Cantonments, Accra; Greater Accra
                         Region, Ghana
                       </span>
