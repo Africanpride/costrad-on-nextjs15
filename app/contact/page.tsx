@@ -122,7 +122,7 @@ export default function ContactPage() {
                 Our team is ready to assist.
               </p>
               <a href="#" className="font-semibold hover:underline">
-                info@TheStrategicVoter.com
+                info@costrad.org 
               </a>
             </div>
             <div>

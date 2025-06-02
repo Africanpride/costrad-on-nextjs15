@@ -55,7 +55,7 @@ export default function FaqsComponent() {
                 <>
                     Readers can purchase or download the book from various online platforms such as Amazon, Google Books, or directly from the publisher's{" "}
                     <Link
-                        href="https://www.thestrategicvoter.com/the-book"
+                        href="https://www.costrad.org /the-book"
                         className="text-warning"
                         >
                         <span className="font-bold text-red-500">website</span>
