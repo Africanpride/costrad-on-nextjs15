@@ -40,6 +40,19 @@
   
 
 
+.rotating {
+  animation: rotating 49s linear infinite;
+}
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
   /* HTML: <div class="loader"></div> */
 .loader {
   width: 20px;
