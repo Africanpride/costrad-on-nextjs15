@@ -1,5 +1,5 @@
 /* globals.css */
-@source "../node_modules/@daveyplate/better-auth-ui";
+/* @source "../node_modules/@daveyplate/better-auth-ui"; */
 @import "./base.css";
 @import "./animations.css";
 @import "tailwindcss";
@@ -42,6 +42,9 @@
   }
 }
 
+.font-bebas {
+  font-family: var(--font-bebas);
+}
 .font-opensans {
   font-family: var(--font-opensans);
 }

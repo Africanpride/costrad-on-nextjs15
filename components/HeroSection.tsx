@@ -39,18 +39,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ backgroundImageUrl ='/
           <div
             data-scroll
             data-scroll-speed={0.1}
-            className="space-y-4 bg-background p-4 sm:p-8"
+            className="space-y-4 bg-black p-4 sm:p-8"
           >
-            <div className="text-[4em] text-current">
-              <p className="leading-[0.9em] ">
+            <div className="text-3xl text-current">
+              <h2 className="leading-[0.9em] font-bebas ">
                 Doing The
                 <br />
                 Seemingly Impossible{" "}
-              </p>
+              </h2>
             </div>
             <Separator className="my-4 w-1/5 h-1 bg-accent" />
-            <div className="text-primary">
-              <p className="text-lg">
+            <div className="text-firefly">
+              <p className="text-lg text-white ">
                 &mdash; &nbsp; Explore what COSTrAD can help you achieve.
               </p>
             </div>
