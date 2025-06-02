@@ -59,7 +59,7 @@ export const WhyCostrad: React.FC<WhyCostradProps> = ({
             </div>
 
             <div className="flex flex-col items-start justify-center md:px-8 space-y-6 text-left ">
-              <h2 className="uppercase text-3xl md:text-5xl   ">
+              <h2 className="uppercase text-3xl md:text-4xl   ">
                 The Vital Role of Leadership Training Today
               </h2>
               <p>

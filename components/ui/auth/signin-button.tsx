@@ -37,7 +37,7 @@ export function SignInButton() {
         <div className="flex items-center gap-0 h-7 pr-2">
           <Button
             onPress={() => router.push("/auth/sign-in")} // Redirect to the sign-in page
-            className="uppercase  bg-secondary text-secondary font-bold cursor-pointer h-full "
+            className="uppercase  bg-secondary text-secondary cursor-pointer h-full "
             size="sm"
             variant="solid"
           >
