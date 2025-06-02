@@ -34,19 +34,27 @@ const footerLinks = [
         label: "Mindset Transformation Institute (MTI)",
         href: "/institutes/mti",
       },
-      { label: "Institute of Economic Affairs (IEA)", href: "/institutes/iea" },
       {
         label: "Institute of Government, Govenance and Leadership (IGPP)",
         href: "/institutes/governance",
+      },
+      { label: "Institute of Economic Affairs (IEA)", href: "/institutes/iea" },
+      {
+        label:
+          "College of Sustainable Transformation and Development (COSTrAD) ",
+        href: "/institutes/costrad",
       },
       {
         label: "Education Training and Development Institute (ETADI)",
         href: "/institutes/etadi",
       },
       {
-        label:
-          "College of Sustainable Transformation and Development (COSTrAD) ",
-        href: "/institutes/costrad",
+        label: "Futuristic Institute of Science and Technology (FIRST)",
+        href: "/institutes/first",
+      },
+      {
+        label: "Media of Communication Institute (MOCI)",
+        href: "/institutes/moci",
       },
       {
         label: "Institute of Arts, Sports and Culture (IOASC)",
@@ -86,7 +94,7 @@ export default function Footer() {
               <ul className="space-y-2">
                 {section.links.map(({ label, href }) => (
                   <li key={label}>
-                    <Link href={href} className="hover:underline">
+                    <Link href={href} className="hover:text-primary transition">
                       {label}
                     </Link>
                   </li>
@@ -167,12 +175,12 @@ export default function Footer() {
             <Image src="/images/costrad.png" alt="costrad" width={80} height={24} />
           </div> */}
 
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-center uppercase sm:text-left">
+          <div className="flex flex-wrap justify-center text-xs  gap-x-6 gap-y-2 text-center uppercase sm:text-left">
             {legalLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="hover:underline"
+                className="hover:text-primary transition"
               >
                 {link.label}
               </Link>
@@ -191,7 +199,7 @@ export default function Footer() {
             <div className="">All Rights Reserved.</div>
           </div>
 
-          <p className="max-w-3xl font-light  text-center mx-auto text-[11px] uppercase pt-4">
+          <p className="max-w-3xl font-light  text-center mx-auto text-[11px] uppercase  pt-4">
             The College of Sustainable Transformation and Development — widely known as COSTrAD™ — functions as an academic and development-oriented institution that operates under the umbrella and direction of the Logos-Rhema Foundation. This foundation is a legally recognized and fully registered Non-Profit Organization that is committed to driving sustainable change through education, research, and community engagement. It holds the official registration number <span className="text-primary font-bold ">CG046792017</span>, as recorded under the regulatory framework and legal statutes of the Republic of Ghana. The institution’s affiliation with the foundation ensures it adheres to strong governance principles, social responsibility, and national compliance standards.
           </p>
         </div>

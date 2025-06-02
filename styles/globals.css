@@ -10,6 +10,8 @@
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+     font-family:
+      var(--font-oswald), sans-serif; /* Default font for headings */    
   }
 
   
@@ -31,8 +33,7 @@
   }
 
   p {
-    font-family:
-      var(--font-oswald), sans-serif; /* Default font for paragraphs */
+    font-family: var(--font-oswald), sans-serif; /* Default font for paragraphs */
     font-size: large;
     font-weight: 200; /* Default weight for paragraphs */
     margin: 0; /* Reset margin for paragraphs */

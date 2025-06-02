@@ -10,7 +10,7 @@ export default function AboutPage() {
     <div className="space-y-4">
       <AboutSectionOne />
       <AboutSectionTwo />
-      <section className="md:py-8 md:px-12 max-w-5xl mx-auto text-lg md:text-3xl md:text-center md:font-opensans ">
+      <section className="md:py-8 md:px-12 max-w-5xl mx-auto text-lg md:text-4xl md:text-center  ">
         Our Mission is to raise and develop generations of{" "}
         <span className="text-chart-2 ">transformational leaders</span>,
         equipped to bring systemic and sustainable change, to every sphere of
@@ -18,7 +18,7 @@ export default function AboutPage() {
       </section>
       <AboutSectionThree />
 
-      <section className="md:py-8 md:px-8 max-w-8xl mx-auto text-lg md:text-3xl md:text-center md:font-opensans ">
+      <section className="md:py-8 md:px-8 max-w-8xl mx-auto text-lg md:text-3xl md:text-center  ">
         We teach you the necessary skills and qualities to effectively lead and
         manage people, organizations, and systems. Leaders must possess strong
         communication, decision-making, and{" "}

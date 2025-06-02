@@ -60,10 +60,10 @@ const Donate = ({
     <>
 
       <section className="pt-32 pb-16">
-        <div className="container sm:text-center">
-          <div className="mx-auto flex max-w-5xl flex-col gap-6">
-            <h1 className="text-3xl  lg:text-6xl">{heading}</h1>
-            <p className="text-balance text-current lg:text-lg">
+        <div className="container sm:text-left">
+          <div className="flex flex-col max-w-3xl md:px-8 space-y-3">
+            <h1 className="text-3xl  lg:text-5xl">{heading}</h1>
+            <p className="text-left text-current lg:text-lg">
               {description}
             </p>
           </div>
