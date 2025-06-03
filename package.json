@@ -9,7 +9,8 @@
     "lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix",
     "postinstall": "prisma generate",
     "vercel-build": "prisma generate && next build",
-    "prisma:generate": "prisma generate"
+    "prisma:generate": "prisma generate",
+      "seed:institutes": "tsx data/seedInstitutes.ts"
   },
   "dependencies": {
     "@daveyplate/better-auth-ui": "^1.7.3",
