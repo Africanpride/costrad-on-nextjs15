@@ -64,11 +64,11 @@ export function SignInButton() {
                     </AvatarFallback>
                   </Avatar>
                 </div>
-                <div className="grid gap-1">
-                  <p className="text-sm uppercase font-thin leading-none">
+                <div className="grid gap-1 ">
+                  <p className="text-sm uppercase font-bold   leading-none">
                     {session?.user.name}
                   </p>
-                  <p className="text-xs">{session?.user.email}</p>
+                  <p className="text-xs font-opensans">{session?.user.email}</p>
                 </div>
               </div>
             </div>
