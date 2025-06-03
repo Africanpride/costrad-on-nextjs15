@@ -19,43 +19,33 @@ import { baseUrl } from "./metadata";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { createAuthMiddleware, APIError } from "better-auth/api";
 import { redirect } from "next/navigation";
-
+import { prisma } from "@/prisma/dbConnect";
 
 const from = process.env.BETTER_AUTH_EMAIL || "notifications@costrad.org";
 const to = process.env.TEST_EMAIL || "";
 
-const prisma = new PrismaClient({
-  log: ["info", "warn", "error"],
-  errorFormat: "pretty",
-  
-});
+
 
 export const auth = betterAuth({
   appName: "College of Sustainable Transformation and Development",
 
   database: prismaAdapter(prisma, {
-    provider: "postgresql",
+    provider: "mongodb",
   }),
-
 
   // hooks: {
   //   before: createAuthMiddleware(async (ctx) => {
-  //     // console.log("BEFORE HOOK", ctx);
-  //     if (ctx.path === "/sign-in/email") {
-  //     }
   //     if (ctx.path === "/sign-in/email") {
   //       if (ctx.body?.email) {
   //         const user = await prisma.user.findUnique({
   //           where: { email: ctx.body.email },
   //         });
-
   //         if (!user) {
   //           throw new APIError("BAD_REQUEST", {
   //             message: "User not found",
   //             status: 404,
   //           });
   //         }
-
   //         if (user.emailVerified === false) {
   //           throw new APIError("FORBIDDEN", {
   //             message: "Email not verified",
@@ -67,21 +57,19 @@ export const auth = betterAuth({
   //   }),
   // },
 
- onAPIError: {
-		throw: true,
-		onError: (error, ctx) => {
-			// Custom error handling
-			console.error("Auth error:", error);
-		},
-		errorURL: "/auth/error"
-	},
+  onAPIError: {
+    throw: true,
+    onError: (error, ctx) => {
+      console.error("Auth error:", error);
+    },
+    errorURL: "/auth/error",
+  },
 
   baseUrl: baseUrl,
 
   emailVerification: {
     autoSignInAfterVerification: true,
     sendOnSignUp: true,
-
     async sendVerificationEmail({ user, url }) {
       const res = await resend.emails.send({
         from,
@@ -126,10 +114,6 @@ export const auth = betterAuth({
     },
   },
   socialProviders: {
-    // facebook: {
-    //   clientId: process.env.FACEBOOK_CLIENT_ID || "",
-    //   clientSecret: process.env.FACEBOOK_CLIENT_SECRET || "",
-    // },
     google: {
       clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
@@ -153,7 +137,6 @@ export const auth = betterAuth({
         });
       },
     }),
-
     organization({
       async sendInvitationEmail(data) {
         await resend.emails.send({
@@ -168,9 +151,7 @@ export const auth = betterAuth({
             inviteLink:
               process.env.NODE_ENV === "development"
                 ? `http://localhost:3000/accept-invitation/${data.id}`
-                : `$${
-                    process.env.BETTER_AUTH_URL
-                  }/accept-invitation/${data.id}`,
+                : `${process.env.BETTER_AUTH_URL}/accept-invitation/${data.id}`,
           }),
         });
       },
@@ -187,9 +168,7 @@ export const auth = betterAuth({
         },
       },
     }),
-
     openAPI(),
-    // passkey(),
     bearer(),
     admin(),
     multiSession(),
