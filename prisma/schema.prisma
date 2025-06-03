@@ -174,3 +174,23 @@ model OauthConsent {
 
   @@map("oauthConsent")
 }
+
+
+model Institute {
+  id            String   @id @map("_id")
+  name          String
+  acronym       String   @unique
+  overview      String
+  about         String
+  introduction  String
+  icon          String?
+  logo          String?
+  banner        String?
+  seo           String?
+  active        Boolean
+  slug          String   @unique
+  createdAt     DateTime
+  updatedAt     DateTime
+
+  @@map("institute")
+}

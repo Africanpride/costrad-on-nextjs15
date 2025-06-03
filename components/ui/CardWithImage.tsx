@@ -29,7 +29,8 @@ export default function CardWithImage() {
           building block for life. The Family Development Institute (FDI) is
           dedicated to strengthening families through comprehensive programs on
         </CardDescription>
-        <Button className="bg-lime-600 text-foreground hover:text-white hover:bg-lime-500 cursor-pointer transition-colors p-2 rounded-xl text-center uppercase text-sm">
+        <Button className="bg-lime-600 text-background hover:text-foreground hover:bg-lime-500 
+        cursor-pointer transition-colors p-2 rounded-xl text-center uppercase text-xs">
           Start Application
         </Button>
       </CardHeader>
