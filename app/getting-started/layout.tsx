@@ -13,7 +13,7 @@ export default function AboutLayout({
   return (
       <section className='block'>
           <Jumbotron />
-         <div className='p-5'>
+         <div className='p-4 '>
          {children}
           <Toaster />
          </div>

@@ -7,7 +7,7 @@ type Props = {};
 
 const Introduction = (props: Props) => {
   return (
-    <div className=' container mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-4 min-h-screen h-auto space-y-3 p-5 md:p-12 '>
+    <div className=' container mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-4 min-h-screen h-auto space-y-3 p-4  md:p-12 '>
       <div
         className={` md:col-span-1  text-4xl md:text-6xl space-y-2 `}
         data-scroll

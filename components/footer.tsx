@@ -67,7 +67,7 @@ const footerLinks = [
 const legalLinks = [
   { label: "Privacy policy", href: "privacy" },
   { label: "Terms & Conditions", href: "terms" },
-  { label: "Legal", href: "legal" },
+  { label: "DMCA", href: "dmca" },
   { label: "Complaints", href: "complaints" },
   { label: "Sitemap", href: "sitemap" },
   { label: "Cookie Policy", href: "cookies" },

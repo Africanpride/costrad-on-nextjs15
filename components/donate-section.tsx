@@ -188,7 +188,7 @@ const Donate = ({
                             <div className=" flex flex-col bg-white border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700">
                               <label
                                 htmlFor="hs-account-activity"
-                                className="flex p-4 sm:p-5"
+                                className="flex p-4 sm:p-4 "
                               >
                                 <span className="flex mr-5">
                                   <svg

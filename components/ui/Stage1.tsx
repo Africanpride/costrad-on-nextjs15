@@ -24,7 +24,7 @@ const Stage1 = (props: Props) => {
 
         <cite className='text-xl pt-4'>&mdash; Dr. Abu Bako</cite>
       </blockquote>
-      {/* <span className=' p-5 text-[6.5rem] '>”</span> */}
+      {/* <span className=' p-4  text-[6.5rem] '>”</span> */}
     </section>
   );
 };

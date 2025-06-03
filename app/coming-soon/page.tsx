@@ -6,7 +6,7 @@ import React from 'react'
 export default function Home() {
     return (
         <main className='flex h-screen min-h-screen flex-col items-center justify-center p-4 relative'>
-            <div className='absolute top-5 right-3 '>            
+            <div className='absolute top-4  right-3 '>            
                 <ThemeSwitch className='pt-2 pl-6' />
                 </div>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 sm:gap-3 lg:grid-cols-1 lg:gap-8 space-y-2">
