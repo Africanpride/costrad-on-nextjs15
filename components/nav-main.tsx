@@ -1,25 +1,26 @@
-"use client"
+"use client";
 
-import { IconCirclePlusFilled, IconMail, type Icon } from "@tabler/icons-react"
-
-import { Button } from "@/components/ui/button"
+import { IconCirclePlusFilled, IconMail, type Icon } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 export function NavMain({
   items,
 }: {
   items: {
-    title: string
-    url: string
-    icon?: Icon
-  }[]
+    title: string;
+    url: string;
+    icon?: Icon;
+  }[];
 }) {
+  const router = useRouter();
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
@@ -43,9 +44,19 @@ export function NavMain({
           </SidebarMenuItem>
         </SidebarMenu>
         <SidebarMenu>
+          {/* onclick navigate to url */}
           {items.map((item) => (
-            <SidebarMenuItem className="cursor-pointer" key={item.title}>
-              <SidebarMenuButton className="cursor-pointer" tooltip={item.title}>
+            <SidebarMenuItem
+              className="cursor-pointer"
+              key={item.title}
+              onClick={() => {
+                router.push(item.url); // Change this line
+              }}
+            >
+              <SidebarMenuButton
+                className="cursor-pointer"
+                tooltip={item.title}
+              >
                 {item.icon && <item.icon />}
                 <span>{item.title}</span>
               </SidebarMenuButton>
@@ -54,5 +65,5 @@ export function NavMain({
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>
-  )
+  );
 }

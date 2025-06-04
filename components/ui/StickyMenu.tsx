@@ -31,7 +31,7 @@ export default function StickyMenu() {
     <div
       id="menu"
       className={clsx(
-        "w-full block transition-all shadow bg-background",
+        "w-full block transition-all shadow bg-background z-50 ",
         isFixed
           ? "fixed top-0 left-0 right-0 duration-600 z-50 py-3.5"
           : "relative py-5"
