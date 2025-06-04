@@ -52,24 +52,24 @@ const data = {
       url: "/profile",
       icon: IconUsers,
     },
+    // {
+    //   title: "Analytics",
+    //   url: "#",
+    //   icon: IconChartBar,
+    // },
     {
-      title: "Analytics",
-      url: "#",
-      icon: IconChartBar,
-    },
-    {
-      title: "Donations",
-      url: "#",
+      title: "Institutes",
+      url: "/admin/institutes",
       icon: IconListDetails,
     },
     {
       title: "Publications",
-      url: "#",
+      url: "/admin/publications",
       icon: IconFolder,
     },
     {
       title: "Participants",
-      url: "#",
+      url: "/admin/participants",
       icon: IconUsers,
     },
   ],

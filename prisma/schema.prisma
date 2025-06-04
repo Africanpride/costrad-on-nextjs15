@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -175,33 +174,32 @@ model OauthConsent {
   @@map("oauthConsent")
 }
 
-
 model Institute {
-  id            String    @id @map("_id")
-  name          String
-  acronym       String    @unique
-  overview      String
-  about         String
-  introduction  String
-  icon          String?
-  logo          String?
-  banner        String?
-  seo           String?
-  active        Boolean
-  slug          String    @unique
+  id           String    @id @map("_id")
+  name         String
+  acronym      String    @unique
+  overview     String
+  about        String
+  introduction String
+  icon         String?
+  logo         String?
+  banner       String?
+  seo          String?
+  active       Boolean
+  slug         String    @unique
   createdAt    DateTime? @default(now())
   updatedAt    DateTime? @updatedAt
-  editions      Edition[] 
+  editions     Edition[]
 
   @@map("institute")
 }
 
 model Edition {
-  id           String   @id @map("_id")
+  id           String    @id @map("_id")
   instituteId  String
   institute    Institute @relation(fields: [instituteId], references: [id], onDelete: Cascade)
   title        String
-  slug         String   @unique
+  slug         String    @unique
   theme        String?
   acronym      String
   overview     String
@@ -211,7 +209,7 @@ model Edition {
   startDate    DateTime?
   endDate      DateTime?
   seo          String?
-  active       Boolean  @default(true)
+  active       Boolean   @default(true)
   price        Float
   createdAt    DateTime? @default(now())
   updatedAt    DateTime? @updatedAt

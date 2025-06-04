@@ -6,13 +6,14 @@ import Footer from "./footer";
 export default function FooterWrapper() {
   const pathname = usePathname();
 
-  // Definition of pages where StickyMenu should be hidden
-  const hiddenPaths = ["/admin","/www","/coming-soon"];
+  // Pages where Footer should be hidden (match by prefix)
+  const hiddenPrefixes = ["/admin", "/www", "/coming-soon", "/auth"];
 
-  // Check if pathname starts with "/auth/" or is in hiddenPaths
-  if (pathname.startsWith("/auth/") || hiddenPaths.includes(pathname)) {
-    return null; // Hide StickyMenu
-  }
+  const shouldHideFooter = hiddenPrefixes.some((prefix) =>
+    pathname.startsWith(prefix)
+  );
 
-  return <Footer />; // Render Footer if not hidden
+  if (shouldHideFooter) return null;
+
+  return <Footer />;
 }

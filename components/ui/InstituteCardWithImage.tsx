@@ -9,7 +9,7 @@ import { Button } from "@heroui/button";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CardWithImage() {
+export default function InstituteCardWithImage() {
   return (
     <Card className="w-full max-w-sm p-0 gap-2 dark:bg-gray-950 rounded-2xl">
       <Image

@@ -1,7 +1,14 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
-import { bebas, montserrat, oswald, opensans, anton, ibmplex } from "@/config/fonts";
+import {
+  bebas,
+  montserrat,
+  oswald,
+  opensans,
+  anton,
+  ibmplex,
+} from "@/config/fonts";
 
 import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
@@ -55,11 +62,9 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
           {/* Use the wrapper component instead */}
           <StickyMenuWrapper />
-          <main className="relative overflow-x-hidden">
-            {children}
-            <FooterWrapper />
-            <Toaster />
-          </main>
+          <main className="relative overflow-x-hidden">{children}</main>
+          <FooterWrapper />
+          <Toaster />
         </Providers>
         <Analytics />
         <SpeedInsights />
