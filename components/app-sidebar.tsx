@@ -38,7 +38,7 @@ import Link from "next/link";
 const data = {
   user: {
     name: "costrad",
-    email: "m@costrad.org",
+    email: "info@costrad.org",
     avatar: "/images/avatar.png",
   },
   navMain: [
@@ -52,11 +52,11 @@ const data = {
       url: "/profile",
       icon: IconUsers,
     },
-    // {
-    //   title: "Analytics",
-    //   url: "#",
-    //   icon: IconChartBar,
-    // },
+    {
+      title: "Editions",
+      url: "/admin/editions",
+      icon: IconChartBar,
+    },
     {
       title: "Institutes",
       url: "/admin/institutes",

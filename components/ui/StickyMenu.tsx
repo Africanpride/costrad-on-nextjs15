@@ -33,11 +33,11 @@ export default function StickyMenu() {
       className={clsx(
         "w-full block transition-all shadow bg-background z-50 ",
         isFixed
-          ? "fixed top-0 left-0 right-0 duration-600 z-50 py-3.5"
-          : "relative py-5"
+          ? "fixed top-0 left-0 right-0 duration-600 z-50 py-1"
+          : "relative py-1"
       )}
     >
-      <div className="flex items-center justify-between px-2 py-2">
+      <div className="flex items-center justify-between px-2 py-1">
         <MainLogo />
 
         {isDesktop && (

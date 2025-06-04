@@ -23,7 +23,9 @@ export function NavMain({
   const router = useRouter();
   return (
     <SidebarGroup>
+
       <SidebarGroupContent className="flex flex-col gap-2">
+        
         <SidebarMenu className="hidden">
           <SidebarMenuItem className="flex items-center gap-2">
             <SidebarMenuButton
@@ -43,6 +45,7 @@ export function NavMain({
             </Button>
           </SidebarMenuItem>
         </SidebarMenu>
+
         <SidebarMenu>
           {/* onclick navigate to url */}
           {items.map((item) => (

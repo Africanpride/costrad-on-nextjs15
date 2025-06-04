@@ -44,7 +44,7 @@ export const gettingStarted: {
 
 export function WebMenu() {
   return (
-    <div className="flex items-center justify-end gap-x-2 font-ibmplex divide-x-1 divide-dotted space-x-1 z-20  ">
+    <div className="flex items-center justify-end gap-x-2 font-sans divide-x-1 divide-dotted space-x-1 z-20  ">
       <NavigationMenu className="pr-5">
         <NavigationMenuList>
           <NavigationMenuItem>
