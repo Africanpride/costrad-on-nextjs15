@@ -13,6 +13,7 @@ import {
   IconHelp,
   IconInnerShadowTop,
   IconListDetails,
+  IconMoneybagPlus,
   IconNewSection,
   IconReport,
   IconSearch,
@@ -62,6 +63,11 @@ const data = {
       title: "Editions",
       url: "/admin/editions",
       icon: IconChartBar,
+    },
+    {
+      title: "Donations",
+      url: "/admin/donations",
+      icon: IconMoneybagPlus,
     },
     {
       title: "Announcements",
