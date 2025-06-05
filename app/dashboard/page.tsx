@@ -27,12 +27,16 @@ export default async function DashboardPage() {
     });
   return (
     <div className=" mx-auto p-4 m-4">
-      <Tabs defaultValue="account" className="">
+      <Tabs defaultValue="profile" className="">
         <TabsList>
+          <TabsTrigger value="profile">Profile</TabsTrigger>
           <TabsTrigger value="account">Account</TabsTrigger>
           <TabsTrigger value="preferences">Preferences</TabsTrigger>
           <TabsTrigger value="billing">Billing</TabsTrigger>
         </TabsList>
+        <TabsContent value="profile">
+          <PreferencesSection />
+        </TabsContent>
         <TabsContent value="account">
           <UserCard
             session={JSON.parse(JSON.stringify(session))}

@@ -26,6 +26,8 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { ThemeSwitch } from "./ui/theme-switch";
+import { client } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 export function NavUser({
   user,
@@ -37,7 +39,7 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
-
+  const router = useRouter();
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -82,21 +84,47 @@ export function NavUser({
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem className="cursor-pointer">
+              <DropdownMenuItem
+                className="cursor-pointer"
+                onClick={() => {
+                  router.push("/dashboard");
+                }}
+              >
                 <IconUserCircle />
                 Profile
               </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer"  >
+              <DropdownMenuItem
+                className="cursor-pointer"
+                onClick={() => {
+                  router.push("/dashboard");
+                }}
+              >
                 <IconCreditCard />
                 Billing
               </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer">
+              <DropdownMenuItem
+                className="cursor-pointer"
+                onClick={() => {
+                  router.push("/dashboard");
+                }}
+              >
                 <IconNotification />
                 Notifications
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="cursor-pointer">
+            <DropdownMenuItem
+              className="cursor-pointer"
+              onClick={async () => {
+                await client.signOut({
+                  fetchOptions: {
+                    onSuccess: () => {
+                      router.push("/");
+                    },
+                  },
+                });
+              }}
+            >
               <IconLogout />
               Log out
             </DropdownMenuItem>

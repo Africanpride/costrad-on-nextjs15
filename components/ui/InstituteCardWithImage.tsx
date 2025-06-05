@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export default function InstituteCardWithImage() {
   return (
-    <Card className="w-full max-w-sm p-0 gap-2 dark:bg-gray-950 rounded-2xl">
+    <Card className="w-full  p-0 gap-2 dark:bg-gray-950 rounded-2xl">
       <Image
         src="/images/culture.jpg"
         alt="Product"
