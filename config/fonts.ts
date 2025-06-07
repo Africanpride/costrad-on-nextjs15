@@ -10,8 +10,7 @@ import {
   Open_Sans,
   Oswald,
   Anton,
-    IBM_Plex_Sans_Condensed,
-
+  IBM_Plex_Sans,
 } from "next/font/google";
 
 type Props = {
@@ -21,14 +20,14 @@ type Props = {
   display: string | string[];
 };
 
-
-export const ibmplex = IBM_Plex_Sans_Condensed({
-  weight: ["400", "700"],
+export const ibmplex = IBM_Plex_Sans({
+  weight: ["100","200","300", "700"],
   subsets: ["latin"],
   style: "normal",
   display: "swap",
-  adjustFontFallback: false,
-  variable: "--font-ibm-plex-sans-condensed",
+  adjustFontFallback: true,
+  variable: "--font-ibmplex",
+  
 });
 
 export const anton = Anton({

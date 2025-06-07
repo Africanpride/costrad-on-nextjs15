@@ -1,40 +1,96 @@
 // app/api/institutes/route.ts
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/prisma/dbConnect";
 
-export async function GET(request: Request) {
-  // const AUTH_TOKEN = process.env.AUTH_TOKEN;
-  // const authHeader = request.headers.get("authorization");
+const AUTH_TOKEN = process.env.AUTH_TOKEN;
 
+function checkAuth(req: NextRequest) {
+  // const authHeader = req.headers.get("authorization");
   // if (!authHeader || !authHeader.startsWith("Bearer ")) {
   //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   // }
-
   // const token = authHeader.split(" ")[1];
   // if (token !== AUTH_TOKEN) {
   //   return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   // }
+  return null;
+}
 
-  console.log("Fetching institutes...");
+// GET handler
+export async function GET(req: NextRequest) {
+  // const authResult = checkAuth(req);
+  // if (authResult) return authResult;
+
+  console.log("Getting institutes ....");
   try {
     const institutes = await prisma.institute.findMany({
-      include: {
-        editions: true,
-        
+      select: {
+        id: true,
+        name: true,
+        acronym: true,
+      },
+      where: {
+        active: true, // Only fetch active institutes
       },
     });
-    console.log("Total institutes fetched:", institutes.length);
-    console.log(
-      "Institutes with editions:",
-      institutes.map(i => ({
-        id: i.id,
-        name: i.name,
-        editions: i.editions.length,
-      }))
-    );
     return NextResponse.json(institutes);
-  } catch (err: any) {
-    console.error("Error fetching institutes:", err);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+  } catch (error) {
+    console.error("API Error:", error);
+    return NextResponse.json({ error: "Failed to fetch institutes" }, { status: 500 });
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
+// POST handler
+export async function POST(req: NextRequest) {
+  const authResult = checkAuth(req);
+  if (authResult) return authResult;
+
+  try {
+    const data = await req.json();
+    const institute = await prisma.institute.create({ data });
+    return NextResponse.json(institute);
+  } catch (error) {
+    console.error("API Error:", error);
+    return NextResponse.json({ error: "Failed to create institute" }, { status: 500 });
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
+// PUT handler
+export async function PUT(req: NextRequest) {
+  const authResult = checkAuth(req);
+  if (authResult) return authResult;
+
+  try {
+    const data = await req.json();
+    if (!data.id) return NextResponse.json({ error: "Missing id" }, { status: 400 });
+    const institute = await prisma.institute.update({ where: { id: data.id }, data });
+    return NextResponse.json(institute);
+  } catch (error) {
+    console.error("API Error:", error);
+    return NextResponse.json({ error: "Failed to update institute" }, { status: 500 });
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
+// DELETE handler
+export async function DELETE(req: NextRequest) {
+  const authResult = checkAuth(req);
+  if (authResult) return authResult;
+
+  try {
+    const { id } = await req.json();
+    if (!id) return NextResponse.json({ error: "Missing id" }, { status: 400 });
+    await prisma.institute.delete({ where: { id } });
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("API Error:", error);
+    return NextResponse.json({ error: "Failed to delete institute" }, { status: 500 });
+  } finally {
+    await prisma.$disconnect();
   }
 }
