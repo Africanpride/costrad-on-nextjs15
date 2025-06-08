@@ -48,7 +48,7 @@ export const WhyCostrad: React.FC<WhyCostradProps> = ({
                 </div>
               </div>
 
-              <div className="absolute -translate-x-1/2 left-[50%]  ">
+              <div className="absolute -translate-x-1/2 left-[50%] hidden  ">
                 <Image
                   className="w-32 h-32 rotating"
                   src="/images/round-text-costrad.png"

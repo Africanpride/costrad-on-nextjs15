@@ -10,6 +10,7 @@ import { betterFetch } from "@better-fetch/fetch";
 import type { auth } from "@/lib/auth";
 import { request } from "http";
 import Jumbotron from "@/components/ui/Jumbotron";
+import { Testimonials } from "../../components/Testimonials";
 
 type ContactFormInputs = {
   firstname: string;
@@ -107,22 +108,29 @@ export default function ContactPage() {
         <div className="mt-4 grid gap-4 md:mt-20 md:grid-cols-3 md:gap-8">
           <div className="flex flex-col justify-between gap-6 rounded-lg border p-6">
             <div>
-              <h2 className="mb-4 text-xl font-medium md:text-2xl">Sales</h2>
-              <p className="text-muted-foreground">
-                Interested in learning more about our platform? Contact our
-                sales team for more information.
+              <h2 className="mb-4 text-xl font-medium md:text-2xl">
+                Testimonials
+              </h2>
+              <p className="text-foreground">
+                Whether it’s the impact it has had on your personal development,
+                professional growth, or leadership transformation, we’d love to
+                hear your story and how COSTrAD has influenced your perspective
+                and aspirations.
               </p>
             </div>
             <a href="#" className="hover:underline">
-              Request a demo
+              Submit Testimonial
             </a>
           </div>
           <div className="flex flex-col justify-between gap-6 rounded-lg border p-6">
             <div>
               <h2 className="mb-4 text-xl font-medium md:text-2xl">Support</h2>
-              <p className="text-muted-foreground">
-                We’re here to help with any platform questions. Check out our
-                FAQs and learn more.
+              <p className="text-foreground">
+                Our team is always ready to support you with any questions or
+                challenges you may encounter while using the platform. Whether
+                you're navigating a new feature, troubleshooting an issue, or
+                simply curious about how something works, we're here to guide
+                you.
               </p>
             </div>
             <a href="#" className="hover:underline">
@@ -131,21 +139,24 @@ export default function ContactPage() {
           </div>
           <div className="flex flex-col justify-between gap-6 rounded-lg border p-6">
             <div>
-              <h2 className="mb-4 text-xl font-medium md:text-2xl">
-                General Inquiries
-              </h2>
-              <p className="text-muted-foreground">
-                For general inquiries, please reach out to us using the form
-                below.
+              <h2 className="mb-4 text-xl font-medium md:text-2xl">Feedback</h2>
+              <p className="text-foreground">
+                We would truly appreciate hearing your thoughts, suggestions,
+                and insights on how we can enhance and elevate our overall web
+                presence.
               </p>
             </div>
             <a href="#" className="hover:underline">
-              Contact us
+              Submit Feedback
             </a>
           </div>
         </div>
         <div className="mt-7">
-          <Jumbotron className=""  heroImage="map.jpg" height="md:h-[550px] h-dvh rounded-2xl" />
+          <Jumbotron
+            className=""
+            heroImage="map.jpg"
+            height="md:h-[550px] h-dvh rounded-2xl"
+          />
         </div>
       </div>
     </section>

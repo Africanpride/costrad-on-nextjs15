@@ -66,11 +66,11 @@ export default function InstituteCardWithImage({
         <CardDescription className="line-clamp-4 font-opensans ">
           {overview}
         </CardDescription>
-        <Button className="bg-lime-600 text-background hover:text-foreground  cursor-pointer hover:bg-lime-500 transition-colors p-2 rounded-xl text-center uppercase text-xs">
+      </CardHeader>
+      <CardContent className="p-1 pt-0 space-y-2">
+        <Button className="bg-lime-600 w-full text-background hover:text-foreground  cursor-pointer hover:bg-lime-500 transition-colors p-2 rounded-xl text-center uppercase text-xs">
           Start Application
         </Button>
-      </CardHeader>
-      <CardContent className="p-1 pt-0">
         <Link
           href={`/institutes/${slug}`}
           className="dark:bg-gray-900 bg-gray-200 flex items-center gap-3 md:p-2 p-2 rounded-xl w-auto"

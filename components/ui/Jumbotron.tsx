@@ -32,7 +32,7 @@ export default function Jumbotron({
             alt="COSTrAD"
             fill={true}
             priority
-            className={`object-cover object-top ${className}`}
+            className={`object-cover  ${className}`}
             sizes="(max-width: 768px) 100vw, (max-width: 1440px) 1440px"
           />
           <div className={`absolute inset-0 bg-black/${shade}`}></div>

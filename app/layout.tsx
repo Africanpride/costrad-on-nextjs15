@@ -18,6 +18,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import FooterWrapper from "@/components/Footer-Wrapper";
 
+
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -62,6 +63,7 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
           {/* Use the wrapper component instead */}
           <StickyMenuWrapper />
+
           <main className="relative overflow-x-hidden">{children}</main>
           <FooterWrapper />
           <Toaster />

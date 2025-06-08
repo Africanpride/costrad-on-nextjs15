@@ -10,6 +10,8 @@ import { SignInButton } from "./auth/signin-button";
 import { client } from "@/lib/auth-client";
 import { Skeleton } from "./skeleton";
 import { useDevice } from "@/hooks/useDevice"; // orientation + width-aware device hook
+import { ScrollProgress } from "@/components/magicui/scroll-progress";
+
 
 export default function StickyMenu() {
   const [isFixed, setIsFixed] = useState(false);
@@ -37,6 +39,8 @@ export default function StickyMenu() {
           : "relative py-1"
       )}
     >
+
+
       <div className="flex items-center justify-between px-2 py-1">
         <MainLogo />
 
@@ -65,6 +69,7 @@ export default function StickyMenu() {
         )}
 
         {isMobile && <SlideInMenu />}
+            <ScrollProgress />
       </div>
     </div>
   );

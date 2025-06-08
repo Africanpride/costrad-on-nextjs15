@@ -13,6 +13,7 @@ import Stage1 from "@/components/ui/Stage1";
 import WhyCostrad from "@/components/WhyCostrad";
 import { AnimatePresence } from "framer-motion";
 import { Suspense, useEffect, useState } from "react";
+import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,8 +38,10 @@ export default function Home() {
       </AnimatePresence>
       <HeroSection backgroundImageUrl="/images/united-nations.jpg" />
       <InstitutesIntro />
-      <section className=" px-4 md:py-8 md:px-8 max-w-8xl mx-auto text-lg md:text-3xl md:text-center
-       md:min-h-[40dvh]">
+      <section
+        className=" px-4 md:py-8 md:px-8 max-w-8xl mx-auto text-lg md:text-3xl md:text-center
+       md:min-h-[40dvh]"
+      >
         We equip you with the essential tools and mindset to confidently guide
         individuals, lead organizations, and oversee complex systems with
         clarity and purpose.{" "}
@@ -49,7 +52,22 @@ export default function Home() {
         toward a shared vision.
       </section>
 
-      <Jumbotron heroImage="center.jpg" height="md:h-[650px]" />
+      <Jumbotron
+        className="object-center"
+        heroImage="center2.jpg"
+        height="md:h-[650px]"
+      />
+      <div className="flex flex-col justify-center">
+        <VelocityScroll
+          className="uppercase md:text-3xl text-xs w-full mx-auto font-opensans font-thin "
+          defaultVelocity={1}
+        >
+          Seeing the <span className="text-purple-700">invincible</span> &mdash;
+          Touching the <span className="text-primary">intangible</span> &mdash;
+          Seeing the invincible &mdash; Touching the intangible &mdash;
+        </VelocityScroll>
+      </div>
+
       <WhyCostrad />
       <CTA />
       <Testimonials />
