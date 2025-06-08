@@ -1,58 +1,61 @@
-import { InstituteGallery, InstituteProps } from "@/components/blocks/gallery4";
+"use client";
+import { InstituteGallery, InstituteProps } from "@/components/blocks/Institutegallery4";
+import React, { useState, useEffect } from "react";
 
-const institutesData: InstituteProps = {
-  title: "The COSTRAD Institutes",
-  description:
-    "The College of Sustainable Transformation and Development (COSTrAD) and the various institutes are committed to the restoration, transformation and development of all spheres of society. These sustainable transformation educational platforms seek to do this by training and developing strategic transformational leaders, in a world characterized by increasing complexity and confronted by varied challenges, to harness the most strategic (qualitative and quantitative) resources within their environment to solve societal challenges.",
-  items: [
-    {
-      id: "shadcn-ui",
-      title: "shadcn/ui: Building a Modern Component Library",
-      description:
-        "Explore how shadcn/ui revolutionized React component libraries by providing a unique approach to component distribution and customization, making it easier for developers to build beautiful, accessible applications.",
-      href: "https://ui.shadcn.com",
-      image:
-        "https://images.unsplash.com/photo-1551250928-243dc937c49d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDI3NzN8MHwxfGFsbHwxMjN8fHx8fHwyfHwxNzIzODA2OTM5fA&ixlib=rb-4.0.3&q=80&w=1080",
-    },
-    {
-      id: "tailwind",
-      title: "Tailwind CSS: The Utility-First Revolution",
-      description:
-        "Discover how Tailwind CSS transformed the way developers style their applications, offering a utility-first approach that speeds up development while maintaining complete design flexibility.",
-      href: "https://tailwindcss.com",
-      image:
-        "https://images.unsplash.com/photo-1551250928-e4a05afaed1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDI3NzN8MHwxfGFsbHwxMjR8fHx8fHwyfHwxNzIzODA2OTM5fA&ixlib=rb-4.0.3&q=80&w=1080",
-    },
-    {
-      id: "astro",
-      title: "Astro: The All-in-One Web Framework",
-      description:
-        "Learn how Astro's innovative 'Islands Architecture' and zero-JS-by-default approach is helping developers build faster websites while maintaining rich interactivity where needed.",
-      href: "https://astro.build",
-      image:
-        "https://images.unsplash.com/photo-1536735561749-fc87494598cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDI3NzN8MHwxfGFsbHwxNzd8fHx8fHwyfHwxNzIzNjM0NDc0fA&ixlib=rb-4.0.3&q=80&w=1080",
-    },
-    {
-      id: "react",
-      title: "React: Pioneering Component-Based UI",
-      description:
-        "See how React continues to shape modern web development with its component-based architecture, enabling developers to build complex user interfaces with reusable, maintainable code.",
-      href: "https://react.dev",
-      image:
-        "https://images.unsplash.com/photo-1548324215-9133768e4094?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDI3NzN8MHwxfGFsbHwxMzF8fHx8fHwyfHwxNzIzNDM1MzA1fA&ixlib=rb-4.0.3&q=80&w=1080",
-    },
-    {
-      id: "nextjs",
-      title: "Next.js: The React Framework for Production",
-      description:
-        "Explore how Next.js has become the go-to framework for building full-stack React applications, offering features like server components, file-based routing, and automatic optimization.",
-      href: "https://nextjs.org",
-      image:
-        "https://images.unsplash.com/photo-1550070881-a5d71eda5800?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDI3NzN8MHwxfGFsbHwxMjV8fHx8fHwyfHwxNzIzNDM1Mjk4fA&ixlib=rb-4.0.3&q=80&w=1080",
-    },
-  ],
+const institutesData: Pick<InstituteProps, "name" | "overview"> = {
+  name: "The COSTRAD Institutes",
+  overview:
+    "The College of Sustainable Transformation and Development (COSTRAD) and the various institutes are committed to the restoration, transformation and development of all spheres of society.",
 };
 
+interface Institute {
+  id?: string; // Might be missing if raw file
+  name: string;
+  acronym: string;
+  overview: string;
+  slug: string;
+  banner?: string;
+}
+
 export function InstitutesIntro() {
-  return <InstituteGallery {...institutesData} />;
+  const [institutes, setInstitutes] = useState<Institute[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchInstitutes = async () => {
+      try {
+        const res = await fetch("/data/institutes.json");
+        if (!res.ok) throw new Error("Failed to load local file");
+        const data = await res.json();
+        setInstitutes(Array.isArray(data) ? data : []);
+      } catch (err) {
+        console.error("Failed to load institutes from file", err);
+        setError("Could not load institute data.");
+        setInstitutes([]);
+      }
+    };
+
+    fetchInstitutes();
+  }, []);
+
+  const galleryItems = institutes.map((institute) => ({
+    id: institute.id ?? institute.acronym, // fallback ID
+    name: institute.name,
+    overview: institute.overview,
+    slug: institute.slug,
+    banner:
+      institute.banner ??
+      "https://images.unsplash.com/photo-1551250928-243dc937c49d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDI3NzN8MHwxfGFsbHwxMjN8fHx8fHwyfHwxNzIzODA2OTM5fA&ixlib=rb-4.0.3&q=80&w=1080",
+  }));
+
+  return (
+    <>
+      {error && <div className="text-red-500">{error}</div>}
+      <InstituteGallery
+        name={institutesData.name}
+        overview={institutesData.overview}
+        items={galleryItems}
+      />
+    </>
+  );
 }

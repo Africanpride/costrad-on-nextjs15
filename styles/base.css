@@ -14,29 +14,36 @@
   font-family: var(--font-special-elite);
 }
 .cbutton {
-    position: relative;
-    font-size: 14px;
-    font-family: inherit;
-    color: rgb(255, 255, 255);
-    width: 19em;
-    height: 3em;
-    line-height: 2em;
-    text-align: center;
-    z-index: 1;
-    text-decoration: none;
-    border-width: initial;
-    border-style: none;
-    border-color: initial;
-    border-image: initial;
-    background: linear-gradient(90deg, rgb(234, 179, 8), rgb(244, 65, 165), rgb(255, 235, 59), rgb(26, 96, 138)) 0% 0% / 300%;
-    border-radius: 30px;
+  position: relative;
+  font-size: 14px;
+  font-family: inherit;
+  color: rgb(255, 255, 255);
+  width: 19em;
+  height: 3em;
+  line-height: 2em;
+  text-align: center;
+  z-index: 1;
+  text-decoration: none;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+  background: linear-gradient(
+      90deg,
+      rgb(234, 179, 8),
+      rgb(244, 65, 165),
+      rgb(255, 235, 59),
+      rgb(26, 96, 138)
+    )
+    0% 0% / 300%;
+  border-radius: 30px;
 }
 .cbutton:hover {
-    animation: 8s linear 0s infinite normal none running ani;
-    border-width: initial;
-    border-style: none;
-    border-color: initial;
-    border-image: initial;
+  animation: 8s linear 0s infinite normal none running ani;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
 }
 /* .qblock {
 	color: #fafafa;
@@ -82,92 +89,94 @@ cite {
   text-align: left;
 }
 
-
-/* From Uiverse.io by csskbuttons-io */ 
-kbutton {
- position: relative;
- display: inline-block;
- cursor: pointer;
- outline: none;
- border: 0;
- vertical-align: middle;
- text-decoration: none;
- background: transparent;
- padding: 0;
- font-size: inherit;
- font-family: inherit;
+/* From Uiverse.io by faizanullah1999 */
+.primary-button {
+  font-family: var(--font-opensans);
+  /* font-family: 'Valorant', sans-serif; */
+  color: white;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 0.05rem;
+  border: 1px solid #0e1822;
+  padding: 0.8rem 2.1rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 531.28 200'%3E%3Cdefs%3E%3Cstyle%3E .shape %7B fill: %23FF4655 /* fill: %230E1822; */ %7D %3C/style%3E%3C/defs%3E%3Cg id='Layer_2' data-name='Layer 2'%3E%3Cg id='Layer_1-2' data-name='Layer 1'%3E%3Cpolygon class='shape' points='415.81 200 0 200 115.47 0 531.28 0 415.81 200' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A");
+  background-color: var(--color-purple-700);
+  background-size: 200%;
+  background-position: 200%;
+  background-repeat: no-repeat;
+  transition: 0.3s ease-in-out;
+  transition-property: background-position, border, color;
+  position: relative;
+  z-index: 1;
 }
 
-kbutton.learn-more {
- width: 12rem;
- height: auto;
+.primary-button:hover {
+  border: 1px solid var(--color-primary);
+  color: white;
+  /* background-position: 40%; */
+  background-color: var(--primary);
 }
 
-kbutton.learn-more .circle {
- transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
- position: relative;
- display: block;
- margin: 0;
- width: 3rem;
- height: 3rem;
- background: #282936;
- border-radius: 1.625rem;
+.primary-button:before {
+  content: "";
+  position: absolute;
+  background-color: #0e1822;
+  width: 0.2rem;
+  height: 0.2rem;
+  top: -1px;
+  left: -1px;
+  transition: background-color 0.15s ease-in-out;
 }
 
-kbutton.learn-more .circle .icon {
- transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
- position: absolute;
- top: 0;
- bottom: 0;
- margin: auto;
- background: #fff;
+.primary-button:hover:before {
+  background-color: var(--color-purple-700);
 }
 
-kbutton.learn-more .circle .icon.arrow {
- transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
- left: 0.625rem;
- width: 1.125rem;
- height: 0.125rem;
- background: none;
+.primary-button:hover:after {
+  background-color: white;
 }
 
-kbutton.learn-more .circle .icon.arrow::before {
- position: absolute;
- content: "";
- top: -0.29rem;
- right: 0.0625rem;
- width: 0.625rem;
- height: 0.625rem;
- border-top: 0.125rem solid #fff;
- border-right: 0.125rem solid #fff;
- transform: rotate(45deg);
+.primary-button:after {
+  content: "";
+  position: absolute;
+  background-color: var(--color-primary);
+  width: 0.3rem;
+  height: 0.3rem;
+  bottom: -1px;
+  right: -1px;
+  transition: background-color 0.15s ease-in-out;
 }
 
-kbutton.learn-more .kbutton-text {
- transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
- position: absolute;
- top: 0;
- left: 0;
- right: 0;
- bottom: 0;
- padding: 0.75rem 0;
- margin: 0 0 0 1.85rem;
- color: #282936;
- font-weight: 700;
- line-height: 1.6;
- text-align: center;
- text-transform: uppercase;
+.button-borders {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
 }
 
-kbutton:hover .circle {
- width: 100%;
+.button-borders:before {
+  content: "";
+  border: 1px solid var(--color-primary);
+  border-bottom: 0;
+  width: calc(100% + 0.5em);
+  height: 35%;
+  position: absolute;
+  top: -0.08em;
+  left: -0.3em;
+}
+.button-borders:after {
+  content: "";
+  position: absolute;
+  width: calc(100% + 0.5em);
+  height: 50%;
+  left: -0.3em;
+  bottom: -0.3em;
+  border: 1px solid var(--color-primary);
+  border-top: 0px;
+  /* opacity: 0.3; */
+  z-index: 0;
 }
 
-kbutton:hover .circle .icon.arrow {
- background: #fff;
- transform: translate(1rem, 0);
-}
-
-kbutton:hover .kbutton-text {
- color: #fff;
+.shape {
+  fill: #0e1822;
 }

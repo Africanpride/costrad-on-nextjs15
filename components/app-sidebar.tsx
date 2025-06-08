@@ -15,6 +15,7 @@ import {
   IconListDetails,
   IconMoneybagPlus,
   IconNewSection,
+  IconPackages,
   IconReport,
   IconSearch,
   IconSettings,
@@ -78,6 +79,11 @@ const data = {
       title: "Publications",
       url: "/admin/publications",
       icon: IconFolder,
+    },
+    {
+      title: "Testimonials",
+      url: "/admin/testimonias",
+      icon: IconPackages,
     },
     {
       title: "Participants",

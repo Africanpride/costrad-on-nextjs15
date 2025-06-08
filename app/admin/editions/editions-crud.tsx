@@ -73,7 +73,7 @@ export default function EditionsCrud() {
     try {
       const res = await fetch("/api/institutes", {
         headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`, // Ensure this is set in .env.local
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`
         },
       });
       if (!res.ok) {
@@ -216,7 +216,7 @@ export default function EditionsCrud() {
           <DialogTrigger asChild>
             <Button onClick={() => setShowDialog(true)}>Add Edition</Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="w-screen" >
             <DialogHeader>
               <DialogTitle>Add Edition</DialogTitle>
               <DialogDescription>
@@ -224,13 +224,13 @@ export default function EditionsCrud() {
               </DialogDescription>
             </DialogHeader>
             <form className="space-y-2" onSubmit={handleAdd}>
-              <Select
+              <Select              
                 onValueChange={(value) =>
                   setForm((f) => ({ ...f, instituteId: value }))
                 }
                 value={form.instituteId}
               >
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select an institute" />
                 </SelectTrigger>
                 <SelectContent>
@@ -356,6 +356,7 @@ export default function EditionsCrud() {
                 <span> Active</span>
               </div>
               <Button
+              className="w-1/2"
                 type="submit"
                 disabled={
                   loading ||

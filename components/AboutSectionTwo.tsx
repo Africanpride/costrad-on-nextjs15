@@ -1,17 +1,17 @@
 import Link from "next/link";
 import React from "react";
+import ButtonWithLink from "./ButtonWithLink";
 
 type Props = {};
 
 const AboutSectionTwo = (props: Props) => {
   return (
-    <div  className="py-8">
-     <section className="max-w-8xl  mx-auto min-h-[80dvh] h-auto">
+    <div className="py-8">
+      <section className="max-w-8xl  mx-auto min-h-[80dvh] h-auto">
         <div
           className="relative overflow-hidden rounded-2xl bg-cover h-[80dvh] "
           style={{
-            backgroundImage:
-              "url('/images/lecture_in_progress.jpg')",
+            backgroundImage: "url('/images/lecture_in_progress.jpg')",
           }}
         >
           <div className="flex flex-col h-full justify-center md:p-8 mx-auto p-4 py-8 relative shadow-2xl z-10 ">
@@ -53,26 +53,9 @@ const AboutSectionTwo = (props: Props) => {
                       />
                     </svg>
                   </Link>
-                  <Link
-                    className=" px-4 inline-flex  justify-center items-center gap-2 rounded-lg border border-transparent text-background  bg-primary font-medium  hover:bg-gray-800  focus:outline-none transition-all text-sm  "
-                    href="/institutes"
-                  >
-                    <svg
-                      className="w-5 h-5 text-current"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-                      <path d="M2 12h20" />
-                    </svg>{" "}
+                  <ButtonWithLink href="/about" className="uppercase">
                     Our Institutes
-                  </Link>
+                  </ButtonWithLink>
                 </div>
                 {/* End Buttons */}
               </div>

@@ -31,16 +31,28 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="overflow-x-hidden ">
+    <main className="overflow-x-hidden space-y-3 ">
       <AnimatePresence mode="wait">
         {isLoading && <Preloader />}
       </AnimatePresence>
       <HeroSection backgroundImageUrl="/images/united-nations.jpg" />
       <InstitutesIntro />
-      <WhyCostrad />
+      <section className=" px-4 md:py-8 md:px-8 max-w-8xl mx-auto text-lg md:text-3xl md:text-center
+       md:min-h-[40dvh]">
+        We equip you with the essential tools and mindset to confidently guide
+        individuals, lead organizations, and oversee complex systems with
+        clarity and purpose.{" "}
+        <span className="text-purple-700">Effective leaders</span> demonstrate
+        exceptional communication abilities, sound judgment, and sharp{" "}
+        <span className="text-chart-2">analytical thinking</span>. They also
+        have the capacity to uplift, energize, and mobilize those around them
+        toward a shared vision.
+      </section>
+
       <Jumbotron heroImage="library.png" height="md:h-[550px]" />
-      <Testimonials />
+      <WhyCostrad />
       <CTA />
+      <Testimonials />
       {/* <Newsletter /> */}
     </main>
   );

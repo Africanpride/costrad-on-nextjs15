@@ -11,72 +11,73 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import Link from "next/link";
 
 export interface InstituteItems {
   id: string;
-  title: string;
-  description: string;
-  href: string;
-  image: string;
+  name: string;
+  overview: string;
+  slug: string;
+  banner: string;
 }
 
 export interface InstituteProps {
-  title?: string;
-  description?: string;
+  name?: string;
+  overview?: string;
   items: InstituteItems[];
 }
 
 const data = [
   {
     id: "shadcn-ui",
-    title: "shadcn/ui: Building a Modern Component Library",
-    description:
+    name: "shadcn/ui: Building a Modern Component Library",
+    overview:
       "Explore how shadcn/ui revolutionized React component libraries by providing a unique approach to component distribution and customization, making it easier for developers to build beautiful, accessible applications.",
-    href: "https://ui.shadcn.com",
-    image:
+    slug: "https://ui.shadcn.com",
+    banner:
       "https://images.unsplash.com/photo-1551250928-243dc937c49d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDI3NzN8MHwxfGFsbHwxMjN8fHx8fHwyfHwxNzIzODA2OTM5fA&ixlib=rb-4.0.3&q=80&w=1080",
   },
   {
     id: "tailwind",
-    title: "Tailwind CSS: The Utility-First Revolution",
-    description:
+    name: "Tailwind CSS: The Utility-First Revolution",
+    overview:
       "Discover how Tailwind CSS transformed the way developers style their applications, offering a utility-first approach that speeds up development while maintaining complete design flexibility.",
-    href: "https://tailwindcss.com",
-    image:
+    slug: "https://tailwindcss.com",
+    banner:
       "https://images.unsplash.com/photo-1551250928-e4a05afaed1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDI3NzN8MHwxfGFsbHwxMjR8fHx8fHwyfHwxNzIzODA2OTM5fA&ixlib=rb-4.0.3&q=80&w=1080",
   },
   {
     id: "astro",
-    title: "Astro: The All-in-One Web Framework",
-    description:
+    name: "Astro: The All-in-One Web Framework",
+    overview:
       "Learn how Astro's innovative 'Islands Architecture' and zero-JS-by-default approach is helping developers build faster websites while maintaining rich interactivity where needed.",
-    href: "https://astro.build",
-    image:
+    slug: "https://astro.build",
+    banner:
       "https://images.unsplash.com/photo-1536735561749-fc87494598cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDI3NzN8MHwxfGFsbHwxNzd8fHx8fHwyfHwxNzIzNjM0NDc0fA&ixlib=rb-4.0.3&q=80&w=1080",
   },
   {
     id: "react",
-    title: "React: Pioneering Component-Based UI",
-    description:
+    name: "React: Pioneering Component-Based UI",
+    overview:
       "See how React continues to shape modern web development with its component-based architecture, enabling developers to build complex user interfaces with reusable, maintainable code.",
-    href: "https://react.dev",
-    image:
+    slug: "https://react.dev",
+    banner:
       "https://images.unsplash.com/photo-1548324215-9133768e4094?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDI3NzN8MHwxfGFsbHwxMzF8fHx8fHwyfHwxNzIzNDM1MzA1fA&ixlib=rb-4.0.3&q=80&w=1080",
   },
   {
     id: "nextjs",
-    title: "Next.js: The React Framework for Production",
-    description:
+    name: "Next.js: The React Framework for Production",
+    overview:
       "Explore how Next.js has become the go-to framework for building full-stack React applications, offering features like server components, file-based routing, and automatic optimization.",
-    href: "https://nextjs.org",
-    image:
-      "https://images.unsplash.com/photo-1550070881-a5d71eda5800?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDI3NzN8MHwxfGFsbHwxMjV8fHx8fHwyfHwxNzIzNDM1Mjk4fA&ixlib=rb-4.0.3&q=80&w=1080",
+    slug: "https://nextjs.org",
+    banner:
+      "",
   },
 ];
 
-const InstituteGallery = ({
-  title = "Case Studies",
-  description = "Discover how leading companies and developers are leveraging modern web technologies to build exceptional digital experiences. These case studies showcase real-world applications and success stories.",
+export const InstituteGallery = ({
+  name = "The Costrad Mission",
+  overview = "Our Mission is to raise and develop generations of transformational leaders, equipped to bring systemic and sustainable change, to every sphere of society.",
   items = data,
 }: InstituteProps) => {
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
@@ -106,30 +107,31 @@ const InstituteGallery = ({
         <div className="mb-8 flex items-end justify-between md:mb-14 lg:mb-16">
           <div className="flex flex-col gap-4 md:px-8">
             <h2 className="text-3xl sm:text-5xl md:text-4xl  ">
-              {title}
+              {name}
             </h2>
-            <p className="max-w-4xl text-muted-background">{description}</p>
+            <p className="max-w-3xl text-foreground text-lg">{overview}</p>
           </div>
           <div className="hidden shrink-0 gap-2 md:flex">
             <Button
+            
               size="icon"
-              variant="secondary"
+              variant="default"
               onClick={() => {
                 carouselApi?.scrollPrev();
               }}
               disabled={!canScrollPrev}
-              className="disabled:pointer-events-auto"
+              className="disabled:pointer-events-auto text-foreground "
             >
               <ArrowLeft className="size-5" /> 
             </Button>
             <Button
               size="icon"
-              variant="secondary"
+              variant="default"
               onClick={() => {
                 carouselApi?.scrollNext();
               }}
               disabled={!canScrollNext}
-              className="disabled:pointer-events-auto"
+              className="disabled:pointer-events-auto text-foreground"
             >
               <ArrowRight className="size-5" />
             </Button>
@@ -151,34 +153,34 @@ const InstituteGallery = ({
             {items.map((item, index) => (
               <CarouselItem
                 key={item.id}
-                className="max-w-[320px] pl-[20px] lg:max-w-[360px]"
+                className="max-w-[320px] pl-[20px] lg:max-w-[360px] relative rounded-3xl "
               >
-                <a href={item.href} className="group rounded-xl">
+                <Link href={`/institutes/${item.slug}`} className="group rounded-3xl">
                   <div className="group relative h-full min-h-[27rem] max-w-full overflow-hidden  md:aspect-[5/4] lg:aspect-[16/9]">
                     <Image
-                      src={item.image}
-                      alt={item.title}
+                      src={`/${item.banner}`}
+                      alt={item.name}
                       fill
-                      className="absolute h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                      className="absolute h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-99 rounded-3xl "
                       sizes="(max-width: 768px) 100vw, 360px"
                       priority={index === 0}
                     />
                     <div className="absolute inset-0 h-full bg-[linear-gradient(hsl(var(--primary)/0),hsl(var(--primary)/0.4),hsl(var(--primary)/0.8)_100%)] mix-blend-multiply" />
-                    <div className="absolute inset-x-0 bottom-0 flex flex-col items-start p-6 text-chart-1 md:p-8">
-                      <div className="mb-2 pt-4 text-lg font-medium font-bebas text-background
+                    <div className="absolute inset-x-0 bottom-0 flex flex-col items-start p-6 md:p-8">
+                      <div className="mb-2 pt-4 md:w-3/4 text-2xl leading-tight font-bebas text-primary
                        uppercase md:mb-3 md:pt-4 lg:pt-4">
-                        {item.title}
+                        {item.name}
                       </div>
-                      <div className="mb-8 line-clamp-4  md:mb-12 lg:mb-9">
-                        {item.description}
+                      <div className="mb-8 line-clamp-4 invisible font-bold font-foreground leading-5 md:leading-6  md:mb-12 lg:mb-9">
+                        {item.overview}
                       </div>
-                      <div className="flex items-center text-sm">
+                      <div className="flex items-center text-firefly font-bold text-sm">
                         Read more{" "}
                         <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
                       </div>
                     </div>
                   </div>
-                </a>
+                </Link>
               </CarouselItem>
             ))}
           </CarouselContent>
@@ -200,4 +202,3 @@ const InstituteGallery = ({
   );
 };
 
-export { InstituteGallery };

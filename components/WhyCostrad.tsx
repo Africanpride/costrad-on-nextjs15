@@ -8,6 +8,8 @@ import { bebas } from "@/config/fonts";
 import { useDevice } from "@/hooks/useDevice";
 import { Separator } from "@radix-ui/react-separator";
 import Link from "next/link";
+import { Button } from "@heroui/button";
+import ButtonWithLink from "./ButtonWithLink";
 
 interface WhyCostradProps {
   backgroundImageUrl?: string;
@@ -19,8 +21,8 @@ export const WhyCostrad: React.FC<WhyCostradProps> = ({
   const { isMobile } = useDevice();
 
   return (
-    <section className="max-w-auto  mx-auto h-auto ">
-      <div className="  md:py-8 ">
+    <section className="max-w-auto  mx-auto h-auto  text-lg md:text-3xl  ">
+      <div className="  md:py-8 py-4 ">
         <div className="px-4 mx-auto max-w-8xl sm:px-6 lg:px-8">
           <div className="grid items-stretch gap-y-10 md:grid-cols-2 md:gap-x-6">
             <div className="relative grid grid-cols-2 gap-4 mt-10 md:mt-0 py-12 h-auto">
@@ -58,11 +60,11 @@ export const WhyCostrad: React.FC<WhyCostradProps> = ({
               </div>
             </div>
 
-            <div className="flex flex-col items-start justify-center md:px-8 space-y-6 text-left ">
-              <h2 className="uppercase text-3xl md:text-4xl   ">
+            <div className="flex flex-col items-start  justify-center md:px-8 space-y-6 text-left  ">
+              <h2 className="uppercase   ">
                 The Vital Role of Leadership Training Today
               </h2>
-              <p>
+              <p className="md:text-lg">
                 At the{" "}
                 <span>
                   College of Sustainable Transformation and Development COSTrAD
@@ -76,14 +78,8 @@ export const WhyCostrad: React.FC<WhyCostradProps> = ({
                 well as the ability to inspire and motivate others.
               </p>
 
-              <div className="mx-auto py-6 text-left w-full">
-                <Link href="/institutes/college-of-sustainable-transformation-and-development">
-                  {" "}
-                  <button className="cbutton font-bold">
-                    Learn More About costrad
-                  </button>
-                </Link>
-              </div>
+             <ButtonWithLink href="/about">Learn More</ButtonWithLink>
+
             </div>
           </div>
         </div>

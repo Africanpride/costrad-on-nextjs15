@@ -5,14 +5,14 @@ import { prisma } from "@/prisma/dbConnect";
 const AUTH_TOKEN = process.env.AUTH_TOKEN;
 
 function checkAuth(req: NextRequest) {
-  // const authHeader = req.headers.get("authorization");
-  // if (!authHeader || !authHeader.startsWith("Bearer ")) {
-  //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  // }
-  // const token = authHeader.split(" ")[1];
-  // if (token !== AUTH_TOKEN) {
-  //   return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  // }
+  const authHeader = req.headers.get("authorization");
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  const token = authHeader.split(" ")[1];
+  if (token !== AUTH_TOKEN) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
   return null;
 }
 
@@ -24,14 +24,12 @@ export async function GET(req: NextRequest) {
   console.log("Getting institutes ....");
   try {
     const institutes = await prisma.institute.findMany({
-      select: {
-        id: true,
-        name: true,
-        acronym: true,
-      },
       where: {
         active: true, // Only fetch active institutes
       },
+      include: {
+        editions: true
+      }
     });
     return NextResponse.json(institutes);
   } catch (error) {
