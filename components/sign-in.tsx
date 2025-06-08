@@ -84,8 +84,8 @@ export default function SignInComponent() {
   };
 
   return (
-    <div>
-      <Card className=" rounded-none bg-transparent w-full px-5 shadow-none border-none">
+    <div className="w-full">
+      <Card className=" rounded-none bg-transparent w-full border-none shadow-none ">
         <CardHeader>
           <CardTitle className="text-lg md:text-xl">COSTrAD Sign In</CardTitle>
           <CardDescription className="text-xs md:text-sm">

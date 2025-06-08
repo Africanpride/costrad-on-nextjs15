@@ -49,7 +49,7 @@ export default function Home() {
         toward a shared vision.
       </section>
 
-      <Jumbotron heroImage="library.png" height="md:h-[550px]" />
+      <Jumbotron heroImage="center.jpg" height="md:h-[650px]" />
       <WhyCostrad />
       <CTA />
       <Testimonials />

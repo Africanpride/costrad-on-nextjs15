@@ -12,7 +12,7 @@ export default async function InstituteComponent() {
   });
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 md:p-2">
+    <div className="grid grid-cols-1 md:grid-cols-4  gap-3 md:p-2">
       {institutes.map((institute) => {
         const edition = institute.editions[0];
         return (

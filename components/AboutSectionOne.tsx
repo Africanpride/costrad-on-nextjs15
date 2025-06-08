@@ -42,7 +42,7 @@ const AboutSectionOne = (props: Props) => {
             <h1 className="text-3xl sm:text-5xl md:text-4xl  ">
               A Leadership Development <br /> Initiative
             </h1>
-            <p className="lg:text-xl m max-w-3xl text-muted-foreground">
+            <p className="lg:text-xl m max-w-3xl text-foreground">
               The College of Sustainable Transformation and Development
               (COSTrAD) is an initiative of the Logos-Rhema Foundation for
               Leadership Resource Development, a Non-Governmental Foundation

@@ -1,14 +1,15 @@
-'use client';
-import { bebas } from '@/config/fonts';
+"use client";
+import { bebas } from "@/config/fonts";
 import { Button, Checkbox, Input, Textarea } from "@heroui/react";
-import React, { useEffect } from 'react';
-import Link from 'next/link';
-import { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
+import React, { useEffect } from "react";
+import Link from "next/link";
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { betterFetch } from "@better-fetch/fetch";
 import type { auth } from "@/lib/auth";
-import { request } from 'http';
+import { request } from "http";
+import Jumbotron from "@/components/ui/Jumbotron";
 
 type ContactFormInputs = {
   firstname: string;
@@ -18,7 +19,6 @@ type ContactFormInputs = {
 };
 
 type Session = typeof auth.$Infer.Session;
-
 
 export default function ContactPage() {
   const [isSelected, setIsSelected] = useState<boolean>(false);
@@ -32,7 +32,7 @@ export default function ContactPage() {
 
   const onSubmit: SubmitHandler<ContactFormInputs> = async (data) => {
     if (!isSelected) {
-      toast.error('Please agree to the privacy policy');
+      toast.error("Please agree to the privacy policy");
       return;
     }
 
@@ -44,16 +44,16 @@ export default function ContactPage() {
 
     await toast.promise(
       (async () => {
-        const response = await fetch('/api/talk-to-us', {
-          method: 'POST',
+        const response = await fetch("/api/talk-to-us", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
         });
 
         if (!response.ok) {
-          throw new Error('Failed to send message');
+          throw new Error("Failed to send message");
         }
 
         const result = await response.json();
@@ -65,239 +65,87 @@ export default function ContactPage() {
         return result;
       })(),
       {
-        loading: 'Sending message...',
-        success: 'Message sent successfully!',
-        error: 'Failed to send message',
+        loading: "Sending message...",
+        success: "Message sent successfully!",
+        error: "Failed to send message",
       }
     );
   };
 
   useEffect(() => {
     async function getUser() {
-      const { data: session } = await betterFetch<Session>("/api/auth/get-session", {
-        baseURL: window.location.origin,
-        headers: {
-          cookie: document.cookie || "", // Forward the cookies from the browser
-        },
-      });
+      const { data: session } = await betterFetch<Session>(
+        "/api/auth/get-session",
+        {
+          baseURL: window.location.origin,
+          headers: {
+            cookie: document.cookie || "", // Forward the cookies from the browser
+          },
+        }
+      );
 
       console.log("SESSION DATA: ", session);
-
     }
     getUser();
   }, []);
 
   return (
     <section className="py-32">
-      <div className="container mx-auto max-w-[70rem] px-4">
-        <div className="mb-14">
-          <span className="text-sm font-semibold">Reach Us</span>
-          <h1 className={`mb-3 mt-1 text-balance text-3xl font-semibold md:text-4xl ${bebas.className}`}>
-            Speak with Our Friendly Team
-          </h1>
-          <p className="text-lg text-muted-foreground">
-            We'd love to assist you. Fill out the form or drop us an email.
+      <div className="container">
+        <div className="max-w-3xl space-y-3">
+          <h1 className="mb-3 text-xl font-medium text-firefly">Contact us</h1>
+          <h2 className="text-4xl  text-balance md:text-5xl">
+            Get in touch with us today to learn more
+          </h2>
+          <p className="text-2xl">
+            We’d love to hear from you! Reach out to our team today to discover
+            more about <span className="font-">COSTrAD</span>, ask questions, or
+            get the information you need. Don’t hesitate to contact us — we’re
+            here to help and look forward to connecting with you.
           </p>
         </div>
-        <div className="grid gap-10 md:grid-cols-2 ">
-          <div className="grid gap-10 sm:grid-cols-2">
+        <div className="mt-4 grid gap-4 md:mt-20 md:grid-cols-3 md:gap-8">
+          <div className="flex flex-col justify-between gap-6 rounded-lg border p-6">
             <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-mail mb-3 h-6 w-auto"
-              >
-                <rect width="20" height="16" x="2" y="4" rx="2" />
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-              </svg>
-              <h1 className={`mb-2 text-lg font-semibold ${bebas.className}`}>Email Us</h1>
-              <p className="mb-3 text-muted-foreground">
-                Our team is ready to assist.
+              <h2 className="mb-4 text-xl font-medium md:text-2xl">Sales</h2>
+              <p className="text-muted-foreground">
+                Interested in learning more about our platform? Contact our
+                sales team for more information.
               </p>
-              <a href="#" className="font-semibold hover:underline">
-                info@costrad.org 
-              </a>
             </div>
-            <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-messages-square mb-3 h-6 w-auto"
-              >
-                <path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4c0-1.1.9-2 2-2h8a2 2 0 0 1 2 2z" />
-                <path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1" />
-              </svg>
-              <h1 className={`mb-2 text-lg font-semibold ${bebas.className}`}>Live Chat Support</h1>
-              <p className="mb-3 text-muted-foreground">
-                Reach out for quick help.
-              </p>
-              <a href="#" className="font-semibold hover:underline">
-                Start a new chat
-              </a>
-            </div>
-            <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-map-pin mb-3 h-6 w-auto"
-              >
-                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              <h1 className={`mb-2 text-xl   `}>Visit Us</h1>
-              <p className="mb-3 text-muted-foreground">
-                Drop by our office for a chat.
-              </p>
-              <a href="#" className="font-semibold hover:underline">
-                Logos-Rhema Foundation, Behind Trade Fair, La. Accra.
-              </a>
-            </div>
-            <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-phone mb-3 h-6 w-auto"
-              >
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg>
-              <h1 className={`mb-2 text-lg font-semibold ${bebas.className}`}>Call Us</h1>
-              <p className="mb-3 text-muted-foreground">
-                Mon-Fri, 9am-5pm GMT.
-              </p>
-              <a href="#" className="font-semibold hover:underline">
-                +233200201334
-              </a>
-            </div>
+            <a href="#" className="hover:underline">
+              Request a demo
+            </a>
           </div>
-
-          <div className='mx-auto container flex w-full flex-col gap-6 md:rounded-lg 
-          md:max-w-auto  p-4 md:p-10'>
-            <form onSubmit={handleSubmit(onSubmit)} className=' space-y-6'>
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                <Input
-                  variant='underlined'
-                  labelPlacement='inside'
-                  label='First Name'
-                  autoFocus
-                  {...register('firstname', { required: true })}
-                  name='firstname'
-                  // placeholder="Enter your First Name"
-                  className='md:max-w-auto]'
-                  isInvalid={errors.firstname ? true : false}
-                  isClearable
-                  color='success'
-                />
-
-                <Input
-                  variant='underlined'
-                  {...register('lastname', { required: true })}
-                  name='lastname'
-                  label='Last Name'
-                  // placeholder="Enter your Last Name"
-                  className='md:max-w-auto]'
-                  isInvalid={errors.lastname ? true : false}
-                  isClearable
-                  color='success'
-                />
-              </div>
-
-              <div className='w-full'>
-                <Input
-                  variant='underlined'
-                  {...register('email', { required: true })}
-                  label='Your Email Address'
-                  name='email'
-                  type='email'
-                  aria-label='Email Address'
-                  className='md:max-w-auto]'
-                  isInvalid={errors.email ? true : false}
-                  isClearable
-                  color='success'
-                />
-              </div>
-
-              <div className='grid w-full gap-1.5 md:col-span-2'>
-                <Textarea
-                  // isClearable
-                  className="max-w-full"
-                  label='Message '
-
-                  placeholder="Your Message"
-                  variant="underlined"
-                  // eslint-disable-next-line no-console
-                  color={errors.message ? 'danger' : 'success'}
-                  onClear={() => console.log("textarea cleared")}
-                  {...register('message', { required: 'Message is required' })}
-                />
-                {/* <Textarea
-                  variant={'underlined'}
-                  label='Message'
-                  labelPlacement='inside'
-                  placeholder={errors.message ? errors.message.message : 'Enter your message'}
-                  className='col-span-12 md:col-span-6 mb-6 md:mb-0'
-                /> */}
-                {/* <textarea
-                  {...register('message', { required: 'Message is required' })}
-                  className='flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
-                  placeholder='How can we help you?'
-                /> */}
-                {errors.message && (
-                  <span className='text-sm text-red-500'>
-                    {errors.message.message}
-                  </span>
-                )}
-              </div>
-
-              <div className='flex items-center space-x-2 md:col-span-2'>
-                <Checkbox
-                  id='privacy-policy'
-                  checked={isSelected}
-                  onChange={(e) => setIsSelected(e.target.checked)}
-                />
-                <label htmlFor='privacy-policy' className='text-sm text-muted-foreground'>
-                  I agree to the{' '}
-                  <Link href='/privacy-policy' className='text-blue-500 hover:underline'>
-                    privacy policy
-                  </Link>
-                </label>
-              </div>
-
-              <Button
-                isDisabled={!isSelected}
-                type='submit'
-                className='inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full md:col-span-2'>
-                Submit
-              </Button>
-            </form>
+          <div className="flex flex-col justify-between gap-6 rounded-lg border p-6">
+            <div>
+              <h2 className="mb-4 text-xl font-medium md:text-2xl">Support</h2>
+              <p className="text-muted-foreground">
+                We’re here to help with any platform questions. Check out our
+                FAQs and learn more.
+              </p>
+            </div>
+            <a href="#" className="hover:underline">
+              Get support
+            </a>
           </div>
+          <div className="flex flex-col justify-between gap-6 rounded-lg border p-6">
+            <div>
+              <h2 className="mb-4 text-xl font-medium md:text-2xl">
+                General Inquiries
+              </h2>
+              <p className="text-muted-foreground">
+                For general inquiries, please reach out to us using the form
+                below.
+              </p>
+            </div>
+            <a href="#" className="hover:underline">
+              Contact us
+            </a>
+          </div>
+        </div>
+        <div className="mt-7">
+          <Jumbotron className=""  heroImage="map.jpg" height="md:h-[550px] h-dvh rounded-2xl" />
         </div>
       </div>
     </section>

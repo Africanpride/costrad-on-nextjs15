@@ -84,36 +84,23 @@ export function ProfileSection({
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1">
             <div className="space-y-2">
               <Label
-                htmlFor="firstName"
+                htmlFor="name"
                 className="text-zinc-900 dark:text-zinc-100"
               >
-                First name
+                Name
               </Label>
               <Input
-                id="firstName"
+                id="name"
                 value={session.user.name}
                 defaultValue="John"
                 disabled={!isEditing}
                 className="border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100 focus-visible:ring-zinc-950 dark:focus-visible:ring-zinc-300"
               />
             </div>
-            <div className="space-y-2">
-              <Label
-                htmlFor="lastName"
-                className="text-zinc-900 dark:text-zinc-100"
-              >
-                Last name
-              </Label>
-              <Input
-                id="lastName"
-                defaultValue="Doe"
-                disabled={!isEditing}
-                className="border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100 focus-visible:ring-zinc-950 dark:focus-visible:ring-zinc-300"
-              />
-            </div>
+           
           </div>
           <div className="space-y-2">
             <Label htmlFor="email" className="text-zinc-900 dark:text-zinc-100">

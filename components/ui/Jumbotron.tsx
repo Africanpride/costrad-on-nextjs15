@@ -7,12 +7,14 @@ interface JumbotronProps {
   heroImage?: string;
   height?: string;
   shade?: string;
+  className?: string;
 }
 
 export default function Jumbotron({ 
-  heroImage = "global.jpg",
+  heroImage = "center.jpg",
   height = 'md:h-[400px]',
-  shade = '30'
+  shade = '30',
+  className
 }: JumbotronProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -30,7 +32,7 @@ export default function Jumbotron({
             alt="COSTrAD"
             fill={true}
             priority
-            className="object-cover object-center"
+            className={`object-cover object-top ${className}`}
             sizes="(max-width: 768px) 100vw, (max-width: 1440px) 1440px"
           />
           <div className={`absolute inset-0 bg-black/${shade}`}></div>

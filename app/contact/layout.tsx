@@ -11,11 +11,11 @@ export default function AboutLayout({
   children: React.ReactNode;
 }) {
   return (
-      <section className='block'>
+      <div className='block p-4'>
           <Toaster />
           <Jumbotron />
           {children}
-      </section>
+      </div>
 
   );
 }

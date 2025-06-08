@@ -5,6 +5,7 @@ import { headers } from "next/headers";
 import { PreferencesSection } from "@/components/dashboard/preference-section";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import BillingSection from "@/components/dashboard/billing-section";
+import { ProfileSection } from "@/components/dashboard/profile-section";
 
 export default async function DashboardPage() {
   const [session, activeSessions, deviceSessions, organization] =
@@ -25,6 +26,9 @@ export default async function DashboardPage() {
       console.log(e);
       throw redirect("/auth/sign-in");
     });
+   
+        
+          
   return (
     <div className=" mx-auto p-4 m-4">
       <Tabs defaultValue="profile" className="">
@@ -35,7 +39,7 @@ export default async function DashboardPage() {
           <TabsTrigger value="billing">Billing</TabsTrigger>
         </TabsList>
         <TabsContent value="profile">
-          <PreferencesSection />
+          <ProfileSection session={session!} />
         </TabsContent>
         <TabsContent value="account">
           <UserCard

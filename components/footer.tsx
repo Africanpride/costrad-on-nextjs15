@@ -200,7 +200,7 @@ export default function Footer() {
           </div>
 
           <p className="max-w-4xl font-light  text-center mx-auto text-[11px] uppercase  pt-4">
-            The College of Sustainable Transformation and Development — widely known as COSTrAD™ — functions as an academic and development-oriented institution that operates under the umbrella and direction of the Logos-Rhema Foundation. This foundation is a legally recognized and fully registered Non-Profit Organization that is committed to driving sustainable change through education, research, and community engagement. It holds the official registration number <span className="text-primary font-bold ">CG046792017</span>, as recorded under the regulatory framework and legal statutes of the Republic of Ghana. The institution’s affiliation with the foundation ensures it adheres to strong governance principles, social responsibility, and national compliance standards.
+            The College of Sustainable Transformation and Development — widely known as COSTrAD™ — functions as an academic and development-oriented institution that operates under the umbrella and direction of the Logos-Rhema Foundation. This foundation is a legally recognized and fully registered Non-Profit Organization that is committed to driving sustainable change through education, research, and community engagement. It holds the official registration number <span className="text-primary ">CG046792017</span>, as recorded under the regulatory framework and legal statutes of the Republic of Ghana. The institution’s affiliation with the foundation ensures it adheres to strong governance principles, social responsibility, and national compliance standards.
           </p>
         </div>
       </div>

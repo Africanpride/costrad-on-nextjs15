@@ -1,5 +1,6 @@
-// components/ui/InstituteCardWithImage.tsx
 
+// components/ui/InstituteCardWithImage.tsx
+"use client"
 import {
   Card,
   CardHeader,
@@ -11,6 +12,7 @@ import { Button } from "@/components/ui/button"; // updated path for ShadCN
 import Image from "next/image";
 import Link from "next/link";
 import { description } from "../chart-area-interactive";
+import { useRouter } from "next/navigation";
 
 export interface InstituteCardProps {
   id: string;
@@ -39,20 +41,31 @@ export default function InstituteCardWithImage({
   editionTitle = `Family Development Institutte - (FDI)`,
   editionDates,
 }: InstituteCardProps) {
+  const router = useRouter();
   return (
-    <Card className="w-full p-0 gap-2 dark:bg-gray-950 rounded-2xl
-    flex flex-col justify-between ">
+    <Card
+      className="w-full p-0 gap-2 dark:bg-gray-950 rounded-2xl
+    flex flex-col justify-between "
+    >
       <Image
         src={`/${banner}`}
         alt="Institute Banner"
         width={400}
-        height={300}
-        className="object-cover rounded-t-2xl box-border aspect-square w-full p-1 cursor-pointer "
+        height={400}
+        className="object-cover object-top rounded-t-2xl box-border aspect-square w-full p-1 cursor-pointer "
         style={{ aspectRatio: "3/2", objectFit: "cover" }}
+        onClick={() => router.push(`/institutes/${slug}`)}
       />
       <CardHeader className="grid gap-1 p-1 space-y-2 pb-0">
-        <CardTitle className="text-lg  cursor-pointer">{name}</CardTitle>
-        <CardDescription className="line-clamp-4 font-opensans ">{overview}</CardDescription>
+        <CardTitle
+          className="text-lg uppercase px-2  cursor-pointer"
+          onClick={() => router.push(`/institutes/${slug}`)}
+        >
+          {name}
+        </CardTitle>
+        <CardDescription className="line-clamp-4 font-opensans ">
+          {overview}
+        </CardDescription>
         <Button className="bg-lime-600 text-background hover:text-foreground  cursor-pointer hover:bg-lime-500 transition-colors p-2 rounded-xl text-center uppercase text-xs">
           Start Application
         </Button>
