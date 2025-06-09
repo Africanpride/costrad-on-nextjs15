@@ -82,7 +82,7 @@ const data = {
     },
     {
       title: "Testimonials",
-      url: "/admin/testimonias",
+      url: "/admin/testimonials",
       icon: IconPackages,
     },
     {
@@ -187,7 +187,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const user = session?.user;
 
   return (
-    <Sidebar collapsible="offcanvas" {...props}>
+    <Sidebar className="font-opensans" collapsible="offcanvas" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
