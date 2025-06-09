@@ -70,7 +70,7 @@ export default function Home() {
 
       <WhyCostrad />
       <CTA />
-      <Testimonials />
+      <Testimonials className="hidden" />
       {/* <Newsletter /> */}
     </main>
   );

@@ -74,18 +74,18 @@ export function WebMenu() {
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink
-              href="/contact"
-              className={navigationMenuTriggerStyle()}
-            >
-              <span className="uppercase">Contact</span>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink
               href="/donate"
               className={navigationMenuTriggerStyle()}
             >
               <span className="uppercase">Donate</span>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              href="/contact"
+              className={navigationMenuTriggerStyle()}
+            >
+              <span className="uppercase">Contact</span>
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
