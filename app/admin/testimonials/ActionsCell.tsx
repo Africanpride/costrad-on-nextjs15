@@ -45,7 +45,7 @@ export function ActionsCell({ id, approved, featured }: ActionsCellProps) {
   };
 
   return (
-    <div className="flex gap-2 flex-wrap">
+    <div className="flex gap-2 flex-wrap ">
       <Button
         size="sm"
         variant={approved ? "outline" : "default"}

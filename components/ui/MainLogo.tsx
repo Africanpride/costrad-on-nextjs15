@@ -14,10 +14,10 @@ type MainLogoProps = {
 const MainLogo = ({
   hideText = false,
   textColor = " ",
-  logoSize = " w-16 h-16  md:w-20 md:h-20 ",
+  logoSize = " w-12 h-12  md:w-20 md:h-20 ",
 }: MainLogoProps) => {
   return (
-    <div className="flex h-auto  items-center space-x-3 sm:space-x-3 cursor-pointer ">
+    <div className="flex h-auto  items-center space-x-1 sm:space-x-3 cursor-pointer ">
       <Link href="/" className="!opacity-100">
         <div className={`relative rounded-full overflow-hidden ${logoSize}`}>
           <Image
@@ -33,7 +33,8 @@ const MainLogo = ({
         <Link href={"/"}>
           {/* <Divider orientation='vertical' className='bg-gray-300' /> */}
           <div
-            className={`${oswald.className} ${textColor} uppercase text-[12px] md:text-sm pl-3 border-left 
+            className={`${oswald.className} ${textColor} uppercase leading-[10px] text-[10px] md:text-sm 
+              pl-1 sm:pl-3 border-left 
                     border-dotted border-l-foreground/20  border-l-1  border-style-dotted           
                         sm:leading-[1.2rem] font-light `}
           >

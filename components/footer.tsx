@@ -84,13 +84,13 @@ export default function Footer() {
   return (
     <footer className="bg-background text-foreground text-md border-foreground/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14  pt-8 border-t ">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 mb-10">
+        <div className="grid grid-cols-1  md:grid-cols-5 gap-10 mb-10">
           {footerLinks.map((section) => (
             <div
               key={section.title}
               className={section.title === "Institutes" ? "col-span-2" : ""}
             >
-              <h3 className="font-semibold mb-5 text-xl">{section.title}</h3>
+              <h3 className="text-sm sm:text-xl mb-4 ">{section.title}</h3>
               <ul className="space-y-2">
                 {section.links.map(({ label, href }) => (
                   <li key={label}>
@@ -104,7 +104,7 @@ export default function Footer() {
           ))}
 
           <div>
-            <h3 className="font-semibold mb-4 text-xl ">Follow us</h3>
+            <h3 className=" mb-4 text-lg sm:text-xl ">Follow us</h3>
 
             <div className="flex gap-4">
               <Link
@@ -199,8 +199,8 @@ export default function Footer() {
             <div className="">All Rights Reserved.</div>
           </div>
 
-          <p className="max-w-4xl font-light  text-center mx-auto text-[11px] uppercase  pt-4">
-            The College of Sustainable Transformation and Development — widely known as COSTrAD™ — functions as an academic and development-oriented institution that operates under the umbrella and direction of the Logos-Rhema Foundation. This foundation is a legally recognized and fully registered Non-Profit Organization that is committed to driving sustainable change through education, research, and community engagement. It holds the official registration number <span className="text-primary ">CG046792017</span>, as recorded under the regulatory framework and legal statutes of the Republic of Ghana. The institution’s affiliation with the foundation ensures it adheres to strong governance principles, social responsibility, and national compliance standards.
+          <p className="max-w-5xl font-light  text-center mx-auto text-[9px] md:text-[11px] uppercase  pt-4">
+            The College of Sustainable Transformation and Development — COSTrAD™ — functions as an academic and development-oriented institution that operates under the umbrella and direction of the Logos-Rhema Foundation. This foundation is a legally recognized and fully registered Non-Profit Organization that is committed to driving sustainable change through education, research, and community engagement. It holds the official registration number <span className="text-primary ">CG046792017</span>, as recorded under the regulatory framework and legal statutes of the Republic of Ghana. 
           </p>
         </div>
       </div>
