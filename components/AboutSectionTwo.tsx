@@ -14,7 +14,7 @@ const AboutSectionTwo = (props: Props) => {
               "url('/images/lecture_in_progress.jpg')",
           }}
         >
-          <div className="flex flex-col h-full justify-center md:p-8 mx-auto p-4 py-8 relative shadow-2xl z-10 ">
+          <div className="flex flex-col h-full justify-center md:p-8 mx-auto p-2 py-8 relative shadow-2xl z-10 ">
             <div className="py-10">
               <div className="text-center mx-auto ">
                 <span className="inline-block text-lg font-medium text-primary uppercase ">

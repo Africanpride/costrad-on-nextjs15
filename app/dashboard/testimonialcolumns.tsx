@@ -5,11 +5,11 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
 import Image from "next/image";
-import { ActionsCell } from "./ActionsCell";
+import { TestiomonialActionsCell } from "./TestimonialActionsCell";
 
 
 
-export const columns: ColumnDef<any>[] = [
+export const testimonialcolumns: ColumnDef<any>[] = [
   {
     header: "User",
     accessorFn: (row) => row.user?.name || "Unknown",
@@ -42,7 +42,7 @@ export const columns: ColumnDef<any>[] = [
     header: "Actions",
     cell: ({ row }) => {
       const { id, approved, featured } = row.original;
-      return <ActionsCell id={id} approved={approved} featured={featured} />;
+      return <TestiomonialActionsCell id={id}  />;
     },
   },
   {

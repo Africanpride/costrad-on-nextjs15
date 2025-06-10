@@ -7,27 +7,10 @@ import { useRouter } from "next/navigation";
 
 type ActionsCellProps = {
   id: string;
-  approved: boolean;
-  featured: boolean;
 };
 
-export function ActionsCell({ id, approved, featured }: ActionsCellProps) {
+export function TestiomonialActionsCell({ id }: ActionsCellProps) {
   const router = useRouter();
-
-  const updateTestimonial = async (data: any) => {
-    const res = await fetch("/api/testimonials", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
-      },
-      body: JSON.stringify({ id, ...data }),
-    });
-    if (!res.ok) {
-      const result = await res.json();
-      throw new Error(result.error || "Failed to update");
-    }
-  };
 
   const deleteTestimonial = async () => {
     const res = await fetch("/api/testimonials", {
@@ -46,7 +29,7 @@ export function ActionsCell({ id, approved, featured }: ActionsCellProps) {
 
   return (
     <div className="flex gap-2 flex-wrap ">
-      <Button
+      {/* <Button
         size="sm"
         variant={approved ? "outline" : "default"}
         onClick={async () => {
@@ -60,9 +43,9 @@ export function ActionsCell({ id, approved, featured }: ActionsCellProps) {
         }}
       >
         {approved ? "Unapprove" : "Approve"}
-      </Button>
+      </Button> */}
 
-      <Button
+      {/* <Button
         size="sm"
         variant={featured ? "outline" : "secondary"}
         onClick={async () => {
@@ -76,7 +59,7 @@ export function ActionsCell({ id, approved, featured }: ActionsCellProps) {
         }}
       >
         {featured ? "Unfeature" : "Feature"}
-      </Button>
+      </Button> */}
 
       <Button
         size="sm"

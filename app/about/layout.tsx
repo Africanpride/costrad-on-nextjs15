@@ -13,7 +13,7 @@ export default function AboutLayout({
   return (
       <section className='block'>
           <Jumbotron />
-         <div className='p-4  container mx-auto md:px-8'>
+         <div className='p-2 sm:p-4  container mx-auto md:px-8'>
          {children}
           <Toaster />
          </div>

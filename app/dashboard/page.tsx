@@ -6,6 +6,7 @@ import { PreferencesSection } from "@/components/dashboard/preference-section";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import BillingSection from "@/components/dashboard/billing-section";
 import { ProfileSection } from "@/components/dashboard/profile-section";
+import TestimonialCard from "./TestimonialCard";
 
 export default async function DashboardPage() {
   const [session, activeSessions, deviceSessions, organization] =
@@ -33,11 +34,11 @@ export default async function DashboardPage() {
     <div className=" mx-auto p-4 m-4">
       <Tabs defaultValue="profile" className="">
         <TabsList>
-          <TabsTrigger value="profile">Profile</TabsTrigger>
-          <TabsTrigger value="account">Account</TabsTrigger>
-          <TabsTrigger value="preferences">Preferences</TabsTrigger>
-          <TabsTrigger value="billing">Billing</TabsTrigger>
-          <TabsTrigger value="testimonials">My Testimonials</TabsTrigger>
+          <TabsTrigger id="profile" value="profile">Profile</TabsTrigger>
+          <TabsTrigger id="account" value="account">Account</TabsTrigger>
+          <TabsTrigger id="preferences" value="preferences">Preferences</TabsTrigger>
+          <TabsTrigger id="billing" value="billing">Billing</TabsTrigger>
+          <TabsTrigger id="testimonials" value="testimonials">My Testimonials</TabsTrigger>
         </TabsList>
         <TabsContent value="profile">
           <ProfileSection session={session!} />
@@ -51,11 +52,11 @@ export default async function DashboardPage() {
         <TabsContent value="preferences">
           <PreferencesSection />
         </TabsContent>
-        <TabsContent value="billing">
+        <TabsContent id="billing" value="billing">
           <BillingSection />
         </TabsContent>
-        <TabsContent value="testimonials">
-          My Testimonials
+        <TabsContent id="testimonials" value="testimonials">
+         <TestimonialCard session={null}  />
         </TabsContent>
       </Tabs>
     </div>

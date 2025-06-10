@@ -7,7 +7,7 @@ import DonateSection from "@/components/donate-section";
 
 export default function AboutPage() {
   return (
-    <div className="space-y-4">
+    <div className="sm:space-y-4">
       <AboutSectionOne />
       <AboutSectionTwo />
       <section className="md:py-8 md:px-12 max-w-5xl mx-auto text-lg md:text-4xl md:text-center  ">
