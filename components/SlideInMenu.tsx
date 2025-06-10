@@ -90,12 +90,12 @@ export default function Component() {
                 <MainMenu />
               </div>
             </SheetTrigger>
-            <SheetContent className="w-[400px] sm:w-[540px] p-4 sm:p-6">
-              <SheetHeader>
+            <SheetContent className="w-[300px] sm:w-[540px] p-4 sm:p-6">
+              <SheetHeader className="border-b ">
                 <SheetTitle></SheetTitle>
                 <MainLogo />
               </SheetHeader>
-              <div className="space-y-4 ">
+              <div className="space-y-2 pl-5 font-opensans ">
                 <motion.nav
                   className="flex flex-col items-start justify-center gap-4 pl-8 "
                   variants={containerVariants}
@@ -108,7 +108,7 @@ export default function Component() {
                       className="group relative flex items-start justify-center"
                       variants={itemVariants}
                     >
-                      <span className="absolute -left-8 text-xs text-purple-400">
+                      <span className="absolute -left-8 text-xs text-firefly">
                         {item.number}
                       </span>
                       <SheetClose asChild>
@@ -126,11 +126,12 @@ export default function Component() {
               </div>
 
               <SheetFooter className="pt-4 border-t border-b border-accent ">
-                <div className="grid grid-cols-1 gap-4">
-                  <div className="pb-5">
+                  <div className="p-3 pb-5 flex items-center justify-between">
                     <SignInButton />
+                    <ThemeSwitch />
                   </div>
-                  <div className="flex items-center justify-between gap-4">
+                <div className="grid grid-cols-1 gap-4">
+                  <div className="hidden items-center justify-between gap-4">
                     {" "}
                     <div>
                       <SheetClose asChild>

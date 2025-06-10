@@ -1,4 +1,5 @@
 import Jumbotron from "@/components/ui/Jumbotron";
+import { Toaster } from "sonner";
 
 export default function AboutLayout({
   children,
@@ -6,11 +7,10 @@ export default function AboutLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="block">
-      <div className="block">
-        <Jumbotron />
-        {children}
-      </div>
-    </section>
+    <div className="block p-2">
+      <Toaster />
+      <Jumbotron />
+      {children}
+    </div>
   );
 }

@@ -2,17 +2,13 @@
 
 import HeroSection from "@/components/HeroSection";
 import { InstitutesIntro } from "@/components/InstitutesIntro";
-import Start from "@/components/Start";
 import { Testimonials } from "@/components/Testimonials";
 import Preloader from "@/components/ui/animations/Preloader";
-import BookIntro from "@/components/ui/BookIntro";
 import CTA from "@/components/ui/CTA";
 import Jumbotron from "@/components/ui/Jumbotron";
-import Newsletter from "@/components/ui/Newsletter";
-import Stage1 from "@/components/ui/Stage1";
 import WhyCostrad from "@/components/WhyCostrad";
 import { AnimatePresence } from "framer-motion";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
 
 export default function Home() {

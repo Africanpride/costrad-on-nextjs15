@@ -12,7 +12,7 @@ interface JumbotronProps {
 
 export default function Jumbotron({ 
   heroImage = "center.jpg",
-  height = 'md:h-[400px]',
+  height = 'md:h-[500px]',
   shade = '30',
   className
 }: JumbotronProps) {
@@ -32,7 +32,7 @@ export default function Jumbotron({
             alt="COSTrAD"
             fill={true}
             priority
-            className={`object-cover  ${className}`}
+            className={`object-cover kenburns  ${className}`}
             sizes="(max-width: 768px) 100vw, (max-width: 1440px) 1440px"
           />
           <div className={`absolute inset-0 bg-black/${shade}`}></div>
