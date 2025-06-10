@@ -11,8 +11,8 @@ const AboutSectionOne = (props: Props) => {
           <div className="text-left space-y-4">
             <Link
               href="#"
-              className="mx-auto mb-3 inline-flex uppercase items-center gap-3 rounded-full 
-              border px-2 py-1 text-xs sm:text-sm"
+              className="mx-auto mb-3 sm:inline-flex flex justify-between  uppercase items-center gap-3 rounded-full 
+              border px-2 py-1 text-xs sm:text-sm w-full sm:w-auto"
             >
               <span
                 data-slot="badge"
@@ -20,7 +20,7 @@ const AboutSectionOne = (props: Props) => {
               >
                 Costrad
               </span>
-              <span className=" font-oswald text-[9px] sm:text-xs ">Transformational and Enduring progress</span>
+              <span className=" font-oswald text-[11px] sm:text-xs ">Transformational and Enduring progress</span>
               <span className="flex size-7 items-center justify-center rounded-full bg-muted">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

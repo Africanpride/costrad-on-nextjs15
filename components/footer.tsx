@@ -104,7 +104,7 @@ export default function Footer() {
           ))}
 
           <div>
-            <h3 className=" mb-4 text-lg sm:text-xl ">Follow us</h3>
+            <h3 className=" text-sm sm:text-xl mb-4 ">Follow us</h3>
 
             <div className="flex gap-4">
               <Link

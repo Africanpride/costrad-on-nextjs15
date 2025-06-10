@@ -37,6 +37,7 @@ export default async function DashboardPage() {
           <TabsTrigger value="account">Account</TabsTrigger>
           <TabsTrigger value="preferences">Preferences</TabsTrigger>
           <TabsTrigger value="billing">Billing</TabsTrigger>
+          <TabsTrigger value="testimonials">My Testimonials</TabsTrigger>
         </TabsList>
         <TabsContent value="profile">
           <ProfileSection session={session!} />
@@ -52,6 +53,9 @@ export default async function DashboardPage() {
         </TabsContent>
         <TabsContent value="billing">
           <BillingSection />
+        </TabsContent>
+        <TabsContent value="testimonials">
+          My Testimonials
         </TabsContent>
       </Tabs>
     </div>
