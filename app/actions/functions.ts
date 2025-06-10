@@ -1,9 +1,15 @@
 //  app/actions/functions.ts
 // Fetch institutes with authentication
-"use server"
+"use server";
 
+// app/actions/functions.ts
+
+import { headers, cookies as serverCookies } from "next/headers";
 import { prisma } from "@/prisma/dbConnect";
+import { NextRequest } from "next/server";
+
 import { cookies } from "next/headers";
+import { auth } from "@/lib/auth";
 
 export const getInstitutes = async () => {
   try {
@@ -23,18 +29,20 @@ export const getInstitutes = async () => {
   }
 };
 
-
-
-export async function getCurrentUser() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("auth_token")?.value;
-
-  if (!token) return null;
-
-  const session = await prisma.session.findUnique({
-    where: { token },
-    include: { user: true },
+export async function getCurrentUser(req?: NextRequest) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
   });
 
   return session?.user ?? null;
+}
+
+
+
+export async function getCurrentSession(req?: NextRequest) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  return session ?? null;
 }

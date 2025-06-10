@@ -3,19 +3,15 @@
 // File: app/api/testimonials/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/prisma/dbConnect";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { getCurrentUser } from "@/app/actions/functions";
-
-const AUTH_TOKEN = process.env.AUTH_TOKEN;
+import { apiKey } from "better-auth/plugins";
+import { client } from "@/lib/auth-client";
+import { betterAuth } from "better-auth";
+import { auth } from "@/lib/auth";
 
 // GET all testimonials (admin only)
 export async function GET(req: NextRequest) {
-  const authHeader = req.headers.get("authorization");
-  const token = authHeader?.split(" ")[1];
-  if (!token || token !== AUTH_TOKEN) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
   const user = await getCurrentUser();
   if (!user || user.role !== "admin") {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
@@ -29,19 +25,17 @@ export async function GET(req: NextRequest) {
   return NextResponse.json(testimonials);
 }
 
+
 // POST new testimonial (authenticated user only)
 export async function POST(req: NextRequest) {
-  const authHeader = req.headers.get("authorization");
-  const token = authHeader?.split(" ")[1];
-  if (!token || token !== AUTH_TOKEN) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
 
   const user = await getCurrentUser();
+
+  // If user is not authenticated, return 401 Unauthorized
   if (!user) {
     return NextResponse.json(
-      { error: "Authentication required" },
-      { status: 403 }
+      { error: "Authentication required to submit a testimonial....." },
+      { status: 401 }
     );
   }
 
@@ -50,24 +44,25 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Content required" }, { status: 400 });
   }
 
-  const testimonial = await prisma.testimonial.create({
-    data: {
-      userId: user.id,
-      content,
-    },
-  });
-
-  return NextResponse.json(testimonial);
+  try {
+    const testimonial = await prisma.testimonial.create({
+      data: {
+        userId: user.id,
+        content,
+      },
+    });
+    return NextResponse.json(testimonial, { status: 201 }); // 201 Created for successful resource creation
+  } catch (error) {
+    console.error("Error creating testimonial:", error);
+    return NextResponse.json(
+      { error: "Failed to save testimonial due to a server error." },
+      { status: 500 }
+    );
+  }
 }
 
 // PUT update testimonial (admin only)
 export async function PUT(req: NextRequest) {
-  const authHeader = req.headers.get("authorization");
-  const token = authHeader?.split(" ")[1];
-  if (!token || token !== AUTH_TOKEN) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
   const user = await getCurrentUser();
   if (!user || user.role !== "admin") {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
@@ -93,12 +88,6 @@ export async function PUT(req: NextRequest) {
 
 // DELETE testimonial (admin only)
 export async function DELETE(req: NextRequest) {
-  const authHeader = req.headers.get("authorization");
-  const token = authHeader?.split(" ")[1];
-  if (!token || token !== AUTH_TOKEN) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
   const user = await getCurrentUser();
   if (!user || user.role !== "admin") {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });

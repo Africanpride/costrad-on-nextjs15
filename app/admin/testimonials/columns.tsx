@@ -1,11 +1,14 @@
 // columns.tsx
-'use client';
+"use client";
 
 import { ColumnDef } from "@tanstack/react-table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { format } from "date-fns";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+
 
 async function updateTestimonial(id: string, data: any) {
   const res = await fetch("/api/testimonials", {
@@ -41,14 +44,26 @@ export const columns: ColumnDef<any>[] = [
   {
     header: "User",
     accessorFn: (row) => row.user?.name || "Unknown",
+    cell: ({ row }) => (
+      <Image
+        src={row.original.user?.image || "/default-user.png"}
+        alt={row.original.user?.name || "Unknown user"}
+        width={50}
+        height={50}
+        className="rounded-full"
+      />
+    ),
   },
   {
     header: "Content",
     accessorKey: "content",
     cell: ({ row }) => (
-      <p className="line-clamp-2">{row.original.content}</p>
+      <p className="whitespace-normal line-clamp-3 break-words text-sm max-w-[300px]">
+        {row.original.content}
+      </p>
     ),
   },
+
   {
     header: "Status",
     cell: ({ row }) => (
@@ -66,36 +81,43 @@ export const columns: ColumnDef<any>[] = [
   {
     header: "Actions",
     cell: ({ row }) => {
+      
       const id = row.original.id;
+      const isApproved = row.original.approved;
+      const isFeatured = row.original.featured;
+
       return (
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
           <Button
             size="sm"
+            variant={isApproved ? "outline" : "default"}
             onClick={async () => {
               try {
-                await updateTestimonial(id, { approved: true });
-                toast.success("Approved");
+                await updateTestimonial(id, { approved: !isApproved });
+                toast.success(isApproved ? "Unapproved" : "Approved");
               } catch {
-                toast.error("Failed to approve");
+                toast.error("Failed to toggle approval");
               }
             }}
           >
-            Approve
+            {isApproved ? "Unapprove" : "Approve"}
           </Button>
+
           <Button
             size="sm"
-            variant="secondary"
+            variant={isFeatured ? "outline" : "secondary"}
             onClick={async () => {
               try {
-                await updateTestimonial(id, { featured: true });
-                toast.success("Marked as featured");
+                await updateTestimonial(id, { featured: !isFeatured });
+                toast.success(isFeatured ? "Unfeatured" : "Featured");
               } catch {
-                toast.error("Failed to feature");
+                toast.error("Failed to toggle featured");
               }
             }}
           >
-            Feature
+            {isFeatured ? "Unfeature" : "Feature"}
           </Button>
+
           <Button
             size="sm"
             variant="destructive"
