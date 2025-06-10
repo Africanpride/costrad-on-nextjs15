@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { format } from "date-fns";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-
+import { ActionsCell } from "./ActionsCell";
 
 async function updateTestimonial(id: string, data: any) {
   const res = await fetch("/api/testimonials", {
@@ -81,59 +81,8 @@ export const columns: ColumnDef<any>[] = [
   {
     header: "Actions",
     cell: ({ row }) => {
-      
-      const id = row.original.id;
-      const isApproved = row.original.approved;
-      const isFeatured = row.original.featured;
-
-      return (
-        <div className="flex gap-2 flex-wrap">
-          <Button
-            size="sm"
-            variant={isApproved ? "outline" : "default"}
-            onClick={async () => {
-              try {
-                await updateTestimonial(id, { approved: !isApproved });
-                toast.success(isApproved ? "Unapproved" : "Approved");
-              } catch {
-                toast.error("Failed to toggle approval");
-              }
-            }}
-          >
-            {isApproved ? "Unapprove" : "Approve"}
-          </Button>
-
-          <Button
-            size="sm"
-            variant={isFeatured ? "outline" : "secondary"}
-            onClick={async () => {
-              try {
-                await updateTestimonial(id, { featured: !isFeatured });
-                toast.success(isFeatured ? "Unfeatured" : "Featured");
-              } catch {
-                toast.error("Failed to toggle featured");
-              }
-            }}
-          >
-            {isFeatured ? "Unfeature" : "Feature"}
-          </Button>
-
-          <Button
-            size="sm"
-            variant="destructive"
-            onClick={async () => {
-              try {
-                await deleteTestimonial(id);
-                toast.success("Deleted");
-              } catch {
-                toast.error("Failed to delete");
-              }
-            }}
-          >
-            Delete
-          </Button>
-        </div>
-      );
+      const { id, approved, featured } = row.original;
+      return <ActionsCell id={id} approved={approved} featured={featured} />;
     },
   },
 ];
