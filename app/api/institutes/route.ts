@@ -11,6 +11,7 @@ function checkAuth(req: NextRequest) {
   }
   const token = authHeader.split(" ")[1];
   if (token !== AUTH_TOKEN) {
+    console.log("Failed with auth token");
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
   return null;
