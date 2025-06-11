@@ -195,13 +195,13 @@ export default function ContactPage() {
       <section className="container">
         <div className="container">
           <div className="max-w-3xl space-y-3">
-            <h1 className="mb-3 text-xl font-medium text-firefly">
+            <h5 className="text-firefly">
               Contact us
-            </h1>
-            <h2 className="text-4xl text-balance md:text-5xl">
+            </h5>
+            <h1>
               Get in touch with us today to learn more
-            </h2>
-            <p className="text-2xl">
+            </h1>
+            <p className="">
               We'd love to hear from you! Reach out to our team today to
               discover more about <span className="font-">COSTrAD</span>, ask
               questions, or get the information you need. Don't hesitate to

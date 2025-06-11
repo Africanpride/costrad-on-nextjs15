@@ -11,8 +11,8 @@ interface JumbotronProps {
 }
 
 export default function Jumbotron({ 
-  heroImage = "center.jpg",
-  height = 'md:h-[500px]',
+  heroImage = "center8.jpg",
+  height = 'md:h-[450px]',
   shade = '30',
   className
 }: JumbotronProps) {

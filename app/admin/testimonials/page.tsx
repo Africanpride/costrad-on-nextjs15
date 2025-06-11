@@ -1,8 +1,8 @@
 // File: app/admin/testimonials/page.tsx
 
 import { prisma } from "@/prisma/dbConnect";
-import { DataTable } from "./data-table";
-import { columns } from "./columns"
+import { GenericDataTable } from "@/components/generic-data-table";
+import { columns } from "./columns";
 
 export default async function AdminTestimonialsPage() {
   const testimonials = await prisma.testimonial.findMany({
@@ -15,7 +15,7 @@ export default async function AdminTestimonialsPage() {
   return (
     <div className="p-6 space-y-4">
       <h1 className="text-2xl font-bold">User Testimonials</h1>
-      <DataTable columns={columns} data={testimonials} />
+      <GenericDataTable columns={columns} data={testimonials} />
     </div>
   );
 }

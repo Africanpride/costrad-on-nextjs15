@@ -5,19 +5,19 @@ import { Toaster } from 'react-hot-toast';
 
 
 
-export default function AboutLayout({
+export default function Layout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-      <section className='block'>
-          <Toaster />
-          <Jumbotron />
-         <div className='p-4 '>
-         {children}
-         </div>
-      </section>
+       <div className='block p-2'>
+              <Toaster />
+              <Jumbotron />
+            <div className='p-2 sm:p-4'>
+                {children}
+            </div>
+          </div>
 
   );
 }

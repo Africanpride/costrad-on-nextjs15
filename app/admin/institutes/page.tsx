@@ -142,7 +142,7 @@ export default function InstituteDataTable() {
           header: "Overview",
           size: 250,
           cell: ({ cell }) => (
-            <p className="whitespace-normal line-clamp-3 break-words text-sm max-w-[450px]">
+            <p className="whitespace-normal font-opensans line-clamp-3 break-words text-sm max-w-[450px]">
               {cell.getValue()?.toString()}
             </p>
           ),

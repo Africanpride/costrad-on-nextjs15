@@ -11,12 +11,9 @@
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
-     font-family:
-      var(--font-oswald), sans-serif;
-      font-size: medium;
+    font-family: var(--font-oswald), sans-serif;
+    font-size: medium;
   }
-
-  
 
   h1,
   h2,
@@ -25,7 +22,7 @@
   h5 {
     font-family:
       var(--font-opensans), sans-serif; /* Default font for headings */
-    font-weight: 200; /* Default weight, adjust as needed */
+    font-weight: 300; /* Default weight, adjust as needed */
     text-transform: uppercase; /* Uppercase for all headings */
     margin: 0; /* Reset margin for headings */
     padding: 0; /* Reset padding for headings */
@@ -34,8 +31,17 @@
     color: var(--primary); /* Default color for headings */
   }
 
+  h1 {
+    font-size: x-large;
+  }
+
+  h5 {
+    font-size: small;
+  }
+
   p {
-    font-family: var(--font-oswald), sans-serif; /* Default font for paragraphs */
+    font-family:
+      var(--font-opensans), sans-serif; /* Default font for paragraphs */
     font-size: large;
     font-weight: 200; /* Default weight for paragraphs */
     margin: 0; /* Reset margin for paragraphs */
