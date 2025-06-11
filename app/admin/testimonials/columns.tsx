@@ -27,9 +27,12 @@ export const columns: ColumnDef<any>[] = [
     header: "Content",
     accessorKey: "content",
     cell: ({ row }) => (
-      <p className="whitespace-normal line-clamp-3 break-words text-sm max-w-[450px]">
-        {row.original.content}
-      </p>
+      <div className="space-y-2">
+        <p className="whitespace-normal line-clamp-3 break-words text-sm max-w-[450px]">
+          {row.original.content}
+        </p>
+        <h5 className="font-bebas ">&mdash; {row.original.user?.name || "Unknown"}</h5>
+      </div>
     ),
   },
 

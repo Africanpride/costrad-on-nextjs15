@@ -25,10 +25,8 @@ export async function GET(req: NextRequest) {
   return NextResponse.json(testimonials);
 }
 
-
 // POST new testimonial (authenticated user only)
 export async function POST(req: NextRequest) {
-
   const user = await getCurrentUser();
 
   // If user is not authenticated, return 401 Unauthorized
@@ -86,20 +84,43 @@ export async function PUT(req: NextRequest) {
   return NextResponse.json(updated);
 }
 
-// DELETE testimonial (admin only)
 export async function DELETE(req: NextRequest) {
   const user = await getCurrentUser();
-  if (!user || user.role !== "admin") {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  }
 
+  // Extract the testimonial ID from the request body
   const { id } = await req.json();
-  if (!id)
+
+  if (!id) {
     return NextResponse.json(
-      { error: "Missing testimonial id" },
+      { error: "Invalid Request" },
       { status: 400 }
     );
+  }
 
-  await prisma.testimonial.delete({ where: { id } });
-  return NextResponse.json({ success: true });
+  // Fetch the testimonial to check its userId
+  const testimonialToDelete = await prisma.testimonial.findUnique({
+    where: { id },
+  });
+
+  // If testimonial not found
+  if (!testimonialToDelete) {
+    return NextResponse.json(
+      { error: "Testimonial not found" },
+      { status: 404 }
+    );
+  }
+
+  // Check if user is logged in
+  if (!user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  // Allow deletion if user is an admin OR if the user is the owner of the testimonial
+  if (user.role === "admin" || testimonialToDelete.userId === user.id) {
+    await prisma.testimonial.delete({ where: { id } });
+    return NextResponse.json({ success: true });
+  } else {
+    // If not an admin and not the owner
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
 }
