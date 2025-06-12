@@ -4,6 +4,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/prisma/dbConnect";
 import { getCurrentUser } from "@/app/actions/functions";
+import { revalidatePath } from "next/cache";
 
 // GET all testimonials (admin only)
 export async function GET(req: NextRequest) {
@@ -58,6 +59,7 @@ export async function POST(req: NextRequest) {
 
 // PUT update testimonial (admin only)
 export async function PUT(req: NextRequest) {
+  console.log(req);
   const user = await getCurrentUser();
 
   if (!user || user.role !== "admin") {
@@ -88,6 +90,8 @@ export async function PUT(req: NextRequest) {
         featured: featured ?? undefined,
       },
     });
+        revalidatePath('/admin/testimonials');
+
     return NextResponse.json(updated);
   }
 
