@@ -13,6 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { IconThumbDown, IconThumbUp } from "@tabler/icons-react";
 
 interface ActionsCellProps {
   id: string;
@@ -69,11 +70,7 @@ export function ActionsCellComponent({
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-        <DropdownMenuItem
-          onClick={() => navigator.clipboard.writeText(id)} // Copy ID directly
-        >
-          Copy Testimonial ID
-        </DropdownMenuItem>
+
         <DropdownMenuSeparator />
         <DropdownMenuItem
           className="text-primary-foreground cursor-pointer"
@@ -94,7 +91,7 @@ export function ActionsCellComponent({
           </span>
         </DropdownMenuItem>
         <DropdownMenuItem
-          className="text-blue-600 cursor-pointer"
+          className="text-firefly cursor-pointer"
           onClick={async () => {
             try {
               await updateTestimonial({ approved: !approved });
@@ -107,9 +104,9 @@ export function ActionsCellComponent({
             }
           }}
         >
-          <span className="font-semibold">
+          <div className="font-semibold flex gap-2 items-center">
             {approved ? "Unapprove" : "Approve"}
-          </span>
+          </div>
         </DropdownMenuItem>
         <DropdownMenuItem
           className="text-destructive cursor-pointer"

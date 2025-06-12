@@ -6,7 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
 import Image from "next/image";
 import { Checkbox } from "@/components/ui/checkbox"; // Corrected import for Checkbox
-import { ActionsCell } from "./ActionsCell"; // ⭐️ Import the new ActionsCell component
 import { ActionsCellComponent } from "./ActionsCellComponent";
 
 

@@ -59,7 +59,6 @@ export async function POST(req: NextRequest) {
 
 // PUT update testimonial (admin only)
 export async function PUT(req: NextRequest) {
-  console.log(req);
   const user = await getCurrentUser();
 
   if (!user || user.role !== "admin") {
