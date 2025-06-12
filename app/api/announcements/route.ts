@@ -89,12 +89,9 @@ export async function DELETE(req: NextRequest) {
 
   // Extract the announcement ID from the request body
   const { id } = await req.json();
-console.log("attempting delation");
+  console.log(req);
   if (!id) {
-    return NextResponse.json(
-      { error: "Invalid Request" },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: "Invalid Request" }, { status: 400 });
   }
 
   // Fetch the announcement to check its userId
