@@ -27,9 +27,12 @@ export const testimonialcolumns: ColumnDef<any>[] = [
     header: "Content",
     accessorKey: "content",
     cell: ({ row }) => (
-      <p className="whitespace-normal line-clamp-3 break-words text-sm max-w-[450px]">
+    <div className="space-y-2">
+        <p className="whitespace-normal line-clamp-3 break-words text-sm max-w-[450px]">
         {row.original.content}
       </p>
+      <div className=" text-xs font-bold uppercase">&mdash;Author: <span className="text-bebas text-primary ">{row.original.user?.name}</span></div>
+    </div>
     ),
   },
 

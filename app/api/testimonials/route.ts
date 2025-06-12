@@ -3,12 +3,7 @@
 // File: app/api/testimonials/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/prisma/dbConnect";
-import { cookies, headers } from "next/headers";
 import { getCurrentUser } from "@/app/actions/functions";
-import { apiKey } from "better-auth/plugins";
-import { client } from "@/lib/auth-client";
-import { betterAuth } from "better-auth";
-import { auth } from "@/lib/auth";
 
 // GET all testimonials (admin only)
 export async function GET(req: NextRequest) {
@@ -21,6 +16,8 @@ export async function GET(req: NextRequest) {
     include: { user: true },
     orderBy: { createdAt: "desc" },
   });
+
+  console.log(testimonials);
 
   return NextResponse.json(testimonials);
 }

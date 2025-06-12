@@ -50,79 +50,8 @@ import { PlusCircledIcon } from "@radix-ui/react-icons";
 import { Textarea } from "@/components/ui/textarea";
 import { DialogPortal } from "@radix-ui/react-dialog";
 import { AnnouncementActionsCell } from "./AnnouncementActionsCell";
-
-const data: Announcement[] = [
-  {
-    userId: "60a7d9b0f7e3d1a2c3b4e5f6",
-    content:
-      "Exciting news! Our new community center is officially open. Come and explore the facilities!",
-    featured: true,
-    approved: true,
-  },
-  {
-    userId: "60a7d9b0f7e3d1a2c3b4e5f7",
-    content:
-      "Reminder: The annual neighborhood clean-up is scheduled for next Saturday. Let's keep our area beautiful!",
-    featured: false,
-    approved: true,
-  },
-  {
-    userId: "60a7d9b0f7e3d1a2c3b4e5f8",
-    content:
-      "Looking for volunteers to help with our upcoming charity event. Your support makes a difference!",
-    featured: true,
-    approved: false,
-  },
-  {
-    userId: "60a7d9b0f7e3d1a2c3b4e5f9",
-    content:
-      "New yoga classes starting soon at the community hall. Sign up now to reserve your spot!",
-    featured: false,
-    approved: true,
-  },
-  {
-    userId: "60a7d9b0f7e3d1a2c3b4e5fa",
-    content:
-      "Important notice: Road closures in effect this weekend for the annual marathon. Plan your routes accordingly.",
-    featured: false,
-    approved: true,
-  },
-  {
-    userId: "60a7d9b0f7e3d1a2c3b4e5fb",
-    content:
-      "Seeking donations for our winter coat drive. Help us keep everyone warm this season.",
-    featured: true,
-    approved: true,
-  },
-  {
-    userId: "60a7d9b0f7e3d1a2c3b4e5fc",
-    content:
-      "Community garden plots are now available for rent. Grow your own fresh produce!",
-    featured: false,
-    approved: false,
-  },
-  {
-    userId: "60a7d9b0f7e3d1a2c3b4e5fd",
-    content:
-      "Don't miss our free financial literacy workshop next month. Learn to manage your money effectively.",
-    featured: true,
-    approved: true,
-  },
-  {
-    userId: "60a7d9b0f7e3d1a2c3b4e5fe",
-    content:
-      "Call for artists: Submit your work for our upcoming local art exhibition.",
-    featured: false,
-    approved: true,
-  },
-  {
-    userId: "60a7d9b0f7e3d1a2c3b4e5ff",
-    content:
-      "Local library will have extended hours starting next week. More time for reading and research!",
-    featured: false,
-    approved: true,
-  },
-];
+import { Checkbox } from "@/components/ui/checkbox";
+import { toast } from "sonner";
 
 export type Announcement = {
   userId?: string;
@@ -177,7 +106,13 @@ export const columns: ColumnDef<any>[] = [
     header: "Actions",
     cell: ({ row }) => {
       const { id, approved, featured } = row.original;
-      return <AnnouncementActionsCell id={id} approved={approved} featured={featured} />;
+      return (
+        <AnnouncementActionsCell
+          id={id}
+          approved={approved}
+          featured={featured}
+        />
+      );
     },
   },
   {
@@ -192,6 +127,14 @@ export const columns: ColumnDef<any>[] = [
 ];
 
 export default function AnnouncementPage() {
+  const [formState, setFormState] = React.useState({
+    content: "",
+    featured: false,
+    approved: true,
+  });
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [data, setData] = React.useState<Announcement[]>([]);
+
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -219,9 +162,57 @@ export default function AnnouncementPage() {
     },
   });
 
+  React.useEffect(() => {
+    fetchAnnouncements();
+  }, []);
+
+  async function fetchAnnouncements() {
+    try {
+      const res = await fetch("/api/announcements");
+      const announcements: Announcement[] = await res.json();
+      setData(announcements);
+    } catch (error) {
+      console.error("Fetch error", error);
+    }
+  }
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
+    setFormState((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      const res = await fetch("/api/announcements", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formState),
+      });
+
+      if (!res.ok) throw new Error("Failed to post announcement");
+
+      toast.success("Announcement posted successfully!");
+      setFormState({ content: "", featured: false, approved: true });
+    } catch (error) {
+      console.error(error);
+      toast.error("Something went wrong.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="w-full p-4 sm:p-8">
-     
       <div className="flex sm:flex-flow justify-between items-center py-4">
         <Input
           placeholder="Filter contents..."
@@ -233,52 +224,86 @@ export default function AnnouncementPage() {
         />
 
         <div className="flex gap-4 items-center ">
-          <Dialog >
-            <form>
-              <DialogTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="cursor-pointer"
-                  // onClick={() => {
-                  //   setIsEditing(false);
-                  //   setFormState({});
-                  // }}
-                >
-                  <PlusCircledIcon className="mr-2 h-4 w-4" /> Add Announcement
-                </Button>
-              </DialogTrigger>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button
+                variant="outline"
+                className="cursor-pointer"
+                onClick={() =>
+                  setFormState({ content: "", featured: false, approved: true })
+                }
+              >
+                <PlusCircledIcon className="mr-2 h-4 w-4" /> Add Announcement
+              </Button>
+            </DialogTrigger>
 
-              <DialogContent className="w-auto p-4 sm:max-w-[50vw]">
-                <DialogHeader>
-                  <DialogTitle>Create New Announcement</DialogTitle>
-                  <DialogDescription>
-                    Fill out the details below to publish a new announcement.
-                  </DialogDescription>
-                </DialogHeader>
+            <DialogContent className="w-auto p-4 sm:max-w-[50vw]">
+              <DialogHeader>
+                <DialogTitle>Create New Announcement</DialogTitle>
+                <DialogDescription>
+                  Fill out the details below to publish a new announcement.
+                </DialogDescription>
+              </DialogHeader>
+
+              <form onSubmit={handleSubmit}>
                 <div className="grid gap-4">
-                  <div className="grid gap-3">
-                    <div className="grid w-full gap-3">
-                      <Label htmlFor="message-2">Your Message</Label>
-                      <Textarea
-                        placeholder="Type your message here."
-                        id="content"
-                        name="content"
-                      />
-                      {/* <p className="text-muted-foreground text-sm">
-                        Your message will be copied to the support team.
-                      </p> */}
-                    </div>
+                  <div className="grid w-full gap-3">
+                    <Label htmlFor="content">Your Message</Label>
+                    <Textarea
+                      id="content"
+                      name="content"
+                      value={formState.content}
+                      onChange={handleChange}
+                      placeholder="Type your message here."
+                      required
+                    />
                   </div>
-                  {/* You might add fields for "featured" or "approved" here if users can set them directly */}
+
+                  <div className="flex gap-4">
+                    <label className="flex items-center gap-2">
+                      <Checkbox
+                        id="featured"
+                        name="featured"
+                        checked={formState.featured}
+                        onCheckedChange={(checked) =>
+                          setFormState((prev) => ({
+                            ...prev,
+                            featured: !!checked,
+                          }))
+                        }
+                      />
+                      Featured
+                    </label>
+
+                    <label className="flex items-center gap-2">
+                      <Checkbox
+                        id="approved"
+                        name="approved"
+                        checked={formState.approved}
+                        onCheckedChange={(checked) =>
+                          setFormState((prev) => ({
+                            ...prev,
+                            approved: !!checked,
+                          }))
+                        }
+                      />
+                      Approved
+                    </label>
+                  </div>
                 </div>
-                <DialogFooter>
+
+                <DialogFooter className="mt-4">
                   <DialogClose asChild>
-                    <Button variant="outline">Cancel</Button>
+                    <Button variant="outline" type="button">
+                      Cancel
+                    </Button>
                   </DialogClose>
-                  <Button type="submit">Publish Announcement</Button>
+                  <Button type="submit" disabled={isSubmitting}>
+                    {isSubmitting ? "Publishing..." : "Publish Announcement"}
+                  </Button>
                 </DialogFooter>
-              </DialogContent>
-            </form>
+              </form>
+            </DialogContent>
           </Dialog>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

@@ -5,12 +5,7 @@ import { GenericDataTable } from "@/components/generic-data-table";
 import { columns } from "./columns";
 
 export default async function AdminTestimonialsPage() {
-  const testimonials = await prisma.testimonial.findMany({
-    include: {
-      user: true,
-    },
-    orderBy: { createdAt: "desc" },
-  });
+  const testimonials = await prisma.testimonial.findMany();
 
   return (
     <div className="p-6 space-y-4">

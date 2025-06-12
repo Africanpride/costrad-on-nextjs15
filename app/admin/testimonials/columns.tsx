@@ -15,7 +15,7 @@ export const columns: ColumnDef<any>[] = [
     accessorFn: (row) => row.user?.name || "Unknown",
     cell: ({ row }) => (
       <Image
-        src={row.original.user?.image || "/default-user.png"}
+        src={row.original.user?.image || "/images/avatar.png"}
         alt={row.original.user?.name || "Unknown user"}
         width={50}
         height={50}

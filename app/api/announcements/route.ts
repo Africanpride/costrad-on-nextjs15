@@ -3,19 +3,15 @@
 // File: app/api/announcements/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/prisma/dbConnect";
-import { cookies, headers } from "next/headers";
 import { getCurrentUser } from "@/app/actions/functions";
-import { apiKey } from "better-auth/plugins";
-import { client } from "@/lib/auth-client";
-import { betterAuth } from "better-auth";
-import { auth } from "@/lib/auth";
 
 // GET all announcements (admin only)
 export async function GET(req: NextRequest) {
   const user = await getCurrentUser();
-  if (!user || user.role !== "admin") {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  }
+  console.log(user);
+  // if (!user || user.role !== "admin") {
+  //   return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  // }
 
   const announcements = await prisma.announcement.findMany({
     include: { user: true },
@@ -30,7 +26,7 @@ export async function POST(req: NextRequest) {
   const user = await getCurrentUser();
 
   // If user is not authenticated, return 401 Unauthorized
-  if (!user) {
+  if (!user || user.role !== "admin") {
     return NextResponse.json(
       { error: "Authentication required to submit a announcement....." },
       { status: 401 }
