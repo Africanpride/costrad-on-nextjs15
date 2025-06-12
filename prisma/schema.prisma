@@ -22,12 +22,13 @@ model User {
   banExpires       DateTime?
 
   // Relations
-  sessions     Session[]
-  accounts     Account[]
-  members      Member[]
-  invitations  Invitation[]
-  twofactors   TwoFactor[]
-  testimonials Testimonial[] // 👈 one-to-many relation
+  sessions      Session[]
+  accounts      Account[]
+  members       Member[]
+  invitations   Invitation[]
+  twofactors    TwoFactor[]
+  testimonials  Testimonial[] // 👈 one-to-many relation
+  announcements Announcement[] // 👈 one-to-many relation
 
   @@map("user")
 }
@@ -192,6 +193,7 @@ model Institute {
   createdAt    DateTime? @default(now())
   updatedAt    DateTime? @updatedAt
   editions     Edition[]
+
   @@map("institute")
 }
 
@@ -229,4 +231,17 @@ model Testimonial {
   updatedAt DateTime @updatedAt
 
   @@map("testimonial")
+}
+
+model Announcement {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  content   String
+  featured  Boolean  @default(false)
+  approved  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("announcement")
 }

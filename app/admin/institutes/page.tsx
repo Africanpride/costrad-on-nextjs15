@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import Image from "next/image"; // Add this import at the top
+import Image from "next/image";
 import {
   Dialog,
   DialogContent,
@@ -58,6 +58,9 @@ export default function InstituteDataTable() {
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
+  // New state for global filter
+  const [globalFilter, setGlobalFilter] = React.useState("");
+
   const [dialogOpen, setDialogOpen] = React.useState(false);
   const [isEditing, setIsEditing] = React.useState(false);
   const [formState, setFormState] = React.useState<Partial<Institute>>({});
@@ -83,48 +86,47 @@ export default function InstituteDataTable() {
     data,
     columns: React.useMemo<ColumnDef<Institute>[]>(
       () => [
-        // {
-        //   id: "select",
-        //   header: ({ table }) => (
-        //     <Checkbox
-        //       checked={
-        //         table.getIsAllPageRowsSelected() ||
-        //         (table.getIsSomePageRowsSelected() && "indeterminate")
-        //       }
-        //       onCheckedChange={(value) =>
-        //         table.toggleAllPageRowsSelected(!!value)
-        //       }
-        //       aria-label="Select all"
-        //     />
-        //   ),
-        //   cell: ({ row }) => (
-        //     <Checkbox
-        //       checked={row.getIsSelected()}
-        //       onCheckedChange={(value) => row.toggleSelected(!!value)}
-        //       aria-label="Select row"
-        //     />
-        //   ),
-        //   enableSorting: false,
-        //   enableHiding: false,
-        // },
-
+        {
+          id: "select",
+          header: ({ table }) => (
+            <Checkbox
+              checked={
+                table.getIsAllPageRowsSelected() ||
+                (table.getIsSomePageRowsSelected() && "indeterminate")
+              }
+              onCheckedChange={(value) =>
+                table.toggleAllPageRowsSelected(!!value)
+              }
+              aria-label="Select all"
+            />
+          ),
+          cell: ({ row }) => (
+            <Checkbox
+              checked={row.getIsSelected()}
+              onCheckedChange={(value) => row.toggleSelected(!!value)}
+              aria-label="Select row"
+            />
+          ),
+          enableSorting: false,
+          enableHiding: false,
+        },
         {
           accessorKey: "logo",
           header: "",
-          cell: (
-            { row } // Destructure 'row' from the cell context
-          ) => (
-            <Image
-              src={`/${row.original.logo}` || "/images/logos/costrad.png"} // Access logo from row.original
-              alt={
-                row.original.name
-                  ? `${row.original.name} logo`
-                  : "Institute logo"
-              } // Use a more descriptive alt text
-              width={80}
-              height={80}
-              className="rounded-full object-cover" // Added object-cover for better image fitting
-            />
+          cell: ({ row }) => (
+            <div className="text-center">
+              <Image
+                src={`/${row.original.logo}` || "/images/logos/costrad.png"}
+                alt={
+                  row.original.name
+                    ? `${row.original.name} logo`
+                    : "Institute logo"
+                }
+                width={80}
+                height={80}
+                className="rounded-full object-cover"
+              />
+            </div>
           ),
         },
         {
@@ -142,16 +144,11 @@ export default function InstituteDataTable() {
           header: "Overview",
           size: 250,
           cell: ({ cell }) => (
-            <p className="whitespace-normal font-opensans line-clamp-3 break-words text-sm max-w-[450px]">
+            <p className="whitespace-normal font-opensans line-clamp-4 break-words text-sm max-w-[450px]">
               {cell.getValue()?.toString()}
             </p>
           ),
         },
-        // {
-        //   accessorKey: "active",
-        //   header: "Active",
-        //   cell: ({ row }) => (row.getValue("active") ? "Yes" : "No"),
-        // },
         {
           id: "actions",
           header: () => <div className="flex justify-end">Actions</div>,
@@ -180,11 +177,18 @@ export default function InstituteDataTable() {
       ],
       [handleDelete]
     ),
-    state: { sorting, columnFilters, columnVisibility, rowSelection },
+    state: {
+      sorting,
+      columnFilters,
+      columnVisibility,
+      rowSelection,
+      globalFilter,
+    }, // Add globalFilter to state
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
+    onGlobalFilterChange: setGlobalFilter, // Add this handler
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
@@ -252,92 +256,119 @@ export default function InstituteDataTable() {
 
   return (
     <div className="w-full p-4 sm:p-8">
-      <div className="flex items-center py-4">
-        <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-          <DialogTrigger asChild>
-            <Button variant="outline">
-              <Plus className="mr-2 h-4 w-4" /> Add Institute
-            </Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>{isEditing ? "Edit" : "Add"} Institute</DialogTitle>
-              <DialogDescription>
-                {isEditing
-                  ? "Update the institute details below."
-                  : "Fill out the form to add a new institute."}
-              </DialogDescription>
-            </DialogHeader>
-            <div className="grid grid-cols-1 gap-4 py-4">
-              <Input
-                placeholder="Name"
-                value={formState.name || ""}
-                onChange={(e) =>
-                  setFormState({ ...formState, name: e.target.value })
-                }
-              />
-              <Input
-                placeholder="Acronym"
-                value={formState.acronym || ""}
-                onChange={(e) =>
-                  setFormState({ ...formState, acronym: e.target.value })
-                }
-              />
-              <Textarea
-                placeholder="Overview"
-                value={formState.overview || ""}
-                onChange={(e) =>
-                  setFormState({ ...formState, overview: e.target.value })
-                }
-              />
-              <Textarea
-                placeholder="About"
-                value={formState.about || ""}
-                onChange={(e) =>
-                  setFormState({ ...formState, about: e.target.value })
-                }
-              />
-              <Textarea
-                placeholder="Introduction"
-                value={formState.introduction || ""}
-                onChange={(e) =>
-                  setFormState({ ...formState, introduction: e.target.value })
-                }
-              />
-              <Input
-                placeholder="Icon URL"
-                value={formState.icon || ""}
-                onChange={(e) =>
-                  setFormState({ ...formState, icon: e.target.value })
-                }
-              />
-              <Input
-                placeholder="Logo URL"
-                value={formState.logo || ""}
-                onChange={(e) =>
-                  setFormState({ ...formState, logo: e.target.value })
-                }
-              />
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  checked={formState.active || false}
-                  onCheckedChange={(val) =>
-                    setFormState({ ...formState, active: !!val })
+      <div className="flex flex-col sm:flex-row sm: gap-y-2 justify-between items-center">
+        <div className=" py-4">
+          {" "}
+          {/* Removed gap-2 as only one input */}
+          <Input
+            placeholder="Filter all columns..." // Updated placeholder
+            value={globalFilter ?? ""} // Use globalFilter
+            onChange={(event) => setGlobalFilter(event.target.value)} // Update globalFilter state
+            className="max-w-sm"
+          />
+        </div>
+        <div className="flex items-center py-4">
+          <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+            <DialogTrigger asChild>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setIsEditing(false);
+                  setFormState({});
+                }}
+              >
+                <Plus className="mr-2 h-4 w-4" /> Add Institute
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>
+                  {isEditing ? "Edit" : "Add"} Institute
+                </DialogTitle>
+                <DialogDescription>
+                  {isEditing
+                    ? "Update the institute details below."
+                    : "Fill out the form to add a new institute."}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="grid grid-cols-1 gap-4 py-4">
+                <Input
+                  placeholder="Name"
+                  value={formState.name || ""}
+                  onChange={(e) =>
+                    setFormState({ ...formState, name: e.target.value })
                   }
                 />
-                <span>Active</span>
+                <Input
+                  placeholder="Acronym"
+                  value={formState.acronym || ""}
+                  onChange={(e) =>
+                    setFormState({ ...formState, acronym: e.target.value })
+                  }
+                />
+                <Textarea
+                  placeholder="Overview"
+                  value={formState.overview || ""}
+                  onChange={(e) =>
+                    setFormState({ ...formState, overview: e.target.value })
+                  }
+                />
+                <Textarea
+                  placeholder="About"
+                  value={formState.about || ""}
+                  onChange={(e) =>
+                    setFormState({ ...formState, about: e.target.value })
+                  }
+                />
+                <Textarea
+                  placeholder="Introduction"
+                  value={formState.introduction || ""}
+                  onChange={(e) =>
+                    setFormState({ ...formState, introduction: e.target.value })
+                  }
+                />
+                <Input
+                  placeholder="Icon URL"
+                  value={formState.icon || ""}
+                  onChange={(e) =>
+                    setFormState({ ...formState, icon: e.target.value })
+                  }
+                />
+                <Input
+                  placeholder="Logo URL"
+                  value={formState.logo || ""}
+                  onChange={(e) =>
+                    setFormState({ ...formState, logo: e.target.value })
+                  }
+                />
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    checked={formState.active || false}
+                    onCheckedChange={(val) =>
+                      setFormState({ ...formState, active: !!val })
+                    }
+                  />
+                  <span>Active</span>
+                </div>
               </div>
-            </div>
-            <DialogFooter>
-              <Button onClick={() => setDialogOpen(false)} variant="outline">
-                Cancel
-              </Button>
-              <Button onClick={isEditing ? handleUpdate : handleCreate}>
-                {isEditing ? "Update" : "Create"}
-              </Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
+              <DialogFooter>
+                <Button
+                  onClick={() => {
+                    setDialogOpen(false);
+                    setIsEditing(false);
+                    setFormState({});
+                  }}
+                  variant="outline"
+                >
+                  Cancel
+                </Button>
+                <Button onClick={isEditing ? handleUpdate : handleCreate}>
+                  {isEditing ? "Update" : "Create"}
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
 
       <div className="rounded-md border">
@@ -359,18 +390,32 @@ export default function InstituteDataTable() {
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id}>
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell
-                    key={cell.id}
-                    style={{ width: cell.column.getSize() }}
-                  >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                ))}
+            {table.getRowModel().rows.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow key={row.id}>
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell
+                      key={cell.id}
+                      style={{ width: cell.column.getSize() }}
+                    >
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={table.getAllColumns().length}
+                  className="h-24 text-center"
+                >
+                  No results.
+                </TableCell>
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
       </div>

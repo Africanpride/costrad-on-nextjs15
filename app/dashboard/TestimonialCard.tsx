@@ -30,7 +30,6 @@ interface UserSession {
     id: string;
     email: string;
     name?: string;
-    // Add any other user properties you expect from your session here
   };
 }
 
@@ -174,7 +173,7 @@ export default function TestimonialCard(props: { session: Session | null }) {
 
   return (
     <div className="space-y-6 p-4">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row gap-4 justify-between">
         <div>
           <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
             My Testimonials
@@ -186,7 +185,7 @@ export default function TestimonialCard(props: { session: Session | null }) {
         <Button
           variant="outline"
           onClick={() => setIsTestimonialModalOpen(true)}
-          className="text-left p-0 justify-start text-primary cursor-pointer gap-x-2"
+          className="text-center p-0 justify-start text-primary cursor-pointer gap-x-2 w-auto max-w-[200px] "
         >
           <span>Submit Testimonial</span>
           <ArrowRight className="size-4 inline-block ml-1 pt-1" />
