@@ -62,6 +62,7 @@ export async function POST(req: NextRequest) {
 // PUT update testimonial (admin only)
 export async function PUT(req: NextRequest) {
   const user = await getCurrentUser();
+
   if (!user || user.role !== "admin") {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
@@ -73,15 +74,26 @@ export async function PUT(req: NextRequest) {
       { status: 400 }
     );
 
-  const updated = await prisma.testimonial.update({
+  // Fetch the testimonial to check its userId
+  const testimonialToUpdate = await prisma.testimonial.findUnique({
     where: { id },
-    data: {
-      approved: approved ?? undefined,
-      featured: featured ?? undefined,
-    },
   });
 
-  return NextResponse.json(updated);
+  if (!testimonialToUpdate) {
+    return NextResponse.json({ error: "Testimonial not found" }, { status: 404 });
+  }
+
+  if (user.role === "admin") {
+    const updated = await prisma.testimonial.update({
+      where: { id },
+      data: {
+        approved: approved ?? undefined,
+        featured: featured ?? undefined,
+      },
+    });
+    return NextResponse.json(updated);
+  }
+
 }
 
 export async function DELETE(req: NextRequest) {
@@ -91,10 +103,7 @@ export async function DELETE(req: NextRequest) {
   const { id } = await req.json();
 
   if (!id) {
-    return NextResponse.json(
-      { error: "Invalid Request" },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: "Invalid Request" }, { status: 400 });
   }
 
   // Fetch the testimonial to check its userId

@@ -24,10 +24,7 @@ export async function GET(req: NextRequest) {
 
   console.log("Getting institutes ....");
   try {
-    const institutes = await prisma.institute.findMany({
-      where: {
-        active: true, // Only fetch active institutes
-      },
+    const institutes = await prisma.institute.findMany({     
       include: {
         editions: true
       }

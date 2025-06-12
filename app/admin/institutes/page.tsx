@@ -166,7 +166,7 @@ export default function InstituteDataTable() {
               <Button
                 size="icon"
                 variant="ghost"
-                className="text-danger"
+                className="text-danger cursor-pointer"
                 onClick={() => handleDelete(row.original.id)}
               >
                 <Trash2 className="h-4 w-4" />
@@ -353,6 +353,7 @@ export default function InstituteDataTable() {
               </div>
               <DialogFooter>
                 <Button
+                  className="cursor-pointer"
                   onClick={() => {
                     setDialogOpen(false);
                     setIsEditing(false);
@@ -362,7 +363,10 @@ export default function InstituteDataTable() {
                 >
                   Cancel
                 </Button>
-                <Button onClick={isEditing ? handleUpdate : handleCreate}>
+                <Button
+                  className="cursor-pointer"
+                  onClick={isEditing ? handleUpdate : handleCreate}
+                >
                   {isEditing ? "Update" : "Create"}
                 </Button>
               </DialogFooter>
@@ -430,6 +434,8 @@ export default function InstituteDataTable() {
           Previous
         </Button>
         <Button
+                          className="cursor-pointer"
+
           variant="outline"
           size="sm"
           onClick={() => table.nextPage()}

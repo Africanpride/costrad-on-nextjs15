@@ -14,21 +14,28 @@ import {
   useReactTable,
   VisibilityState,
 } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
 import {
   Table,
   TableBody,
@@ -39,6 +46,10 @@ import {
 } from "@/components/ui/table";
 import { ActionsCell } from "../testimonials/ActionsCell";
 import { format } from "date-fns";
+import { PlusCircledIcon } from "@radix-ui/react-icons";
+import { Textarea } from "@/components/ui/textarea";
+import { DialogPortal } from "@radix-ui/react-dialog";
+import { AnnouncementActionsCell } from "./AnnouncementActionsCell";
 
 const data: Announcement[] = [
   {
@@ -142,7 +153,9 @@ export const columns: ColumnDef<any>[] = [
         <p className="whitespace-normal line-clamp-3 break-words text-sm max-w-[450px]">
           {row.original.content}
         </p>
-        <h5 className="font-bebas ">&mdash; {row.original.user?.name || "System Notification"}</h5>
+        <h5 className="font-bebas ">
+          &mdash; {row.original.user?.name || "System Notification"}
+        </h5>
       </div>
     ),
   },
@@ -158,13 +171,13 @@ export const columns: ColumnDef<any>[] = [
         return format(new Date(createdAtValue), "PPP");
       }
       return "N/A"; // Or any fallback text for invalid/missing dates
-    }
+    },
   },
   {
     header: "Actions",
     cell: ({ row }) => {
       const { id, approved, featured } = row.original;
-      return <ActionsCell id={id} approved={approved} featured={featured} />;
+      return <AnnouncementActionsCell id={id} approved={approved} featured={featured} />;
     },
   },
   {
@@ -208,41 +221,92 @@ export default function AnnouncementPage() {
 
   return (
     <div className="w-full p-4 sm:p-8">
-      <div className="flex items-center py-4">
+     
+      <div className="flex sm:flex-flow justify-between items-center py-4">
         <Input
           placeholder="Filter contents..."
           value={(table.getColumn("content")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("content")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="max-w-lg"
         />
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns <ChevronDown />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                );
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu>
+
+        <div className="flex gap-4 items-center ">
+          <Dialog >
+            <form>
+              <DialogTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="cursor-pointer"
+                  // onClick={() => {
+                  //   setIsEditing(false);
+                  //   setFormState({});
+                  // }}
+                >
+                  <PlusCircledIcon className="mr-2 h-4 w-4" /> Add Announcement
+                </Button>
+              </DialogTrigger>
+
+              <DialogContent className="w-auto p-4 sm:max-w-[50vw]">
+                <DialogHeader>
+                  <DialogTitle>Create New Announcement</DialogTitle>
+                  <DialogDescription>
+                    Fill out the details below to publish a new announcement.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="grid gap-4">
+                  <div className="grid gap-3">
+                    <div className="grid w-full gap-3">
+                      <Label htmlFor="message-2">Your Message</Label>
+                      <Textarea
+                        placeholder="Type your message here."
+                        id="content"
+                        name="content"
+                      />
+                      {/* <p className="text-muted-foreground text-sm">
+                        Your message will be copied to the support team.
+                      </p> */}
+                    </div>
+                  </div>
+                  {/* You might add fields for "featured" or "approved" here if users can set them directly */}
+                </div>
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button variant="outline">Cancel</Button>
+                  </DialogClose>
+                  <Button type="submit">Publish Announcement</Button>
+                </DialogFooter>
+              </DialogContent>
+            </form>
+          </Dialog>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="ml-auto">
+                Columns <ChevronDown />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {table
+                .getAllColumns()
+                .filter((column) => column.getCanHide())
+                .map((column) => {
+                  return (
+                    <DropdownMenuCheckboxItem
+                      key={column.id}
+                      className="capitalize"
+                      checked={column.getIsVisible()}
+                      onCheckedChange={(value) =>
+                        column.toggleVisibility(!!value)
+                      }
+                    >
+                      {column.id}
+                    </DropdownMenuCheckboxItem>
+                  );
+                })}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
       <div className="rounded-md border">
         <Table>
