@@ -8,6 +8,7 @@ import Image from "next/image";
 import { Checkbox } from "@/components/ui/checkbox"; // Corrected import for Checkbox
 import { ActionsCellComponent } from "./ActionsCellComponent";
 import { BadgeCheckIcon } from "lucide-react";
+import EditAnnouncementDialog from "./EditAnnouncementDialog";
 
 export const columns: ColumnDef<any>[] = [
   {
@@ -134,28 +135,10 @@ export const columns: ColumnDef<any>[] = [
     cell: ({ row }) => {
       const announcement = row.original;
       return (
-        <div>
-          <ActionsCellComponent
-            id={announcement.id}
-            content={announcement.content} // Pass content if needed for clipboard
-            featured={announcement.featured}
-            approved={announcement.approved}
-            setFormState={function (state: {
-              id?: string;
-              content?: string;
-              featured: boolean;
-              approved: boolean;
-            }): void {
-              throw new Error("Function not implemented.");
-            }}
-            setIsEditing={function (editing: boolean): void {
-              throw new Error("Function not implemented.");
-            }}
-            openDialog={function (): void {
-              throw new Error("Function not implemented.");
-            }}
+          <EditAnnouncementDialog
+            announcement={announcement}
           />
-        </div>
+    
       );
     },
   },
