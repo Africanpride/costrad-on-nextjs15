@@ -30,7 +30,7 @@ export const columns: ColumnDef<any>[] = [
         aria-label="Select row"
       />
     ),
-    enableSorting: false,
+    enableSorting: true,
     enableHiding: false,
   },
   {
