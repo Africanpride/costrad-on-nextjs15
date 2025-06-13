@@ -1,0 +1,135 @@
+// app/admin/institutes/EditInstituteDialog.tsx
+"use client";
+
+import { useState, useEffect } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { IconPencilCog } from "@tabler/icons-react";
+
+export type InstituteForm = {
+  id: string;
+  overview: string;
+  featured: boolean;
+  approved: boolean;
+};
+
+interface EditInstituteDialogProps {
+  institute: InstituteForm | null;
+}
+
+export default function EditInstituteDialog({
+  institute,
+}: EditInstituteDialogProps) {
+  const router = useRouter();
+  const [formState, setFormState] = useState<InstituteForm>({
+    id: "",
+    overview: "",
+    featured: false,
+    approved: false,
+  });
+  const [loading, setLoading] = useState(false);
+
+  // populate form when `institute` changes:
+  useEffect(() => {
+    if (institute) {
+      setFormState(institute);
+    }
+  }, [institute]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await fetch("/api/institutes", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formState),
+      });
+      if (!res.ok)
+        throw new Error((await res.json()).error || "Failed to update");
+      toast.success("Institute updated!");
+      router.refresh();
+    } catch (err: any) {
+      toast.error(err.message || "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <IconPencilCog />
+      </DialogTrigger>
+
+      <DialogContent className="sm:max-w-[600px]">
+        <form onSubmit={handleSubmit}>
+          <DialogHeader>
+            <DialogTitle>Edit Institute</DialogTitle>
+            <DialogDescription>
+              Modify the fields below and save.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="grid gap-4 py-4">
+            <Label htmlFor="content">Content</Label>
+            <Textarea
+              id="content"
+              value={formState.overview}
+              onChange={(e) =>
+                setFormState((f) => ({ ...f, content: e.target.value }))
+              }
+              required
+              className="h-[200px]"
+            />
+
+            <div className="flex gap-4 items-center">
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={formState.featured}
+                  onChange={(e) =>
+                    setFormState((f) => ({ ...f, featured: e.target.checked }))
+                  }
+                />
+                Featured
+              </label>
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={formState.approved}
+                  onChange={(e) =>
+                    setFormState((f) => ({ ...f, approved: e.target.checked }))
+                  }
+                />
+                Approved
+              </label>
+            </div>
+          </div>
+
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DialogClose>
+            <Button type="submit" disabled={loading}>
+              {loading ? "Saving..." : "Save Changes"}
+            </Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}
