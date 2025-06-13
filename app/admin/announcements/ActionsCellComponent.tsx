@@ -40,8 +40,6 @@ export function ActionsCellComponent({
 }: ActionsCellProps) {
   const router = useRouter();
 
-  
-
   const updateAnnouncement = async (data: any) => {
     const res = await fetch("/api/announcements", {
       method: "PUT",
@@ -91,14 +89,7 @@ export function ActionsCellComponent({
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
         <DropdownMenuSeparator />
 
-        {/* Edit Action */}
-        <DropdownMenuItem
-          className="cursor-pointer"
-          onClick={handleEdit}
-        >
-          <span className="font-semibold">Edit</span>
-        </DropdownMenuItem>
-
+       
         {/* Feature/Unfeature */}
         <DropdownMenuItem
           className="text-primary-foreground cursor-pointer"

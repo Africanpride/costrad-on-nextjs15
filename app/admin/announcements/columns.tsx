@@ -128,4 +128,35 @@ export const columns: ColumnDef<any>[] = [
       );
     },
   },
+  {
+    id: "edit",
+    enableHiding: false,
+    cell: ({ row }) => {
+      const announcement = row.original;
+      return (
+        <div>
+          <ActionsCellComponent
+            id={announcement.id}
+            content={announcement.content} // Pass content if needed for clipboard
+            featured={announcement.featured}
+            approved={announcement.approved}
+            setFormState={function (state: {
+              id?: string;
+              content?: string;
+              featured: boolean;
+              approved: boolean;
+            }): void {
+              throw new Error("Function not implemented.");
+            }}
+            setIsEditing={function (editing: boolean): void {
+              throw new Error("Function not implemented.");
+            }}
+            openDialog={function (): void {
+              throw new Error("Function not implemented.");
+            }}
+          />
+        </div>
+      );
+    },
+  },
 ];
