@@ -11,9 +11,12 @@ import { NextRequest } from "next/server";
 import { cookies } from "next/headers";
 import { auth } from "@/lib/auth";
 
+
+
+
 export const getInstitutes = async () => {
   try {
-    const res = await fetch("/api/institutes", {
+    const res = await fetch("http://localhost:3000/api/institutes", {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
       },

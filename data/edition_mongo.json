@@ -1,6 +1,6 @@
 [
   {
-    "instituteId": "68429b31ff4649c7b3fbea71",
+    "instituteId": "684c1f7e4d80a259ed96690d",
     "title": "FDI 2025 Edition",
     "slug": "fdi-2025-edition",
     "theme": "",
@@ -14,11 +14,11 @@
     "seo": "Family Development...",
     "active": true,
     "price": 99.99,
-    "created_at": "2025-01-30T08:32:41",
-    "updated_at": "2025-01-30T08:32:41"
+   "createdAt": "2025-06-04T07:41:52.612+00:00",
+    "updatedAt": "2025-06-04T07:41:52.612+00:00"
   },
   {
-    "instituteId": "683fe51e173e9206c9d9b7df",
+    "instituteId": "684c1f7e4d80a259ed96690e",
     "title": "MTI 2025 Edition",
     "slug": "mti-2025-edition",
     "theme": "",
@@ -32,11 +32,11 @@
     "seo": "Mindset Transformation...",
     "active": false,
     "price": 99.99,
-    "created_at": "2025-01-30T08:32:41",
-    "updated_at": "2025-01-31T13:02:22"
+   "createdAt": "2025-06-04T07:41:52.612+00:00",
+    "updatedAt": "2025-06-04T07:41:52.612+00:00"
   },
   {
-    "instituteId": "68429b31ff4649c7b3fbea73",
+    "instituteId": "684c1f7e4d80a259ed96690f",
     "title": "IGPP 2025 Edition",
     "slug": "igpp-2025-edition",
     "theme": "",
@@ -50,11 +50,11 @@
     "seo": "Governance, Public Policy...",
     "active": true,
     "price": 99.99,
-    "created_at": "2025-01-30T08:32:41",
-    "updated_at": "2025-01-30T08:32:41"
+   "createdAt": "2025-06-04T07:41:52.612+00:00",
+    "updatedAt": "2025-06-04T07:41:52.612+00:00"
   },
   {
-    "instituteId": "68429b31ff4649c7b3fbea74",
+    "instituteId": "684c1f7e4d80a259ed966910",
     "title": "IEA 2025 Edition",
     "slug": "iea-2025-edition",
     "theme": "",
@@ -68,11 +68,11 @@
     "seo": "Economic Affairs, Economics...",
     "active": true,
     "price": 99.99,
-    "created_at": "2025-01-30T08:32:41",
-    "updated_at": "2025-01-30T08:32:41"
+  "createdAt": "2025-06-04T07:41:52.612+00:00",
+    "updatedAt": "2025-06-04T07:41:52.612+00:00"
   },
   {
-    "instituteId": "68429b31ff4649c7b3fbea75",
+    "instituteId": "684c1f7e4d80a259ed966911",
     "title": "COSTrAD 20255Edition",
     "slug": "costrad-20255edition",
     "theme": "",
@@ -86,11 +86,11 @@
     "seo": "Sustainable Development...",
     "active": true,
     "price": 599.99,
-    "created_at": "2025-01-30T08:32:41",
-    "updated_at": "2025-05-29T08:58:17"
+   "createdAt": "2025-06-04T07:41:52.612+00:00",
+    "updatedAt": "2025-06-04T07:41:52.612+00:00"
   },
   {
-    "instituteId": "68429b31ff4649c7b3fbea76",
+    "instituteId": "684c1f7e4d80a259ed966912",
     "title": "ETADI 2025 Edition",
     "slug": "etadi-2025-edition",
     "theme": "",
@@ -104,11 +104,11 @@
     "seo": "Education, Training...",
     "active": true,
     "price": 99.99,
-    "created_at": "2025-01-30T08:32:41",
-    "updated_at": "2025-01-30T08:32:41"
+   "createdAt": "2025-06-04T07:41:52.612+00:00",
+    "updatedAt": "2025-06-04T07:41:52.612+00:00"
   },
   {
-    "instituteId": "68429b31ff4649c7b3fbea77",
+    "instituteId": "684c1f7e4d80a259ed966913",
     "title": "FIRST 2025 Edition",
     "slug": "first-2025-edition",
     "theme": "",
@@ -122,11 +122,11 @@
     "seo": "Science, Technology...",
     "active": true,
     "price": 99.99,
-    "created_at": "2025-01-30T08:32:41",
-    "updated_at": "2025-01-30T08:32:41"
+   "createdAt": "2025-06-04T07:41:52.612+00:00",
+    "updatedAt": "2025-06-04T07:41:52.612+00:00"
   },
   {
-    "instituteId": "68429b31ff4649c7b3fbea78",
+    "instituteId": "684c1f7e4d80a259ed966914",
     "title": "MOCI 2025 Edition",
     "slug": "moci-2025-edition",
     "theme": "",
@@ -140,11 +140,11 @@
     "seo": "Media, Communication...",
     "active": true,
     "price": 99.99,
-    "created_at": "2025-01-30T08:32:41",
-    "updated_at": "2025-01-30T08:32:41"
+    "createdAt": "2025-06-04T07:41:52.612+00:00",
+    "updatedAt": "2025-06-04T07:41:52.612+00:00"
   },
   {
-    "instituteId": "68429b31ff4649c7b3fbea79",
+    "instituteId": "684c1f7e4d80a259ed966915",
     "title": "IOASC 2025 Edition",
     "slug": "ioasc-2025-edition",
     "theme": "",
@@ -158,7 +158,7 @@
     "seo": "Arts, Sports, Culture...",
     "active": true,
     "price": 99.99,
-    "created_at": "2025-01-30T08:32:41",
-    "updated_at": "2025-01-30T08:32:41"
+    "createdAt": "2025-06-04T07:41:52.612+00:00",
+    "updatedAt": "2025-06-04T07:41:52.612+00:00"
   }
 ]

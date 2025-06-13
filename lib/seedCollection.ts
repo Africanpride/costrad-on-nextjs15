@@ -13,7 +13,8 @@ export async function seedCollection(collectionName: string) {
   const fileContent = fs.readFileSync(dataPath, "utf8");
   let data = JSON.parse(fileContent);
 
-  const dateFields = ["startDate", "endDate", "created_at", "updated_at"];
+const dateFields = ["startDate", "endDate", "createdAt", "updatedAt"];
+
 
   // Ensure date strings are converted to JS Date objects
   const documentsToInsert = (data as Array<{ [key: string]: any }>).map(({ _id, ...rest }) => {

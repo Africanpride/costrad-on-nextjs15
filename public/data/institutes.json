@@ -13,8 +13,8 @@
   "seo": "Family Development, Family Institute, Family Growth, Family Therapy, Family Counseling, Family Support,  Family Health Programs",
   "active": true,
   "slug": "family-development-institute",
-  "created_at": "2023-05-25 22:32:11",
-  "updated_at": "2024-01-11 15:58:46"
+  "createdAt": "2023-05-25 22:32:11",
+  "updatedAt": "2024-01-11 15:58:46"
 },
 {
   "_id": {
@@ -31,8 +31,8 @@
   "seo": "Mindset Transformation, Self-improvement, Personal Growth, Mental Health, Positive Thinking, Mindfulness",
   "active": true,
   "slug": "mindset-transformation-institute",
-  "created_at": "2023-05-25 22:32:11",
-  "updated_at": "2024-01-11 15:59:53"
+  "createdAt": "2023-05-25 22:32:11",
+  "updatedAt": "2024-01-11 15:59:53"
 },
 {
   "_id": {
@@ -49,8 +49,8 @@
   "seo": "Governance, Public Policy, Political Science, Public Administration, Civic Education, Democracy, Leadership",
   "active": true,
   "slug": "institute-of-governance-and-public-policy",
-  "created_at": "2023-05-25 22:32:11",
-  "updated_at": "2023-05-25 23:56:30"
+  "createdAt": "2023-05-25 22:32:11",
+  "updatedAt": "2023-05-25 23:56:30"
 },
 {
   "_id": {
@@ -67,8 +67,8 @@
   "seo": "Economic Affairs, Economics, Economic Development, Economic Policy, Macroeconomics, Microeconomics, Business Strategy",
   "active": true,
   "slug": "institute-of-economic-affairs",
-  "created_at": "2023-05-25 22:32:11",
-  "updated_at": "2023-06-01 23:37:33"
+  "createdAt": "2023-05-25 22:32:11",
+  "updatedAt": "2023-06-01 23:37:33"
 },
 {
   "_id": {
@@ -85,8 +85,8 @@
   "seo": "Sustainable Development, Environmental Science, Green Technology, Renewable Energy, Climate Change, Circular Economy, Corporate Sustainability",
   "active": true,
   "slug": "college-of-sustainable-transformation-and-development",
-  "created_at": "2023-05-25 22:32:11",
-  "updated_at": "2023-05-26 00:03:19"
+  "createdAt": "2023-05-25 22:32:11",
+  "updatedAt": "2023-05-26 00:03:19"
 },
 {
   "_id": {
@@ -103,8 +103,8 @@
   "seo": "Education, Training, Development, Adult Learning, Instructional Design, Curriculum Development, E-learning",
   "active": true,
   "slug": "education-training-and-development-institute",
-  "created_at": "2023-05-25 22:32:11",
-  "updated_at": "2023-05-26 00:12:42"
+  "createdAt": "2023-05-25 22:32:11",
+  "updatedAt": "2023-05-26 00:12:42"
 },
 {
   "_id": {
@@ -121,8 +121,8 @@
   "seo": "Science, Technology, Innovation, Futuristic, Robotics, Artificial Intelligence, Quantum Computing, Space Exploration",
   "active": true,
   "slug": "futuristic-institute-of-revolutionary-science-and-technology",
-  "created_at": "2023-05-25 22:32:11",
-  "updated_at": "2023-05-26 00:41:59"
+  "createdAt": "2023-05-25 22:32:11",
+  "updatedAt": "2023-05-26 00:41:59"
 },
 {
   "_id": {
@@ -139,8 +139,8 @@
   "seo": "Media, Communication, Journalism, Public Relations, Advertising, Digital Marketing, Mass Communication",
   "active": true,
   "slug": "media-of-communication-institute",
-  "created_at": "2023-05-25 22:32:11",
-  "updated_at": "2023-05-25 22:59:19"
+  "createdAt": "2023-05-25 22:32:11",
+  "updatedAt": "2023-05-25 22:59:19"
 },
 {
   "_id": {
@@ -157,6 +157,6 @@
   "seo": "Arts, Sports, Culture, Creativity, Performance, Music, Dance, Theater, Visual Arts",
   "active": true,
   "slug": "institute-of-arts-sports-and-cultural-development",
-  "created_at": "2023-05-25 22:32:11",
-  "updated_at": "2023-05-25 23:17:54"
+  "createdAt": "2023-05-25 22:32:11",
+  "updatedAt": "2023-05-25 23:17:54"
 }]

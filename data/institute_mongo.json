@@ -1,5 +1,8 @@
 [
   {
+    "_id": {
+      "$oid": "68429b31ff4649c7b3fbea71"
+    },
     "name": "Family Development Institute",
     "acronym": "fdi",
     "overview": "The family as the basic unit of society has far reaching implications on individual bent and ultimately on national stability in all respects. Social sciences have lost the primacy of the family as the building block for life. The Family Development Institute (FDI) is dedicated to strengthening families through comprehensive programs on early childhood development, brain architecture, and strategic child development systems. By emphasizing the importance of the family unit, FDI equips individuals with the knowledge and tools to build resilient families that positively impact society. Through evidence-based approaches and a focus on holistic well-being, FDI empowers participants to create nurturing environments and foster the optimal growth and development of children.",
@@ -7,14 +10,17 @@
     "introduction": "<p>The family as the basic unit of society has far-reaching implications for individual development and ultimately national stability. In today's world, where the importance of the family has been overshadowed, the Family Development Institute (FDI) stands as a beacon, reasserting the vital role of families in shaping our lives. At FDI, we recognize the significance of strong and healthy families in fostering positive outcomes for individuals and communities. Our institute is dedicated to equipping individuals with the knowledge, skills, and resources to strengthen family bonds and promote holistic development.</p>",
     "icon": null,
     "logo": "images/logos/fdi.png",
-    "banner": null,
+    "banner": "images/banner/fdi.jpg",
     "seo": "Family Development, Family Institute, Family Growth, Family Therapy, Family Counseling, Family Support,  Family Health Programs",
     "active": true,
     "slug": "family-development-institute",
-    "created_at": "2023-05-25 22:32:11",
-    "updated_at": "2024-01-11 15:58:46"
+    "createdAt": "2025-06-04T07:41:52.612+00:00",
+    "updatedAt": "2025-06-04T07:41:52.612+00:00"
   },
   {
+    "_id": {
+      "$oid": "68429b31ff4649c7b3fbea72"
+    },
     "name": "Mindset Transformation Institute",
     "acronym": "mti",
     "overview": "All behaviour follows the dictates of the mind. As a person thinks so is he or she. This institute explores the pillars that govern beliefs systems, conditioning through cultural experiences and critical events. The human mind is a remarkable and powerful tool that holds the keys to our imagination, character, and emotions. It shapes our perspective on the world and influences how we perceive and respond to the events that unfold in our lives. The mind is the driving force behind our thoughts, behaviours, and ultimately, our destiny. Recognising the profound impact of the mind on our lives, the Mind Transformation Institute (MTI) embarks on a journey to explore the pillars that govern belief systems, conditioning through cultural experiences, and critical events. Through comprehensive programs and transformative exercises, MTI aims to empower individuals to harness the full potential of their minds and cultivate a Kingdom mindset that leads to personal growth and fulfilment.",
@@ -22,14 +28,17 @@
     "introduction": "<p>The Mind Transformation Institute (MTI) is a pioneering institution dedicated to unlocking the power of the human mind and facilitating transformative personal growth. At MTI, we firmly believe that all behavior stems from the dictates of the mind. As a person thinks, so they become. With this understanding, MTI delves into the exploration of the mind's inner workings, enabling individuals to gain profound insights into their belief systems, cultural conditioning, and the transformative potential that lies within. One of the key subjects treated at MTI is brain architecture in relation to processing, conscience, and disposition. Participants are guided through a comprehensive understanding of how the brain functions, processes information, and shapes our thoughts, emotions, and behaviors. By delving into the intricate workings of the brain, individuals gain a deeper appreciation for their cognitive processes and develop strategies to optimize their mental faculties.</p>",
     "icon": null,
     "logo": "images/logos/mti.png",
-    "banner": null,
+    "banner": "images/banner/fdi.jpg",
     "seo": "Mindset Transformation, Self-improvement, Personal Growth, Mental Health, Positive Thinking, Mindfulness",
     "active": true,
     "slug": "mindset-transformation-institute",
-    "created_at": "2023-05-25 22:32:11",
-    "updated_at": "2024-01-11 15:59:53"
+    "createdAt": "2025-06-04T07:41:52.612+00:00",
+    "updatedAt": "2025-06-04T07:41:52.612+00:00"
   },
   {
+    "_id": {
+      "$oid": "68429b31ff4649c7b3fbea73"
+    },
     "name": "Institute of Governance & Public Policy",
     "acronym": "igpp",
     "overview": "At the heart of the Institute of Governance and Public Policy (IGPP) lies a commitment to providing leaders with the tools and knowledge needed to address the complexities of governance and public affairs. Through an in-depth exploration of key topics, IGPP empowers participants to become visionary and transformative leaders in their respective spheres of influence.",
@@ -37,14 +46,17 @@
     "introduction": "Are you interested in Government, Governance and Leadership within the private, public and NGO sectors? This institute is designed to develop leaders within these spheres of influence. In the ever-evolving landscape of governance and public policy, it is crucial for leaders to possess a deep understanding of key topics that shape our societies. The Institute of Governance and Public Policy (IGPP) offers a transformative one-week executive education program that delves into these critical subjects. By exploring topics such as Codes of Life, The Ultimate Politician, Office of the Citizen, Systems, and the Root of Nations, IGPP equips leaders with the knowledge and insights necessary to navigate complex challenges and drive positive change. Through an interdisciplinary approach and the expertise of an international faculty, participants gain a comprehensive understanding of these topics and their implications for effective leadership and governance.",
     "icon": null,
     "logo": "images/logos/igpp.png",
-    "banner": null,
+    "banner": "images/banner/igpp.jpg",
     "seo": "Governance, Public Policy, Political Science, Public Administration, Civic Education, Democracy, Leadership",
     "active": true,
     "slug": "institute-of-governance-and-public-policy",
-    "created_at": "2023-05-25 22:32:11",
-    "updated_at": "2023-05-25 23:56:30"
+    "createdAt": "2025-06-04T07:41:52.612+00:00",
+    "updatedAt": "2025-06-04T07:41:52.612+00:00"
   },
   {
+    "_id": {
+      "$oid": "68429b31ff4649c7b3fbea74"
+    },
     "name": "Institute of Economic Affairs",
     "acronym": "iea",
     "overview": "The Institute of Economic Affairs (IEA) offers a prestigious one-week executive education program in Economics Affairs. Led by international faculty, the program provides a comprehensive learning experience for professionals in leadership roles and aspiring leaders. It focuses on enhancing leadership skills and understanding of economics to make a sustainable impact. The program covers key areas such as micro and macroeconomics, trade, financial management, and economic policy. Participants also benefit from interactions with industry experts and gain insights into the latest trends and best practices in driving growth and innovation.",
@@ -52,14 +64,17 @@
     "introduction": "The Institute of Economic Affairs (IEA) presents a remarkable opportunity for individuals and organizations to delve into the world of economics and its profound impact on the global stage. This prestigious executive education program offers a one-week intensive certificate training in Economics Affairs, guided by an esteemed international faculty. Designed for current and aspiring leaders, the program provides a transformative experience that sharpens leadership skills and deepens understanding of economic principles. With a focus on sustainability and effectiveness, participants engage with key areas of economics and gain insights from industry experts, fostering growth and innovation.",
     "icon": null,
     "logo": "images/logos/iea.png",
-    "banner": null,
+    "banner": "images/banner/iea.jpg",
     "seo": "Economic Affairs, Economics, Economic Development, Economic Policy, Macroeconomics, Microeconomics, Business Strategy",
     "active": true,
     "slug": "institute-of-economic-affairs",
-    "created_at": "2023-05-25 22:32:11",
-    "updated_at": "2023-06-01 23:37:33"
+    "createdAt": "2025-06-04T07:41:52.612+00:00",
+    "updatedAt": "2025-06-04T07:41:52.612+00:00"
   },
   {
+    "_id": {
+      "$oid": "68429b31ff4649c7b3fbea75"
+    },
     "name": "College of Sustainable Transformation & Development",
     "acronym": "costrad",
     "overview": "Higher Education was primarily developed with theology as the queen of the sciences whereby students first studied theology and thereafter any other discipline. In the evolution of higher education, the original vision of theology as the central discipline has been overshadowed by secularization and the specialization of faculties. This shift has led to a disconnection between academic advancements and the humanization of life. In response to these challenges, the College of Sustainable Transformation and Development (COSTrAD) presents a groundbreaking approach to education. By focusing on the eight spheres of influence in society, COSTrAD aims to cultivate champions and transformational leaders who can drive sustainable transformation and development in their respective fields. This article will explore the unique features and benefits of COSTrAD's modular approach and multi-disciplinary curriculum.",
@@ -67,14 +82,17 @@
     "introduction": "The College of Sustainable Transformation and Development (COSTrAD) is pioneering a new era in higher education by bridging the gap between academic knowledge and real-life application. Recognizing the limitations of traditional educational models, COSTrAD has developed a modular approach that maximizes the direct transfer of learned lessons into practical situations. COSTrAD's curriculum is built on the foundation of the eight spheres of influence in society. These spheres include areas such as government, business, education, media, arts, family, religion, and science. By focusing on these key sectors, COSTrAD aims to produce transformational leaders who can spearhead sustainable development and drive positive change in their respective domains.",
     "icon": null,
     "logo": "images/logos/costrad.png",
-    "banner": null,
+    "banner": "images/banner/costrad.jpg",
     "seo": "Sustainable Development, Environmental Science, Green Technology, Renewable Energy, Climate Change, Circular Economy, Corporate Sustainability",
     "active": true,
     "slug": "college-of-sustainable-transformation-and-development",
-    "created_at": "2023-05-25 22:32:11",
-    "updated_at": "2023-05-26 00:03:19"
+    "createdAt": "2025-06-04T07:41:52.612+00:00",
+    "updatedAt": "2025-06-04T07:41:52.612+00:00"
   },
   {
+    "_id": {
+      "$oid": "68429b31ff4649c7b3fbea76"
+    },
     "name": "Education, Training & Development Institute",
     "acronym": "etadi",
     "overview": "The Education, Training, and Total Development Institute (ETADI) is at the forefront of reshaping education by providing a new paradigm that surpasses the traditional focus on literacy and numeracy. With a sense of urgency, ETADI recognizes the need to align education with a specific direction and to equip citizens to contribute significantly to their nation's development. This is achieved through a twofold focus: the transformation of education to comply with the plan and Law of God, and the foundational development of an African and apostolic mindset.",
@@ -82,14 +100,17 @@
     "introduction": "The current educational models, which were established during the Industrial Revolution, are outdated and no longer sufficient for preparing citizens to contribute meaningfully to society. In response to this urgent need for a new educational paradigm, the Education, Training, and Total Development Institute (ETADI) has emerged. ETADI aims to transform education by aligning it with the plan and Law of God, cultivating a culture rooted in God's principles, strategies, and resources. Additionally, ETADI seeks to foster a mindset that is authentically African, apostolic, and creative, focusing on foundational development and perception in Africa. This article will explore the unique approach of ETADI in revolutionising education and empowering individuals to make a lasting impact.",
     "icon": null,
     "logo": "images/logos/etadi.png",
-    "banner": null,
+    "banner": "images/banner/etadi.jpg",
     "seo": "Education, Training, Development, Adult Learning, Instructional Design, Curriculum Development, E-learning",
     "active": true,
     "slug": "education-training-and-development-institute",
-    "created_at": "2023-05-25 22:32:11",
-    "updated_at": "2023-05-26 00:12:42"
+    "createdAt": "2025-06-04T07:41:52.612+00:00",
+    "updatedAt": "2025-06-04T07:41:52.612+00:00"
   },
   {
+    "_id": {
+      "$oid": "68429b31ff4649c7b3fbea77"
+    },
     "name": "Futuristic Institute of Revolutionary Science & Technology",
     "acronym": "first",
     "overview": "The Futuristic Institute of Science and Technology is a one-week intensive certificate training on  methodical, interdisciplinary, and comprehensive examination of social, technical, and other environmental trends in science and technology with an eye towards predicting future societal dynamics.",
@@ -97,14 +118,17 @@
     "introduction": "In an ever-evolving world, where science and technology continue to shape the fabric of society, staying ahead of the curve is paramount. The Futuristic Institute of Science and Technology is an esteemed executive education program designed to equip professionals with the knowledge and insights needed to navigate the complex landscape of emerging trends and advancements. This comprehensive one-week intensive certificate training provides a transformative experience that will empower participants to make a significant impact on the future of science and technology.",
     "icon": null,
     "logo": "images/logos/first.png",
-    "banner": null,
+    "banner": "images/banner/first.jpg",
     "seo": "Science, Technology, Innovation, Futuristic, Robotics, Artificial Intelligence, Quantum Computing, Space Exploration",
     "active": true,
     "slug": "futuristic-institute-of-revolutionary-science-and-technology",
-    "created_at": "2023-05-25 22:32:11",
-    "updated_at": "2023-05-26 00:41:59"
+    "createdAt": "2025-06-04T07:41:52.612+00:00",
+    "updatedAt": "2025-06-04T07:41:52.612+00:00"
   },
   {
+    "_id": {
+      "$oid": "68429b31ff4649c7b3fbea78"
+    },
     "name": "Media of Communication Institute",
     "acronym": "moci",
     "overview": "The Media of Communication Institute (MOC) offers a premier one-week executive education program that equips participants with a comprehensive understanding of various communication mediums. Covering traditional and non-traditional forms, multimedia, and voice, the program ensures individuals and organisations stay up-to-date in today's information age. Participants learn about the strategic role of media in nation-building, sustainable development, and the science of voice. They gain insights into multimedia technologies, effective media relations, and topics like media ethics, law, democracy, and social change. Networking opportunities with industry experts and thought leaders enhance growth and innovation.",
@@ -112,14 +136,17 @@
     "introduction": "In the fast-paced world of communication, staying informed about the latest trends and advancements is crucial. The Media of Communication Institute (MOC) offers an exclusive executive education program that provides a comprehensive one-week certificate training on media and related technologies. Through a diverse and experienced faculty, participants gain a deep understanding of various communication mediums, including traditional and non-traditional forms, multimedia, and voice. This transformative program focuses on strategic media roles, sustainable development, multimedia technologies, media relations, and critical topics such as ethics, law, democracy, and social change. Hands-on exercises, networking opportunities, and a rigorous curriculum ensure individuals and organisations can make a lasting impact in the dynamic field of media and communication.",
     "icon": null,
     "logo": "images/logos/moci.png",
-    "banner": null,
+    "banner": "images/banner/moci.jpg",
     "seo": "Media, Communication, Journalism, Public Relations, Advertising, Digital Marketing, Mass Communication",
     "active": true,
     "slug": "media-of-communication-institute",
-    "created_at": "2023-05-25 22:32:11",
-    "updated_at": "2023-05-25 22:59:19"
+    "createdAt": "2025-06-04T07:41:52.612+00:00",
+    "updatedAt": "2025-06-04T07:41:52.612+00:00"
   },
   {
+    "_id": {
+      "$oid": "68429b31ff4649c7b3fbea79"
+    },
     "name": "Institute of Arts, Sports and Cultural Development",
     "acronym": "ioasc",
     "overview": "Arts, Sport and Culture have a massive economic contribution and general appeal that can be creatively employed for greater good.\r\n                The Arts are almost as old as human history and so would be sport. Every culture has both aspects of expression associated with most profound thoughts and existential realities. As such, understanding the artistry range; Strategic contribution of the Arts to development; Responsibility base in art education are critical to our identity. The Institute of Arts, Sports, and Cultural Development (IOASC) offers a one-week executive education program that explores the strategic role of arts, sports, and culture in national transformation. Participants gain a comprehensive understanding of the economic and societal contributions of these fields, fostering innovation and providing networking opportunities. The program covers diverse subjects and empowers participants to leverage the intersections of arts, sports, and culture with other domains for creative problem-solving and lasting impact.",
@@ -127,11 +154,11 @@
     "introduction": "The Institute of Arts, Sports, and Cultural Development (IOASC) presents an innovative program that delves into the strategic significance of arts, sports, and culture in national transformation. Over one intensive week, participants acquire a comprehensive understanding of the economic and societal contributions of these creative fields. With a focus on fostering innovation and networking opportunities, the program equips participants to leverage the intersections of arts, sports, and culture with other domains for creative problem-solving and making a lasting impact.",
     "icon": null,
     "logo": "images/logos/ioasc.png",
-    "banner": null,
+    "banner": "images/banner/ioasc.jpg",
     "seo": "Arts, Sports, Culture, Creativity, Performance, Music, Dance, Theater, Visual Arts",
     "active": true,
     "slug": "institute-of-arts-sports-and-cultural-development",
-    "created_at": "2023-05-25 22:32:11",
-    "updated_at": "2023-05-25 23:17:54"
+    "createdAt": "2025-06-04T07:41:52.612+00:00",
+    "updatedAt": "2025-06-04T07:41:52.612+00:00"
   }
 ]

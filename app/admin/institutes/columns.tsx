@@ -25,8 +25,8 @@ type Institute = {
   seo?: string | null;
   active: boolean;
   slug: string;
-  createdAt: Date | null;
-  updatedAt: Date | null;
+  created_at: Date | null;
+  updated_at: Date | null;
   approved?: boolean; // Added
   featured?: boolean; // Added
   editions: Edition[] | null;
@@ -103,11 +103,11 @@ export const columns: ColumnDef<Institute>[] = [
     enableHiding: true,
   },
   {
-    id: "createdAt",
+    id: "created_at",
     header: "Date",
-    accessorKey: "createdAt",
+    accessorKey: "created_at",
     cell: ({ row }) => {
-      const dateValue = row.original.createdAt;
+      const dateValue = row.original.created_at;
       if (dateValue && !isNaN(new Date(dateValue).getTime())) {
         return format(new Date(dateValue), "PPP");
       }
