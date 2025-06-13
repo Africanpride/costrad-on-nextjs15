@@ -8,7 +8,6 @@ import { getCurrentUser } from "@/app/actions/functions";
 // GET all announcements (admin only)
 export async function GET(req: NextRequest) {
   const user = await getCurrentUser();
-  console.log(user);
   // if (!user || user.role !== "admin") {
   //   return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   // }
@@ -85,7 +84,6 @@ export async function DELETE(req: NextRequest) {
 
   // Extract the announcement ID from the request body
   const { id } = await req.json();
-  console.log(req);
   if (!id) {
     return NextResponse.json({ error: "Invalid Request" }, { status: 400 });
   }

@@ -7,7 +7,7 @@ import { format } from "date-fns";
 import Image from "next/image";
 import { Checkbox } from "@/components/ui/checkbox"; // Corrected import for Checkbox
 import { ActionsCellComponent } from "./ActionsCellComponent";
-
+import { BadgeCheckIcon } from "lucide-react";
 
 export const columns: ColumnDef<any>[] = [
   {
@@ -77,8 +77,24 @@ export const columns: ColumnDef<any>[] = [
     header: "Status",
     cell: ({ row }) => (
       <div className="flex gap-2">
-        {row.original.approved && <Badge>Approved</Badge>}
-        {row.original.featured && <Badge variant="secondary">Featured</Badge>}
+        {row.original.approved && (
+          <Badge
+            variant="secondary"
+            className="bg-green-500 text-white dark:bg-green-600"
+          >
+            <BadgeCheckIcon />
+            Approved
+          </Badge>
+        )}
+        {row.original.featured && (
+          <Badge
+            variant="secondary"
+            className="bg-yellow-500 text-white dark:bg-yellow-600"
+          >
+            <BadgeCheckIcon />
+            Featured
+          </Badge>
+        )}
       </div>
     ),
   },
