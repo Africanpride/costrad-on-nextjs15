@@ -4,23 +4,21 @@
 
 // app/actions/functions.ts
 
-import { headers, cookies as serverCookies } from "next/headers";
-import { prisma } from "@/prisma/dbConnect";
+import { headers } from "next/headers";
 import { NextRequest } from "next/server";
 
-import { cookies } from "next/headers";
 import { auth } from "@/lib/auth";
-
-
-
+import { getBaseUrl } from "@/config/site";
 
 export const getInstitutes = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/institutes", {
+    const res = await fetch(`${getBaseUrl()}/api/institutes`, {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
       },
+      next: { revalidate: 7200 }, // seconds
     });
+
     if (!res.ok) {
       throw new Error(`HTTP error: ${res.status} ${res.statusText}`);
     }
@@ -39,8 +37,6 @@ export async function getCurrentUser(req?: NextRequest) {
 
   return session?.user ?? null;
 }
-
-
 
 export async function getCurrentSession(req?: NextRequest) {
   const session = await auth.api.getSession({
