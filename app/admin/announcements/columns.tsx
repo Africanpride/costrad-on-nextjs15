@@ -100,6 +100,19 @@ export const columns: ColumnDef<any>[] = [
     ),
   },
   {
+    id: "edit",
+    enableHiding: false,
+    cell: ({ row }) => {
+      const announcement = row.original;
+      return (
+          <EditAnnouncementDialog
+            announcement={announcement}
+          />
+    
+      );
+    },
+  },
+  {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
@@ -126,19 +139,6 @@ export const columns: ColumnDef<any>[] = [
             throw new Error("Function not implemented.");
           }}
         />
-      );
-    },
-  },
-  {
-    id: "edit",
-    enableHiding: false,
-    cell: ({ row }) => {
-      const announcement = row.original;
-      return (
-          <EditAnnouncementDialog
-            announcement={announcement}
-          />
-    
       );
     },
   },
