@@ -1,7 +1,6 @@
-// app/admin/announcements/EditAnnouncementDialog.tsx
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Dialog,
   DialogContent,
@@ -18,6 +17,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { IconPencilCog } from "@tabler/icons-react";
+import { getBaseUrl } from "@/config/site";
 
 export type AnnouncementForm = {
   id: string;
@@ -34,6 +34,8 @@ export default function EditAnnouncementDialog({
   announcement,
 }: EditAnnouncementDialogProps) {
   const router = useRouter();
+  const closeRef = useRef<HTMLButtonElement>(null);
+
   const [formState, setFormState] = useState<AnnouncementForm>({
     id: "",
     content: "",
@@ -42,7 +44,7 @@ export default function EditAnnouncementDialog({
   });
   const [loading, setLoading] = useState(false);
 
-  // populate form when `announcement` changes:
+  // Populate form when `announcement` changes
   useEffect(() => {
     if (announcement) {
       setFormState(announcement);
@@ -53,15 +55,25 @@ export default function EditAnnouncementDialog({
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch("/api/announcements", {
+      const res = await fetch(`${getBaseUrl()}/api/announcements`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formState),
       });
       if (!res.ok)
         throw new Error((await res.json()).error || "Failed to update");
+
       toast.success("Announcement updated!");
+      closeRef.current?.click(); // ✅ Close the dialog
       router.refresh();
+
+      // ✅ Reset form state
+      setFormState({
+        id: "",
+        content: "",
+        featured: false,
+        approved: false,
+      });
     } catch (err: any) {
       toast.error(err.message || "Something went wrong");
     } finally {
@@ -122,7 +134,9 @@ export default function EditAnnouncementDialog({
 
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline" ref={closeRef}>
+                Cancel
+              </Button>
             </DialogClose>
             <Button type="submit" disabled={loading}>
               {loading ? "Saving..." : "Save Changes"}

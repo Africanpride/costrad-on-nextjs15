@@ -61,7 +61,7 @@ export async function PUT(req: NextRequest) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
-  const { id, approved, featured } = await req.json();
+  const { id, content, approved, featured } = await req.json();
   if (!id)
     return NextResponse.json(
       { error: "Missing announcement id" },
@@ -73,6 +73,7 @@ export async function PUT(req: NextRequest) {
     data: {
       approved: approved ?? undefined,
       featured: featured ?? undefined,
+      content: content ?? undefined,
     },
   });
 

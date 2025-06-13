@@ -1,23 +1,24 @@
-// app/admin/institutes/EditInstituteDialog.tsx
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { IconPencilCog } from "@tabler/icons-react";
+
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-  DialogClose,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+  SheetFooter,
+  SheetClose,
+} from "@/components/ui/sheet";
+
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-import { IconPencilCog } from "@tabler/icons-react";
 
 export type InstituteForm = {
   id: string;
@@ -26,13 +27,13 @@ export type InstituteForm = {
   approved: boolean;
 };
 
-interface EditInstituteDialogProps {
+interface EditInstituteSheetProps {
   institute: InstituteForm | null;
 }
 
-export default function EditInstituteDialog({
+export default function EditInstituteSheet({
   institute,
-}: EditInstituteDialogProps) {
+}: EditInstituteSheetProps) {
   const router = useRouter();
   const [formState, setFormState] = useState<InstituteForm>({
     id: "",
@@ -42,7 +43,6 @@ export default function EditInstituteDialog({
   });
   const [loading, setLoading] = useState(false);
 
-  // populate form when `institute` changes:
   useEffect(() => {
     if (institute) {
       setFormState(institute);
@@ -58,8 +58,10 @@ export default function EditInstituteDialog({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formState),
       });
+
       if (!res.ok)
         throw new Error((await res.json()).error || "Failed to update");
+
       toast.success("Institute updated!");
       router.refresh();
     } catch (err: any) {
@@ -70,66 +72,80 @@ export default function EditInstituteDialog({
   };
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <IconPencilCog />
-      </DialogTrigger>
+    <div>
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="ghost" size="icon">
+            <IconPencilCog size={20} />
+          </Button>
+        </SheetTrigger>
 
-      <DialogContent className="sm:max-w-[600px]">
-        <form onSubmit={handleSubmit}>
-          <DialogHeader>
-            <DialogTitle>Edit Institute</DialogTitle>
-            <DialogDescription>
-              Modify the fields below and save.
-            </DialogDescription>
-          </DialogHeader>
+        <SheetContent side="right" className="w-full sm:max-w-lg p-4">
+          <form onSubmit={handleSubmit} className="flex flex-col h-full">
+            <SheetHeader>
+              <SheetTitle>Edit Institute</SheetTitle>
+              <SheetDescription>
+                Modify the fields below and click save.
+              </SheetDescription>
+            </SheetHeader>
 
-          <div className="grid gap-4 py-4">
-            <Label htmlFor="content">Content</Label>
-            <Textarea
-              id="content"
-              value={formState.overview}
-              onChange={(e) =>
-                setFormState((f) => ({ ...f, content: e.target.value }))
-              }
-              required
-              className="h-[200px]"
-            />
-
-            <div className="flex gap-4 items-center">
-              <label className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  checked={formState.featured}
+            <div className="grid gap-4 py-4 flex-1 overflow-auto ">
+              <div className="grid gap-3">
+                <Label htmlFor="overview">Overview</Label>
+                <Textarea
+                  id="overview"
+                  value={formState.overview}
                   onChange={(e) =>
-                    setFormState((f) => ({ ...f, featured: e.target.checked }))
+                    setFormState((f) => ({ ...f, overview: e.target.value }))
                   }
+                  required
+                  className="h-[200px] font-opensans "
                 />
-                Featured
-              </label>
-              <label className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  checked={formState.approved}
-                  onChange={(e) =>
-                    setFormState((f) => ({ ...f, approved: e.target.checked }))
-                  }
-                />
-                Approved
-              </label>
+              </div>
+
+              <div className="flex gap-4 items-center">
+                <label className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    checked={formState.featured}
+                    onChange={(e) =>
+                      setFormState((f) => ({
+                        ...f,
+                        featured: e.target.checked,
+                      }))
+                    }
+                  />
+                  Featured
+                </label>
+                <label className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    checked={formState.approved}
+                    onChange={(e) =>
+                      setFormState((f) => ({
+                        ...f,
+                        approved: e.target.checked,
+                      }))
+                    }
+                  />
+                  Approved
+                </label>
+              </div>
             </div>
-          </div>
 
-          <DialogFooter>
-            <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
-            </DialogClose>
-            <Button type="submit" disabled={loading}>
-              {loading ? "Saving..." : "Save Changes"}
-            </Button>
-          </DialogFooter>
-        </form>
-      </DialogContent>
-    </Dialog>
+            <SheetFooter>
+              <SheetClose asChild>
+                <Button variant="outline" type="button">
+                  Cancel
+                </Button>
+              </SheetClose>
+              <Button type="submit" disabled={loading}>
+                {loading ? "Saving..." : "Save Changes"}
+              </Button>
+            </SheetFooter>
+          </form>
+        </SheetContent>
+      </Sheet>
+    </div>
   );
 }
