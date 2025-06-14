@@ -19,6 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { getBaseUrl } from "@/config/site";
 
 interface Institute {
   id: string;
@@ -71,7 +72,7 @@ export default function EditionsCrud() {
   // Fetch institutes with authentication
   const fetchInstitutes = async () => {
     try {
-      const res = await fetch("/api/institutes", {
+      const res = await fetch(`${getBaseUrl()}/api/institutes`, {
         headers: {
           Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`
         },

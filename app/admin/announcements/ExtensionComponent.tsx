@@ -17,6 +17,7 @@ import { Label } from "@/components/ui/label";
 import { IconCirclePlus } from "@tabler/icons-react";
 import { toast } from "sonner";
 import { Textarea } from "@/components/ui/textarea";
+import { getBaseUrl } from "@/config/site";
 
 
 export function ExtensionComponent() {
@@ -29,7 +30,7 @@ export function ExtensionComponent() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/announcements", {
+      const res = await fetch(`${getBaseUrl()}/api/announcements`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

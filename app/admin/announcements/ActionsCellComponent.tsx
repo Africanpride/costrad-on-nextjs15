@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import React from "react";
+import { getBaseUrl } from "@/config/site";
 
 interface ActionsCellProps {
   id: string;
@@ -41,7 +42,7 @@ export function ActionsCellComponent({
   const router = useRouter();
 
   const updateAnnouncement = async (data: any) => {
-    const res = await fetch("/api/announcements", {
+    const res = await fetch(`${getBaseUrl()}/api/announcements`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +57,7 @@ export function ActionsCellComponent({
   };
 
   const deleteAnnouncement = async () => {
-    const res = await fetch("/api/announcements", {
+    const res = await fetch(`${getBaseUrl()}/api/announcements`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

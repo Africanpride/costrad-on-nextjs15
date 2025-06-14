@@ -9,10 +9,12 @@ import { NextRequest } from "next/server";
 
 import { auth } from "@/lib/auth";
 import { getBaseUrl } from "@/config/site";
+import { cache } from "react";
 
 export const getInstitutes = async () => {
   try {
     const res = await fetch(`${getBaseUrl()}/api/institutes`, {
+      cache: 'force-cache',
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
       },
