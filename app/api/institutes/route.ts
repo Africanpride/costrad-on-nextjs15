@@ -24,15 +24,18 @@ export async function GET(req: NextRequest) {
 
   console.log("Getting institutes ....");
   try {
-    const institutes = await prisma.institute.findMany({     
+    const institutes = await prisma.institute.findMany({
       include: {
-        editions: true
-      }
+        editions: true,
+      },
     });
     return NextResponse.json(institutes);
   } catch (error) {
     console.error("API Error:", error);
-    return NextResponse.json({ error: "Failed to fetch institutes" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch institutes" },
+      { status: 500 }
+    );
   } finally {
     await prisma.$disconnect();
   }
@@ -49,29 +52,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(institute);
   } catch (error) {
     console.error("API Error:", error);
-    return NextResponse.json({ error: "Failed to create institute" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to create institute" },
+      { status: 500 }
+    );
   } finally {
     await prisma.$disconnect();
   }
 }
 
-// PUT handler
-export async function PUT(req: NextRequest) {
-  const authResult = checkAuth(req);
-  if (authResult) return authResult;
-
-  try {
-    const data = await req.json();
-    if (!data.id) return NextResponse.json({ error: "Missing id" }, { status: 400 });
-    const institute = await prisma.institute.update({ where: { id: data.id }, data });
-    return NextResponse.json(institute);
-  } catch (error) {
-    console.error("API Error:", error);
-    return NextResponse.json({ error: "Failed to update institute" }, { status: 500 });
-  } finally {
-    await prisma.$disconnect();
-  }
-}
 
 // DELETE handler
 export async function DELETE(req: NextRequest) {
@@ -85,7 +74,10 @@ export async function DELETE(req: NextRequest) {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("API Error:", error);
-    return NextResponse.json({ error: "Failed to delete institute" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to delete institute" },
+      { status: 500 }
+    );
   } finally {
     await prisma.$disconnect();
   }

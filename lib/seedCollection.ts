@@ -1,5 +1,4 @@
-// lib/seedCollection.ts
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 import fs from "fs";
 import path from "path";
 
@@ -13,17 +12,22 @@ export async function seedCollection(collectionName: string) {
   const fileContent = fs.readFileSync(dataPath, "utf8");
   let data = JSON.parse(fileContent);
 
-const dateFields = ["startDate", "endDate", "createdAt", "updatedAt"];
+  const dateFields = ["startDate", "endDate", "createdAt", "updatedAt"];
 
+  const documentsToInsert = (data as Array<{ [key: string]: any }>).map((doc) => {
+    // Convert _id to ObjectId
+    if (doc._id?.$oid) {
+      doc._id = new ObjectId(doc._id.$oid);
+    }
 
-  // Ensure date strings are converted to JS Date objects
-  const documentsToInsert = (data as Array<{ [key: string]: any }>).map(({ _id, ...rest }) => {
+    // Convert string dates to actual Date objects
     for (const field of dateFields) {
-      if (rest[field]) {
-        rest[field] = new Date(rest[field]);
+      if (doc[field]) {
+        doc[field] = new Date(doc[field]);
       }
     }
-    return rest;
+
+    return doc;
   });
 
   const client = new MongoClient(process.env.MONGODB_URI!);
@@ -34,10 +38,10 @@ const dateFields = ["startDate", "endDate", "createdAt", "updatedAt"];
 
     const count = await collection.countDocuments();
     if (count === 0) {
-      await collection.insertMany(documentsToInsert);
-      console.log(`${collectionName} seeded.`);
+      await collection.insertMany(documentsToInsert, { forceServerObjectId: false });
+      console.log(`${collectionName} seeded with preserved _id.`);
     } else {
-      console.log(`${collectionName} already exists.`);
+      console.log(`${collectionName} already contains data.`);
     }
   } finally {
     await client.close();

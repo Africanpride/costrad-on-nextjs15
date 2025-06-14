@@ -54,14 +54,15 @@ export default function EditInstitutePage() {
     setLoading(true);
 
     const formData = new FormData(e.currentTarget);
+    console.log(formData);
 
-    const res = await fetch(`/api/institutes/${slug}`, {
+    const res = await fetch(`${baseUrl}/api/institutes/${slug}`, {
       method: "PUT",
       body: formData,
     });
 
     if (res.ok) {
-      router.push(`/admin/institutes/${slug}`);
+      router.push(`${baseUrl}/admin/institutes/${slug}`);
     } else {
       alert("Failed to update institute");
     }
