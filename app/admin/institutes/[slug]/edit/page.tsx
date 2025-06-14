@@ -7,12 +7,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { prisma } from "@/prisma/dbConnect";
 
 interface EditInstitutePageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export default async function EditInstitutePage({ params }: EditInstitutePageProps) {
+export default async function EditInstitutePage(props: EditInstitutePageProps) {
+  const params = await props.params;
   const institute = await prisma.institute.findUnique({
     where: { slug: params.slug },
   });
