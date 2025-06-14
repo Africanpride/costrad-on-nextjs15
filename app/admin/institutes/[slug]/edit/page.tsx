@@ -75,7 +75,7 @@ export default function EditInstitutePage() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch(`${getBaseUrl()}/api/institutes/${slug}`, {
+      const res = await fetch(`${getBaseUrl()}/api/institutes/`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formState),

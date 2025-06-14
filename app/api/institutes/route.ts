@@ -1,6 +1,8 @@
 // app/api/institutes/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/prisma/dbConnect";
+import { revalidatePath } from "next/cache";
+import { getCurrentUser } from "@/app/actions/functions";
 
 const AUTH_TOKEN = process.env.AUTH_TOKEN;
 
@@ -61,6 +63,58 @@ export async function POST(req: NextRequest) {
   }
 }
 
+// PUT update institute (admin only)
+export async function PUT(req: NextRequest) {
+  const user = await getCurrentUser();
+  if (!user || user.role !== "admin") {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
+  const body = await req.json();
+  const { slug, overview, about } = body;
+
+  if (!slug) {
+    return NextResponse.json(
+      { error: "Missing institute slug" },
+      { status: 400 }
+    );
+  }
+
+  console.log("🔍 Slug:", slug);
+  console.log("📥 About:", about);
+
+  try {
+    const existing = await prisma.institute.findUnique({ where: { slug } });
+    if (!existing) {
+      console.warn("❌ No institute found for slug:", slug);
+      return NextResponse.json(
+        { error: "Institute not found" },
+        { status: 404 }
+      );
+    }
+
+    const updated = await prisma.institute.update({
+      where: { slug },
+      data: {
+        overview: overview ?? undefined,
+        about: about ?? undefined,
+      },
+      include: {
+        editions: false, // or true if you want them
+      },
+    });
+
+    console.log("✅ Prisma update succeeded:", updated);
+    revalidatePath(`/admin/institutes/${slug}/edit`);
+    return NextResponse.json(updated);
+  } catch (error) {
+    console.error("❌ Update failed:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
+  }
+}
 
 // DELETE handler
 export async function DELETE(req: NextRequest) {

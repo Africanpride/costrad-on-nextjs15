@@ -32,44 +32,54 @@ export async function GET(
 }
 export async function PUT(
   request: NextRequest,
-  props: { params: Promise<{ slug: string }> }
+  { params }: { params: { slug: string } }
 ) {
-  console.log("IGNITION....PUT REQUEST");
+  console.log("🔥 IGNITION....PUT REQUEST");
 
-  const params = await props.params;
   const slug = params.slug;
+  const json = await request.json();
+
+  const fields = [
+    "name",
+    "acronym",
+    "overview",
+    "about",
+    "introduction",
+    "seo",
+    "banner",
+    "logo",
+    "icon",
+  ];
+  const data: Record<string, any> = {};
+
+  for (const field of fields) {
+    const value = json[field];
+    if (value !== undefined && value !== null && value !== "") {
+      data[field] = value;
+    }
+  }
+
+  console.log("📦 Sanitized update payload:", data);
 
   try {
-    const json = await request.json();
-
-    // Only include non-null, non-undefined fields
-    const fields = ["name", "acronym", "overview", "about", "introduction", "seo", "banner", "logo", "icon"];
-    const data: Record<string, any> = {};
-
-    for (const field of fields) {
-      const value = json[field];
-      if (value !== undefined && value !== null && value !== "") {
-        data[field] = value;
-      }
-    }
-
-    console.log("Sanitized update payload:", data);
+    const check = await prisma.institute.findUnique({ where: { slug } });
+    console.log("🔍 Slug check result:", check);
 
     const updatedInstitute = await prisma.institute.update({
       where: { slug },
       data,
     });
 
+    console.log("✅ Prisma update succeeded:", updatedInstitute);
+
     revalidatePath(`/admin/institutes/${slug}/edit`);
 
     return NextResponse.json(updatedInstitute);
   } catch (error: any) {
-    console.error("Error updating institute:", error);
-
-    if (error.code === "P2025") {
-      return NextResponse.json({ error: "Institute not found" }, { status: 404 });
-    }
-
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    console.error("❌ Caught error during update:", error);
+    return NextResponse.json(
+      { error: error?.message || "Internal server error" },
+      { status: 500 }
+    );
   }
 }
