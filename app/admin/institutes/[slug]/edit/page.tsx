@@ -1,72 +1,89 @@
-import { notFound, redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter, useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { prisma } from "@/prisma/dbConnect";
+import SimpleEditorWithProps from "@/components/ui/TipTapEditor";
+import { baseUrl } from "@/lib/metadata";
 
-interface EditInstitutePageProps {
-  params: Promise<{
-    slug: string;
-  }>;
+interface Institute {
+  name: string;
+  acronym: string;
+  overview: string;
+  about: string;
+  slug: string;
 }
 
-export default async function EditInstitutePage(props: EditInstitutePageProps) {
-  const params = await props.params;
-  const institute = await prisma.institute.findUnique({
-    where: { slug: params.slug },
-  });
+export default function EditInstitutePage() {
+  const router = useRouter();
+  const params = useParams(); // Get dynamic route params
+  const slug = params.slug as string; // Extract slug from URL
+  const [loading, setLoading] = useState(false);
+  const [institute, setInstitute] = useState<Institute | null>(null);
+  const [error, setError] = useState(false);
 
-  if (!institute) return notFound();
+  useEffect(() => {
+    if (!slug) {
+      setError(true);
+      return;
+    }
 
-  async function updateInstitute(formData: FormData) {
-    "use server";
+    async function fetchInstitute() {
+      try {
+        const response = await fetch(`${baseUrl}/api/institutes/${slug}`);
+        if (!response.ok) {
+          setError(true);
+        } else {
+          const data: Institute = await response.json();
+          setInstitute(data);
+        }
+      } catch (err) {
+        console.error("Failed to fetch institute", err);
+        setError(true);
+      }
+    }
 
-    const name = formData.get("name") as string;
-    const acronym = formData.get("acronym") as string;
-    const overview = formData.get("overview") as string;
-    const about = formData.get("about") as string;
+    fetchInstitute();
+  }, [slug]);
 
-    await prisma.institute.update({
-      where: { slug: params.slug },
-      data: {
-        name,
-        acronym,
-        overview,
-        about,
-      },
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+
+    const formData = new FormData(e.currentTarget);
+
+    const res = await fetch(`/api/institutes/${slug}`, {
+      method: "PUT",
+      body: formData,
     });
 
-    revalidatePath(`/admin/institutes/${params.slug}`);
-    redirect(`/admin/institutes/${params.slug}`);
+    if (res.ok) {
+      router.push(`/admin/institutes/${slug}`);
+    } else {
+      alert("Failed to update institute");
+    }
+
+    setLoading(false);
   }
 
-  return (
-    <form action={updateInstitute} className="space-y-6 p-6 max-w-3xl mx-auto">
-      <h1 className="text-2xl font-bold">Edit Institute: {institute.name}</h1>
+  if (error) return <div className="p-6">Institute not found.</div>;
+  if (!institute) return <div className="p-6">Loading...</div>;
 
+  return (
+    <form onSubmit={handleSubmit} className="space-y-6 p-6 max-w-3xl mx-auto">
+      <h1 className="text-2xl font-bold">Edit Institute: {institute.name}</h1>
       <div className="grid gap-6">
         <div>
           <Label htmlFor="name">Name</Label>
-          <Input
-            id="name"
-            name="name"
-            defaultValue={institute.name}
-            required
-          />
+          <Input id="name" name="name" defaultValue={institute.name} required />
         </div>
-
         <div>
           <Label htmlFor="acronym">Acronym</Label>
-          <Input
-            id="acronym"
-            name="acronym"
-            defaultValue={institute.acronym}
-            required
-          />
+          <Input id="acronym" name="acronym" defaultValue={institute.acronym} required />
         </div>
-
         <div>
           <Label htmlFor="overview">Overview</Label>
           <Textarea
@@ -77,19 +94,14 @@ export default async function EditInstitutePage(props: EditInstitutePageProps) {
             className="min-h-[150px]"
           />
         </div>
-
         <div>
           <Label htmlFor="about">About</Label>
-          <Textarea
-            id="about"
-            name="about"
-            defaultValue={institute.about}
-            className="min-h-[150px]"
-          />
+          <SimpleEditorWithProps initialContent={institute.about} fieldName="about" />
         </div>
       </div>
-
-      <Button type="submit">Save Changes</Button>
+      <Button type="submit" disabled={loading}>
+        {loading ? "Saving..." : "Save Changes"}
+      </Button>
     </form>
   );
 }
