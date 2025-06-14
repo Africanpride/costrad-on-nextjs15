@@ -8,23 +8,31 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import SimpleEditorWithProps from "@/components/ui/TipTapEditor";
 import { baseUrl } from "@/lib/metadata";
+import { getBaseUrl } from "@/config/site";
+import { toast } from "sonner";
 
-interface Institute {
+export type Institute = {
   name: string;
   acronym: string;
   overview: string;
   about: string;
-  slug: string;
-}
+};
 
 export default function EditInstitutePage() {
   const router = useRouter();
-  const params = useParams(); // Get dynamic route params
-  const slug = params.slug as string; // Extract slug from URL
-  const [loading, setLoading] = useState(false);
-  const [institute, setInstitute] = useState<Institute | null>(null);
-  const [error, setError] = useState(false);
+  const params = useParams();
+  const slug = params.slug as string;
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [formState, setFormState] = useState<Institute>({
+    name: "",
+    acronym: "",
+    overview: "",
+    about: "",
+  });
+
+  // Fetch institute
   useEffect(() => {
     if (!slug) {
       setError(true);
@@ -38,7 +46,7 @@ export default function EditInstitutePage() {
           setError(true);
         } else {
           const data: Institute = await response.json();
-          setInstitute(data);
+          setFormState(data);
         }
       } catch (err) {
         console.error("Failed to fetch institute", err);
@@ -49,55 +57,89 @@ export default function EditInstitutePage() {
     fetchInstitute();
   }, [slug]);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  // Handle change
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormState((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Handle rich text change
+  const handleAboutChange = (value: string) => {
+    setFormState((prev) => ({ ...prev, about: value }));
+  };
+
+  // Handle form submit
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    try {
+      const res = await fetch(`${getBaseUrl()}/api/institutes/${slug}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formState),
+      });
 
-    const formData = new FormData(e.currentTarget);
-    console.log(formData);
+      if (!res.ok)
+        throw new Error((await res.json()).error || "Failed to update");
 
-    const res = await fetch(`${baseUrl}/api/institutes/${slug}`, {
-      method: "PUT",
-      body: formData,
-    });
-
-    if (res.ok) {
-      router.push(`${baseUrl}/admin/institutes/${slug}`);
-    } else {
-      alert("Failed to update institute");
+      toast.success("Institute updated!");
+      router.refresh();
+    } catch (err: any) {
+      toast.error(err.message || "Something went wrong");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
-  }
+  };
 
   if (error) return <div className="p-6">Institute not found.</div>;
-  if (!institute) return <div className="p-6">Loading...</div>;
+  if (!slug || !formState.name) return <div className="p-6">Loading...</div>;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 p-6 max-w-3xl mx-auto">
-      <h1 className="text-2xl font-bold">Edit Institute: {institute.name}</h1>
+      <h1 className="text-2xl font-bold">Edit Institute: {formState.name}</h1>
       <div className="grid gap-6">
         <div>
           <Label htmlFor="name">Name</Label>
-          <Input id="name" name="name" defaultValue={institute.name} required />
+          <Input
+            id="name"
+            name="name"
+            value={formState.name}
+            onChange={handleChange}
+            required
+          />
         </div>
         <div>
           <Label htmlFor="acronym">Acronym</Label>
-          <Input id="acronym" name="acronym" defaultValue={institute.acronym} required />
+          <Input
+            id="acronym"
+            name="acronym"
+            value={formState.acronym}
+            onChange={handleChange}
+            required
+          />
         </div>
         <div>
           <Label htmlFor="overview">Overview</Label>
           <Textarea
             id="overview"
             name="overview"
-            defaultValue={institute.overview}
+            value={formState.overview}
+            onChange={handleChange}
             required
             className="min-h-[150px]"
           />
         </div>
         <div>
           <Label htmlFor="about">About</Label>
-          <SimpleEditorWithProps initialContent={institute.about} fieldName="about" />
+          <SimpleEditorWithProps
+            initialContent={formState.about}
+            fieldName="about"
+            onChange={(value) =>
+              setFormState((prev) => ({ ...prev, about: value }))
+            }
+          />
         </div>
       </div>
       <Button type="submit" disabled={loading}>
