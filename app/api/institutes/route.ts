@@ -62,7 +62,6 @@ export async function POST(req: NextRequest) {
     await prisma.$disconnect();
   }
 }
-
 // PUT update institute (admin only)
 export async function PUT(req: NextRequest) {
   const user = await getCurrentUser();
@@ -80,13 +79,9 @@ export async function PUT(req: NextRequest) {
     );
   }
 
-  console.log("🔍 Slug:", slug);
-  console.log("📥 About:", about);
-
   try {
     const existing = await prisma.institute.findUnique({ where: { slug } });
     if (!existing) {
-      console.warn("❌ No institute found for slug:", slug);
       return NextResponse.json(
         { error: "Institute not found" },
         { status: 404 }
@@ -100,12 +95,14 @@ export async function PUT(req: NextRequest) {
         about: about ?? undefined,
       },
       include: {
-        editions: false, // or true if you want them
+        editions: false,
       },
     });
 
-    console.log("✅ Prisma update succeeded:", updated);
+    // 🔄 Revalidate both public and admin edit pages
+    revalidatePath(`/institutes/${slug}`);
     revalidatePath(`/admin/institutes/${slug}/edit`);
+
     return NextResponse.json(updated);
   } catch (error) {
     console.error("❌ Update failed:", error);

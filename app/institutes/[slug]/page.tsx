@@ -1,14 +1,55 @@
 // app/institutes/[slug]/page.tsx
-import { prisma } from '@/prisma/dbConnect';
+import { prisma } from "@/prisma/dbConnect";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { Section1 } from "../Section1";
 
-export default async function InstituteViewPage(props: { params: Promise<{ slug: string }> }) {
-  const params = await props.params;
+// Static paths for SSG
+export async function generateStaticParams() {
+  const institutes = await prisma.institute.findMany({
+    select: { slug: true },
+  });
 
-  console.log(params.slug);
-  const inst = await prisma.institute.findUnique({
+  return institutes.map((institute) => ({
+    slug: institute.slug,
+  }));
+}
+
+// SEO metadata
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const institute = await prisma.institute.findUnique({
     where: { slug: params.slug },
     select: { name: true },
   });
-  if (!inst) return <div>Not found</div>;
-  return <h1>{inst.name}</h1>;
+
+  return {
+    title: institute?.name || "Institute Not Found",
+  };
+}
+
+// Actual SSG Page
+export default async function InstituteViewPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const institute = await prisma.institute.findUnique({
+    where: { slug: params.slug },
+    select: {
+      name: true,
+      overview: true,
+    },
+  });
+
+  if (!institute) return notFound();
+
+  return (
+    <div className="p-6">
+      <Section1 name={institute.name} overview={institute.overview} />
+    </div>
+  );
 }
