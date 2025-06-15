@@ -1,0 +1,160 @@
+// columns.tsx
+"use client";
+
+import { ColumnDef } from "@tanstack/react-table";
+import { Badge } from "@/components/ui/badge";
+import { format } from "date-fns";
+import Image from "next/image";
+import { Checkbox } from "@/components/ui/checkbox"; // Corrected import for Checkbox
+import { ActionsCellComponent } from "./ActionsCellComponent";
+import { BadgeCheckIcon } from "lucide-react";
+import EditEditionDialog from "./EditEditionDialog";
+
+export const columns: ColumnDef<any>[] = [
+  {
+    id: "select",
+    header: ({ table }) => (
+      <Checkbox
+        checked={
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate")
+        }
+        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        aria-label="Select all"
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        aria-label="Select row"
+      />
+    ),
+    enableSorting: true,
+    enableHiding: false,
+  },
+  {
+    header: "Institute",
+    accessorFn: (row) => row.edition?.name || "Unknown",
+    cell: ({ row }) => (
+      <Image
+        src={row.original.institute?.image || "/images/avatar.png"}
+        alt={row.original.institute?.name || "Unknown institute"}
+        width={50}
+        height={50}
+        className="rounded-full"
+      />
+    ),
+  },
+  {
+    header: "Overview",
+    accessorKey: "overview",
+    cell: ({ row }) => (
+      <div className="space-y-2">
+        <p className="whitespace-normal line-clamp-4  text-sm max-w-[450px]">
+          {row.original.overview}
+        </p>
+        <h5 className="font-bebas ">
+          &mdash; {row.original.institute?.name || "Unknown"}
+        </h5>
+      </div>
+    ),
+  },
+  {
+    header: "Price",
+    accessorKey: "price",
+    cell: ({ row }) => (
+      <div className="space-y-2">
+        <p className="whitespace-normal line-clamp-4  text-sm max-w-[450px]">
+          {row.original.price}
+        </p>
+      
+      </div>
+    ),
+  },
+  {
+    header: "Created",
+    accessorKey: "createdAt",
+    cell: ({ row }) => {
+      const dateValue = row.original.createdAt;
+      if (dateValue) {
+        const date = new Date(dateValue);
+        if (!isNaN(date.getTime())) {
+          return format(date, "PPP");
+        }
+      }
+      return "N/A";
+    },
+  },
+  {
+    header: "Last Update",
+    accessorKey: "updatedAt",
+    cell: ({ row }) => {
+      const dateValue = row.original.updatedAt;
+      if (dateValue) {
+        const date = new Date(dateValue);
+        if (!isNaN(date.getTime())) {
+          return format(date, "PPP");
+        }
+      }
+      return "N/A";
+    },
+  },
+
+  {
+    header: "Action",
+    cell: ({ row }) => (
+      <div className="flex gap-2">
+        {row.original.active && (
+          <Badge
+            variant="secondary"
+            className="bg-green-500 text-white dark:bg-green-600"
+          >
+            <BadgeCheckIcon />
+            Active
+          </Badge>
+        )}
+      </div>
+    ),
+  },
+  {
+    id: "edit",
+    enableHiding: false,
+    cell: ({ row }) => {
+      const edition = row.original;
+      return <EditEditionDialog edition={edition} />;
+    },
+  },
+  {
+    id: "actions",
+    enableHiding: false,
+    cell: ({ row }) => {
+      const edition = row.original;
+      return (
+        // ⭐️ Render your new ActionsCell component
+        <ActionsCellComponent
+          id={edition.id}
+          overview={edition.overview}
+          startDate={edition.startDate}
+          endDate={edition.endDate}
+          active={edition.active}
+          setFormState={function (state: {
+            id?: string;
+            overview?: string;
+            active: boolean;
+            startDate?: Date;
+            endDate?: Date;
+          }): void {
+            throw new Error("Function not implemented.");
+          }}
+          setIsEditing={function (editing: boolean): void {
+            throw new Error("Function not implemented.");
+          }}
+          openDialog={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
+      );
+    },
+  },
+];
