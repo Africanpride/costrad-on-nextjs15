@@ -102,7 +102,7 @@ export const columns: ColumnDef<any>[] = [
   },
 
   {
-    header: "Action",
+    header: "Action Details",
     cell: ({ row }) => (
       <div className="flex gap-2">
         {row.original.active && (

@@ -10,11 +10,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { IconCirclePlus } from "@tabler/icons-react";
 import { toast } from "sonner";
-import { Textarea } from "@/components/ui/textarea";
 import { getBaseUrl } from "@/config/site";
 
 export function ExtensionComponent() {

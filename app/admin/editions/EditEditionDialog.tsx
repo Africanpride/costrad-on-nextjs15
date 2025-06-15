@@ -110,11 +110,11 @@ export default function EditEditionDialog({
 
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline" ref={closeRef}>
+              <Button className="cursor-pointer" variant="outline" ref={closeRef}>
                 Cancel
               </Button>
             </DialogClose>
-            <Button type="submit" disabled={loading}>
+            <Button className="cursor-pointer" type="submit" disabled={loading}>
               {loading ? "Saving..." : "Save Changes"}
             </Button>
           </DialogFooter>

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/prisma/dbConnect";
+import { getCurrentUser } from "@/app/actions/functions";
 
 export async function GET() {
   console.log("Getting editions ....");
@@ -32,45 +33,40 @@ export async function POST(req: NextRequest) {
 }
 
 export async function PUT(req: NextRequest) {
+  const user = await getCurrentUser();
+  if (!user || user.role !== "admin") {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
+  const data = await req.json();
+  const { id, ...rest } = data;
+
+  if (!id) {
+    return NextResponse.json({ error: "Missing edition id" }, { status: 400 });
+  }
+
+  // Optional: Normalize field keys if needed
+  // const normalized: Record<string, any> = {};
+  // for (const key in rest) {
+  //   normalized[key.toLowerCase()] = rest[key];
+  // }
+
   try {
-    const data = await req.json();
-    console.log("Incoming update payload:", data);
-
-    const { id, ...rest } = data;
-
-    if (!id) {
-      return NextResponse.json({ error: "Missing id" }, { status: 400 });
-    }
-
-    // Confirm record exists
-    const existing = await prisma.edition.findUnique({ where: { id } });
-    if (!existing) {
-      return NextResponse.json(
-        { error: "Edition not found" },
-        { status: 404 }
-      );
-    }
-
-    // Optional: map only known safe fields
-    const allowedFields = ["active", "title", "description", "year"];
-    const dataToUpdate: Record<string, any> = {};
-    for (const field of allowedFields) {
-      if (field in rest) {
-        dataToUpdate[field] = rest[field];
-      }
-    }
-
-    const edition = await prisma.edition.update({
+    const updated = await prisma.edition.update({
       where: { id },
-      data: dataToUpdate,
+      data: rest,
     });
 
-    console.log("✅ Updated edition:", edition);
-    return NextResponse.json(edition);
+    return NextResponse.json(updated);
   } catch (error: any) {
-    console.error("❌ Update edition error:", error);
+    console.error("❌ Failed to update edition:", error);
+
+    if (error.code === "P2025") {
+      return NextResponse.json({ error: "Edition not found" }, { status: 404 });
+    }
+
     return NextResponse.json(
-      { error: error.message ?? "Failed to update edition" },
+      { error: "Failed to update edition" },
       { status: 500 }
     );
   }

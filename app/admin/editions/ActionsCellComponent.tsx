@@ -95,13 +95,12 @@ export function ActionsCellComponent({
 
         {/* Feature/Unfeature */}
         <DropdownMenuItem
+          id={id}
           className="text-primary-foreground cursor-pointer"
           onClick={async () => {
             try {
-              await updateEdition({ Active: !active });
-              toast.success(
-                active ? "Edition InAcotive!" : "Edition Active!"
-              );
+              await updateEdition({ active: !active });
+              toast.success(active ? "Edition InActive!" : "Edition Active!");
               router.refresh();
             } catch (error: any) {
               toast.error(`Failed to toggle featured status: ${error.message}`);
@@ -113,7 +112,6 @@ export function ActionsCellComponent({
           </span>
         </DropdownMenuItem>
 
-      
         {/* Delete */}
         <DropdownMenuItem
           className="text-destructive cursor-pointer"
