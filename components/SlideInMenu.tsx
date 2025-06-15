@@ -95,7 +95,7 @@ export default function Component() {
                 <SheetTitle></SheetTitle>
                 <MainLogo />
               </SheetHeader>
-              <div className="space-y-2 pl-5 font-opensans ">
+              <div className="space-y-2 pl-5 font-poppins ">
                 <motion.nav
                   className="flex flex-col items-start justify-center gap-4 pl-8 "
                   variants={containerVariants}

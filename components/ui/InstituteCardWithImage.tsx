@@ -63,7 +63,7 @@ export default function InstituteCardWithImage({
         >
           {name}
         </CardTitle>
-        <CardDescription className="line-clamp-4 font-opensans ">
+        <CardDescription className="line-clamp-4 font-poppins px-2 ">
           {overview}
         </CardDescription>
       </CardHeader>

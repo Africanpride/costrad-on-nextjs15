@@ -28,15 +28,15 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="overflow-x-hidden space-y-3 ">
+    <main className=" space-y-3 ">
       <AnimatePresence mode="wait">
         {isLoading && <Preloader />}
       </AnimatePresence>
       <HeroSection backgroundImageUrl="/images/united-nations.jpg" />
       <InstitutesIntro />
       <section
-        className=" px-4 md:py-8 md:px-8 max-w-8xl mx-auto text-lg md:text-3xl md:text-center
-       md:min-h-[40dvh]"
+        className=" px-2 md:p-8 max-w-8xl mx-auto text-lg md:text-[37px] 
+       md:min-h-[70dvh]"
       >
         We equip you with the essential tools and mindset to confidently guide
         individuals, lead organizations, and oversee complex systems with
@@ -55,7 +55,7 @@ export default function Home() {
       />
       <div className="flex flex-col justify-center">
         <VelocityScroll
-          className="uppercase md:text-3xl text-xs w-full mx-auto font-opensans font-thin "
+          className="uppercase md:text-3xl text-xs w-full mx-auto font-poppins font-thin "
           defaultVelocity={1}
         >
           Seeing the <span className="text-purple-700">invincible</span> &mdash;

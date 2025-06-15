@@ -39,17 +39,16 @@ export default async function InstituteViewPage({
 }) {
   const institute = await prisma.institute.findUnique({
     where: { slug: params.slug },
-    select: {
-      name: true,
-      overview: true,
+    include: {
+      editions: true,
     },
   });
 
   if (!institute) return notFound();
 
   return (
-    <div className="p-6">
-      <Section1 name={institute.name} overview={institute.overview} />
+    <div className="overflow-hidden">
+      <Section1 name={institute.name} overview={institute.overview}  />
     </div>
   );
 }

@@ -65,7 +65,7 @@ export function SignInButton() {
                   </Avatar>
                 </div>
                 <div className="grid gap-1 ">
-                  <p className="text-sm uppercase font-bold   leading-none">
+                  <p className="text-sm uppercase   leading-none">
                     {session?.user.name}
                   </p>
                   <p className="text-xs font-opensans">{session?.user.email}</p>

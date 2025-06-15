@@ -40,8 +40,7 @@
   }
 
   p {
-    font-family:
-      var(--font-opensans), sans-serif; /* Default font for paragraphs */
+
     font-size: large;
     font-weight: 200; /* Default weight for paragraphs */
     margin: 0; /* Reset margin for paragraphs */
@@ -54,7 +53,10 @@
 .font-bebas {
   font-family: var(--font-bebas);
 }
-.font-opensans {
+.font-poppins {
+  font-family: var(--font-poppins);
+}
+.font-poppins {
   font-family: var(--font-opensans);
 }
 .font-oswald {

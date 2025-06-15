@@ -4,19 +4,22 @@ import { ArrowUpRight, ChevronRight, ChevronUp } from "lucide-react";
 import React from "react";
 import Image from "next/image";
 
-import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { DottedDiv } from "@/components/DottedDiv";
+import Link from "next/link";
 
 type Section1Props = {
   name: string;
   overview?: string | null;
   editionBanner?: string | null;
+  editionStart?: Date;
+  editionEnd?: Date;
 };
 
-const Section1 = ({ name, overview, editionBanner }: Section1Props) => {
+export const Section1 = ({ name, overview, editionBanner, editionStart, editionEnd }: Section1Props) => {
   return (
-    <section className="bg-background py-32">
+    <section className="bg-background py-16 h-auto">
       <div className="relative container flex flex-col items-center px-0! lg:pt-8">
         <DottedDiv>
           <div className="grid lg:grid-cols-2">
@@ -31,19 +34,19 @@ const Section1 = ({ name, overview, editionBanner }: Section1Props) => {
                 </span>
                 <ChevronRight className="size-4!" />
               </Badge>
-              <h1 className="text-5xl font-semibold tracking-tighter md:text-7xl">
+              <h1 className="text-3xl font-semibold tracking-tighter md:text-6xl">
                 {name}
               </h1>
-              <p className="tracking-tight text-muted-foreground md:text-xl">
+              <p className="tracking-tight font-poppins text-foreground md:text-md">
                 {overview ?? "This institute currently has no overview."}
               </p>
               <div className="flex w-full gap-2">
-                <Button className="text-md h-12 w-fit rounded-full bg-primary px-10 text-primary-foreground">
+                <Button className="text-md h-8 w-fit cursor-pointer rounded-full bg-primary px-10 text-background">
                   Get Started
                 </Button>
                 <Button
                   variant="outline"
-                  className="text-md h-12 w-12 rounded-full transition-all ease-in-out hover:rotate-45"
+                  className="text-md h-8 w-8 cursor-pointer rounded-full transition-all ease-in-out hover:rotate-45"
                 >
                   <ArrowUpRight />
                 </Button>
@@ -67,7 +70,7 @@ const Section1 = ({ name, overview, editionBanner }: Section1Props) => {
                     March
                   </p>
                   <div className="flex flex-col items-center justify-center">
-                    <h2 className="text-center text-6xl font-semibold tracking-tight text-background">
+                    <h2 className="text-center text-6xl font-semibold tracking-tight text-white">
                       New <br />
                       Collection
                     </h2>
@@ -77,18 +80,18 @@ const Section1 = ({ name, overview, editionBanner }: Section1Props) => {
                       components.
                     </p>
                   </div>
-                  <a
+                  <Link
                     href="#"
-                    className="group mb-6 flex cursor-pointer flex-col items-center justify-center text-background"
+                    className="group mb-6 flex cursor-pointer flex-col items-center justify-center text-primary"
                   >
                     <ChevronUp
                       size={30}
                       className="transition-all ease-in-out group-hover:-translate-y-2"
                     />
-                    <p className="text-xl tracking-tight text-background">
+                    <p className="text-xl tracking-tight text-primary">
                       See All
                     </p>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </DottedDiv>
@@ -99,26 +102,5 @@ const Section1 = ({ name, overview, editionBanner }: Section1Props) => {
   );
 };
 
-export { Section1 };
 
-// ─────────────────────────────────────────────────────────────────────────────
 
-const DottedDiv = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
-  <div className={cn("relative", className)}>
-    <div className="absolute top-4 -left-25 h-[1.5px] w-[115%] bg-muted" />
-    <div className="absolute bottom-4 -left-25 h-[1.5px] w-[115%] bg-muted" />
-    <div className="absolute -top-25 left-4 h-[130%] w-[1.5px] bg-muted" />
-    <div className="absolute -top-25 right-4 h-[130%] w-[1.5px] bg-muted" />
-    <div className="absolute top-[12.5px] left-[12.5px] z-10 size-2 rounded-full bg-foreground" />
-    <div className="absolute top-[12.5px] right-[12.5px] z-10 size-2 rounded-full bg-foreground" />
-    <div className="absolute bottom-[12.5px] left-[12.5px] z-10 size-2 rounded-full bg-foreground" />
-    <div className="absolute right-[12.5px] bottom-[12.5px] z-10 size-2 rounded-full bg-foreground" />
-    {children}
-  </div>
-);

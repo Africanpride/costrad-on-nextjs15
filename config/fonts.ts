@@ -93,4 +93,5 @@ export const poppins = Poppins({
   style: ["normal"],
   display: "swap",
   adjustFontFallback: false,
+  variable: "--font-poppins",
 });
