@@ -61,7 +61,7 @@ const data = {
       icon: IconListDetails,
     },
     {
-      title: "Editions",
+      title: "Institute Editions",
       url: "/admin/editions",
       icon: IconChartBar,
     },
