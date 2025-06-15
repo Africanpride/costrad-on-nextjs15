@@ -12,12 +12,20 @@ import Link from "next/link";
 type Section1Props = {
   name: string;
   overview?: string | null;
+  editionTitle?: string | null;
   editionBanner?: string | null;
-  editionStart?: Date;
-  editionEnd?: Date;
+  editionStart?: string | null;
+  editionEnd?: string | null;
 };
 
-export const Section1 = ({ name, overview, editionBanner, editionStart, editionEnd }: Section1Props) => {
+export const Section1 = ({
+  name,
+  overview,
+  editionBanner,
+  editionStart,
+  editionEnd,
+  editionTitle,
+}: Section1Props) => {
   return (
     <section className="bg-background py-16 h-auto">
       <div className="relative container flex flex-col items-center px-0! lg:pt-8">
@@ -65,14 +73,13 @@ export const Section1 = ({ name, overview, editionBanner, editionStart, editionE
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                 <div className="absolute top-4 -ml-4 flex h-full w-full flex-col items-center justify-between p-10">
-                  <p className="flex w-full items-center text-xl tracking-tighter text-background">
-                    2025 <span className="mx-2 h-2.5 w-[1px] bg-white" />
-                    March
+                  <p className="flex w-full items-center text-sm tracking-tighter text-background">
+                    UpNext <span className="mx-2 h-2.5 w-[1px] bg-white" />
+                    {editionStart}
                   </p>
                   <div className="flex flex-col items-center justify-center">
-                    <h2 className="text-center text-6xl font-semibold tracking-tight text-white">
-                      New <br />
-                      Collection
+                    <h2 className="text-center uppercase text-4xl font-semibold tracking-tight text-white">
+                      {editionTitle}
                     </h2>
                     <div className="mt-2 h-1 w-6 rounded-full bg-background" />
                     <p className="mt-10 max-w-sm px-2 text-center text-lg leading-5 font-light tracking-tighter text-background/80">
@@ -101,6 +108,3 @@ export const Section1 = ({ name, overview, editionBanner, editionStart, editionE
     </section>
   );
 };
-
-
-

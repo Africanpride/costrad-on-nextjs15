@@ -34,7 +34,7 @@ export default async function DashboardPage() {
     <div className=" mx-auto p-4 m-4">
       <Tabs defaultValue="profile" className="">
         <TabsList>
-          <TabsTrigger id="profile" value="profile">Profile</TabsTrigger>
+          <TabsTrigger id="profile" value="profile">Profile Display</TabsTrigger>
           <TabsTrigger id="account" value="account">Account</TabsTrigger>
           <TabsTrigger id="preferences" value="preferences">Preferences</TabsTrigger>
           <TabsTrigger id="billing" value="billing">Billing</TabsTrigger>

@@ -48,7 +48,24 @@ export default async function InstituteViewPage({
 
   return (
     <div className="overflow-hidden">
-      <Section1 name={institute.name} overview={institute.overview}  />
+      <Section1
+        name={institute.name}
+        overview={institute.overview}
+        editionStart={
+          institute.editions[0]?.startDate
+            ? formatDate(institute.editions[0].startDate)
+            : "June 9, 2025"
+        }
+        editionTitle={institute.editions[0].title}
+      />
     </div>
   );
+}
+
+function formatDate(date: Date) {
+  return new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(date);
 }
