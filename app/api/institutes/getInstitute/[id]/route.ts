@@ -3,10 +3,8 @@ import { prisma } from "@/prisma/dbConnect";
 import { revalidatePath } from "next/cache";
 
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const id = params.id?.trim();
   if (!id) return NextResponse.json({ error: "Missing institute ID" }, { status: 400 });
 
@@ -26,10 +24,8 @@ export async function GET(
 }
 
 // PUT /api/institutes/getInstitute/[id]
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function PUT(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const id = params.id?.trim();
 
   if (!id) {

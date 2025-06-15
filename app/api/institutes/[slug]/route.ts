@@ -2,10 +2,8 @@ import { type NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/prisma/dbConnect";
 import { revalidatePath } from "next/cache";
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { slug: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const slug = params.slug;
   if (!slug)
     return NextResponse.json(
@@ -35,10 +33,8 @@ export async function GET(
   }
 }
 
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: { slugOrId: string } }
-) {
+export async function PUT(request: NextRequest, props: { params: Promise<{ slugOrId: string }> }) {
+  const params = await props.params;
   console.log("🔥 PUT request received");
 
   const identifier = params.slugOrId;
