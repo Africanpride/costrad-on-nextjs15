@@ -1,20 +1,27 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/prisma/dbConnect";
 import { revalidatePath } from "next/cache";
-import { baseUrl } from "@/lib/metadata";
 
 export async function GET(
   request: NextRequest,
-  props: { params: Promise<{ slug: string }> }
+  { params }: { params: { slugOrId: string } }
 ) {
-  const params = await props.params;
+  const identifier = params.slugOrId;
+  
+
   try {
-    const institute = await prisma.institute.findUnique({
-      where: { slug: params.slug },
+    const institute = await prisma.institute.findFirst({
+      where: {
+        OR: [
+          { slug: identifier },
+          { id: identifier },
+        ],
+      },
       include: { editions: true },
     });
 
     if (!institute) {
+      console.log("Absolute fetch failure.......");
       return NextResponse.json(
         { error: "Institute not found" },
         { status: 404 }
@@ -30,13 +37,14 @@ export async function GET(
     );
   }
 }
+
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: { slugOrId: string } }
 ) {
-  console.log("🔥 IGNITION....PUT REQUEST");
+  console.log("🔥 PUT request received");
 
-  const slug = params.slug;
+  const identifier = params.slugOrId;
   const json = await request.json();
 
   const fields = [
@@ -62,21 +70,32 @@ export async function PUT(
   console.log("📦 Sanitized update payload:", data);
 
   try {
-    const check = await prisma.institute.findUnique({ where: { slug } });
-    console.log("🔍 Slug check result:", check);
+    const existing = await prisma.institute.findFirst({
+      where: {
+        OR: [
+          { slug: identifier },
+          { id: identifier },
+        ],
+      },
+    });
+
+    if (!existing) {
+      return NextResponse.json(
+        { error: "Institute not found" },
+        { status: 404 }
+      );
+    }
 
     const updatedInstitute = await prisma.institute.update({
-      where: { slug },
+      where: { id: existing.id },
       data,
     });
 
-    console.log("✅ Prisma update succeeded:", updatedInstitute);
-
-    revalidatePath(`/admin/institutes/${slug}/edit`);
+    revalidatePath(`/admin/institutes/${existing.slug}/edit`);
 
     return NextResponse.json(updatedInstitute);
   } catch (error: any) {
-    console.error("❌ Caught error during update:", error);
+    console.error("❌ Error during update:", error);
     return NextResponse.json(
       { error: error?.message || "Internal server error" },
       { status: 500 }

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/prisma/dbConnect";
 import { getCurrentUser } from "@/app/actions/functions";
+import { revalidatePath } from "next/cache";
+import { baseUrl } from "@/lib/metadata";
 
 export async function GET() {
   console.log("Getting editions ....");
@@ -45,7 +47,6 @@ export async function PUT(req: NextRequest) {
     return NextResponse.json({ error: "Missing edition id" }, { status: 400 });
   }
 
-
   try {
     const updated = await prisma.edition.update({
       where: { id },
@@ -70,8 +71,11 @@ export async function PUT(req: NextRequest) {
 export async function DELETE(req: NextRequest) {
   try {
     const { id } = await req.json();
+    console.log("DELETING EDITION WITH ID", id);
     if (!id) return NextResponse.json({ error: "Missing id" }, { status: 400 });
     await prisma.edition.delete({ where: { id } });
+    revalidatePath(`${baseUrl}/admin/editions`);
+
     return NextResponse.json({ success: true });
   } catch (error) {
     return NextResponse.json(

@@ -46,20 +46,7 @@ export function ActionsCellComponent({
     }
   };
 
-  const deleteTestimonial = async () => {
-    const res = await fetch("/api/testimonials", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
-      },
-      body: JSON.stringify({ id }),
-    });
-    if (!res.ok) {
-      const result = await res.json();
-      throw new Error(result.error || "Failed to delete");
-    }
-  };
+ 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -108,20 +95,7 @@ export function ActionsCellComponent({
             {approved ? "Unapprove" : "Approve"}
           </div>
         </DropdownMenuItem>
-        <DropdownMenuItem
-          className="text-destructive cursor-pointer"
-          onClick={async () => {
-            try {
-              await deleteTestimonial();
-              toast.success("Testimonial deleted successfully!");
-              router.refresh(); // Refresh the page after successful delete
-            } catch (error: any) {
-              toast.error(`Failed to delete testimonial: ${error.message}`);
-            }
-          }}
-        >
-          <span className="font-semibold">Delete</span>
-        </DropdownMenuItem>
+       
       </DropdownMenuContent>
     </DropdownMenu>
   );

@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { MoreHorizontal } from "lucide-react";
+import { MoreHorizontal, Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import React from "react";
 import { getBaseUrl } from "@/config/site";
+import { DeleteConfirmationDialog } from "@/components/delete-confirmation-dialog";
 
 interface ActionsCellProps {
   id: string;
@@ -59,20 +60,7 @@ export function ActionsCellComponent({
     }
   };
 
-  const deleteEdition = async () => {
-    const res = await fetch(`${getBaseUrl()}/api/editions`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
-      },
-      body: JSON.stringify({ id }),
-    });
-    if (!res.ok) {
-      const result = await res.json();
-      throw new Error(result.error || "Failed to delete");
-    }
-  };
+ 
 
   const handleEdit = () => {
     setFormState({ id, overview, active, startDate, endDate });
@@ -112,21 +100,6 @@ export function ActionsCellComponent({
           </span>
         </DropdownMenuItem>
 
-        {/* Delete */}
-        <DropdownMenuItem
-          className="text-destructive cursor-pointer"
-          onClick={async () => {
-            try {
-              await deleteEdition();
-              toast.success("Edition deleted successfully!");
-              router.refresh();
-            } catch (error: any) {
-              toast.error(`Failed to delete edition: ${error.message}`);
-            }
-          }}
-        >
-          <span className="font-semibold">Delete</span>
-        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

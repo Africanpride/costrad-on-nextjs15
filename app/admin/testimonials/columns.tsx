@@ -7,7 +7,9 @@ import { format } from "date-fns";
 import Image from "next/image";
 import { Checkbox } from "@/components/ui/checkbox"; // Corrected import for Checkbox
 import { ActionsCellComponent } from "./ActionsCellComponent";
-import { BadgeCheckIcon } from "lucide-react";
+import { BadgeCheckIcon, Trash } from "lucide-react";
+import { DeleteConfirmationDialog } from "@/components/delete-confirmation-dialog";
+import { Button } from "@/components/ui/button";
 
 export const columns: ColumnDef<any>[] = [
   {
@@ -100,17 +102,45 @@ export const columns: ColumnDef<any>[] = [
   },
   {
     id: "actions",
+    header: "ACTION",
     enableHiding: false,
     cell: ({ row }) => {
       const testimonial = row.original;
+      const deleteTestimonial = async () => {
+        const res = await fetch("/api/testimonials", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
+          },
+          body: JSON.stringify({ id: testimonial.id }),
+        });
+        if (!res.ok) {
+          const result = await res.json();
+          throw new Error(result.error || "Failed to delete");
+        }
+      };
       return (
-        // ⭐️ Render your new ActionsCell component
-        <ActionsCellComponent
-          id={testimonial.id}
-          content={testimonial.content} // Pass content if needed for clipboard
-          featured={testimonial.featured}
-          approved={testimonial.approved}
-        />
+        <div className="flex items-center gap-2">
+          <DeleteConfirmationDialog
+            onConfirm={deleteTestimonial}
+            trigger={
+              <Button
+                variant="ghost"
+                className="text-red-600 hover:text-red-700 cursor-pointer flex items-center gap-2 "
+              >
+                <Trash className="h-4 w-4 text-red-400" />
+                <span className="font-semibold">Delete</span>
+              </Button>
+            }
+          />
+          <ActionsCellComponent
+            id={testimonial.id}
+            content={testimonial.content} // Pass content if needed for clipboard
+            featured={testimonial.featured}
+            approved={testimonial.approved}
+          />
+        </div>
       );
     },
   },

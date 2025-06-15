@@ -42,7 +42,7 @@ export function ExtensionComponent() {
       <Dialog>
         <form>
           <DialogTrigger asChild>
-            <Button variant="outline" size="lg" className="cursor-pointer">
+            <Button variant="outline" size="lg" className="cursor-pointer hidden">
               <IconCirclePlus /> Add New
             </Button>
           </DialogTrigger>

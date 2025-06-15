@@ -4,11 +4,14 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
-import Image from "next/image";
 import { Checkbox } from "@/components/ui/checkbox"; // Corrected import for Checkbox
 import { ActionsCellComponent } from "./ActionsCellComponent";
-import { BadgeCheckIcon } from "lucide-react";
+import { BadgeCheckIcon, Trash } from "lucide-react";
 import EditEditionDialog from "./EditEditionDialog";
+import { DeleteConfirmationDialog } from "@/components/delete-confirmation-dialog";
+import { Button } from "@/components/ui/button";
+import { getBaseUrl } from "@/config/site";
+import { InstituteInfo } from "./InstituteEditionImage";
 
 export const columns: ColumnDef<any>[] = [
   {
@@ -35,16 +38,8 @@ export const columns: ColumnDef<any>[] = [
   },
   {
     header: "Institute",
-    accessorFn: (row) => row.edition?.name || "Unknown",
-    cell: ({ row }) => (
-      <Image
-        src={row.original.institute?.image || "/images/avatar.png"}
-        alt={row.original.institute?.name || "Unknown institute"}
-        width={50}
-        height={50}
-        className="rounded-full"
-      />
-    ),
+    accessorFn: (row) => row.instituteId || "Unknown",
+    cell: ({ row }) => <InstituteInfo id={row.original.instituteId} />,
   },
   {
     header: "Overview",
@@ -68,7 +63,6 @@ export const columns: ColumnDef<any>[] = [
         <p className="whitespace-normal line-clamp-4  text-sm max-w-[450px]">
           {row.original.price}
         </p>
-      
       </div>
     ),
   },
@@ -130,30 +124,67 @@ export const columns: ColumnDef<any>[] = [
     enableHiding: false,
     cell: ({ row }) => {
       const edition = row.original;
+
+      const deleteEdition = async () => {
+        const res = await fetch(`${getBaseUrl()}/api/editions`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
+          },
+          body: JSON.stringify({ id: edition.id }),
+        });
+
+        if (!res.ok) {
+          alert("FAILURE....");
+          const result = await res.json();
+          throw new Error(result.error || "Failed to delete");
+        }
+
+        // ✅ Refresh the page after successful deletion
+        window.location.reload();
+      };
+
       return (
         // ⭐️ Render your new ActionsCell component
-        <ActionsCellComponent
-          id={edition.id}
-          overview={edition.overview}
-          startDate={edition.startDate}
-          endDate={edition.endDate}
-          active={edition.active}
-          setFormState={function (state: {
-            id?: string;
-            overview?: string;
-            active: boolean;
-            startDate?: Date;
-            endDate?: Date;
-          }): void {
-            throw new Error("Function not implemented.");
-          }}
-          setIsEditing={function (editing: boolean): void {
-            throw new Error("Function not implemented.");
-          }}
-          openDialog={function (): void {
-            throw new Error("Function not implemented.");
-          }}
-        />
+
+        <div className="flex items-center gap-2">
+          <DeleteConfirmationDialog
+            id={edition.id}
+            onConfirm={deleteEdition}
+            trigger={
+              <Button
+                variant="ghost"
+                className="text-red-600 hover:text-red-700 cursor-pointer flex items-center gap-2 "
+              >
+                <Trash className="h-4 w-4 text-red-400" />
+                <span className="font-semibold">Delete</span>
+              </Button>
+            }
+          />
+          <ActionsCellComponent
+            id={edition.id}
+            overview={edition.overview}
+            startDate={edition.startDate}
+            endDate={edition.endDate}
+            active={edition.active}
+            setFormState={function (state: {
+              id?: string;
+              overview?: string;
+              active: boolean;
+              startDate?: Date;
+              endDate?: Date;
+            }): void {
+              throw new Error("Function not implemented.");
+            }}
+            setIsEditing={function (editing: boolean): void {
+              throw new Error("Function not implemented.");
+            }}
+            openDialog={function (): void {
+              throw new Error("Function not implemented.");
+            }}
+          />
+        </div>
       );
     },
   },
