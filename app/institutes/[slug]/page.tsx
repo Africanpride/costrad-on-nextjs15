@@ -51,21 +51,17 @@ export default async function InstituteViewPage({
       <Section1
         name={institute.name}
         overview={institute.overview}
-        editionStart={
-          institute.editions[0]?.startDate
-            ? formatDate(institute.editions[0].startDate)
-            : "June 9, 2025"
+        edition={
+          institute.editions[0]
+            ? {
+                title: institute.editions[0].title,
+                startDate: institute.editions[0].startDate ?? undefined,
+                endDate: institute.editions[0].endDate ?? undefined,
+                banner: institute.editions[0].banner ?? undefined,
+              }
+            : undefined
         }
-        editionTitle={institute.editions[0].title}
       />
     </div>
   );
-}
-
-function formatDate(date: Date) {
-  return new Intl.DateTimeFormat("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  }).format(date);
 }

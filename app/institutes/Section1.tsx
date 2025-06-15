@@ -3,29 +3,37 @@
 import { ArrowUpRight, ChevronRight, ChevronUp } from "lucide-react";
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { DottedDiv } from "@/components/DottedDiv";
-import Link from "next/link";
+import { baseUrl } from "@/lib/metadata";
 
 type Section1Props = {
   name: string;
   overview?: string | null;
-  editionTitle?: string | null;
-  editionBanner?: string | null;
-  editionStart?: string | null;
-  editionEnd?: string | null;
+  edition?: {
+    title?: string;
+    startDate?: Date;
+    endDate?: Date;
+    banner?: string;
+    // Add more fields as needed
+  };
 };
 
-export const Section1 = ({
-  name,
-  overview,
-  editionBanner,
-  editionStart,
-  editionEnd,
-  editionTitle,
-}: Section1Props) => {
+export const Section1 = ({ name, overview, edition }: Section1Props) => {
+  const formattedStartDate = edition?.startDate
+    ? new Intl.DateTimeFormat("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      }).format(new Date(edition.startDate))
+    : "Coming Soon";
+
+  const bannerImage = `/${baseUrl}/images/${edition?.banner}` || "/images/banner.jpg";
+  const editionTitle = edition?.title || "Upcoming Edition";
+
   return (
     <section className="bg-background py-16 h-auto">
       <div className="relative container flex flex-col items-center px-0! lg:pt-8">
@@ -60,22 +68,22 @@ export const Section1 = ({
                 </Button>
               </div>
             </div>
+
             {/* Right Content */}
             <DottedDiv className="group size-full place-self-end p-4 lg:w-4/6">
               <div className="relative h-full w-full bg-muted-2/50 p-4 transition-all ease-in-out group-hover:bg-muted-2">
-                {/* Bg Image div */}
                 <Image
-                  src={editionBanner ? editionBanner : `/images/banner.jpg`}
-                  alt="aiImage"
+                  src={bannerImage}
+                  alt="Edition Banner"
                   width={800}
                   height={600}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover rounded-3xl"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent rounded-3xl"></div>
                 <div className="absolute top-4 -ml-4 flex h-full w-full flex-col items-center justify-between p-10">
                   <p className="flex w-full items-center text-sm tracking-tighter text-background">
                     UpNext <span className="mx-2 h-2.5 w-[1px] bg-white" />
-                    {editionStart}
+                    {formattedStartDate}
                   </p>
                   <div className="flex flex-col items-center justify-center">
                     <h2 className="text-center uppercase text-4xl font-semibold tracking-tight text-white">
