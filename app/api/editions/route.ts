@@ -45,11 +45,6 @@ export async function PUT(req: NextRequest) {
     return NextResponse.json({ error: "Missing edition id" }, { status: 400 });
   }
 
-  // Optional: Normalize field keys if needed
-  // const normalized: Record<string, any> = {};
-  // for (const key in rest) {
-  //   normalized[key.toLowerCase()] = rest[key];
-  // }
 
   try {
     const updated = await prisma.edition.update({

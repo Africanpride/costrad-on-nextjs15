@@ -108,7 +108,7 @@ export function ActionsCellComponent({
           }}
         >
           <span className="font-semibold">
-            {active ? "InActive" : "Active"}
+            {active ? "Make In-Active" : "Make Active"}
           </span>
         </DropdownMenuItem>
 
