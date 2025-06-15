@@ -49,8 +49,9 @@ export const columns: ColumnDef<any>[] = [
         <p className="whitespace-normal line-clamp-4  text-sm max-w-[450px]">
           {row.original.overview}
         </p>
-        <h5 className="font-bebas ">
-          &mdash; {row.original.institute?.name || "Unknown"}
+        <h5 className="font-bebas flex items-center ">
+          &mdash;&nbsp;   <InstituteInfo id={row.original.instituteId} mode="text" />
+
         </h5>
       </div>
     ),

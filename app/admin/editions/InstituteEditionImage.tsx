@@ -1,10 +1,10 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
 interface InstituteInfoProps {
   id: string;
+  mode?: "image" | "text" | "both"; // new prop
 }
 
 interface Institute {
@@ -12,47 +12,44 @@ interface Institute {
   logo?: string;
 }
 
-export function InstituteInfo({ id }: InstituteInfoProps) {
+export function InstituteInfo({
+  id,
+  mode = "image", // default rendering mode
+}: InstituteInfoProps) {
   const [institute, setInstitute] = useState<Institute | null>(null);
 
   useEffect(() => {
     async function fetchInstitute() {
-      console.log("Institute ID:", id);
-      const res = await fetch(`/api/institutes/getInstitute/${id}`);
-      if (res.ok) {
-        const data = await res.json();
-        setInstitute(data);
-      }
+      const res = await fetch(`/api/institutes/getInstitute/${id}`, {
+        cache: "force-cache",
+      });
+      if (res.ok) setInstitute(await res.json());
     }
-
-    if (id) {
-      fetchInstitute();
-    }
+    if (id) fetchInstitute();
   }, [id]);
 
-  if (!institute) {
-    return (
-      <div className="flex items-center gap-2">
-        <Image
-          src="/images/avatar.png"
-          alt="Unknown"
-          width={50}
-          height={50}
-          className="rounded-full"
-        />
-      </div>
-    );
-  }
+  const imgSrc = institute?.logo
+    ? institute.logo.startsWith("/")
+      ? institute.logo
+      : `/${institute.logo}`
+    : "/images/costrad.png";
+
+  const altText = institute?.name || "Unknown";
 
   return (
     <div className="flex items-center gap-2">
-      <Image
-        src={institute.logo || "/images/avatar.png"}
-        alt={institute.name}
-        width={50}
-        height={50}
-        className="rounded-full"
-      />
+      {(mode === "image" || mode === "both") && (
+        <Image
+          src={imgSrc}
+          alt={altText}
+          width={60}
+          height={60}
+          className="rounded-full"
+        />
+      )}
+      {(mode === "text" || mode === "both") && (
+        <span className="font-medium">{institute?.name || "Unknown"}</span>
+      )}
     </div>
   );
 }

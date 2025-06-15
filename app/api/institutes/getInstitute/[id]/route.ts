@@ -2,19 +2,13 @@ import { type NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/prisma/dbConnect";
 import { revalidatePath } from "next/cache";
 
-// GET /api/institutes/getInstitute/[id]
+
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   const id = params.id?.trim();
-
-  if (!id) {
-    return NextResponse.json(
-      { error: "Missing institute ID" },
-      { status: 400 }
-    );
-  }
+  if (!id) return NextResponse.json({ error: "Missing institute ID" }, { status: 400 });
 
   console.log("🔍 Fetching institute with ID:", id);
 
@@ -23,22 +17,11 @@ export async function GET(
       where: { id },
       include: { editions: true },
     });
-
-    if (!institute) {
-      console.warn("⚠️ Institute not found:", id);
-      return NextResponse.json(
-        { error: "Institute not found" },
-        { status: 404 }
-      );
-    }
-
+    if (!institute) return NextResponse.json({ error: "Institute not found" }, { status: 404 });
     return NextResponse.json(institute);
   } catch (error) {
     console.error("❌ Error fetching institute:", error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
 
