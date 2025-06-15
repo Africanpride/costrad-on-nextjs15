@@ -17,7 +17,8 @@ export function InstituteInfo({ id }: InstituteInfoProps) {
 
   useEffect(() => {
     async function fetchInstitute() {
-      const res = await fetch(`/api/institutes/${id}`);
+      console.log("Institute ID:", id);
+      const res = await fetch(`/api/institutes/getInstitute/${id}`);
       if (res.ok) {
         const data = await res.json();
         setInstitute(data);
@@ -52,7 +53,6 @@ export function InstituteInfo({ id }: InstituteInfoProps) {
         height={50}
         className="rounded-full"
       />
-      <span>{institute.name}</span>
     </div>
   );
 }

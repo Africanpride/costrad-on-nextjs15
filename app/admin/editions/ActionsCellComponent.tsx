@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { MoreHorizontal, Trash } from "lucide-react";
+import { MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import React from "react";
 import { getBaseUrl } from "@/config/site";
-import { DeleteConfirmationDialog } from "@/components/delete-confirmation-dialog";
 
 interface ActionsCellProps {
   id: string;

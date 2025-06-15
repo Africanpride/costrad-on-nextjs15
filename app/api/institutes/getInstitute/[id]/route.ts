@@ -2,26 +2,30 @@ import { type NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/prisma/dbConnect";
 import { revalidatePath } from "next/cache";
 
+// GET /api/institutes/getInstitute/[id]
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slugOrId: string } }
+  { params }: { params: { id: string } }
 ) {
-  const identifier = params.slugOrId.trim();
-  console.log("Fetching institute with identifier:", identifier);
+  const id = params.id?.trim();
+
+  if (!id) {
+    return NextResponse.json(
+      { error: "Missing institute ID" },
+      { status: 400 }
+    );
+  }
+
+  console.log("🔍 Fetching institute with ID:", id);
 
   try {
-    const institute = await prisma.institute.findFirst({
-      where: {
-        OR: [
-          { slug: identifier },
-          { id: identifier },
-        ],
-      },
+    const institute = await prisma.institute.findUnique({
+      where: { id },
       include: { editions: true },
     });
 
     if (!institute) {
-      console.log("Institute not found:", identifier);
+      console.warn("⚠️ Institute not found:", id);
       return NextResponse.json(
         { error: "Institute not found" },
         { status: 404 }
@@ -30,7 +34,7 @@ export async function GET(
 
     return NextResponse.json(institute);
   } catch (error) {
-    console.error("Error fetching institute:", error);
+    console.error("❌ Error fetching institute:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }
@@ -38,13 +42,22 @@ export async function GET(
   }
 }
 
+// PUT /api/institutes/getInstitute/[id]
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { slugOrId: string } }
+  { params }: { params: { id: string } }
 ) {
-  console.log("🔥 PUT request received");
+  const id = params.id?.trim();
 
-  const identifier = params.slugOrId;
+  if (!id) {
+    return NextResponse.json(
+      { error: "Missing institute ID" },
+      { status: 400 }
+    );
+  }
+
+  console.log("🔥 PUT request for institute ID:", id);
+
   const json = await request.json();
 
   const fields = [
@@ -58,8 +71,8 @@ export async function PUT(
     "logo",
     "icon",
   ];
-  const data: Record<string, any> = {};
 
+  const data: Record<string, any> = {};
   for (const field of fields) {
     const value = json[field];
     if (value !== undefined && value !== null && value !== "") {
@@ -70,13 +83,8 @@ export async function PUT(
   console.log("📦 Sanitized update payload:", data);
 
   try {
-    const existing = await prisma.institute.findFirst({
-      where: {
-        OR: [
-          { slug: identifier },
-          { id: identifier },
-        ],
-      },
+    const existing = await prisma.institute.findUnique({
+      where: { id },
     });
 
     if (!existing) {
@@ -86,16 +94,16 @@ export async function PUT(
       );
     }
 
-    const updatedInstitute = await prisma.institute.update({
-      where: { id: existing.id },
+    const updated = await prisma.institute.update({
+      where: { id },
       data,
     });
 
     revalidatePath(`/admin/institutes/${existing.slug}/edit`);
 
-    return NextResponse.json(updatedInstitute);
+    return NextResponse.json(updated);
   } catch (error: any) {
-    console.error("❌ Error during update:", error);
+    console.error("❌ Error updating institute:", error);
     return NextResponse.json(
       { error: error?.message || "Internal server error" },
       { status: 500 }
