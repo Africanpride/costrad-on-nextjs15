@@ -2,12 +2,9 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
 import Image from "next/image";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ActionsCellComponent } from "./ActionsCellComponent";
-import { BadgeCheckIcon } from "lucide-react";
 import EditInstituteDialog from "./EditInstituteDialogue";
 import { Edition } from "@prisma/client";
 
@@ -116,34 +113,7 @@ export const columns: ColumnDef<Institute>[] = [
     enableSorting: true,
     enableHiding: true,
   },
-  {
-    id: "status",
-    header: "Status",
-    cell: ({ row }) => (
-      <div className="flex gap-2">
-        {row.original.approved && (
-          <Badge
-            variant="secondary"
-            className="bg-green-500 text-white dark:bg-green-600"
-          >
-            <BadgeCheckIcon />
-            Approved
-          </Badge>
-        )}
-        {row.original.featured && (
-          <Badge
-            variant="secondary"
-            className="bg-yellow-500 text-white dark:bg-yellow-600"
-          >
-            <BadgeCheckIcon />
-            Featured
-          </Badge>
-        )}
-      </div>
-    ),
-    enableSorting: false,
-    enableHiding: true,
-  },
+
   {
     id: "edit",
     header: "Edit",
@@ -155,38 +125,7 @@ export const columns: ColumnDef<Institute>[] = [
         featured: institute.featured ?? false,
         approved: institute.approved ?? false,
       };
-      return (
-
-        <EditInstituteDialog institute={instituteForm} />
-      )
-  },
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    id: "actions",
-    header: "Actions",
-    cell: ({ row }) => {
-      const institute = row.original;
-      return (
-        <ActionsCellComponent
-          id={institute.id}
-          overview={institute.overview} // Changed from content
-          featured={institute.featured ?? false}
-          approved={institute.approved ?? false}
-          setFormState={(state) => {
-            console.log("setFormState:", state); // Replace with actual implementation
-          }}
-          setIsEditing={(editing) => {
-            console.log("setIsEditing:", editing); // Replace with actual implementation
-          }}
-          openDialog={() => {
-            console.log("openDialog triggered"); // Replace with actual implementation
-          }}
-        />
-      );
+      return <EditInstituteDialog institute={instituteForm} />;
     },
-    enableSorting: false,
-    enableHiding: false,
   },
 ];

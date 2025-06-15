@@ -4,33 +4,30 @@ import { revalidatePath } from "next/cache";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slugOrId: string } }
+  { params }: { params: { slug: string } }
 ) {
-  const identifier = params.slugOrId.trim();
-  console.log("Fetching institute with identifier:", identifier);
+  const slug = params.slug;
+  if (!slug)
+    return NextResponse.json(
+      { error: "Missing institute slug" },
+      { status: 400 }
+    );
+
+  console.log("🔍 Fetching institute with ID:", slug);
 
   try {
-    const institute = await prisma.institute.findFirst({
-      where: {
-        OR: [
-          { slug: identifier },
-          { id: identifier },
-        ],
-      },
+    const institute = await prisma.institute.findUnique({
+      where: { slug },
       include: { editions: true },
     });
-
-    if (!institute) {
-      console.log("Institute not found:", identifier);
+    if (!institute)
       return NextResponse.json(
         { error: "Institute not found" },
         { status: 404 }
       );
-    }
-
     return NextResponse.json(institute);
   } catch (error) {
-    console.error("Error fetching institute:", error);
+    console.error("❌ Error fetching institute:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }
@@ -72,10 +69,7 @@ export async function PUT(
   try {
     const existing = await prisma.institute.findFirst({
       where: {
-        OR: [
-          { slug: identifier },
-          { id: identifier },
-        ],
+        OR: [{ slug: identifier }, { id: identifier }],
       },
     });
 
