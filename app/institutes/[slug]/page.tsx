@@ -16,11 +16,12 @@ export async function generateStaticParams() {
 }
 
 // SEO metadata
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ slug: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const institute = await prisma.institute.findUnique({
     where: { slug: params.slug },
     select: { name: true },
@@ -32,11 +33,12 @@ export async function generateMetadata({
 }
 
 // Actual SSG Page
-export default async function InstituteViewPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default async function InstituteViewPage(
+  props: {
+    params: Promise<{ slug: string }>;
+  }
+) {
+  const params = await props.params;
   const institute = await prisma.institute.findUnique({
     where: { slug: params.slug },
     include: {

@@ -6,11 +6,7 @@
 
 import { headers } from "next/headers";
 import { NextRequest } from "next/server";
-
 import { auth } from "@/lib/auth";
-import { getBaseUrl } from "@/config/site";
-import { cache } from "react";
-import { prisma } from "@/prisma/dbConnect";
 import { baseUrl } from "@/lib/metadata";
 
 export const getInstitutes = async () => {

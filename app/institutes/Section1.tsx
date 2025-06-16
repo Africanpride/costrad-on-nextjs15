@@ -8,7 +8,6 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { DottedDiv } from "@/components/DottedDiv";
-import { baseUrl } from "@/lib/metadata";
 
 type Section1Props = {
   name: string;
@@ -31,7 +30,7 @@ export const Section1 = ({ name, overview, edition }: Section1Props) => {
       }).format(new Date(edition.startDate))
     : "Coming Soon";
 
-  const bannerImage = `/${baseUrl}/images/${edition?.banner}` || "/images/banner.jpg";
+  const bannerImage = edition?.banner || "/images/banner.jpg";
   const editionTitle = edition?.title || "Upcoming Edition";
 
   return (

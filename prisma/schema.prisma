@@ -198,24 +198,25 @@ model Institute {
 }
 
 model Edition {
-  id           String    @id @map("_id")
-  instituteId  String
-  institute    Institute @relation(fields: [instituteId], references: [id], onDelete: Cascade)
-  title        String
-  slug         String    @unique
-  theme        String?
-  acronym      String
-  overview     String
-  about        String
-  introduction String?
-  banner       String?
-  startDate    DateTime?
-  endDate      DateTime?
-  seo          String?
-  active       Boolean   @default(true)
-  price        Float
-  createdAt    DateTime? @default(now())
-  updatedAt    DateTime? @updatedAt
+  id             String    @id @map("_id")
+  instituteId    String
+  institute      Institute @relation(fields: [instituteId], references: [id], onDelete: Cascade)
+  title          String
+  slug           String    @unique
+  theme          String?
+  acronym        String
+  overview       String
+  about          String
+  introduction   String?
+  banner         String?
+  verticalBanner String?
+  startDate      DateTime?
+  endDate        DateTime?
+  seo            String?
+  active         Boolean   @default(true)
+  price          Float
+  createdAt      DateTime? @default(now())
+  updatedAt      DateTime? @updatedAt
 
   @@map("edition")
 }
