@@ -28,7 +28,7 @@ export default function EditInstituteSheet({
   };
 
   return (
-    <Button variant="ghost" size="icon" onClick={handleClick} disabled={!institute?.slug}>
+    <Button className="cursor-pointer" variant="ghost" size="icon" onClick={handleClick} disabled={!institute?.slug}>
       <IconPencilCog size={20} />
     </Button>
   );

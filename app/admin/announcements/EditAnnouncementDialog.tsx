@@ -84,7 +84,7 @@ export default function EditAnnouncementDialog({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <IconPencilCog />
+        <IconPencilCog className="cursor-pointer" />
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-[600px]">
