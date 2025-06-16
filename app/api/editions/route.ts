@@ -24,9 +24,11 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
+    console.log(data);
     const edition = await prisma.edition.create({ data });
     return NextResponse.json(edition);
   } catch (error) {
+    console.error("API Error:", error); // ✅ More insight
     return NextResponse.json(
       { error: "Failed to create edition" },
       { status: 500 }

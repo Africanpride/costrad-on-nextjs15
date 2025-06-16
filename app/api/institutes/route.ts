@@ -27,6 +27,9 @@ export async function GET(req: NextRequest) {
   console.log("Getting institutes ....");
   try {
     const institutes = await prisma.institute.findMany({
+      orderBy: {
+        createdAt: "asc",
+      },
       include: {
         editions: true,
       },

@@ -17,6 +17,15 @@ import { getBaseUrl } from "@/config/site";
 import { Button } from "@/components/ui/button";
 import { UploadImage } from "@/components/custom/UploadImage";
 import { InstituteCombobox } from "@/components/custom/Combobox";
+import { CalendarIcon } from "lucide-react";
+import { format } from "date-fns";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { cn } from "@/lib/utils";
 
 type Institute = {
   id: string;
@@ -39,10 +48,8 @@ export function ExtensionComponent() {
   const [form, setForm] = useState({
     instituteId: "",
     title: "",
-    acronym: "",
     overview: "",
-    about: "",
-    introduction: "",
+    theme: "",
     seo: "",
     price: "",
     startDate: "",
@@ -59,6 +66,12 @@ export function ExtensionComponent() {
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setLoading(true);
+
+    if (!form.instituteId || !form.title || !form.startDate || !form.endDate || !form.price) {
+      toast.error("Please fill all required fields.");
+      setLoading(false);
+      return;
+    }
 
     try {
       const res = await fetch(`${getBaseUrl()}/api/editions`, {
@@ -81,10 +94,8 @@ export function ExtensionComponent() {
       setForm({
         instituteId: "",
         title: "",
-        acronym: "",
         overview: "",
-        about: "",
-        introduction: "",
+        theme: "",
         seo: "",
         price: "",
         startDate: "",
@@ -109,33 +120,47 @@ export function ExtensionComponent() {
   return (
     <Sheet>
       <SheetTrigger>
-        <Button variant="outline">Add Edition</Button>
+        <div
+          className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-9 px-4 py-2 has-[>svg]:px-3 ml-auto
+        cursor-pointer"
+        >
+          Add Edition
+        </div>
       </SheetTrigger>
-      <SheetContent className="p-4 overflow-y-scroll">
+      <SheetContent className="p-4 overflow-y-scroll sm:max-w-xl">
         <SheetHeader>
           <SheetTitle>Add New Edition</SheetTitle>
         </SheetHeader>
 
-        <form onSubmit={handleSubmit} className="grid gap-4 py-4">
+        <form onSubmit={handleSubmit} className="grid gap-4 py-2">
           <div className="grid gap-2">
-            <Label>Institute</Label>
+            {/* <Label>Institute</Label> */}
             <InstituteCombobox
               institutes={institutes}
-              onSelect={(id) => setSelectedInstituteId(id)}
+              onSelect={(id) => {
+                setSelectedInstituteId(id);
+                setForm((prev) => ({ ...prev, instituteId: id })); // ✅ update the form
+              }}
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
               <Label>Title</Label>
-              <Input name="title" value={form.title} onChange={handleChange} />
+              <Input
+                name="title"
+                value={form.title}
+                onChange={handleChange}
+                placeholder="eg. FDI 2026 EDITION"
+              />
             </div>
             <div className="grid gap-2">
-              <Label>Acronym</Label>
+              <Label>Theme</Label>
               <Input
-                name="acronym"
-                value={form.acronym}
+                name="theme"
+                value={form.theme}
                 onChange={handleChange}
+                placeholder="eg. "
               />
             </div>
           </div>
@@ -148,47 +173,95 @@ export function ExtensionComponent() {
               onChange={handleChange}
             />
           </div>
-          <div className="grid gap-2">
-            <Label>About</Label>
-            <Textarea name="about" value={form.about} onChange={handleChange} />
-          </div>
-          <div className="grid gap-2">
-            <Label>Introduction</Label>
-            <Textarea
-              name="introduction"
-              value={form.introduction}
-              onChange={handleChange}
-            />
-          </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
               <Label>Start Date</Label>
-              <Input
-                name="startDate"
-                type="date"
-                value={form.startDate}
-                onChange={handleChange}
-              />
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className={cn(
+                      "w-full justify-start text-left font-normal",
+                      !form.startDate && "text-muted-foreground"
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {form.startDate
+                      ? format(new Date(form.startDate), "PPP")
+                      : "Select a date"}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0">
+                  <Calendar
+                    buttonVariant={"outline"}
+                    mode="single"
+                    selected={
+                      form.startDate ? new Date(form.startDate) : undefined
+                    }
+                    onSelect={(date) =>
+                      setForm((prev) => ({
+                        ...prev,
+                        startDate: date?.toISOString().split("T")[0] || "",
+                      }))
+                    }
+                    initialFocus
+                    captionLayout="dropdown"
+                    fromYear={new Date().getFullYear()}
+                  />
+                </PopoverContent>
+              </Popover>
             </div>
+
             <div className="grid gap-2">
               <Label>End Date</Label>
-              <Input
-                name="endDate"
-                type="date"
-                value={form.endDate}
-                onChange={handleChange}
-              />
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className={cn(
+                      "w-full justify-start text-left font-normal",
+                      !form.endDate && "text-muted-foreground"
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {form.endDate
+                      ? format(new Date(form.endDate), "PPP")
+                      : "Select a date"}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0">
+                  <Calendar
+                    mode="single"
+                    selected={form.endDate ? new Date(form.endDate) : undefined}
+                    onSelect={(date) =>
+                      setForm((prev) => ({
+                        ...prev,
+                        endDate: date?.toISOString().split("T")[0] || "",
+                      }))
+                    }
+                    initialFocus
+                    captionLayout="dropdown"
+                    fromYear={new Date().getFullYear()}
+                    toYear={2045} // ⬅️ future year range
+                  />
+                </PopoverContent>
+              </Popover>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
               <Label>SEO</Label>
-              <Input name="seo" value={form.seo} onChange={handleChange} />
+              <Input
+                name="seo"
+                value={form.seo}
+                onChange={handleChange}
+                placeholder="eg. use comma seperated keywords"
+              />
             </div>
             <div className="grid gap-2">
-              <Label>Price</Label>
+              <Label>Price (eg. 120.00)</Label>
               <Input
                 name="price"
                 type="number"
@@ -198,15 +271,23 @@ export function ExtensionComponent() {
             </div>
           </div>
 
-          <UploadImage
-            label="Banner"
-            onUpload={(url) => setForm((f) => ({ ...f, banner: url }))}
-          />
+          <div className="grid gap-2">
+            <div>
+              <UploadImage
+                label="Banner"
+                onUpload={(url) => setForm((f) => ({ ...f, banner: url }))}
+              />
+            </div>
 
-          <UploadImage
-            label="Vertical Banner"
-            onUpload={(url) => setForm((f) => ({ ...f, verticalBanner: url }))}
-          />
+            <div>
+              <UploadImage
+                label="Vertical Banner"
+                onUpload={(url) =>
+                  setForm((f) => ({ ...f, verticalBanner: url }))
+                }
+              />
+            </div>
+          </div>
 
           <Button type="submit" disabled={loading}>
             {loading ? "Creating..." : "Create Edition"}

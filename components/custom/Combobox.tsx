@@ -36,7 +36,7 @@ export function InstituteCombobox({ institutes, onSelect }: ComboboxProps) {
   const selectedInstitute = institutes.find((i) => i.id === selectedId);
 
   return (
-    <Popover open={open} onOpenChange={setOpen} >
+    <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
@@ -48,7 +48,7 @@ export function InstituteCombobox({ institutes, onSelect }: ComboboxProps) {
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-full p-0 ">
+      <PopoverContent className="w-full p-0 sm:max-w-3xl ">
         <Command>
           <CommandInput placeholder="Search institute..." className="h-9" />
           <CommandList>
@@ -57,7 +57,7 @@ export function InstituteCombobox({ institutes, onSelect }: ComboboxProps) {
               {institutes.map((institute) => (
                 <CommandItem
                   key={institute.id}
-                  value={institute.id}
+                  value={institute.name}
                   onSelect={() => {
                     setSelectedId(institute.id);
                     onSelect(institute.id);

@@ -178,7 +178,7 @@ model OauthConsent {
 }
 
 model Institute {
-  id           String    @id @map("_id")
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
   name         String
   acronym      String    @unique
   overview     String
@@ -198,8 +198,8 @@ model Institute {
 }
 
 model Edition {
-  id             String    @id @map("_id")
-  instituteId    String
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  instituteId    String    @db.ObjectId
   institute      Institute @relation(fields: [instituteId], references: [id], onDelete: Cascade)
   title          String
   slug           String    @unique
