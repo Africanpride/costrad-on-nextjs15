@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React from "react";
 import clsx from "clsx";
-import { LucideMoveDown } from "lucide-react";
+import { ArrowUpRight, LucideMoveDown } from "lucide-react";
 import { bebas } from "@/config/fonts";
 import { useDevice } from "@/hooks/useDevice";
 import { Separator } from "@radix-ui/react-separator";
@@ -78,8 +78,18 @@ export const WhyCostrad: React.FC<WhyCostradProps> = ({
                 well as the ability to inspire and motivate others.
               </p>
 
-             <ButtonWithLink href="/about">Learn More</ButtonWithLink>
-
+              <Link href={`/about`} className="flex w-full gap-2">
+                <Button className="text-sm h-8 w-fit cursor-pointer rounded-full bg-primary hover:bg-primary/90 px-10 text-foreground">
+                  Get Started
+                </Button>
+               
+                <Button
+                  variant="outline"
+                  className="text-sm h-8 w-8 cursor-pointer border border-foreground/30 p-0 text-foreground rounded-full transition-all ease-in-out hover:rotate-45"
+                >
+                  <ArrowUpRight />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
