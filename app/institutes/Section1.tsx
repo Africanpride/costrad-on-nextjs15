@@ -67,7 +67,7 @@ export const Section1 = ({
               <h1 className="text-2xl font-semibold tracking-tighter md:text-6xl">
                 {name}
               </h1>
-              <p className="tracking-tight  font-poppins text-foreground ">
+              <p className="tracking-tight text-lg text-foreground ">
                 {overview ?? "This institute currently has no overview."}
               </p>
               <div className="flex w-full gap-2">

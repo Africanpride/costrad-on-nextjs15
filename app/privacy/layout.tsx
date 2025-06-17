@@ -14,7 +14,7 @@ export default function Layout({
        <div className='block p-2'>
               <Toaster />
               <Jumbotron />
-            <div className='p-2 sm:p-4'>
+            <div className=''>
                 {children}
             </div>
           </div>

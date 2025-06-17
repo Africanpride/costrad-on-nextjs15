@@ -68,7 +68,6 @@ const legalLinks = [
   { label: "Privacy policy", href: "privacy" },
   { label: "Terms & Conditions", href: "terms" },
   { label: "DMCA", href: "dmca" },
-  { label: "Complaints", href: "complaints" },
   { label: "Sitemap", href: "sitemap" },
   { label: "Cookie Policy", href: "cookies" },
   { label: "Accessibility", href: "accessibility" },
@@ -170,26 +169,21 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-foreground/20 pt-12 flex flex-col sm:flex-row items-center sm:justify-center gap-6">
-          {/* <div className="flex items-center space-x-2">
-            <Image src="/images/costrad.png" alt="costrad" width={80} height={24} />
-          </div> */}
-
-          <div className="flex flex-wrap justify-center text-xs  gap-x-6 gap-y-2 text-center uppercase sm:text-left">
-            {legalLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="hover:text-primary transition"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+        <div className="flex flex-wrap sm:justify-center justify-start text-[11px] md:text-xs  gap-2 sm:gap-4 md:text-center uppercase sm:text-left">
+          {legalLinks.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className="hover:text-primary transition"
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
+       
 
-        <div className="mt-6 text-xs text-center space-y-2  ">
-          <div className="flex items-center justify-center gap-2">
+        <div className="mt-6 text-xs sm:text-center space-y-2  ">
+          <div className="flex items-center sm:justify-center gap-2">
             <div>&copy; COSTrAD {siteConfig.year} </div>
             <div className="flex gap-x-2">
               <div className="h-2 rounded-full transition-all animate-pulse  w-6 bg-primary dark:bg-primary" />
@@ -199,7 +193,7 @@ export default function Footer() {
             <div className="">All Rights Reserved.</div>
           </div>
 
-          <p className="max-w-5xl font-light  text-center mx-auto text-[9px] md:text-[11px] uppercase  pt-4">
+          <p className="max-w-5xl font-light font-opensans  sm:text-center mx-auto text-[9px] md:text-[12px] uppercase  pt-4">
             The College of Sustainable Transformation and Development — COSTrAD™ — functions as an academic and development-oriented institution that operates under the umbrella and direction of the Logos-Rhema Foundation. This foundation is a legally recognized and fully registered Non-Profit Organization that is committed to driving sustainable change through education, research, and community engagement. It holds the official registration number <span className="text-primary ">CG046792017</span>, as recorded under the regulatory framework and legal statutes of the Republic of Ghana. 
           </p>
         </div>

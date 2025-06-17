@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Section1 } from "../Section1";
 import WorldMap from "@/components/WorldMap";
-import OverviewSection from "@/components/OverviewSection";
+import OverviewSection from "@/app/institutes/OverviewSection";
 
 // Static paths for SSG
 export async function generateStaticParams() {
@@ -18,11 +18,9 @@ export async function generateStaticParams() {
 }
 
 // SEO metadata
-export async function generateMetadata(
-  props: {
-    params: Promise<{ slug: string }>;
-  }
-): Promise<Metadata> {
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const params = await props.params;
   const institute = await prisma.institute.findUnique({
     where: { slug: params.slug },
@@ -35,11 +33,9 @@ export async function generateMetadata(
 }
 
 // Actual SSG Page
-export default async function InstituteViewPage(
-  props: {
-    params: Promise<{ slug: string }>;
-  }
-) {
+export default async function InstituteViewPage(props: {
+  params: Promise<{ slug: string }>;
+}) {
   const params = await props.params;
   const institute = await prisma.institute.findUnique({
     where: { slug: params.slug },
@@ -49,28 +45,28 @@ export default async function InstituteViewPage(
   });
 
   if (!institute) return notFound();
- 
+
   return (
     <div className="overflow-hidden">
-     <div className="relative overflow-hidden pb-5">
-       <Section1
-        name={institute.name}
-        overview={institute.overview}
-        defaultVerticalBannerSrc={`/images/defaultVerticalBanner/${institute.acronym}.jpg`}
-        edition={
-          institute.editions[0]
-            ? {
-                title: institute.editions[0].title,
-                startDate: institute.editions[0].startDate ?? undefined,
-                endDate: institute.editions[0].endDate ?? undefined,
-                banner: institute.editions[0].banner ?? undefined,
-                theme: institute.editions[0].theme ?? undefined,
-              }
-            : undefined
-        }
-      />
-     </div>
-      <OverviewSection />
+      <div className="relative overflow-hidden pb-5">
+        <Section1
+          name={institute.name}
+          overview={institute.overview}
+          defaultVerticalBannerSrc={`/images/defaultVerticalBanner/${institute.acronym}.jpg`}
+          edition={
+            institute.editions[0]
+              ? {
+                  title: institute.editions[0].title,
+                  startDate: institute.editions[0].startDate ?? undefined,
+                  endDate: institute.editions[0].endDate ?? undefined,
+                  banner: institute.editions[0].banner ?? undefined,
+                  theme: institute.editions[0].theme ?? undefined,
+                }
+              : undefined
+          }
+        />
+      </div>
+      <OverviewSection institute={institute} />
       <WorldMap />
     </div>
   );
