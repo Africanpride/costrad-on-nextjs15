@@ -66,7 +66,7 @@ export default async function InstituteViewPage(props: {
           }
         />
       </div>
-      <OverviewSection institute={institute} />
+      <OverviewSection  institute={institute} />
       <WorldMap />
     </div>
   );

@@ -40,13 +40,17 @@
   }
 
   p {
-
+    font-family:
+      var(--font-opensans), sans-serif; /* Default font for headings */
     font-size: large;
     line-height: 1.6; /* Adjust line height for better readability */
     color: var(--foreground); /* Default color for paragraphs */
   }
 }
 
+.font-opensans {
+  font-family: var(--font-opensans);
+}
 .font-bebas {
   font-family: var(--font-bebas);
 }

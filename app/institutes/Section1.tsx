@@ -1,6 +1,11 @@
 "use client";
 
-import { ArrowUpRight, ChevronRight, ChevronUp } from "lucide-react";
+import {
+  ArrowUpRight,
+  ChevronDown,
+  ChevronRight,
+  ChevronUp,
+} from "lucide-react";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -52,9 +57,9 @@ export const Section1 = ({
     <section className="bg-background py-16 h-auto">
       <div className="relative container flex flex-col items-center px-0! lg:pt-8">
         <DottedDiv>
-          <div className="grid lg:grid-cols-2">
+          <div className="grid lg:grid-cols-3">
             {/* Left Content */}
-            <div className="flex w-full flex-col gap-8 px-10 py-20 md:px-14">
+            <div className="flex md:col-span-2 w-full flex-col gap-4 px-8 py-20 md:px-10">
               <Badge
                 variant="outline"
                 className="flex w-fit cursor-pointer items-center gap-4 rounded-full px-6 py-2 transition-all ease-in-out hover:gap-6"
@@ -84,7 +89,7 @@ export const Section1 = ({
             </div>
 
             {/* Right Content */}
-            <DottedDiv className="group size-full place-self-end p-4 lg:w-4/6">
+            <DottedDiv className="group size-full md:cols-span-1 place-self-end p-4 ">
               <div className="relative h-full w-full bg-muted-2/50 p-4 transition-all ease-in-out group-hover:bg-muted-2">
                 <Image
                   src={verticalBannerSrc}
@@ -123,16 +128,16 @@ export const Section1 = ({
                     </p>
                   </div>
                   <Link
-                    href="#"
+                    href={"#about-section"}
                     className="group mb-6 flex cursor-pointer flex-col items-center justify-center text-primary"
                   >
-                    <ChevronUp
+                    <p className="text-sm tracking-tight text-primary">
+                      See More
+                    </p>
+                    <ChevronDown
                       size={30}
                       className="transition-all ease-in-out group-hover:-translate-y-2"
                     />
-                    <p className="text-xl tracking-tight text-primary">
-                      See All
-                    </p>
                   </Link>
                 </div>
               </div>
