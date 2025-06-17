@@ -31,6 +31,7 @@ export async function POST(req: Request) {
   try {
     const data = await req.json();
 
+    console.log(data);
     const edition = await prisma.edition.create({
       data: {
         ...data,
@@ -57,6 +58,8 @@ export async function PUT(req: NextRequest) {
 
   const data = await req.json();
   const { id, ...rest } = data;
+
+  console.log(data);
 
   if (!id) {
     return NextResponse.json({ error: "Missing edition id" }, { status: 400 });

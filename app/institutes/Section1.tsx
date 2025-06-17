@@ -8,20 +8,28 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { DottedDiv } from "@/components/DottedDiv";
+import { Separator } from "@/components/ui/separator";
 
 type Section1Props = {
   name: string;
   overview?: string | null;
+  defaultVerticalBannerSrc?: string;
   edition?: {
     title?: string;
     startDate?: Date;
     endDate?: Date;
     banner?: string;
+    theme?: string;
     // Add more fields as needed
   };
 };
 
-export const Section1 = ({ name, overview, edition }: Section1Props) => {
+export const Section1 = ({
+  name,
+  overview,
+  edition,
+  defaultVerticalBannerSrc,
+}: Section1Props) => {
   const formattedStartDate = edition?.startDate
     ? new Intl.DateTimeFormat("en-US", {
         month: "long",
@@ -29,8 +37,15 @@ export const Section1 = ({ name, overview, edition }: Section1Props) => {
         year: "numeric",
       }).format(new Date(edition.startDate))
     : "Coming Soon";
+  const formattedEndDate = edition?.endDate
+    ? new Intl.DateTimeFormat("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      }).format(new Date(edition.endDate))
+    : "";
 
-  const bannerImage = edition?.banner || "/images/banner.jpg";
+  const verticalBannerSrc = defaultVerticalBannerSrc ?? "/images/banner.jpg";
   const editionTitle = edition?.title || "Upcoming Edition";
 
   return (
@@ -49,10 +64,10 @@ export const Section1 = ({ name, overview, edition }: Section1Props) => {
                 </span>
                 <ChevronRight className="size-4!" />
               </Badge>
-              <h1 className="text-3xl font-semibold tracking-tighter md:text-6xl">
+              <h1 className="text-2xl font-semibold tracking-tighter md:text-6xl">
                 {name}
               </h1>
-              <p className="tracking-tight font-poppins text-foreground md:text-md">
+              <p className="tracking-tight  font-poppins text-foreground ">
                 {overview ?? "This institute currently has no overview."}
               </p>
               <div className="flex w-full gap-2">
@@ -72,26 +87,41 @@ export const Section1 = ({ name, overview, edition }: Section1Props) => {
             <DottedDiv className="group size-full place-self-end p-4 lg:w-4/6">
               <div className="relative h-full w-full bg-muted-2/50 p-4 transition-all ease-in-out group-hover:bg-muted-2">
                 <Image
-                  src={bannerImage}
+                  src={verticalBannerSrc}
                   alt="Edition Banner"
                   width={800}
                   height={600}
-                  className="h-full w-full object-cover rounded-3xl"
+                  className="h-full w-full object-cover object-top rounded-3xl"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent rounded-3xl"></div>
                 <div className="absolute top-4 -ml-4 flex h-full w-full flex-col items-center justify-between p-10">
-                  <p className="flex w-full items-center text-sm tracking-tighter text-background">
-                    UpNext <span className="mx-2 h-2.5 w-[1px] bg-white" />
-                    {formattedStartDate}
-                  </p>
+                  <div className="flex w-full items-center font-oswald text-xs md:text-lg tracking-tighter text-white">
+                    <span className="font-bold uppercase text-xs md:text-lg text-primary  ">
+                      Date:&nbsp;&nbsp;&nbsp;
+                    </span>
+                    {/* <span className="h-3">
+                      {" "}
+                      <Separator
+                        orientation="vertical"
+                        className="mx-2 bg-primary "
+                      />
+                    </span> */}
+                    <span className="text-[11px] sm:text-lg font-bold uppercase">
+                      {formattedStartDate.toUpperCase()}&nbsp;
+                      <span className="text-primary">&mdash;</span>&nbsp;
+                      {formattedEndDate.toLocaleUpperCase()}
+                    </span>
+                  </div>
+
                   <div className="flex flex-col items-center justify-center">
-                    <h2 className="text-center uppercase text-4xl font-semibold tracking-tight text-white">
+                    <h2 className="text-center uppercase text-xl sm:text-4xl font-semibold tracking-tight text-white">
                       {editionTitle}
                     </h2>
-                    <div className="mt-2 h-1 w-6 rounded-full bg-background" />
-                    <p className="mt-10 max-w-sm px-2 text-center text-lg leading-5 font-light tracking-tighter text-background/80">
-                      Discover our latest release of beautifully crafted
-                      components.
+                    <div className="mt-3 h-1 w-6 rounded-full bg-primary" />
+                    <p className="mt-4 max-w-sm px-2 text-center text-xs md:text-xl leading-5 font-bold tracking-tighter text-purple-200">
+                      {edition?.theme
+                        ? edition?.theme
+                        : "Education for a New Epoch of Influence and Leadership."}
                     </p>
                   </div>
                   <Link

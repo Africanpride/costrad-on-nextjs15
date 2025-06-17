@@ -16,7 +16,7 @@ export const getInstitutes = async () => {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
       },
-      // next: { revalidate: 60 }, // seconds
+      next: { revalidate: 60 }, // seconds
     });
 
     if (!res.ok) {
@@ -39,7 +39,6 @@ type Institute = {
   overview: string;
   about: string;
 };
-
 
 export async function getInstituteBySlug(slug: string) {
   try {

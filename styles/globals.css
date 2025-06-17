@@ -42,9 +42,6 @@
   p {
 
     font-size: large;
-    font-weight: 200; /* Default weight for paragraphs */
-    margin: 0; /* Reset margin for paragraphs */
-    padding: 0; /* Reset padding for paragraphs */
     line-height: 1.6; /* Adjust line height for better readability */
     color: var(--foreground); /* Default color for paragraphs */
   }

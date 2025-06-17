@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 
 export function UploadImage({
   label,
@@ -21,12 +20,19 @@ export function UploadImage({
     setUploading(true);
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "your_upload_preset"); // replace with your actual preset
+    formData.append(
+      "upload_preset",
+      process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET!
+    );
 
-    const res = await fetch("https://api.cloudinary.com/v1_1/your_cloud_name/image/upload", {
-      method: "POST",
-      body: formData,
-    });
+    const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+    const res = await fetch(
+      `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
 
     const data = await res.json();
     onUpload(data.secure_url);
@@ -37,7 +43,9 @@ export function UploadImage({
     <div className="grid gap-2">
       <Label>{label}</Label>
       <Input type="file" accept="image/*" onChange={handleFileChange} />
-      {uploading && <p className="text-sm text-muted-foreground">Uploading...</p>}
+      {uploading && (
+        <p className="text-sm text-muted-foreground">Uploading...</p>
+      )}
     </div>
   );
 }

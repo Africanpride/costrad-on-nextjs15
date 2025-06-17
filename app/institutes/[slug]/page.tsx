@@ -53,6 +53,7 @@ export default async function InstituteViewPage(
       <Section1
         name={institute.name}
         overview={institute.overview}
+        defaultVerticalBannerSrc={`/images/defaultVerticalBanner/${institute.acronym}.jpg`}
         edition={
           institute.editions[0]
             ? {
@@ -60,6 +61,7 @@ export default async function InstituteViewPage(
                 startDate: institute.editions[0].startDate ?? undefined,
                 endDate: institute.editions[0].endDate ?? undefined,
                 banner: institute.editions[0].banner ?? undefined,
+                theme: institute.editions[0].theme ?? undefined,
               }
             : undefined
         }

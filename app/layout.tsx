@@ -53,7 +53,7 @@ export default function RootLayout({
     <html
       suppressHydrationWarning
       lang="en"
-      className={` ${bebas.variable} ${anton.variable}  ${ibmplex.variable}  ${opensans.variable} ${opensans.className} 
+      className={` ${bebas.variable} ${anton.variable}  ${ibmplex.variable}  ${opensans.variable} ${oswald.variable} ${opensans.className} 
          text-lg font-extralight min-h-screen text-foreground bg-background antialiased`}
     >
       <head />
