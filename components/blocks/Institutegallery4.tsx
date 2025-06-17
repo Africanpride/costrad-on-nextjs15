@@ -153,9 +153,9 @@ export const InstituteGallery = ({
             {items.map((item, index) => (
               <CarouselItem
                 key={item.id}
-                className="max-w-[320px] pl-[20px] lg:max-w-[360px] relative rounded-3xl "
+                className="max-w-[320px] pl-[20px] lg:max-w-[360px] relative rounded-3xl  "
               >
-                <Link href={`/institutes/${item.slug}`} className="group rounded-3xl">
+                <Link href={`/institutes/${item.slug}`} className="group rounded-3xl shadow-xs shadow-indigo-100">
                   <div className="group relative h-full min-h-[27rem] max-w-full overflow-hidden  md:aspect-[5/4] lg:aspect-[16/9]">
                     <Image
                       src={`/${item.banner}`}

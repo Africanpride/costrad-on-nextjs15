@@ -1,6 +1,5 @@
-
 // components/ui/InstituteCardWithImage.tsx
-"use client"
+"use client";
 import {
   Card,
   CardHeader,
@@ -62,13 +61,17 @@ export default function InstituteCardWithImage({
           onClick={() => router.push(`/institutes/${slug}`)}
         >
           {name}
+          <div className="mt-3 h-0.5 w-9 rounded-full bg-primary" />
         </CardTitle>
-        <CardDescription className="line-clamp-4 font-poppins px-2 ">
-          {overview}
+        <CardDescription className=" pb-4 px-2 ">
+          <div className="line-clamp-3 overflow-hidden text-ellipsis text-foreground ">
+            {overview}
+          </div>
         </CardDescription>
       </CardHeader>
       <CardContent className="p-1 pt-0 space-y-2">
-        <Button className="bg-lime-600 w-full text-background hover:text-foreground  cursor-pointer hover:bg-lime-500 transition-colors p-2 rounded-xl text-center uppercase text-xs">
+        <Button className="bg-lime-600 w-full pt-7 text-background hover:text-foreground  
+        cursor-pointer hover:bg-lime-500 transition-colors p-2 rounded-lg text-center uppercase text-xs">
           Start Application
         </Button>
         <Link

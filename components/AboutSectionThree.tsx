@@ -24,9 +24,9 @@ const AboutSectionThree = (props: Props) => {
             <div className="space-y-6 sm:space-y-8">
               {/* Title */}
               <div className="space-y-2 md:space-y-4">
-                <h4 className="text-firefly uppercase">
+                <h5 className="text-firefly uppercase">
                   Discover Our Agenda
-                </h4>
+                </h5>
                 <h2 className="uppercase text-foreground font-anton text-2xl md:text-4xl ">
                   Developing The Transformational Capacity of Nations
                 </h2>
