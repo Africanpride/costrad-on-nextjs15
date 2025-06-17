@@ -3,6 +3,8 @@ import { prisma } from "@/prisma/dbConnect";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Section1 } from "../Section1";
+import WorldMap from "@/components/WorldMap";
+import OverviewSection from "@/components/OverviewSection";
 
 // Static paths for SSG
 export async function generateStaticParams() {
@@ -47,10 +49,11 @@ export default async function InstituteViewPage(
   });
 
   if (!institute) return notFound();
-
+ 
   return (
     <div className="overflow-hidden">
-      <Section1
+     <div className="relative overflow-hidden pb-5">
+       <Section1
         name={institute.name}
         overview={institute.overview}
         defaultVerticalBannerSrc={`/images/defaultVerticalBanner/${institute.acronym}.jpg`}
@@ -66,6 +69,9 @@ export default async function InstituteViewPage(
             : undefined
         }
       />
+     </div>
+      <OverviewSection />
+      <WorldMap />
     </div>
   );
 }

@@ -36,7 +36,7 @@ const AboutSectionTwo = (props: Props) => {
                 <div className="mt-8 flex items-center  gap-2 w-full  sm:justify-center ">
                   <Button
                     variant={"outline"}
-                    className="text-sm h-8 w-fit cursor-pointer rounded-none bg-primary hover:bg-primary/90 px-10 text-foreground"
+                    className="text-sm h-8 w-fit cursor-pointer uppercase rounded-none bg-primary hover:bg-primary/90 px-10 text-foreground"
                   >
                     Our Institutes
                   </Button>
