@@ -21,14 +21,14 @@ export default function OverviewSection({
       }).format(new Date(institute.editions[0]?.endDate))
     : "";
   return (
-    <section  id="about-section" className="max-w-8xl px-2   mx-auto h-auto">
-      <div className="dark:ring-gray-700 lg:flex lg:max-w-none lg:mx-0 max-w-2xl mx-auto ring-1 ring-gray-200 rounded-3xl">
-        <div className="p-4 md:p-8 sm:p-10 lg:flex-auto space-y-4">
-          <h4 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-50 ">
-            {institute.name}
-          </h4>
+    <section id="about-section" className="max-w-8xl sm:px-2   mx-auto h-auto">
+      <div className="sm:dark:ring-gray-700 lg:flex lg:max-w-none lg:mx-0 max-w-2xl mx-auto sm:ring-1 sm:ring-gray-200 sm:rounded-3xl">
+        <div className=" sm:p-10 md:p-8 lg:flex-auto space-y-4">
+          <h1 className=" tracking-tight  ">{institute.name}</h1>
+          <div className="mt-3 h-0.5 w-9 rounded-full bg-primary" />
+          <h4 className="text-firefly">Introduction</h4>
           <div
-            className=" text-lg pb-5 font-opensans text-justify"
+            className=" text-sm sm:text-lg pb-5 font-opensans sm:text-justify"
             dangerouslySetInnerHTML={{ __html: institute.about || "" }}
           />
           <div className="  items-center gap-x-4 py-6 hidden">
@@ -45,6 +45,7 @@ export default function OverviewSection({
 
         <div className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
           <div className="rounded-2xl bg-gray-300/30 dark:bg-blue-900/10 h-auto md:h-full py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
+          <div className="text-foreground text-xl py-2 ">{institute?.editions[0] ? institute?.editions[0].title : " "}{" "}</div>
             <div className="mx-auto max-w-xs px-8">
               <p className="text-base font-bold text-gray-600 dark:text-gray-500">
                 Pay once &mdash; Own it forever
@@ -61,10 +62,10 @@ export default function OverviewSection({
               <div className="text-center w-auto py-5">
                 <button
                   type="button"
-                  className="cursor-pointer w-auto px-6 py-2 bg-firefly-600 text-white  leading-tight uppercase rounded shadow-md hover:bg-firefly-700 hover:shadow-lg focus:bg-firefly-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-firefly-800 active:shadow-lg   bg-lime-500 hover:bg-lime-600  transition duration-300 ease-in-out text-firefly-900 hover:text-white text-sm "
+                  className="cursor-pointer w-auto px-4 py-2 bg-firefly-600 text-white  leading-tight uppercase rounded shadow-md hover:bg-firefly-700 hover:shadow-lg focus:bg-firefly-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-firefly-800 active:shadow-lg   bg-lime-500 hover:bg-lime-600  transition duration-300 ease-in-out text-firefly-900 hover:text-white text-sm "
                   data-hs-overlay="#hs-subscription-with-image"
                 >
-                  Start Application: fdi 2025
+                   Start Application
                 </button>
               </div>
               <div className="flex w-full items-center justify-center text-xs md:text-lg tracking-tighter ">
