@@ -12,6 +12,7 @@ import { DeleteConfirmationDialog } from "@/components/delete-confirmation-dialo
 import { Button } from "@/components/ui/button";
 import { getBaseUrl } from "@/config/site";
 import { InstituteInfo } from "./InstituteEditionImage";
+import { EditEditionSheet } from "./EditEditionSheet";
 
 export const columns: ColumnDef<any>[] = [
   {
@@ -68,10 +69,10 @@ export const columns: ColumnDef<any>[] = [
     ),
   },
   {
-    header: "Created",
-    accessorKey: "createdAt",
+    header: "Start Date",
+    accessorKey: "startDate",
     cell: ({ row }) => {
-      const dateValue = row.original.createdAt;
+      const dateValue = row.original.startDate;
       if (dateValue) {
         const date = new Date(dateValue);
         if (!isNaN(date.getTime())) {
@@ -82,10 +83,10 @@ export const columns: ColumnDef<any>[] = [
     },
   },
   {
-    header: "Last Update",
-    accessorKey: "updatedAt",
+    header: "End Date",
+    accessorKey: "endDate",
     cell: ({ row }) => {
-      const dateValue = row.original.updatedAt;
+      const dateValue = row.original.endDate;
       if (dateValue) {
         const date = new Date(dateValue);
         if (!isNaN(date.getTime())) {
@@ -117,7 +118,8 @@ export const columns: ColumnDef<any>[] = [
     enableHiding: false,
     cell: ({ row }) => {
       const edition = row.original;
-      return <EditEditionDialog edition={edition} />;
+      return <EditEditionSheet edition={row.original} />
+;
     },
   },
   {

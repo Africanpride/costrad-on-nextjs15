@@ -16,7 +16,7 @@ import { toast } from "sonner";
 import { getBaseUrl } from "@/config/site";
 import { Button } from "@/components/ui/button";
 import { UploadImage } from "@/components/custom/UploadImage";
-import { InstituteCombobox } from "@/components/custom/Combobox";
+import { InstituteCombobox } from "@/components/custom/InstituteCombobox";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import {

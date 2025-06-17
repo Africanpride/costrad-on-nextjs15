@@ -18,6 +18,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { useEffect } from "react";
 
 type Institute = {
   id: string;
@@ -25,15 +26,24 @@ type Institute = {
 };
 
 interface ComboboxProps {
-  institutes: Institute[];
+  institutes: { id: string; name: string }[];
   onSelect: (id: string) => void;
+  selectedId?: string;
 }
 
-export function InstituteCombobox({ institutes, onSelect }: ComboboxProps) {
+export function InstituteCombobox({
+  institutes,
+  onSelect,
+  selectedId,
+}: ComboboxProps) {
   const [open, setOpen] = React.useState(false);
-  const [selectedId, setSelectedId] = React.useState<string>("");
+  const [selected, setSelected] = React.useState<string>(selectedId ?? "");
 
-  const selectedInstitute = institutes.find((i) => i.id === selectedId);
+  useEffect(() => {
+    if (selectedId) setSelected(selectedId);
+  }, [selectedId]);
+
+  const selectedInstitute = institutes.find((i) => i.id === selected);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -48,7 +58,7 @@ export function InstituteCombobox({ institutes, onSelect }: ComboboxProps) {
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-full p-0 sm:max-w-3xl ">
+      <PopoverContent className="w-full p-0">
         <Command>
           <CommandInput placeholder="Search institute..." className="h-9" />
           <CommandList>
@@ -57,9 +67,9 @@ export function InstituteCombobox({ institutes, onSelect }: ComboboxProps) {
               {institutes.map((institute) => (
                 <CommandItem
                   key={institute.id}
-                  value={institute.name}
+                  value={institute.id}
                   onSelect={() => {
-                    setSelectedId(institute.id);
+                    setSelected(institute.id);
                     onSelect(institute.id);
                     setOpen(false);
                   }}
@@ -68,7 +78,7 @@ export function InstituteCombobox({ institutes, onSelect }: ComboboxProps) {
                   <Check
                     className={cn(
                       "ml-auto h-4 w-4",
-                      selectedId === institute.id ? "opacity-100" : "opacity-0"
+                      selected === institute.id ? "opacity-100" : "opacity-0"
                     )}
                   />
                 </CommandItem>

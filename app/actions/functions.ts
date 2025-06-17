@@ -16,7 +16,7 @@ export const getInstitutes = async () => {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
       },
-      next: { revalidate: 7220 }, // seconds
+      // next: { revalidate: 60 }, // seconds
     });
 
     if (!res.ok) {

@@ -1,8 +1,10 @@
+//  app/api/editions/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/prisma/dbConnect";
 import { getCurrentUser } from "@/app/actions/functions";
 import { revalidatePath } from "next/cache";
 import { baseUrl } from "@/lib/metadata";
+import slugify from "slugify";
 
 export async function GET() {
   console.log("Getting editions ....");
@@ -21,14 +23,25 @@ export async function GET() {
   }
 }
 
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
+  const user = await getCurrentUser();
+  if (!user || user.role !== "admin") {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
   try {
     const data = await req.json();
-    console.log(data);
-    const edition = await prisma.edition.create({ data });
+
+    const edition = await prisma.edition.create({
+      data: {
+        ...data,
+        slug: slugify(data.title, { lower: true, strict: true }),
+        // instituteId: new ObjectId(data.instituteId),
+      },
+    });
+
     return NextResponse.json(edition);
   } catch (error) {
-    console.error("API Error:", error); // ✅ More insight
+    console.error("API Error:", error);
     return NextResponse.json(
       { error: "Failed to create edition" },
       { status: 500 }
@@ -71,6 +84,10 @@ export async function PUT(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
+  const user = await getCurrentUser();
+  if (!user || user.role !== "admin") {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
   try {
     const { id } = await req.json();
     console.log("DELETING EDITION WITH ID", id);

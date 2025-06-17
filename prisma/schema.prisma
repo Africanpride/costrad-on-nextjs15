@@ -204,9 +204,9 @@ model Edition {
   title          String
   slug           String    @unique
   theme          String?
-  acronym        String
-  overview       String
-  about          String
+  acronym        String?
+  overview       String?
+  about          String?
   introduction   String?
   banner         String?
   verticalBanner String?
