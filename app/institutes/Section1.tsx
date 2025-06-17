@@ -96,20 +96,18 @@ export const Section1 = ({
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent rounded-3xl"></div>
                 <div className="absolute top-4 -ml-4 flex h-full w-full flex-col items-center justify-between p-10">
                   <div className="flex w-full items-center font-oswald text-xs md:text-lg tracking-tighter text-white">
-                    <span className="font-bold uppercase text-xs md:text-lg text-primary  ">
+                    <span className="font-bold uppercase text-xs md:text-lg text-primary">
                       Date:&nbsp;&nbsp;&nbsp;
                     </span>
-                    {/* <span className="h-3">
-                      {" "}
-                      <Separator
-                        orientation="vertical"
-                        className="mx-2 bg-primary "
-                      />
-                    </span> */}
                     <span className="text-[11px] sm:text-lg font-bold uppercase">
-                      {formattedStartDate.toUpperCase()}&nbsp;
-                      <span className="text-primary">&mdash;</span>&nbsp;
-                      {formattedEndDate.toLocaleUpperCase()}
+                      {formattedStartDate.toUpperCase()}
+                      {edition?.endDate && (
+                        <>
+                          &nbsp;<span className="text-primary">&mdash;</span>
+                          &nbsp;
+                          {formattedEndDate.toUpperCase()}
+                        </>
+                      )}
                     </span>
                   </div>
 
