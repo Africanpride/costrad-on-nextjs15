@@ -3,8 +3,6 @@
 @import "./base.css";
 @import "./animations.css";
 @import "tailwindcss";
-@import "./_keyframe-animations.scss";
-@import "./_variables.scss";
 @custom-variant dark (&:is(.dark *));
 
 @layer base {

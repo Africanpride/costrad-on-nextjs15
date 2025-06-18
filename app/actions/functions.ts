@@ -12,11 +12,8 @@ import { baseUrl } from "@/lib/metadata";
 export const getInstitutes = async () => {
   try {
     const res = await fetch(`${baseUrl}/api/institutes`, {
-      cache: "force-cache",
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
-      },
-      next: { revalidate: 60 }, // seconds
+      // cache: "force-cache",
+      // next: { revalidate: 60 }, // seconds
     });
 
     if (!res.ok) {

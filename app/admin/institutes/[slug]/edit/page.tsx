@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import SimpleEditorWithProps from "@/components/ui/TipTapEditor";
 import { baseUrl } from "@/lib/metadata";
 import { getBaseUrl } from "@/config/site";
 import { toast } from "sonner";
@@ -134,12 +133,13 @@ export default function EditInstitutePage() {
         <div>
           <Label htmlFor="about">About</Label>
           <Textarea
-            id="overview"
-            name="overview"
+            id="about"
+            name="about"
             value={formState.about}
             onChange={handleChange}
             required
             className="min-h-[150px]"
+            
           />
           {/* <SimpleEditorWithProps
             initialContent={formState.about}

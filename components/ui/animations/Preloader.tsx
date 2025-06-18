@@ -1,7 +1,7 @@
 'use client';
 // import styles from './style.module.scss';
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useAnimation, easeInOut } from 'framer-motion';
 
 const words = [
   'Hello',
@@ -66,11 +66,11 @@ export default function Preloader() {
   const curve = {
     initial: {
       d: initialPath,
-      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1] },
+      transition: { duration: 0.7, ease: easeInOut },
     },
     exit: {
       d: targetPath,
-      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1], delay: 0.3 },
+      transition: { duration: 0.7, ease: easeInOut, delay: 0.3 },
     },
   };
 
@@ -125,6 +125,6 @@ export const slideUp = {
   },
   exit: {
     top: '-100vh',
-    transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1], delay: 0.2 },
+    transition: { duration: 0.8, ease: easeInOut, delay: 0.2 },
   },
 };
