@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "explainFiles": true,
     "skipLibCheck": true,
@@ -24,36 +20,23 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@/fonts": [
-        "./styles/fonts"
-      ],
-      "@functions*": [
-        "./utils/functions/*"
-      ],
-      "@components/*": [
-        "./components/*"
-      ],
-      "@hooks/*": [
-        "./hooks/*"
-      ],
-      "@styles/*": [
-        "./styles/*"
-      ],
-      "@lib/*": [
-        "./lib/*"
-      ],
-      "@assets/*": [
-        "./assets/*"
-      ],
-      "@auth/*": [
-        "./auth/*"
-      ],
-      "@views/*": [
-        "./[pathname]/views/*"
-      ]
+      "@/*": ["./*"],
+      "@/fonts": ["./styles/fonts"],
+      "@functions*": ["./utils/functions/*"],
+      "@components/*": ["./components/*"],
+      "@/components/*": ["./components/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@/hooks/*": ["./hooks/*"],
+      "@styles/*": ["./styles/*"],
+      "@/styles/*": ["./styles/*"],
+      "@lib/*": ["./lib/*"],
+      "@/lib/*": ["./lib/*"],
+      "@assets/*": ["./assets/*"],
+      "@/assets/*": ["./assets/*"],
+      "@auth/*": ["./auth/*"],
+      "@/auth/*": ["./auth/*"],
+      "@views/*": ["./[pathname]/views/*"],
+      "@/views/*": ["./[pathname]/views/*"]
     },
     "moduleResolution": "nodenext"
   },
@@ -65,8 +48,6 @@
     "lib/user.ts",
     "app/api/webhooks/clerk/route.js",
     "app/gsap/page.js"
-    ],
-  "exclude": [
-    "node_modules"
-  ]
+  ],
+  "exclude": ["node_modules"]
 }
