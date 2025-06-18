@@ -67,10 +67,10 @@ const nextConfig = {
         source: "/home",
         destination: "/",
         permanent: true,
-      }
-     
+      },
     ];
   },
+  reactStrictMode: false,
 };
 
 module.exports = nextConfig;

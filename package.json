@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "type-check": "tsc --noEmit",
+    "test": "tsc --noEmit",
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
@@ -11,8 +12,7 @@
     "postinstall": "prisma generate",
     "vercel-build": "prisma generate && next build",
     "prisma:generate": "prisma generate",
-    "seed:institutes": "tsx data/seedInstitutes.ts",
-    "prepare": "husky"
+    "seed:institutes": "tsx data/seedInstitutes.ts"
   },
   "dependencies": {
     "@daveyplate/better-auth-ui": "^1.7.3",
@@ -148,7 +148,6 @@
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-unused-imports": "^3.2.0",
-    "husky": "^9.1.7",
     "postcss": "^8.5.3",
     "prisma": "^6.9.0",
     "tailwind-variants": "^0.1.20",
