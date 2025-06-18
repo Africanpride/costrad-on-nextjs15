@@ -1,8 +1,5 @@
-//  app/actions/functions.ts
-// Fetch institutes with authentication
-"use server";
-
 // app/actions/functions.ts
+"use server";
 
 import { headers } from "next/headers";
 import { NextRequest } from "next/server";
@@ -11,30 +8,23 @@ import { baseUrl } from "@/lib/metadata";
 
 export const getInstitutes = async () => {
   try {
-    const res = await fetch(`${baseUrl}/api/institutes`, {
-      // cache: "force-cache",
-      // next: { revalidate: 60 }, // seconds
+    const url = `${baseUrl}/api/institutes`;
+    console.log("Fetching institutes from:", url); // Debug log
+    const res = await fetch(url, {
+      cache: "force-cache",
+      next: { revalidate: 720 }, // 12 minutes
     });
 
     if (!res.ok) {
       throw new Error(`HTTP error: ${res.status} ${res.statusText}`);
     }
+
     const institutes = await res.json();
-    return institutes;
-    //   setInstitutes(Array.isArray(data) ? data : []);
+    return Array.isArray(institutes) ? institutes : [];
   } catch (err) {
     console.error("Failed to fetch institutes:", err);
+    return null; // Explicitly return null
   }
-};
-
-// Define or import the Institute type
-type Institute = {
-  id: string;
-  name: string;
-  slug: string;
-  acronym: string;
-  overview: string;
-  about: string;
 };
 
 export async function getInstituteBySlug(slug: string) {

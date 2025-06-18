@@ -18,12 +18,18 @@ type Institute = {
   }[];
 };
 
-export default function InstituteComponent() {
-  const [institutes, setInstitutes] = useState<Institute[] | null>(null);
-  const [loading, setLoading] = useState(true);
+interface InstitutesComponentProps {
+  initialInstitutes: Institute[] | null;
+}
+
+export default function InstitutesComponent({ initialInstitutes }: InstitutesComponentProps) {
+  const [institutes, setInstitutes] = useState<Institute[] | null>(initialInstitutes);
+  const [loading, setLoading] = useState(false); // Set to false since initial data is provided
   const [error, setError] = useState<string | null>(null);
 
+  // Optional: Fetch data client-side for real-time updates
   useEffect(() => {
+    // Only fetch if you want to refresh data client-side (e.g., for polling)
     const fetchInstitutes = async () => {
       try {
         setLoading(true);
@@ -35,7 +41,8 @@ export default function InstituteComponent() {
         setLoading(false);
       }
     };
-    fetchInstitutes();
+    // Uncomment to enable client-side refresh
+    // fetchInstitutes();
   }, []);
 
   if (loading) {

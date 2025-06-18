@@ -28,36 +28,36 @@ const footerLinks = [
   {
     title: "Institutes",
     links: [
-      { label: "Family Development Institute (FDI)", href: "/institutes/fdi" },
+      { label: "Family Development Institute (FDI)", href: "/institutes/family-development-institute" },
       {
         label: "Mindset Transformation Institute (MTI)",
-        href: "/institutes/mti",
+        href: "/institutes/mindset-transformation-institute",
       },
       {
         label: "Institute of Government, Govenance and Leadership (IGPP)",
-        href: "/institutes/governance",
+        href: "/institutes/institute-of-governance-and-public-policy",
       },
-      { label: "Institute of Economic Affairs (IEA)", href: "/institutes/iea" },
+      { label: "Institute of Economic Affairs (IEA)", href: "/institutes/institute-of-economic-affairs" },
       {
         label:
           "College of Sustainable Transformation and Development (COSTrAD) ",
-        href: "/institutes/costrad",
+        href: "/institutes/college-of-sustainable-transformation-and-development",
       },
       {
         label: "Education Training and Development Institute (ETADI)",
-        href: "/institutes/etadi",
+        href: "/institutes/education-training-and-development-institute",
       },
       {
         label: "Futuristic Institute of Science and Technology (FIRST)",
-        href: "/institutes/first",
+        href: "/institutes/futuristic-institute-of-revolutionary-science-and-technology",
       },
       {
         label: "Media of Communication Institute (MOCI)",
-        href: "/institutes/moci",
+        href: "/institutes/media-of-communication-institute",
       },
       {
         label: "Institute of Arts, Sports and Culture (IOASC)",
-        href: "/institutes/ioasc",
+        href: "/institutes/institute-of-arts-sports-and-cultural-development",
       },
     ],
   },
@@ -100,6 +100,10 @@ export default function Footer() {
               </ul>
             </div>
           ))}
+          <div>
+            <h3 className=" text-sm sm:text-xl mb-4 ">Institutes</h3>
+
+          </div>
 
           <div>
             <h3 className=" text-sm sm:text-xl mb-4 ">Follow us</h3>
