@@ -13,7 +13,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { IconThumbDown, IconThumbUp } from "@tabler/icons-react";
 
 interface ActionsCellProps {
   id: string;

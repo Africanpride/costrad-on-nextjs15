@@ -1,6 +1,5 @@
 import { LucideAlignLeft } from "lucide-react";
 import React from "react";
-import { ThemeSwitch } from "./theme-switch";
 
 type Props = {};
 

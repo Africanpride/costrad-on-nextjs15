@@ -1,8 +1,6 @@
 "use client";
-import { bebas, oswald } from "@/config/fonts";
+import { oswald } from "@/config/fonts";
 import Image from "next/image";
-import { Avatar, Divider } from "@heroui/react";
-import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import Link from "next/link";
 
 type MainLogoProps = {

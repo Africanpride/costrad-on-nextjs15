@@ -4,7 +4,6 @@ import {
   ArrowUpRight,
   ChevronDown,
   ChevronRight,
-  ChevronUp,
 } from "lucide-react";
 import React from "react";
 import Image from "next/image";
@@ -13,7 +12,6 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { DottedDiv } from "@/components/DottedDiv";
-import { Separator } from "@/components/ui/separator";
 
 type Section1Props = {
   name: string;

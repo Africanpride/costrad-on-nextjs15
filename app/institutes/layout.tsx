@@ -1,4 +1,3 @@
-import GoogleCaptchaWrapper from '@/components/ui/GoogleCaptchaWrapper';
 import Jumbotron from '@/components/ui/Jumbotron';
 import { Toaster } from 'react-hot-toast';
 

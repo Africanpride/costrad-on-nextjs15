@@ -133,13 +133,21 @@ export default function EditInstitutePage() {
         </div>
         <div>
           <Label htmlFor="about">About</Label>
-          <SimpleEditorWithProps
+          <Textarea
+            id="overview"
+            name="overview"
+            value={formState.about}
+            onChange={handleChange}
+            required
+            className="min-h-[150px]"
+          />
+          {/* <SimpleEditorWithProps
             initialContent={formState.about}
             fieldName="about"
             onChange={(value) =>
               setFormState((prev) => ({ ...prev, about: value }))
             }
-          />
+          /> */}
         </div>
       </div>
       <Button type="submit" disabled={loading}>

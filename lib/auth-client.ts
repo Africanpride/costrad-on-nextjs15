@@ -8,7 +8,6 @@ import {
   oneTapClient,
   oidcClient,
   genericOAuthClient,
-  magicLinkClient,
   emailOTPClient,
 } from "better-auth/client/plugins";
 import { toast } from "sonner";

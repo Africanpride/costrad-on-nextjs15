@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import Image from 'next/image'
 import { Button } from "@heroui/react";
-import { LucideMailCheck, LucideSquareLibrary } from 'lucide-react';
+import { LucideSquareLibrary } from 'lucide-react';
 
 
 type Props = {};

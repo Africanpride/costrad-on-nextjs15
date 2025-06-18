@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import { title } from "@/components/primitives";
 
 export default function OurStory() {
   return (

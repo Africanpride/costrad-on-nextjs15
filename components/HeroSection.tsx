@@ -1,9 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import React from "react";
 import clsx from "clsx";
-import { LucideMoveDown } from "lucide-react";
 import { bebas } from "@/config/fonts";
 import { useDevice } from "@/hooks/useDevice";
 import { Separator } from "@radix-ui/react-separator";

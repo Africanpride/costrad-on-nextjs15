@@ -1,6 +1,5 @@
-import { bebas } from '@/config/fonts';
-import { Button, Input, Link } from "@heroui/react";
-import { LucideArrowBigRight, LucideChevronRightCircle, LucideMailCheck, LucideMailX } from 'lucide-react';
+import { Button, Input } from "@heroui/react";
+import { LucideMailCheck } from 'lucide-react';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';

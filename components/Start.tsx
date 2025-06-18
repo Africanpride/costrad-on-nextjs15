@@ -1,9 +1,7 @@
-import { bebas, playfair_display, plusJakartaSans } from '@/config/fonts';
-import { LucideMoveDown, LucideMove3d, LucideScale } from 'lucide-react';
+import { bebas } from '@/config/fonts';
+import { LucideMoveDown } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
-import MainMenu from './ui/Menu';
-import Link from 'next/link';
 import { Divider } from "@heroui/react";
 
 type Props = {};

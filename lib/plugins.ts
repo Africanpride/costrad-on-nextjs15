@@ -1,4 +1,4 @@
-import { createAuthMiddleware, createAuthEndpoint, BetterAuthPlugin } from "better-auth/plugins";
+import { createAuthEndpoint, BetterAuthPlugin } from "better-auth/plugins";
 import { sessionMiddleware } from "better-auth/api";
  
 const myPlugin = ()=>{

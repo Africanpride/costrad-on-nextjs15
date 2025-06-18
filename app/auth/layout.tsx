@@ -1,11 +1,10 @@
-import Jumbotron from '@/components/ui/Jumbotron';
 import MainLogo from '@/components/ui/MainLogo';
 import { ThemeSwitch } from '@/components/ui/theme-switch';
-import { LucideAArrowDown, LucideAnchor, LucideHome, LucideHouse, LucideIceCream2 } from 'lucide-react';
+import { LucideHome } from 'lucide-react';
 import Image from "next/image";
 import Link from 'next/link';
 
-import { Toaster, toast } from 'sonner';
+import { Toaster } from 'sonner';
 
 
 

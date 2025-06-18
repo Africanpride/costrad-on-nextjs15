@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { DiscordLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { signIn, signUp } from "@/lib/auth-client";
 import Image from "next/image";
@@ -20,7 +19,6 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { PasswordInput } from "./ui/password-input";
 import Link from "next/link";
-import { FacebookIcon } from "react-share";
 import SeperatorWithText from "./ui/seperatorWithText";
 
 export function SignUpComponent() {

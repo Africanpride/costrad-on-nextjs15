@@ -5,7 +5,6 @@ import {
   IconDotsVertical,
   IconLogout,
   IconNotification,
-  IconSunFilled,
   IconUserCircle,
 } from "@tabler/icons-react";
 
@@ -25,7 +24,6 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { ThemeSwitch } from "./ui/theme-switch";
 import { client } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 

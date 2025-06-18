@@ -3,7 +3,6 @@ import AboutSectionFour from "@/components/AboutSectionFour";
 import AboutSectionOne from "@/components/AboutSectionOne";
 import AboutSectionThree from "@/components/AboutSectionThree";
 import AboutSectionTwo from "@/components/AboutSectionTwo";
-import DonateSection from "@/components/donate-section";
 
 export default function AboutPage() {
   return (

@@ -1,4 +1,3 @@
-import { title } from "@/components/primitives";
 
 export default function Privacy() {
   return (

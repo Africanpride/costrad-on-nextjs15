@@ -10,7 +10,6 @@ import {
 import { Button } from "@/components/ui/button"; // updated path for ShadCN
 import Image from "next/image";
 import Link from "next/link";
-import { description } from "../chart-area-interactive";
 import { useRouter } from "next/navigation";
 
 export interface InstituteCardProps {

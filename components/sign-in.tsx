@@ -21,7 +21,6 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { PasswordInput } from "./ui/password-input";
 import SeperatorWithText from "./ui/seperatorWithText";
-import { checkUserExist } from "@/app/actions/checkUserExist";
 
 export const dynamic = "force-dynamic";
 export default function SignInComponent() {

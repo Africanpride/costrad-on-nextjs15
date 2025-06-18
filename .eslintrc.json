@@ -2,6 +2,23 @@
 
 {
   "extends": "next/core-web-vitals",
-    "rules": { "react/no-unescaped-entities": 0 }
+  "plugins": ["unused-imports","@typescript-eslint"],
+    "parser": "@typescript-eslint/parser",
+  "rules": {
+        "@typescript-eslint/no-explicit-any": "off",
+
+    "unused-imports/no-unused-imports": "off",
+    "unused-imports/no-unused-vars": [
+      "off",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "react/no-unescaped-entities": 0,
+    "@next/next/no-img-element": "off"
+  }
 
 }

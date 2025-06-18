@@ -1,7 +1,5 @@
-import Link from "next/link";
 import React from "react";
 import { Button } from "./ui/button";
-import { Icon360View, IconGalaxy, IconGlobe } from "@tabler/icons-react";
 
 type Props = {};
 

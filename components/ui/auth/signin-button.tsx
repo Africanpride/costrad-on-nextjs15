@@ -1,9 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
-import { useRouter, redirect } from "next/navigation";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@heroui/button";
 import { LogOut, LucideArrowUpRight, UserIcon } from "lucide-react";
-import { client, signOut } from "@/lib/auth-client";
+import { client } from "@/lib/auth-client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import {
@@ -16,8 +16,6 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { User } from "@heroui/react";
-import { UserButton } from "@daveyplate/better-auth-ui";
 
 export function SignInButton() {
   const router = useRouter(); // Use Next.js router

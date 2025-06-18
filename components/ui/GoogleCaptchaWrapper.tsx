@@ -9,7 +9,7 @@ export default function GoogleCaptchaWrapper({
   children: React.ReactNode;
   className?:  string;
 }) {
-  const recaptchaKey: string | undefined = process?.env?.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+  const recaptchaKey: string | undefined = process?.env?.RECAPTCHA_SITE_KEY;
 
   if (!recaptchaKey) {
     console.error(

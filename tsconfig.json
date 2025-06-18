@@ -65,7 +65,7 @@
     "lib/user.ts",
     "app/api/webhooks/clerk/route.js",
     "app/gsap/page.js"
-  ],
+, "components/tiptap-extension/link-extension.mts", "components/tiptap-extension/trailing-node-extension.mts", "components/tiptap-extension/selection-extension.mts"  ],
   "exclude": [
     "node_modules"
   ]

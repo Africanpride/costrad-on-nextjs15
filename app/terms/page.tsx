@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unescaped-entities */
-import { title } from "@/components/primitives";
 
 export default function TermsOfService() {
   return (

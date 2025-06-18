@@ -1,5 +1,4 @@
 import { betterAuth } from "better-auth";
-import { PrismaClient } from "@prisma/client";
 import {
   bearer,
   admin,
@@ -17,8 +16,6 @@ import { resend } from "./email/resend";
 import { nextCookies } from "better-auth/next-js";
 import { baseUrl } from "./metadata";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-import { createAuthMiddleware, APIError } from "better-auth/api";
-import { redirect } from "next/navigation";
 import { prisma } from "@/prisma/dbConnect";
 
 const from = process.env.BETTER_AUTH_EMAIL || "notifications@costrad.org";

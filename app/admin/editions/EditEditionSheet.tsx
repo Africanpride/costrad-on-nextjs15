@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { getBaseUrl } from "@/config/site";
-import { IconEdit, IconEyeCog } from "@tabler/icons-react";
+import { IconEdit } from "@tabler/icons-react";
 
 export function EditEditionSheet({ edition }: { edition: any }) {
   const router = useRouter();

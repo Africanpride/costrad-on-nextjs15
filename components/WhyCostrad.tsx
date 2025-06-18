@@ -2,14 +2,10 @@
 
 import Image from "next/image";
 import React from "react";
-import clsx from "clsx";
-import { ArrowUpRight, LucideMoveDown } from "lucide-react";
-import { bebas } from "@/config/fonts";
+import { ArrowUpRight } from "lucide-react";
 import { useDevice } from "@/hooks/useDevice";
-import { Separator } from "@radix-ui/react-separator";
 import Link from "next/link";
 import { Button } from "@heroui/button";
-import ButtonWithLink from "./ButtonWithLink";
 
 interface WhyCostradProps {
   backgroundImageUrl?: string;

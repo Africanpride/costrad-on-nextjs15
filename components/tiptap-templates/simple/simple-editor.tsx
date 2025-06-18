@@ -16,9 +16,11 @@ import { Superscript } from "@tiptap/extension-superscript";
 import { Underline } from "@tiptap/extension-underline";
 
 // --- Custom Extensions ---
-import { Link } from "@/components/tiptap-extension/link-extension";
-import { Selection } from "@/components/tiptap-extension/selection-extension";
-import { TrailingNode } from "@/components/tiptap-extension/trailing-node-extension";
+import { Link } from "@tiptap/extension-link";
+// import { Selection } from "@/components/tiptap-extension/selection-extension";
+// TODO: Fix import path or ensure the file exists. Uncomment and update the line below if you have the correct path.
+// import { Selection } from "@/components/tiptap-extension/selection-extension.mjs";
+import { TrailingNode } from "@/components/tiptap-extension/trailing-node-extension.mjs";
 
 // --- UI Primitives ---
 import { Button } from "@/components/tiptap-ui-primitive/button";
@@ -212,7 +214,6 @@ export function SimpleEditor() {
       Superscript,
       Subscript,
 
-      Selection,
       ImageUploadNode.configure({
         accept: "image/*",
         maxSize: MAX_FILE_SIZE,

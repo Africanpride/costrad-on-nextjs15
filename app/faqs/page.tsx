@@ -1,5 +1,4 @@
 // app/donate/page.tsx
-import DonateSection from '@/components/donate-section';
 import FaqsComponent from '@/components/ui/Faqs';
 
 export default function Faqspage() {

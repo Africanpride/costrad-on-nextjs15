@@ -1,6 +1,5 @@
 "use client";
 
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -15,7 +14,6 @@ import { useRouter } from "next/navigation"; // Import useRouter
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Loading from "@/components/Loading";
-import { set } from "date-fns";
 
 export default function EmailVerification() {
   const [signupEmail, setSignupEmail] = useState<string | null>(null);

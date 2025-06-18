@@ -2,11 +2,11 @@
 "use client"; // Essential for client-side functionality
 
 import React, { useState, useEffect } from 'react';
-import { Input } from "@/components/ui/input";     // Shadcn Input
+// Shadcn Input
 import { Label } from "@/components/ui/label";     // Shadcn Label (often used with Input)
 // import { Textarea } from "@/components/ui/textarea"
 import { Textarea } from "@/components/ui/textarea"; // Update this path if your Textarea component is located elsewhere, e.g. "@/components/Textarea"
-import { Checkbox } from "@/components/ui/checkbox"; // Shadcn Checkbox (if you use it)
+// Shadcn Checkbox (if you use it)
 
 // Define the interface for your Testimonial form data
 export interface TestimonialFormData { // Export this interface if you need it in other files

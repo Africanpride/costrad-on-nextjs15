@@ -1,18 +1,11 @@
-import { bebas } from "@/config/fonts";
 import React, { useState } from "react";
 import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
   Button,
   useDisclosure,
 } from "@heroui/react";
 
 import { Input } from "@/components/ui/input";
 
-import { Loader2 } from "lucide-react";
 import { Label } from "@radix-ui/react-label";
 
 type Props = {};

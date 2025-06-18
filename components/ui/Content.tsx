@@ -1,11 +1,8 @@
 'use client';
 import Link from 'next/link';
-import React, { useCallback, useLayoutEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { affiliateMenu, menuItems, quickLinks, siteConfig } from '../../config/site';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/all';
 import Marquee from './marquee';
-import { motion } from 'framer-motion';
 
 export default function Content() {
   return (

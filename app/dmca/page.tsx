@@ -1,4 +1,3 @@
-import { title } from "@/components/primitives";
 
 export default function DMCA() {
   // Changed function name to DMCA for clarity

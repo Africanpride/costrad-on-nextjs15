@@ -6,34 +6,22 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
   SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 
-import { LogOut, UserIcon, X } from "lucide-react";
 import { motion } from "framer-motion";
 import MainMenu from "./ui/Menu";
 import { siteConfig } from "@/config/site";
 import { bebas } from "@/config/fonts";
 import { useRouter } from "next/navigation";
 import { ThemeSwitch } from "./ui/theme-switch";
-import { client, signOut } from "@/lib/auth-client";
-import { AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
-import {
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-} from "@radix-ui/react-dropdown-menu";
-import { DropdownMenuShortcut } from "./ui/dropdown-menu";
+import { client } from "@/lib/auth-client";
+
+
 import { SignInButton } from "./ui/auth/signin-button";
 import MainLogo from "./ui/MainLogo";
 

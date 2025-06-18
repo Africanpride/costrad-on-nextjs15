@@ -5,7 +5,6 @@ import {
   Poppins,
   Plus_Jakarta_Sans,
   Special_Elite,
-  Poiret_One,
   Montserrat,
   Open_Sans,
   Oswald,

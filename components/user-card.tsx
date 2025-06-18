@@ -24,11 +24,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { client, signOut, useSession } from "@/lib/auth-client";
 import { Session } from "@/lib/auth-types";
-import { MobileIcon } from "@radix-ui/react-icons";
 import {
   Edit,
   Fingerprint,
-  Laptop,
   Loader2,
   LogOut,
   Plus,
@@ -41,7 +39,6 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { UAParser } from "ua-parser-js";
 import {
   Table,
   TableBody,
