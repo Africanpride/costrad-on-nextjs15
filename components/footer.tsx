@@ -100,11 +100,7 @@ export default function Footer() {
               </ul>
             </div>
           ))}
-          <div>
-            <h3 className=" text-sm sm:text-xl mb-4 ">Institutes</h3>
-
-          </div>
-
+        
           <div>
             <h3 className=" text-sm sm:text-xl mb-4 ">Follow us</h3>
 
