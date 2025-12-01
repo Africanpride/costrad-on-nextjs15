@@ -73,7 +73,7 @@
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "@wojtekmaj/react-recaptcha-v3": "^0.1.4",
-    "better-auth": "^1.2.7",
+    "better-auth": "^1.4.2",
     "better-sqlite3": "^11.8.1",
     "bson": "^6.10.4",
     "class-variance-authority": "^0.7.1",
